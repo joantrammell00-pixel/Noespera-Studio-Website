@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noespera Studio — Applied Organizational Meaning Science</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --stone: #EIDFDB;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.2rem;
+        }
+
+        .large-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+        section:nth-child(4) { animation-delay: 0.6s; }
+        section:nth-child(5) { animation-delay: 0.8s; }
+        section:nth-child(6) { animation-delay: 1s; }
+        section:nth-child(7) { animation-delay: 1.2s; }
+        section:nth-child(8) { animation-delay: 1.4s; }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 8rem 0 10rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(198, 160, 111, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 4rem;
+            display: inline-block;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .subtitle {
+            color: var(--gold-light);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Accent Line */
+        .accent-line {
+            width: 80px;
+            height: 2px;
+            background: var(--gold);
+            margin: 3rem 0;
+        }
+
+        /* Foundation Section */
+        .foundation {
+            background: var(--white);
+        }
+
+        .foundation-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .discipline-note {
+            padding: 2.5rem;
+            background: rgba(198, 160, 111, 0.05);
+            border-left: 3px solid var(--gold);
+            margin: 3rem 0;
+        }
+
+        .discipline-note p {
+            font-style: italic;
+            color: var(--charcoal-deep);
+        }
+
+        /* Engagements Section */
+        .engagements {
+            background: var(--ivory);
+        }
+
+        .engagement-intro {
+            max-width: 900px;
+            margin-bottom: 4rem;
+        }
+
+        .engagement-section {
+            margin-top: 3rem;
+            padding: 2.5rem;
+            background: var(--white);
+            border-left: 3px solid var(--gold);
+        }
+
+        .engagement-section h3 {
+            color: var(--charcoal-deep);
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .scenario {
+            padding: 2rem;
+            background: rgba(198, 160, 111, 0.05);
+            border-top: 2px solid var(--gold);
+        }
+
+        .scenario h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--charcoal-deep);
+            margin-bottom: 1rem;
+        }
+
+        /* DNA Frameworks */
+        .dna-frameworks {
+            background: var(--white);
+        }
+
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .framework-card {
+            padding: 2rem;
+            background: var(--ivory);
+            border-top: 2px solid var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        .framework-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .framework-card h3 {
+            font-size: 1.5rem;
+            color: var(--charcoal-deep);
+            margin-bottom: 0.8rem;
+        }
+
+        .framework-card p {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+        }
+
+        /* Advisory Section */
+        .advisory {
+            background: var(--ivory);
+        }
+
+        .advisory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .advisory-card {
+            padding: 2.5rem;
+            background: var(--white);
+            border-left: 3px solid var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        .advisory-card:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .advisory-card h3 {
+            color: var(--charcoal-deep);
+        }
+
+        /* Approach Section */
+        .approach {
+            background: var(--charcoal-deep);
+            color: var(--white);
+        }
+
+        .approach h2 {
+            color: var(--gold);
+        }
+
+        .approach-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .principle {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 2px solid var(--gold);
+        }
+
+        .principle h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .principle p {
+            font-size: 0.95rem;
+        }
+
+        /* Research Foundation */
+        .research {
+            background: var(--white);
+        }
+
+        .research-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .credentials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            justify-content: center;
+        }
+
+        .credential-tag {
+            padding: 0.8rem 1.5rem;
+            background: var(--ivory);
+            border: 1px solid var(--gold);
+            color: var(--charcoal-deep);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .credential-tag:hover {
+            background: var(--gold);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Gateway Links */
+        .gateways {
+            background: var(--ivory);
+        }
+
+        .gateway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .gateway-card {
+            padding: 3rem;
+            background: var(--white);
+            border-top: 3px solid var(--gold);
+            text-align: center;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: var(--charcoal);
+            display: block;
+        }
+
+        .gateway-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .gateway-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal-deep);
+        }
+
+        .gateway-card .gateway-label {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+
+        .gateway-card .arrow {
+            margin-top: 1.5rem;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 1.2rem 3rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--gold);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(198, 160, 111, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal-deep);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(198, 160, 111, 0.2);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+
+            header {
+                padding: 5rem 0 6rem;
+            }
+
+            .frameworks-grid,
+            .advisory-grid,
+            .scenario-grid,
+            .gateway-grid,
+            .principles-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .credentials-list {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">NOESPERA STUDIO</div>
+            <div class="hero-content">
+                <div class="subtitle">Applied Organizational Meaning Science</div>
+                <h1>Stewarded practice of meaning-based frameworks.</h1>
+                <div class="accent-line"></div>
+                <p class="large-text">Noespera Studio supports individuals, leaders, and teams in developing awareness of how meaning forms and shifts within organizational environments—through engagements, workshops, and advisory services grounded in Organizational Meaning Science.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="foundation">
+        <div class="container">
+            <div class="foundation-content">
+                <h2>Foundation</h2>
+                <p class="large-text">Organizational Meaning Science examines meaning as a systemic force that shapes perception, behavior, identity, and coordination within individuals, teams, and organizations.</p>
+                <p>Rather than treating meaning as an abstract concept or aspirational outcome, Meaning Science investigates how meaning is constructed, disrupted, interpreted, and stabilized over time. The discipline establishes foundational principles including the Meaning Loop, response state dynamics, interpretive divergence, and meaning safety as measurable constructs.</p>
+                <div class="discipline-note">
+                    <p>Research, theoretical definitions, and scholarly work are maintained at the Organizational Meaning Science Institute. Noespera Studio serves as the stewarded application of this research through engagement-based practice.</p>
+                </div>
+                <p>Work through Noespera Studio focuses on how meaning is interpreted and carried through everyday decisions, communication, roles, and shared practices—so responsibility for meaning is shared rather than centralized.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="engagements">
+        <div class="container">
+            <h2>Meaning-Based Engagements</h2>
+            <div class="engagement-intro">
+                <p class="large-text">Engagements are designed to support awareness of how meaning forms and shifts within organizational environments, particularly during periods of change, transition, or strategic inflection.</p>
+                <p>Engagements may be ongoing to provide regular meaning check-ins, supporting sustained awareness of the meaning climate and helping leaders and organizational members anticipate, prepare for, and steward meaning through future change.</p>
+            </div>
+
+            <div class="engagement-section">
+                <h3>What Engagements Are</h3>
+                <p>Engagements are collaborative and time-bound. They are shaped through conversation and unfold with intention rather than prescription.</p>
+                <p>The goal is not to evaluate performance or diagnose people, but to make meaning states visible so that individuals and groups can respond with greater clarity and responsibility.</p>
+            </div>
+
+            <div class="engagement-section">
+                <h3>Leadership and Interpretive Influence</h3>
+                <p>Leadership roles carry heightened interpretive influence. Communication, behavior, timing, and even silence are often understood more broadly and more consequentially when they come from those in leadership positions.</p>
+                <p>Engagements support leaders in developing greater awareness of how meaning forms around their actions and decisions, so accountability can be exercised thoughtfully rather than reactively.</p>
+                <p>At the same time, meaning is not produced by leadership alone. Engagements support awareness among leaders as well as across organizational members, so responsibility for meaning is shared rather than centralized.</p>
+            </div>
+
+            <div class="engagement-section">
+                <h3>How Engagements Unfold</h3>
+                <p>Work typically includes structured reflection before and after shared events, as well as at defined intervals following those events.</p>
+                <p>This cadence allows insight into how meaning settles, shifts, or persists over time—without accessing or analyzing the substance of conversations or private communications.</p>
+            </div>
+
+            <h3 style="margin-top: 4rem;">Illustrative Applications</h3>
+            <div class="scenario-grid">
+                <div class="scenario">
+                    <h4>Direction and Actionability</h4>
+                    <p>Through regular meaning check-ins, participants became aware that specific directions communicated by leadership were being interpreted as discretionary rather than mandatory.</p>
+                    <p>The work informed how those communications were being received, and leaders adjusted their approach with greater awareness—becoming more attentive to tone, timing, posture, and the additional context needed to signal expectations.</p>
+                </div>
+                <div class="scenario">
+                    <h4>Baseline Prior to Strategic Change</h4>
+                    <p>Ahead of a planned strategic change, leaders wanted clearer understanding of how direction, roles, and expectations were currently being held across the organization.</p>
+                    <p>Through meaning check-ins conducted prior to the change, participants surfaced a shared baseline of the existing meaning climate, giving leadership visibility into current interpretive states.</p>
+                </div>
+            </div>
+
+            <div class="engagement-section" style="margin-top: 3rem;">
+                <h3>Beginning an Engagement</h3>
+                <p>Engagements begin with a private conversation to explore context, intent, and fit.</p>
+                <p>Not all inquiries proceed to work, and that discernment is part of maintaining the integrity of the practice.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dna-frameworks">
+        <div class="container">
+            <h2>DNA Frameworks</h2>
+            <p class="large-text">DNA Frameworks are customized, participatory workshops designed to surface the core meaning, interpretive patterns, and structural coherence within specific organizational contexts.</p>
+            <p>Each framework is adapted to the system it serves. DNA work supports baseline visibility, strategic alignment, and meaning-based decision architecture.</p>
+            <div class="frameworks-grid">
+                <div class="framework-card">
+                    <h3>Brand DNA</h3>
+                    <p>Surfaces core meaning, values, and identity of a brand—supporting alignment across teams and clarity in market positioning.</p>
+                </div>
+                <div class="framework-card">
+                    <h3>Team DNA</h3>
+                    <p>Helps teams understand their interpretive patterns, communication dynamics, and shared meaning-making processes.</p>
+                </div>
+                <div class="framework-card">
+                    <h3>Board DNA</h3>
+                    <p>Establishes governance coherence, decision-making frameworks, and interpretive alignment at the board level.</p>
+                </div>
+                <div class="framework-card">
+                    <h3>Leadership Team DNA</h3>
+                    <p>Supports executive teams in understanding how meaning is being interpreted, communicated, and carried across the organization.</p>
+                </div>
+                <div class="framework-card">
+                    <h3>Donor DNA</h3>
+                    <p>For nonprofit contexts—surfacing motivational architecture, stewardship frameworks, and relational coherence with donor communities.</p>
+                </div>
+                <div class="framework-card">
+                    <h3>Custom DNA Frameworks</h3>
+                    <p>Additional frameworks developed for specific organizational needs, contexts, or strategic initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advisory">
+        <div class="container">
+            <h2>Strategic Advisory</h2>
+            <p class="large-text">Advisory services provide board-level and executive-level guidance for organizations navigating complexity, transition, or strategic inflection points.</p>
+            <div class="advisory-grid">
+                <div class="advisory-card">
+                    <h3>Leadership Development</h3>
+                    <p>Executive coaching and leadership training focused on sensemaking, decision architecture, and meaning stewardship within complex organizational environments.</p>
+                </div>
+                <div class="advisory-card">
+                    <h3>Board Advisory</h3>
+                    <p>Governance support for boards, trustees, and fiduciary leadership navigating strategic change, mission alignment, or organizational transition.</p>
+                </div>
+                <div class="advisory-card">
+                    <h3>Organizational Design</h3>
+                    <p>Structural design and decision architecture for organizations building new systems, restructuring operations, or establishing meaning-based governance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="approach">
+        <div class="container">
+            <div class="approach-content">
+                <h2>Approach</h2>
+                <p class="large-text">Work is grounded in Organizational Meaning Science and informed by doctoral research in strategic leadership, proprietary assessment methodologies (ITES™), and cross-sector experience.</p>
+                
+                <div class="principles-grid">
+                    <div class="principle">
+                        <h4>Participatory</h4>
+                        <p>Meaning check-ins and engagements are transparent, collaborative, and non-extractive.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Non-Evaluative</h4>
+                        <p>This work does not monitor individuals, extract content, or evaluate performance. Focus is on interpretive conditions, not semantic content.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Systemic</h4>
+                        <p>Interventions target interpretive dynamics and structural conditions rather than individual behavior.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>Dignified</h4>
+                        <p>Meaning cannot be fully controlled or optimized. Design protects the system's ability to interpret freely.</p>
+                    </div>
+                </div>
+
+                <div class="engagement-section" style="margin-top: 4rem; background: rgba(255, 255, 255, 0.05); border-left-color: var(--gold-light);">
+                    <h3 style="color: var(--gold-light);">Meaning Check-Ins</h3>
+                    <p>Meaning check-ins are structured, participatory moments of reflection used to surface how meaning is being interpreted at a given point in time.</p>
+                    <p>They support baseline visibility, ongoing stewardship, and longitudinal understanding of meaning climates as organizational environments evolve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="research">
+        <div class="container">
+            <div class="research-content">
+                <h2>Research Foundation</h2>
+                <p class="large-text">Noespera Studio's work is informed by rigorous academic research, proprietary intellectual property, and cross-disciplinary expertise in strategic leadership, organizational psychology, and systems theory.</p>
+                <div class="credentials-list">
+                    <span class="credential-tag">Doctorate, Strategic Leadership</span>
+                    <span class="credential-tag">ITES™ Provisional Patent</span>
+                    <span class="credential-tag">Meaning Science Research</span>
+                    <span class="credential-tag">Meaning Architecture</span>
+                    <span class="credential-tag">Meaning Loop Framework</span>
+                    <span class="credential-tag">Response State Dynamics</span>
+                    <span class="credential-tag">Interpretive Divergence</span>
+                    <span class="credential-tag">Decision Architecture</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gateways">
+        <div class="container">
+            <h2>Learn More</h2>
+            <div class="gateway-grid">
+                <a href="https://organizationalmeaningscience.com" class="gateway-card" target="_blank">
+                    <div class="gateway-label">Research Foundation</div>
+                    <h3>Organizational Meaning Science Institute</h3>
+                    <p>Research, papers, theoretical definitions, and scholarly work maintained at the Institute.</p>
+                    <div class="arrow">→</div>
+                </a>
+                <a href="https://joandebientrammell.com" class="gateway-card" target="_blank">
+                    <div class="gateway-label">Founder</div>
+                    <h3>Joan deBien-Trammell</h3>
+                    <p>Personal authority site, leadership research, and scholarly work.</p>
+                    <div class="arrow">→</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Begin a Conversation</h2>
+                <p class="large-text">If you're exploring a potential engagement, you're invited to share context and timing through a private inquiry.</p>
+                <a href="mailto:joan@noespera.com" class="cta-button">Contact Noespera Studio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
