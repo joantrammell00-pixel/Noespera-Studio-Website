@@ -10,6 +10,35 @@
 
   gtag('config', 'G-1FVYLJBKNB');
 </script>
+    <script>
+document.addEventListener('scroll', function() {
+  let scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+
+  if (scrollPercent >= 25 && !window.scroll25) {
+    gtag('event', 'scroll_25');
+    window.scroll25 = true;
+  }
+  if (scrollPercent >= 50 && !window.scroll50) {
+    gtag('event', 'scroll_50');
+    window.scroll50 = true;
+  }
+  if (scrollPercent >= 75 && !window.scroll75) {
+    gtag('event', 'scroll_75');
+    window.scroll75 = true;
+  }
+});
+</script>
+    <a href="mailto:YOUR_EMAIL@noesperastudio.com" id="link-contact">
+  Contact Noespera Studio
+</a>
+
+<a href="https://www.joandebientrammell.com" id="link-site-1" target="_blank" rel="noopener">
+  Visit Joan deBien-Trammell
+</a>
+
+<a href="https://www.organizationalmeaningscience.org" id="link-site-2" target="_blank" rel="noopener">
+  Visit Organizational Meaning Science Institute
+</a>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noespera Studio — Applied Organizational Meaning Science™</title>
