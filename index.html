@@ -39,6 +39,26 @@ document.addEventListener('scroll', function() {
 <a href="https://www.organizationalmeaningscience.org" id="link-site-2" target="_blank" rel="noopener">
   Visit Organizational Meaning Science Institute
 </a>
+<script>
+  function trackClick(eventName, label) {
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, {
+        event_category: 'engagement',
+        event_label: label
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const contact = document.getElementById('link-contact');
+    const site1 = document.getElementById('link-site-1');
+    const site2 = document.getElementById('link-site-2');
+
+    if (contact) contact.addEventListener('click', () => trackClick('contact_noespera_click', 'Contact Noespera Studio'));
+    if (site1) site1.addEventListener('click', () => trackClick('outbound_click', 'Other Site 1'));
+    if (site2) site2.addEventListener('click', () => trackClick('outbound_click', 'Other Site 2'));
+  });
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noespera Studio — Applied Organizational Meaning Science™</title>
