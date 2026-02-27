@@ -49,10 +49,51 @@
         footer { background: var(--charcoal-deep); color: rgba(255, 255, 255, 0.7); padding: 3rem 0; text-align: center; }
         footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s ease; }
         footer a:hover { color: var(--gold); }
-        @media (max-width: 768px) { .nav-links { display: none; } }
-    </style>
-</head>
-<body>
+        /* Responsive - Tablets keep full nav */
+        @media (max-width: 768px) {
+        }
+
+        /* Mobile only - under 480px */
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--charcoal-deep);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
