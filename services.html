@@ -61,7 +61,8 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <ul class="nav-links">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
                 <li><a href="services.html" class="active">Services</a></li>
@@ -154,5 +155,11 @@
             </p>
         </div>
     </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

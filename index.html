@@ -122,6 +122,17 @@
             color: var(--gold);
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
         /* Header */
         header {
             background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
@@ -271,14 +282,53 @@
             color: var(--gold);
         }
 
-        /* Responsive */
+        /* Responsive - Tablets keep full nav */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .offerings-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile only - under 480px */
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--charcoal-deep);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: relative;
             }
         }
     </style>
@@ -287,7 +337,8 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <ul class="nav-links">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navMenu">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -361,5 +412,12 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
