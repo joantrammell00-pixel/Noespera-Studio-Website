@@ -27,12 +27,16 @@
         .large-text { font-size: 1.25rem; line-height: 1.8; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         section { padding: 6rem 0; }
+        
+        /* Navigation */
         nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
         .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; padding: 0.5rem; }
+        
         .page-header { background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color: var(--white); padding: 5rem 0; }
         .page-header h1 { color: var(--gold-light); }
         .practice-areas { background: var(--white); }
@@ -54,51 +58,21 @@
         footer { background: var(--charcoal-deep); color: rgba(255, 255, 255, 0.7); padding: 3rem 0; text-align: center; }
         footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s ease; }
         footer a:hover { color: var(--gold); }
-        /* Responsive - Tablets keep full nav */
-        @media (max-width: 768px) {
-        }
-
-        /* Mobile only - under 480px */
+        
+        @media (max-width: 768px) { .practice-grid, .engagement-grid { grid-template-columns: 1fr; } }
+        
         @media (max-width: 480px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--charcoal-deep);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1rem 2rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                position: relative;
-            }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(198, 160, 111, 0.2); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 1rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+        }
+    </style>
+</head>
+<body>
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
@@ -196,6 +170,7 @@
             </p>
         </div>
     </footer>
+
     <script>
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
