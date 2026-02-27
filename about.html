@@ -8,96 +8,56 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #C6A06F;
-            --gold-dark: #A68B4E;
-            --gold-light: #E8D5A8;
-            --charcoal: #4A4A48;
-            --charcoal-deep: #2A2A2A;
-            --ivory: #EDEAE5;
-            --white: #FFFFFF;
+        :root {--gold:#C6A06F;--gold-dark:#A68B4E;--gold-light:#E8D5A8;--charcoal:#4A4A48;--charcoal-deep:#2A2A2A;--ivory:#EDEAE5;--white:#FFF;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Montserrat',sans-serif;color:var(--charcoal);background-color:var(--ivory);line-height:1.7;}
+        h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:0.02em;}
+        h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.5rem;}
+        h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.2;margin-bottom:2rem;}
+        h3{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1rem;}
+        p{font-size:1.05rem;font-weight:300;letter-spacing:0.01em;margin-bottom:1.2rem;}
+        .large-text{font-size:1.25rem;line-height:1.8;}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+        section{padding:6rem 0;}
+        nav{background:var(--charcoal-deep);padding:1.5rem 0;position:sticky;top:0;z-index:100;}
+        .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
+        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:0.1em;color:var(--gold);text-decoration:none;}
+        .nav-links{display:flex;gap:2.5rem;list-style:none;}
+        .nav-links a{color:var(--white);text-decoration:none;font-size:0.95rem;font-weight:400;transition:color 0.3s;}
+        .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+        .mobile-menu-btn{display:none;background:none;border:none;color:var(--gold);font-size:1.8rem;cursor:pointer;padding:0.5rem;}
+        .page-header{background:linear-gradient(135deg,var(--charcoal-deep) 0%,var(--charcoal) 100%);color:var(--white);padding:5rem 0;}
+        .page-header h1{color:var(--gold-light);}
+        .about-content{background:var(--white);}
+        .content-box{max-width:900px;margin:0 auto;}
+        .credentials-box{background:var(--ivory);padding:2.5rem;margin:3rem 0;border-left:4px solid var(--gold);}
+        .credentials-box h3{color:var(--gold-dark);margin-bottom:1.5rem;}
+        .credentials-box ul{list-style:none;}
+        .credentials-box li{padding:0.5rem 0;}
+        .experience{background:var(--ivory);}
+        .experience-list{margin-top:2rem;}
+        .experience-item{padding:1.5rem 0;border-bottom:1px solid rgba(198,160,111,0.3);}
+        .experience-item:last-child{border-bottom:none;}
+        .experience-item strong{color:var(--gold-dark);font-size:1.1rem;}
+        footer{background:var(--charcoal-deep);color:rgba(255,255,255,0.7);padding:3rem 0;text-align:center;}
+        footer a{color:var(--gold-light);text-decoration:none;transition:color 0.3s;}
+        footer a:hover{color:var(--gold);}
+        @media(max-width:480px){
+            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--charcoal-deep);flex-direction:column;gap:0;padding:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+            .nav-links.active{display:flex;}
+            .nav-links li{width:100%;text-align:center;border-bottom:1px solid rgba(198,160,111,0.2);}
+            .nav-links li:last-child{border-bottom:none;}
+            .nav-links a{display:block;padding:1rem 2rem;}
+            .mobile-menu-btn{display:block;}
+            nav{position:relative;}
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
-        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
-        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
-        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
-        h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
-        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.2rem; }
-        .large-text { font-size: 1.25rem; line-height: 1.8; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        section { padding: 6rem 0; }
-        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-        .page-header { background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color: var(--white); padding: 5rem 0; }
-        .page-header h1 { color: var(--gold-light); }
-        .about-content { background: var(--white); }
-        .content-box { max-width: 900px; margin: 0 auto; }
-        .credentials-box { background: var(--ivory); padding: 2.5rem; margin: 3rem 0; border-left: 4px solid var(--gold); }
-        .credentials-box h3 { color: var(--gold-dark); margin-bottom: 1.5rem; }
-        .credentials-box ul { list-style: none; }
-        .credentials-box li { padding: 0.5rem 0; color: var(--charcoal); }
-        .experience { background: var(--ivory); }
-        .experience-list { margin-top: 2rem; }
-        .experience-item { padding: 1.5rem 0; border-bottom: 1px solid rgba(198, 160, 111, 0.3); }
-        .experience-item:last-child { border-bottom: none; }
-        .experience-item strong { color: var(--gold-dark); font-size: 1.1rem; }
-        footer { background: var(--charcoal-deep); color: rgba(255, 255, 255, 0.7); padding: 3rem 0; text-align: center; }
-        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s ease; }
-        footer a:hover { color: var(--gold); }
-        /* Responsive - Tablets keep full nav */
-        @media (max-width: 768px) {
-        }
-
-        /* Mobile only - under 480px */
-        @media (max-width: 480px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--charcoal-deep);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1rem 2rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                position: relative;
-            }
+    </style>
+</head>
+<body>
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
@@ -107,26 +67,19 @@
             </ul>
         </div>
     </nav>
-
     <section class="page-header">
         <div class="container">
             <h1>About Dr. Joan deBien-Trammell</h1>
-            <p class="large-text">Founder & Managing Director, Noespera Studio<br>
-            Founder, Organizational Meaning Science™<br>
-            Architect, DNA Workshop Suite™</p>
+            <p class="large-text">Founder & Managing Director, Noespera Studio<br>Founder, Organizational Meaning Science™<br>Architect, DNA Workshop Suite™</p>
         </div>
     </section>
-
     <section class="about-content">
         <div class="container">
             <div class="content-box">
                 <h2>The Founder</h2>
                 <p class="large-text">Dr. Joan deBien-Trammell brings 30+ years of strategic leadership experience across organizations including Gallup, L'Oréal, Johnson & Johnson, Pierre Fabre, and Sandoz Biopharmaceuticals.</p>
-                
                 <p>As the founder of Organizational Meaning Science™, she has developed proprietary frameworks and methodologies that help boards, executives, and leadership teams make coherent decisions in complex, regulated, and high-stakes environments.</p>
-
                 <p>Her work translates organizational complexity into durable frameworks, decision architectures, and participatory methodologies grounded in rigorous research and applied across enterprise, nonprofit, and emerging organizational contexts.</p>
-
                 <div class="credentials-box">
                     <h3>Credentials & Expertise</h3>
                     <ul>
@@ -139,78 +92,53 @@
                         <li><strong>Advanced Executive Education:</strong> MIT (Business Strategy), Cornell (Strategic Marketing)</li>
                     </ul>
                 </div>
-
-                <p style="margin-top: 3rem;"><strong>Client Confidentiality:</strong> Client work remains confidential. Representative engagements available upon request.</p>
+                <p style="margin-top:3rem;"><strong>Client Confidentiality:</strong> Client work remains confidential. Representative engagements available upon request.</p>
             </div>
         </div>
     </section>
-
     <section class="experience">
         <div class="container">
             <div class="content-box">
                 <h2>Selected Experience</h2>
-                
                 <div class="experience-list">
                     <div class="experience-item">
-                        <p><strong>Founder & Principal Advisor</strong><br>
-                        Noespera Studio | 2023–Present</p>
+                        <p><strong>Founder & Principal Advisor</strong><br>Noespera Studio | 2023–Present</p>
                         <p>Strategic advisory to emerging and growth-stage brands across cosmeceutical, CPG, real estate technology, textile, and rent/lease-to-own industries. DNA Workshop Suite™ deployed with founders and leadership teams navigating capital readiness, team building, brand development, and organizational design.</p>
                     </div>
-
                     <div class="experience-item">
-                        <p><strong>Strategic Partner</strong><br>
-                        Volkano Labs | 2026–Present</p>
+                        <p><strong>Strategic Partner</strong><br>Volkano Labs | 2026–Present</p>
                         <p>Strategic partnership in cosmeceutical R&D and manufacturing, leading business development architecture and founder advisory work in beauty and wellness sectors.</p>
                     </div>
-
                     <div class="experience-item">
-                        <p><strong>Vice President, Board of Directors</strong><br>
-                        Imagine Morrisville | 2024–Present</p>
+                        <p><strong>Vice President, Board of Directors</strong><br>Imagine Morrisville | 2024–Present</p>
                         <p>Board leadership for community arts nonprofit, guiding capital campaign strategy, donor engagement architecture, and organizational development.</p>
                     </div>
-
                     <div class="experience-item">
-                        <p><strong>Associate Principal — Enterprise Advisory</strong><br>
-                        Gallup | 2022–2023</p>
+                        <p><strong>Associate Principal — Enterprise Advisory</strong><br>Gallup | 2022–2023</p>
                         <p>Senior advisor to Fortune 500 organizations on culture transformation, leadership development, and engagement strategy.</p>
                     </div>
-
                     <div class="experience-item">
-                        <p><strong>Field Sales Vice President</strong><br>
-                        L'Oréal USA (Active Cosmetics) | 2015–2020</p>
+                        <p><strong>Field Sales Vice President</strong><br>L'Oréal USA (Active Cosmetics) | 2015–2020</p>
                         <p>Led organizational integration and growth across $400M+ portfolio, building national sales organization scaled by over 300%.</p>
                     </div>
-
                     <div class="experience-item">
-                        <p><strong>Executive Director of Sales</strong><br>
-                        Pierre Fabre USA | 2021–2022</p>
+                        <p><strong>Executive Director of Sales</strong><br>Pierre Fabre USA | 2021–2022</p>
                         <p>Led commercial transformation resulting in 275% marketplace penetration increase and 20% year-over-year growth.</p>
                     </div>
-
                     <div class="experience-item">
-                        <p><strong>Associate Director, Marketing</strong><br>
-                        Sandoz Biopharmaceuticals | 2012–2015</p>
+                        <p><strong>Associate Director, Marketing</strong><br>Sandoz Biopharmaceuticals | 2012–2015</p>
                         <p>Led U.S. brand strategy and launch execution for first FDA-approved biosimilar, achieving 2% market share within three quarters.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
-                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
-                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
-            </p>
+            <p style="margin-top:1rem;"><a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a></p>
         </div>
     </footer>
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-    </script>
+    <script>function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}</script>
 </body>
 </html>

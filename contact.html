@@ -8,93 +8,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #C6A06F;
-            --gold-dark: #A68B4E;
-            --gold-light: #E8D5A8;
-            --charcoal: #4A4A48;
-            --charcoal-deep: #2A2A2A;
-            --ivory: #EDEAE5;
-            --white: #FFFFFF;
+        :root {--gold:#C6A06F;--gold-dark:#A68B4E;--gold-light:#E8D5A8;--charcoal:#4A4A48;--charcoal-deep:#2A2A2A;--ivory:#EDEAE5;--white:#FFF;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Montserrat',sans-serif;color:var(--charcoal);background-color:var(--ivory);line-height:1.7;}
+        h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:0.02em;}
+        h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.5rem;}
+        h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.2;margin-bottom:2rem;}
+        h3{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1rem;}
+        p{font-size:1.05rem;font-weight:300;letter-spacing:0.01em;margin-bottom:1.2rem;}
+        .large-text{font-size:1.25rem;line-height:1.8;}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+        section{padding:6rem 0;}
+        nav{background:var(--charcoal-deep);padding:1.5rem 0;position:sticky;top:0;z-index:100;}
+        .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
+        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:0.1em;color:var(--gold);text-decoration:none;}
+        .nav-links{display:flex;gap:2.5rem;list-style:none;}
+        .nav-links a{color:var(--white);text-decoration:none;font-size:0.95rem;font-weight:400;transition:color 0.3s;}
+        .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+        .mobile-menu-btn{display:none;background:none;border:none;color:var(--gold);font-size:1.8rem;cursor:pointer;padding:0.5rem;}
+        .page-header{background:linear-gradient(135deg,var(--charcoal-deep) 0%,var(--charcoal) 100%);color:var(--white);padding:5rem 0;}
+        .page-header h1{color:var(--gold-light);}
+        .contact-section{background:var(--white);}
+        .contact-content{max-width:800px;margin:0 auto;text-align:center;}
+        .contact-info{margin-top:3rem;font-size:1.2rem;}
+        .contact-info a{color:var(--gold-dark);text-decoration:none;transition:color 0.3s;font-weight:500;}
+        .contact-info a:hover{color:var(--gold);}
+        .inquiry-types{background:var(--ivory);}
+        .types-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:3rem;}
+        .type-card{background:var(--white);padding:2rem;border-top:3px solid var(--gold);}
+        .type-card h3{color:var(--gold-dark);font-size:1.3rem;margin-bottom:1rem;}
+        footer{background:var(--charcoal-deep);color:rgba(255,255,255,0.7);padding:3rem 0;text-align:center;}
+        footer a{color:var(--gold-light);text-decoration:none;transition:color 0.3s;}
+        footer a:hover{color:var(--gold);}
+        @media(max-width:768px){.types-grid{grid-template-columns:1fr;}}
+        @media(max-width:480px){
+            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--charcoal-deep);flex-direction:column;gap:0;padding:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+            .nav-links.active{display:flex;}
+            .nav-links li{width:100%;text-align:center;border-bottom:1px solid rgba(198,160,111,0.2);}
+            .nav-links li:last-child{border-bottom:none;}
+            .nav-links a{display:block;padding:1rem 2rem;}
+            .mobile-menu-btn{display:block;}
+            nav{position:relative;}
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
-        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
-        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
-        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.2rem; }
-        .large-text { font-size: 1.25rem; line-height: 1.8; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        section { padding: 6rem 0; }
-        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-        .page-header { background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color: var(--white); padding: 5rem 0; }
-        .page-header h1 { color: var(--gold-light); }
-        .contact-section { background: var(--white); }
-        .contact-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .contact-info { margin-top: 3rem; font-size: 1.2rem; }
-        .contact-info a { color: var(--gold-dark); text-decoration: none; transition: color 0.3s ease; font-weight: 500; }
-        .contact-info a:hover { color: var(--gold); }
-        .inquiry-types { background: var(--ivory); }
-        .types-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .type-card { background: var(--white); padding: 2rem; border-top: 3px solid var(--gold); }
-        .type-card h3 { color: var(--gold-dark); font-size: 1.3rem; margin-bottom: 1rem; }
-        footer { background: var(--charcoal-deep); color: rgba(255, 255, 255, 0.7); padding: 3rem 0; text-align: center; }
-        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s ease; }
-        footer a:hover { color: var(--gold); }
-        /* Responsive - Tablets keep full nav */
-        @media (max-width: 768px) {
-        }
-
-        /* Mobile only - under 480px */
-        @media (max-width: 480px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--charcoal-deep);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1rem 2rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                position: relative;
-            }
+    </style>
+</head>
+<body>
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
@@ -104,49 +66,40 @@
             </ul>
         </div>
     </nav>
-
     <section class="page-header">
         <div class="container">
             <h1>Start the Conversation</h1>
             <p class="large-text">For inquiries regarding engagements, workshops, or strategic advisory</p>
         </div>
     </section>
-
     <section class="contact-section">
         <div class="container">
             <div class="contact-content">
                 <h2>Get in Touch</h2>
                 <p class="large-text">Whether you're exploring a DNA workshop, considering strategic advisory, or have questions about how Noespera Studio can support your organization, we're here to help.</p>
-                
                 <div class="contact-info">
                     <p><a href="mailto:joan@noesperastudio.com">joan@noesperastudio.com</a></p>
                 </div>
-
-                <p style="margin-top: 3rem; font-style: italic; color: var(--charcoal);">All inquiries receive a response within 48 hours.</p>
+                <p style="margin-top:3rem;font-style:italic;color:var(--charcoal);">All inquiries receive a response within 48 hours.</p>
             </div>
         </div>
     </section>
-
     <section class="inquiry-types">
         <div class="container">
             <h2>How We Can Help</h2>
-            
             <div class="types-grid">
                 <div class="type-card">
                     <h3>DNA Workshops</h3>
                     <p>Brand DNA™, Team DNA™, Board DNA™, Leadership Team DNA™, Investor DNA™, or Custom DNA Frameworks—standalone or sequenced.</p>
                 </div>
-
                 <div class="type-card">
                     <h3>Strategic Advisory</h3>
                     <p>Organizational practice, brand & growth advisory, people & performance consulting, or custom high-stakes engagements.</p>
                 </div>
-
                 <div class="type-card">
                     <h3>Board & Leadership</h3>
                     <p>Governance support, executive coaching, leadership development, or board advisory for strategic transitions.</p>
                 </div>
-
                 <div class="type-card">
                     <h3>Speaking & Workshops</h3>
                     <p>Keynote presentations, organizational workshops, or training on Organizational Meaning Science™ and meaning-based leadership.</p>
@@ -154,21 +107,12 @@
             </div>
         </div>
     </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
-                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
-                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
-            </p>
+            <p style="margin-top:1rem;"><a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a></p>
         </div>
     </footer>
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-    </script>
+    <script>function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}</script>
 </body>
 </html>
