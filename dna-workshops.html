@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Workshop Suite™ — Noespera Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--gold-dark);
+        }
+
+        p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.2rem;
+        }
+
+        .large-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--charcoal-deep);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 5rem 0;
+        }
+
+        .page-header h1 {
+            color: var(--gold-light);
+        }
+
+        /* DNA Workshops */
+        .dna-intro {
+            background: var(--white);
+        }
+
+        .intro-box {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .dna-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .dna-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-top: 3px solid var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        .dna-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .dna-frameworks {
+            background: var(--ivory);
+        }
+
+        /* Growth Stages */
+        .growth-stages {
+            background: var(--white);
+        }
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .stage-card {
+            background: var(--ivory);
+            padding: 2.5rem;
+            border-left: 4px solid var(--gold-dark);
+        }
+
+        .stage-title {
+            color: var(--gold-dark);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stage-subtitle {
+            color: var(--charcoal);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-card li {
+            padding: 0.3rem 0;
+            color: var(--gold-dark);
+            font-weight: 500;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--charcoal-deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--gold-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background: var(--white);
+            color: var(--charcoal-deep);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal-deep);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .dna-grid,
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html" class="active">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>DNA Workshop Suite™</h1>
+            <p class="large-text">Meaning-Based Strategy for Brands at Every Stage of Growth</p>
+        </div>
+    </section>
+
+    <section class="dna-intro">
+        <div class="container">
+            <div class="intro-box">
+                <h2>The Methodology</h2>
+                <p class="large-text">A proprietary facilitated methodology developed and deployed across scaling consumer brands, enterprise-level organizations, early-stage and growth-stage startups, high-growth entrepreneurial ventures, and nonprofit boards.</p>
+                <p>Before an organization can communicate clearly, raise capital effectively, or build a team that holds together under pressure, it needs to surface its foundational meaning. Most consultancies skip this step entirely.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dna-frameworks">
+        <div class="container">
+            <h2>The Six Frameworks</h2>
+            
+            <div class="dna-grid">
+                <div class="dna-card">
+                    <h4>Brand DNA™</h4>
+                    <p>Surfaces core identity, values, archetype, and brand voice. Personal story is the single biggest market differentiator for CPG founders—most have never properly excavated it. Foundational before launch and essential to revisit at every stage of growth.</p>
+                </div>
+
+                <div class="dna-card">
+                    <h4>Team DNA™</h4>
+                    <p>Maps interpretive patterns, communication dynamics, and shared meaning-making across teams. Addresses team friction and brand personality gaps before they cost money—preventing downstream waste in hiring, packaging, and content.</p>
+                </div>
+
+                <div class="dna-card">
+                    <h4>Board DNA™</h4>
+                    <p>Establishes governance coherence, decision-making frameworks, and interpretive alignment at the board level. Ensures the board operates from shared language and shared responsibility—not just shared titles—as portfolio brands formalize governance.</p>
+                </div>
+
+                <div class="dna-card">
+                    <h4>Leadership Team DNA™</h4>
+                    <p>Supports executive teams in understanding how meaning is being interpreted, communicated, and carried across the organization. Misalignment at the leadership level shows up everywhere—in culture, customer experience, and how the brand pitches itself to the world.</p>
+                </div>
+
+                <div class="dna-card">
+                    <h4>Investor DNA™</h4>
+                    <p>Purpose-built for founders preparing for capital conversations. Most pitch prep focuses on the deck—this goes deeper. Angel investors, VCs, strategic partners, and family offices each make meaning differently. Founders who can read that room close more of them.</p>
+                </div>
+
+                <div class="dna-card">
+                    <h4>Custom DNA Frameworks</h4>
+                    <p>Built for specific strategic contexts and high-stakes engagements beyond the core suite. When the standard frameworks need tailoring—a new market entry, a merger, a pivot, or a uniquely complex stakeholder environment—this is the entry point.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="growth-stages">
+        <div class="container">
+            <h2>DNA Workshops by Growth Stage</h2>
+            <p class="large-text">Different stages require different frameworks. Here's what typically makes sense when.</p>
+
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <h3 class="stage-title">Early Stage</h3>
+                    <p class="stage-subtitle">Sub $500K ARR</p>
+                    <ul>
+                        <li>Brand DNA™</li>
+                        <li>Investor DNA™</li>
+                    </ul>
+                    <p>Great products often lack real business plans, defined positioning, or go-to-market structure. Brand DNA surfaces foundational meaning early—driving everything from messaging to channel strategy. Catching this before they scale prevents costly pivots and builds a foundation that holds.</p>
+                </div>
+
+                <div class="stage-card">
+                    <h3 class="stage-title">Growth Stage</h3>
+                    <p class="stage-subtitle">$500K — $2.5M ARR</p>
+                    <ul>
+                        <li>Brand DNA™</li>
+                        <li>Team DNA™</li>
+                        <li>Leadership Team DNA™</li>
+                        <li>Investor DNA™</li>
+                    </ul>
+                    <p>Product-market fit is found; now systems are needed. Revisiting Brand DNA at scale reinforces identity as the team grows. Team and Leadership DNA address culture friction and communication gaps before they cost momentum—keeping the brand coherent as complexity increases.</p>
+                </div>
+
+                <div class="stage-card">
+                    <h3 class="stage-title">Enterprise</h3>
+                    <p class="stage-subtitle">$5M+ ARR</p>
+                    <ul>
+                        <li>Brand DNA™</li>
+                        <li>Team DNA™</li>
+                        <li>Leadership Team DNA™</li>
+                        <li>Investor DNA™</li>
+                    </ul>
+                    <p>Growing pains at this level are almost always meaning-related—misaligned leadership, eroding culture, teams that have lost the thread. Periodic Brand DNA revisits keep identity anchored. Investor DNA prepares brands for capital conversations no other advisor provides.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; font-style: italic; text-align: center;">Board DNA™ available at all stages—boards exist at every size, and governance coherence matters from day one.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Delivered Your Way</h2>
+            <p class="large-text">Standalone engagements or as a sequenced suite—bundled or à la carte, in-person or virtual.</p>
+            <a href="contact.html" class="btn">Start the Conversation</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Noespera Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.2rem; }
+        .large-text { font-size: 1.25rem; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; }
+        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .page-header { background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color: var(--white); padding: 5rem 0; }
+        .page-header h1 { color: var(--gold-light); }
+        .practice-areas { background: var(--white); }
+        .practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 3rem; }
+        .practice-section { padding: 2.5rem; background: var(--ivory); border-left: 4px solid var(--gold-dark); }
+        .practice-section h3 { color: var(--gold-dark); margin-bottom: 2rem; }
+        .practice-list { list-style: none; }
+        .practice-list li { padding: 0.8rem 0; border-bottom: 1px solid rgba(198, 160, 111, 0.2); }
+        .practice-list li:last-child { border-bottom: none; }
+        .practice-list strong { color: var(--charcoal-deep); font-weight: 500; }
+        .engagement { background: var(--charcoal-deep); color: var(--white); }
+        .engagement h2 { color: var(--gold-light); }
+        .engagement-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .engagement-card { padding: 2.5rem; background: rgba(255, 255, 255, 0.05); border-top: 3px solid var(--gold); }
+        .engagement-card h4 { color: var(--gold-light); font-size: 1.3rem; margin-bottom: 1rem; }
+        .engagement-card p { color: rgba(255, 255, 255, 0.85); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; background: transparent; border: 2px solid var(--white); color: var(--white); text-decoration: none; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.4s ease; margin-top: 1.5rem; }
+        .btn:hover { background: var(--white); color: var(--charcoal-deep); }
+        footer { background: var(--charcoal-deep); color: rgba(255, 255, 255, 0.7); padding: 3rem 0; text-align: center; }
+        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: var(--gold); }
+        @media (max-width: 768px) { .nav-links { display: none; } .practice-grid, .engagement-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Full Practice Suite</h1>
+            <p class="large-text">Organizational, Brand & Growth, and People & Performance Practice</p>
+        </div>
+    </section>
+
+    <section class="practice-areas">
+        <div class="container">
+            <h2>Our Practice Areas</h2>
+            <p class="large-text">Drawing on 30+ years of strategic leadership experience across Gallup, L'Oréal, Johnson & Johnson, Pierre Fabre, and Sandoz Biopharmaceuticals, these offerings address the full arc of organizational and brand development.</p>
+
+            <div class="practice-grid">
+                <div class="practice-section">
+                    <h3>Organizational Practice</h3>
+                    <ul class="practice-list">
+                        <li><strong>Organizational Meaning Science™</strong><br>Proprietary research discipline examining how meaning is created, interpreted, and carried—or lost—across teams, leadership layers, and brand touchpoints.</li>
+                        <li><strong>Leadership Development</strong><br>Executive coaching and training focused on sensemaking, decision architecture, and meaning stewardship for leaders navigating growth, transition, or cultural realignment.</li>
+                        <li><strong>Board Advisory</strong><br>Governance support for boards and fiduciary leadership navigating strategic change, mission alignment, or organizational transition.</li>
+                        <li><strong>Organizational Design</strong><br>Structural design and decision architecture for organizations building new systems or restructuring operations.</li>
+                    </ul>
+                </div>
+
+                <div class="practice-section">
+                    <h3>Brand & Growth Practice</h3>
+                    <ul class="practice-list">
+                        <li><strong>Business Plan Development</strong><br>Structured business planning for founders and growth-stage brands—from market analysis and competitive positioning through financial modeling and go-to-market sequencing.</li>
+                        <li><strong>Marketing Strategy & Go-to-Market</strong><br>Strategic marketing plans and content systems grounded in brand meaning. Addresses channel strategy, audience architecture, and brand identity articulation.</li>
+                        <li><strong>Investor Readiness & Capital Preparation</strong><br>End-to-end preparation for capital conversations—from narrative development and pitch architecture through investor type mapping.</li>
+                        <li><strong>Custom Engagements</strong><br>High-stakes, bespoke advisory for unique organizational contexts or strategic initiatives requiring a tailored approach.</li>
+                    </ul>
+                </div>
+
+                <div class="practice-section">
+                    <h3>People & Performance Practice</h3>
+                    <ul class="practice-list">
+                        <li><strong>Sales Training & Selling Skills</strong><br>Meaning-based approach to consultative selling for founders and sales teams. Particularly relevant for beauty and CPG brands selling into retail buyers, distributors, and channel partners.</li>
+                        <li><strong>Communication & Presentation Coaching</strong><br>High-stakes communication training for founders and leaders who need to own a room—pitches, board meetings, media, and investor conversations.</li>
+                        <li><strong>Talent & Team Development</strong><br>Hiring, onboarding, and retention frameworks grounded in meaning and culture fit. Builds scaling teams who carry the brand forward with integrity.</li>
+                        <li><strong>Culture Design</strong><br>Intentional culture-building from the ground up—values operationalization, norms, and rituals that hold as organizations grow.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="engagement">
+        <div class="container">
+            <h2>How We Engage</h2>
+            <p class="large-text">Delivered as standalone engagements or as a sequenced suite—bundled or à la carte, in-person or virtual.</p>
+
+            <div class="engagement-grid">
+                <div class="engagement-card">
+                    <h4>Standalone Engagements</h4>
+                    <p>Single workshops or advisory sessions scoped to a specific need. Ideal for brands testing the methodology or addressing one defined challenge before committing to a broader arc.</p>
+                </div>
+
+                <div class="engagement-card">
+                    <h4>Retainer Relationships</h4>
+                    <p>Ongoing advisory partnerships providing consistent strategic support across organizational, brand, and people dimensions—as the business evolves and grows.</p>
+                </div>
+
+                <div class="engagement-card">
+                    <h4>Bundled Suites</h4>
+                    <p>Sequenced combinations of workshops and advisory engagements designed to address a full strategic arc. Creates natural follow-on depth and compounds value across the relationship.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="contact.html" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
