@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noespera Studio — Applied Organizational Meaning Science™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.2rem;
+        }
+
+        .large-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--charcoal-deep);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 8rem 0 10rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(198, 160, 111, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .subtitle {
+            color: var(--gold-light);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 2px;
+            background: var(--gold);
+            margin: 3rem 0;
+        }
+
+        /* Foundation */
+        .foundation {
+            background: var(--white);
+        }
+
+        .intro-box {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Offerings Preview */
+        .offerings-preview {
+            background: var(--ivory);
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .offering-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-top: 3px solid var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .offering-card h3 {
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(198, 160, 111, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--charcoal-deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--gold-light);
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-light {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .btn-light:hover {
+            background: var(--white);
+            color: var(--charcoal-deep);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal-deep);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="logo">NOESPERA STUDIO</div>
+            <div class="subtitle">Applied Organizational Meaning Science™</div>
+            <h1>Meaning-Based Strategy & Advisory</h1>
+            <div class="accent-line"></div>
+            <p class="large-text">Before an organization can communicate clearly, raise capital effectively, or build a team that holds together under pressure, it needs to surface its foundational meaning. Most consultancies skip this step entirely.</p>
+        </div>
+    </header>
+
+    <section class="foundation">
+        <div class="container">
+            <div class="intro-box">
+                <h2>The Foundation</h2>
+                <p class="large-text">Noespera Studio provides meaning-based strategy and advisory across organizational, brand, and people dimensions—from early-stage business building through enterprise-level leadership development and board governance.</p>
+                <p>Grounded in Organizational Meaning Science™, a proprietary research discipline examining how meaning functions as a systemic force, our work helps organizations make coherent decisions in complex, high-stakes environments.</p>
+                <p>Drawing on 30+ years of strategic leadership experience across organizations including Gallup, L'Oréal, Johnson & Johnson, Pierre Fabre, and Sandoz Biopharmaceuticals, we translate organizational complexity into durable frameworks, decision architectures, and participatory methodologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="offerings-preview">
+        <div class="container">
+            <h2>What We Offer</h2>
+            
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <h3>DNA Workshop Suite™</h3>
+                    <p>A proprietary facilitated methodology developed and deployed across scaling consumer brands, enterprise organizations, startups, and nonprofit boards. Surfaces foundational meaning through Brand DNA™, Team DNA™, Board DNA™, Leadership Team DNA™, Investor DNA™, and Custom DNA Frameworks.</p>
+                    <a href="dna-workshops.html" class="btn">Explore DNA Workshops</a>
+                </div>
+
+                <div class="offering-card">
+                    <h3>Strategic Advisory</h3>
+                    <p>Comprehensive practice extending across Organizational, Brand & Growth, and People & Performance dimensions. From business plan development and investor readiness to leadership development and culture design—addressing the full arc of organizational evolution.</p>
+                    <a href="services.html" class="btn">View All Services</a>
+                </div>
+
+                <div class="offering-card">
+                    <h3>Board & Leadership Advisory</h3>
+                    <p>Governance support for boards and fiduciary leadership navigating strategic change, mission alignment, or organizational transition. Executive coaching and training focused on sensemaking, decision architecture, and meaning stewardship.</p>
+                    <a href="services.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start the Conversation</h2>
+            <p class="large-text">Delivered as standalone engagements or as a sequenced suite—bundled or à la carte, in-person or virtual.</p>
+            <a href="contact.html" class="btn btn-light">Get in Touch</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
