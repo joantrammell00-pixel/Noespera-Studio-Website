@@ -56,7 +56,7 @@
 
         p {
             font-size: 1.05rem;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.01em;
             margin-bottom: 1.2rem;
         }
@@ -147,9 +147,26 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 40%;
+            width: 60%;
             height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(198, 160, 111, 0.1) 100%);
+            background-image: 
+                linear-gradient(30deg, transparent 40%, rgba(198, 160, 111, 0.03) 40%, rgba(198, 160, 111, 0.03) 42%, transparent 42%),
+                linear-gradient(60deg, transparent 58%, rgba(198, 160, 111, 0.04) 58%, rgba(198, 160, 111, 0.04) 60%, transparent 60%),
+                linear-gradient(90deg, transparent 48%, rgba(198, 160, 111, 0.02) 48%, rgba(198, 160, 111, 0.02) 52%, transparent 52%);
+            background-size: 120px 120px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(198, 160, 111, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
             pointer-events: none;
         }
 
@@ -179,9 +196,123 @@
             margin: 3rem 0;
         }
 
+        /* Journey Section */
+        .journey-section {
+            background: var(--ivory);
+            padding: 6rem 0;
+            color: var(--charcoal);
+        }
+
+        .journey-section p {
+            color: var(--charcoal);
+        }
+
+        .journey-section h2,
+        .journey-section h3 {
+            color: var(--charcoal-deep);
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .journey-card {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-top: 4px solid var(--gold);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .journey-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.15);
+            border-top-color: var(--gold-dark);
+        }
+
+        .journey-card h3 {
+            color: var(--gold-dark);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .journey-subtitle {
+            color: var(--charcoal);
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .journey-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 1.5rem auto;
+        }
+
+        .journey-list {
+            text-align: left;
+            list-style: none;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .journey-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .journey-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .journey-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            margin-top: 1rem;
+        }
+
+        .journey-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(198, 160, 111, 0.3);
+        }
+
         /* Foundation */
         .foundation {
             background: var(--white);
+            position: relative;
+        }
+
+        .foundation::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(198, 160, 111, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .intro-box {
@@ -211,6 +342,7 @@
         .offering-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+            background: linear-gradient(135deg, var(--white) 0%, rgba(198, 160, 111, 0.02) 100%);
         }
 
         .offering-card h3 {
@@ -292,6 +424,7 @@
         /* Mobile only - under 480px */
         @media (max-width: 480px) {
             .nav-links {
+            .journey-grid { grid-template-columns: 1fr; }
                 display: none;
                 position: absolute;
                 top: 100%;
@@ -354,9 +487,80 @@
             <div class="subtitle">Applied Organizational Meaning Science™</div>
             <h1>Meaning-Based Strategy & Advisory</h1>
             <div class="accent-line"></div>
-            <p class="large-text">Before an organization can communicate clearly, raise capital effectively, or build a team that holds together under pressure, it needs to surface its foundational meaning. Most consultancies skip this step entirely.</p>
+            
+            <p class="large-text" style="margin-bottom: 2rem;">Welcome.</p>
+            
+            <p class="large-text">Whether you're starting with an idea, growing a team, or leading an established organization—you're in the right place. We help leaders understand how meaning moves through their work—how decisions, communications, and behaviors get interpreted—so you can lead with clarity and move together.</p>
         </div>
+        
+        <!-- Abstract Visual Element -->
+        <svg class="header-graphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" style="position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 50%; height: auto; opacity: 0.15; pointer-events: none;">
+            <defs>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#C6A06F;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#A68B4E;stop-opacity:0.6" />
+                </linearGradient>
+            </defs>
+            <circle cx="200" cy="150" r="40" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+            <circle cx="400" cy="100" r="50" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+            <circle cx="600" cy="200" r="35" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+            <circle cx="300" cy="350" r="45" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+            <circle cx="550" cy="400" r="38" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+            <line x1="200" y1="150" x2="400" y2="100" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
+            <line x1="400" y1="100" x2="600" y2="200" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
+            <line x1="200" y1="150" x2="300" y2="350" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
+            <line x1="400" y1="100" x2="300" y2="350" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
+            <line x1="600" y1="200" x2="550" y2="400" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
+            <line x1="300" y1="350" x2="550" y2="400" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
+            <circle cx="300" cy="225" r="8" fill="#C6A06F" opacity="0.3"/>
+            <circle cx="475" cy="250" r="6" fill="#C6A06F" opacity="0.3"/>
+            <circle cx="425" cy="475" r="7" fill="#C6A06F" opacity="0.3"/>
+        </svg>
     </header>
+
+    <section class="journey-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">How is meaning flowing through your team, brand, or organization?</h2>
+            
+            <div style="max-width: 900px; margin: 0 auto 4rem;">
+                <p class="large-text">Meaning moves through organizations whether you're paying attention or not. People interpret decisions, behaviors, communications, your brand, your leadership through their own lenses—and apply their own meaning. Understanding how meaning flows—the organizational meaning climate—means seeing what's working, what's neutral, and what needs adjustment. Leadership isn't about controlling how people interpret your decisions or communications. It's about stewarding meaning authentically so people can understand, interpret clearly, and move together. When meaning aligns, adoption happens naturally and engagement holds.</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto 4rem; padding: 2.5rem; background: var(--white); border-left: 4px solid var(--gold);">
+                <h3 style="color: var(--gold-dark); margin-bottom: 1.5rem;">Here's what this looks like in practice:</h3>
+                
+                <p style="margin-bottom: 1rem;">A manager says: <em>"Come to my office in 15 minutes. We need to talk."</em></p>
+                
+                <p style="margin-bottom: 1rem;">Depending on tone, relationship, and recent context, people might interpret:</p>
+                <ul style="list-style: none; margin: 1rem 0 1.5rem 1.5rem;">
+                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"I'm getting fired."</em></li>
+                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"I'm in trouble—what did I do?"</em></li>
+                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"There's an emergency."</em></li>
+                </ul>
+                
+                <p style="margin-bottom: 1rem;">Now imagine instead: <em>"I saw your report—it's amazing. I have some thoughts. Come to my office in about 15 minutes so we can talk about it."</em></p>
+                
+                <p style="margin-bottom: 1rem;">Interpretation shifts to:</p>
+                <ul style="list-style: none; margin: 1rem 0 1.5rem 1.5rem;">
+                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"Collaborative feedback session."</em></li>
+                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"What changes are they thinking?"</em></li>
+                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"Are they being genuine?"</em></li>
+                </ul>
+                
+                <p style="font-weight: 500; margin-top: 1.5rem;">Same request. Different framing. The interpretation range shifts from anxiety to curiosity.</p>
+                
+                <p style="margin-top: 1.5rem;">Stewarding meaning doesn't eliminate interpretation—it shapes the conditions so interpretation leads forward, not backward.</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; padding: 2.5rem; background: var(--ivory); border-left: 4px solid var(--gold-dark);">
+                <h3 style="color: var(--gold-dark); margin-bottom: 1.5rem;">Stewarding meaning isn't about manipulation—it's about adaptation.</h3>
+                
+                <p>When you understand someone's past experiences, their relationship with you, what they need to interpret clearly—you can adjust your tone, your body language, your framing to match their energy. Not because you're being fake, but because you care about being understood.</p>
+                
+                <p style="margin-top: 1.5rem;">That's the difference between controlling meaning and stewarding it.</p>
+            </div>
+        </div>
+    </section>
 
     <section class="foundation">
         <div class="container">
