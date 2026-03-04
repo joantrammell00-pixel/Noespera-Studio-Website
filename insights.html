@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights — Noespera Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.2rem; }
+        .large-text { font-size: 1.25rem; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; }
+        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; padding: 0.5rem; }
+        .page-header { background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color: var(--white); padding: 5rem 0; }
+        .page-header h1 { color: var(--gold-light); }
+        .insights-intro { background: var(--white); padding: 4rem 0; }
+        .insights-grid { background: var(--ivory); padding: 6rem 0; }
+        .article { max-width: 900px; margin: 0 auto 4rem; padding: 3rem; background: var(--white); border-left: 4px solid var(--gold); }
+        .article:last-child { margin-bottom: 0; }
+        .article-meta { font-size: 0.9rem; color: var(--gold-dark); margin-bottom: 1.5rem; font-weight: 500; }
+        .article h2 { color: var(--charcoal-deep); font-size: 2rem; margin-bottom: 1rem; }
+        .article-content p { margin-bottom: 1rem; }
+        .article-content em { font-style: italic; color: var(--charcoal); }
+        .highlight-box { background: var(--ivory); padding: 2rem; margin: 2rem 0; border-left: 3px solid var(--gold-dark); }
+        .highlight-box p { margin-bottom: 0.5rem; font-weight: 400; }
+        footer { background: var(--charcoal-deep); color: rgba(255, 255, 255, 0.7); padding: 3rem 0; text-align: center; }
+        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--gold); }
+        @media (max-width: 768px) { .article { padding: 2rem; } }
+        @media (max-width: 480px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(198, 160, 111, 0.2); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 1rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html" class="active">Insights</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Insights</h1>
+            <p class="large-text">Exploring organizational meaning through research and practice</p>
+        </div>
+    </section>
+
+    <section class="insights-intro">
+        <div class="container" style="max-width: 900px; text-align: center;">
+            <p class="large-text">These reflections emerge from 30+ years of strategic leadership work and the development of Organizational Meaning Science™ as a research discipline. Each explores how meaning moves through organizations—and what that means for leaders.</p>
+        </div>
+    </section>
+
+    <section class="insights-grid">
+        <div class="container">
+            
+            <!-- Article Cards Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2.5rem; margin-bottom: 4rem;">
+                
+                <!-- Card 1: Agreement ≠ Alignment -->
+                <div style="background: var(--white); padding: 2.5rem; border-top: 4px solid var(--gold); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(74,74,72,0.1)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                    <div style="font-size: 0.9rem; color: var(--gold-dark); margin-bottom: 1rem; font-weight: 500;">February 2026 | 6 min read</div>
+                    <h3 style="color: var(--charcoal-deep); font-size: 1.8rem; margin-bottom: 1rem;">Agreement ≠ Alignment</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6;">You can have agreement in the room... and still not have alignment. Because leadership is not the control of meaning. It's the stewardship of it.</p>
+                    <a href="#article-1" onclick="showArticle('article-1'); return false;" style="display: inline-block; padding: 0.8rem 2rem; background: transparent; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s ease;">Read Full Article →</a>
+                </div>
+
+                <!-- Card 2: Structural Shifts -->
+                <div style="background: var(--white); padding: 2.5rem; border-top: 4px solid var(--gold); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(74,74,72,0.1)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                    <div style="font-size: 0.9rem; color: var(--gold-dark); margin-bottom: 1rem; font-weight: 500;">February 2026 | 7 min read</div>
+                    <h3 style="color: var(--charcoal-deep); font-size: 1.8rem; margin-bottom: 1rem;">When Success Changes the Structure Around You</h3>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.6;">There's a leadership lesson no one prepares you for: Sometimes your success changes the structure around you. Not all tension is personal. Sometimes it's architectural.</p>
+                    <a href="#article-2" onclick="showArticle('article-2'); return false;" style="display: inline-block; padding: 0.8rem 2rem; background: transparent; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s ease;">Read Full Article →</a>
+                </div>
+
+            </div>
+
+            <!-- Back to Articles Button (shows when viewing an article) -->
+            <div id="back-button" style="display: none; text-align: center; margin-bottom: 3rem;">
+                <a href="#top" onclick="hideArticles(); return false;" style="display: inline-block; padding: 1rem 2.5rem; background: var(--gold); color: var(--white); text-decoration: none; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s ease;">← Back to All Articles</a>
+            </div>
+            
+            <!-- Full Article 1 (hidden by default) -->
+            <div id="article-1" class="full-article" style="display: none;">
+            <article class="article">
+                <div class="article-meta">February 2026 | 6 min read</div>
+                <h2>Agreement ≠ Alignment</h2>
+                <div class="article-content">
+                    <p>You can have agreement in the room... and still not have alignment.</p>
+                    
+                    <p>Because leadership is not the control of meaning. It's the stewardship of it.</p>
+                    
+                    <p>Leaders cannot force people to interpret decisions a certain way.</p>
+                    
+                    <p>Meaning is formed in the minds of individuals... shaped by context, trust, experience, and history.</p>
+                    
+                    <p>But leaders do shape the conditions in which meaning is formed.</p>
+                    
+                    <div class="highlight-box">
+                        <p>They shape clarity.</p>
+                        <p>They shape consistency.</p>
+                        <p>They shape what is explained... and what is left unsaid.</p>
+                    </div>
+                    
+                    <p>Heads nod. The strategy is approved. The meeting ends with "we're good."</p>
+                    
+                    <p>But alignment isn't built on agreement... It's built on shared meaning.</p>
+                    
+                    <p>People don't just respond to direction.</p>
+                    
+                    <p>They respond to what direction means about them...</p>
+                    <div class="highlight-box">
+                        <p>...about their role,</p>
+                        <p>their value,</p>
+                        <p>their future.</p>
+                    </div>
+                    
+                    <p>If we ignore how meaning forms, we misdiagnose resistance... And we misread adoption.</p>
+                    
+                    <p>What looks like buy-in may simply be compliance.</p>
+                    
+                    <p>What sounds like agreement may still carry quiet reinterpretation underneath.</p>
+                    
+                    <p>Leadership isn't only about getting to "yes."</p>
+                    
+                    <p>It's about understanding how meaning is being formed... and re-formed... over time.</p>
+                    
+                    <p>Because meaning isn't static... It evolves with context, visibility, and lived experience.</p>
+                    
+                    <p>The most effective organizations don't assume alignment.</p>
+                    
+                    <p>They examine it... before they try to enforce it.</p>
+
+                    <hr style="border: none; border-top: 2px solid var(--gold); margin: 3rem 0;">
+
+                    <h3 style="color: var(--gold-dark); margin-top: 3rem; margin-bottom: 1.5rem;">Putting This Into Practice</h3>
+                    
+                    <p><strong>Here's what this looks like in real organizations:</strong></p>
+                    
+                    <p><em>Scenario 1: The Strategy Rollout</em></p>
+                    <p>A leadership team spends months developing a new go-to-market strategy. In the final presentation, everyone nods. Questions are answered. The deck is approved. Three months later, nothing has moved.</p>
+                    
+                    <p>What happened? Different people walked out of that room with different interpretations:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;">Sales heard: "We're shifting focus—my accounts are no longer priority."</li>
+                        <li style="margin-bottom: 0.5rem;">Marketing heard: "More budget for digital—finally."</li>
+                        <li style="margin-bottom: 0.5rem;">Operations heard: "Another strategy that doesn't account for our capacity."</li>
+                        <li style="margin-bottom: 0.5rem;">Product heard: "Are we deprioritizing the roadmap we just committed to?"</li>
+                    </ul>
+                    
+                    <p>They all agreed to the same slides. But they didn't share the same meaning about what those slides meant for their work, their teams, or their futures.</p>
+
+                    <p style="margin-top: 2rem;"><em>Scenario 2: The Reorganization</em></p>
+                    <p>A company announces a restructure to "increase agility and customer focus." The announcement is clear. The rationale is sound. Leadership gets enthusiastic nods in the town hall.</p>
+                    
+                    <p>But six weeks later, key people are disengaged. High performers seem checked out. Why?</p>
+                    
+                    <p>Because while everyone agreed the structure needed to change, different people made different meaning of what that change signaled:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;">Some heard: "They're finally taking customer experience seriously."</li>
+                        <li style="margin-bottom: 0.5rem;">Others heard: "My department is being deprioritized."</li>
+                        <li style="margin-bottom: 0.5rem;">Still others heard: "I've lost visibility with leadership."</li>
+                    </ul>
+                    
+                    <p>Agreement on the decision. Divergent meaning about what the decision says about them.</p>
+
+                    <hr style="border: none; border-top: 2px solid var(--gold); margin: 3rem 0;">
+
+                    <h3 style="color: var(--gold-dark); margin-top: 3rem; margin-bottom: 1.5rem;">The Organizational Meaning Science™ Framework</h3>
+                    
+                    <p><strong>Why does agreement diverge from alignment?</strong></p>
+                    
+                    <p>Because meaning is not transmitted—it's <em>interpreted</em>. And interpretation happens through individual lenses shaped by:</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Past experience:</strong> What happened last time there was a "strategic shift"?</p>
+                        <p><strong>Current context:</strong> What else is happening in their world right now?</p>
+                        <p><strong>Relationship trust:</strong> Do they trust the person delivering the message?</p>
+                        <p><strong>Perceived status:</strong> Does this decision elevate or diminish their role?</p>
+                        <p><strong>Identity connection:</strong> Does this align with how they see themselves and their contribution?</p>
+                    </div>
+                    
+                    <p>This is why the same words land differently across a room. Meaning is made, not received.</p>
+                    
+                    <p><strong>The role of leadership isn't to control that process.</strong> You can't force someone to interpret your decision the way you intend. But you can steward the conditions under which interpretation happens.</p>
+                    
+                    <p>This is where <strong>ITES™ (Interpretation Through Experience Scale)</strong> becomes essential. Traditional engagement surveys ask "Do you agree with the strategy?" But agreement tells you nothing about alignment.</p>
+                    
+                    <p>ITES™ measures how meaning is actually being interpreted:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;">What does this decision mean about your role?</li>
+                        <li style="margin-bottom: 0.5rem;">How are you interpreting leadership's intent?</li>
+                        <li style="margin-bottom: 0.5rem;">Where do you see clarity? Where do you see contradiction?</li>
+                        <li style="margin-bottom: 0.5rem;">What's being said vs. what's being heard?</li>
+                    </ul>
+                    
+                    <p>Understanding your organizational meaning climate reveals where interpretation aligns—and where it drifts. That's the gap between agreement and alignment.</p>
+
+                    <hr style="border: none; border-top: 2px solid var(--gold); margin: 3rem 0;">
+
+                    <h3 style="color: var(--gold-dark); margin-top: 3rem; margin-bottom: 1.5rem;">Questions for Leaders</h3>
+                    
+                    <p><strong>If you're leading right now, ask yourself:</strong></p>
+                    
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            When was the last time you tested for alignment—not just agreement?
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Do you know how different parts of your organization are interpreting your last major decision?
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Are you confusing compliance with buy-in?
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            What conditions are you creating for people to form shared meaning—or are you assuming it happens automatically?
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 2rem;"><strong>Then ask your team:</strong></p>
+                    
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "What does this decision mean for your work?"
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "How are you interpreting what we're trying to accomplish?"
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "Where do you need more clarity to move forward?"
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "What are you hearing me say—not just with your head, but in terms of what it means for you?"
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 2rem;">The organizations that move fastest aren't the ones that get to "yes" quickest. They're the ones that understand how meaning is being made—and steward it intentionally.</p>
+                    
+                    <p><strong>That's the difference between agreement and alignment.</strong></p>
+                </div>
+            </article>
+            </div>
+
+            <!-- Full Article 2 (hidden by default) -->
+            <div id="article-2" class="full-article" style="display: none;">
+            <article class="article">
+                <div class="article-meta">February 2026 | 7 min read</div>
+                <h2>When Success Changes the Structure Around You</h2>
+                <div class="article-content">
+                    <p>There's a leadership lesson no one prepares you for:</p>
+                    
+                    <p>Sometimes your success changes the structure around you.</p>
+                    
+                    <p>You can be fully aligned with a leader, building momentum, delivering results... and then a strategic shift occurs. An acquisition. A reorganization. A new reporting line. A redistribution of authority.</p>
+                    
+                    <p>Nothing about your work ethic changes.</p>
+                    <p>Nothing about your commitment changes.</p>
+                    
+                    <div class="highlight-box">
+                        <p>But visibility shifts.</p>
+                        <p>Recognition shifts.</p>
+                        <p>Power lines shift.</p>
+                    </div>
+                    
+                    <p>When structures shift, people don't just adjust operationally, they adjust psychologically. Status, ownership, and identity are often tied to reporting lines more deeply than we realize.</p>
+                    
+                    <p>Years later, as I studied leadership more formally, I began to see these moments differently. Structural shifts don't just change reporting lines, they change meaning, identity, and perceived status.</p>
+                    
+                    <p>When we fail to account for those meaning shifts, we misinterpret reactions, including our own.</p>
+                    
+                    <p>In seasons of change, tension can emerge in relationships that were once seamless. It's tempting to internalize that tension as personal deficiency.</p>
+                    
+                    <p>It isn't always.</p>
+                    <p>Sometimes it's architectural.</p>
+                    
+                    <p><strong>What I've learned is this:</strong></p>
+                    
+                    <p>The most stabilizing posture during structural change is humility anchored in purpose. Build what you were entrusted to build. Lead without rivalry. Focus on stewardship, not status.</p>
+                    
+                    <div class="highlight-box">
+                        <p>Vision creates momentum.</p>
+                        <p>Character sustains trust.</p>
+                        <p>Growth reveals systems. It also reveals people.</p>
+                    </div>
+                    
+                    <p>If you're navigating organizational change right now, pause before personalizing every tension. Ask what shifted structurally. Ask what meaning shifted for those involved.</p>
+                    
+                    <p>Not all strain is personal.</p>
+                    <p>Some of it is design.</p>
+                    
+                    <p>And the more we understand that, the more steadily we can lead others... and ourselves... through change.</p>
+
+                    <hr style="border: none; border-top: 2px solid var(--gold); margin: 3rem 0;">
+
+                    <h3 style="color: var(--gold-dark); margin-top: 3rem; margin-bottom: 1.5rem;">Putting This Into Practice</h3>
+                    
+                    <p><strong>Recognizing when tension is structural, not personal:</strong></p>
+                    
+                    <p><em>The High Performer Who Suddenly Seems "Difficult"</em></p>
+                    <p>A VP of Sales has been a top performer for three years—exceeding targets, mentoring junior reps, championed by her direct manager. Then the company gets acquired. Her manager now reports to a new Chief Revenue Officer who brings in his own leadership team.</p>
+                    
+                    <p>Within weeks, she's described as "resistant to change" and "not a team player." Her manager—who used to advocate for her—now seems distant.</p>
+                    
+                    <p>What changed? Not her competence. Not her commitment. But:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Visibility shifted:</strong> She no longer has direct access to her champion</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Recognition shifted:</strong> The new CRO doesn't know her track record</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Identity shifted:</strong> She went from "rising star" to "legacy employee"</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Meaning shifted:</strong> What her work signifies in the new structure is unclear</li>
+                    </ul>
+                    
+                    <p>The tension isn't personal deficiency. It's structural displacement. And when we misdiagnose it as performance or attitude, we lose good people.</p>
+
+                    <p style="margin-top: 2rem;"><em>The Founder Whose Role Narrows</em></p>
+                    <p>A founder builds a company from idea to $10M in revenue. Every function reports to her. She's involved in product, sales, marketing, operations—everything. The board brings in a CEO to "professionalize operations and scale."</p>
+                    
+                    <p>The CEO is excellent. The company grows. But the founder feels increasingly sidelined. Board meetings that used to center her vision now focus on operational metrics. Her title is "Chief Innovation Officer" but it feels ceremonial.</p>
+                    
+                    <p>Nothing about her capability changed. But the structure redefined what her contributions mean:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;">From builder to "visionary" (code for: less operational authority)</li>
+                        <li style="margin-bottom: 0.5rem;">From decision-maker to advisor (consulted, not empowered)</li>
+                        <li style="margin-bottom: 0.5rem;">From identity as "the company" to identity as "a role within the company"</li>
+                    </ul>
+                    
+                    <p>If she internalizes this as "I'm not valuable anymore," she'll disengage or leave. But if leadership acknowledges the structural shift and redefines meaning together, she can navigate the transition with dignity.</p>
+
+                    <hr style="border: none; border-top: 2px solid var(--gold); margin: 3rem 0;">
+
+                    <h3 style="color: var(--gold-dark); margin-top: 3rem; margin-bottom: 1.5rem;">The Research: Why Structural Changes Affect Meaning</h3>
+                    
+                    <p><strong>From an Organizational Meaning Science™ perspective, structure isn't neutral.</strong></p>
+                    
+                    <p>We like to think organizational charts are just logistics—who reports to whom, who has budget authority, who attends which meetings. But structure communicates meaning.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Reporting lines signal:</strong> Whose work is valued. Who has the ear of leadership. Who's in the room when decisions get made.</p>
+                        <p><strong>Proximity to power signals:</strong> Whose contributions are seen. Who has influence. Who's positioned for growth.</p>
+                        <p><strong>Title and scope changes signal:</strong> Whether your role is expanding or contracting. Whether you're being elevated or managed out.</p>
+                    </div>
+                    
+                    <p>When structure changes, <em>meaning</em> changes. And people don't just react to the operational shift—they react to what that shift <em>means</em> about them.</p>
+                    
+                    <p><strong>The Identity-Status-Visibility Triangle:</strong></p>
+                    
+                    <p>Research in organizational psychology shows that identity at work is deeply tied to:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Status:</strong> Am I respected? Do people value my contributions?</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Visibility:</strong> Am I seen by the people who matter? Is my work recognized?</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Identity:</strong> Does this role align with how I see myself and my professional trajectory?</li>
+                    </ul>
+                    
+                    <p>Structural shifts disrupt all three. A reporting line change isn't just administrative—it can fundamentally alter how someone experiences their value, their visibility, and their future.</p>
+                    
+                    <p>And here's what leaders often miss: <strong>You can't logic someone out of a meaning shift.</strong> You can't say "Nothing's changed about your value to the organization" when the structure itself is communicating otherwise.</p>
+                    
+                    <p>This is why reorganizations—even necessary, well-executed ones—create psychological turbulence. The operational changes are clear. The meaning changes are unspoken. And when meaning shifts go unaddressed, they show up as:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem;">
+                        <li style="margin-bottom: 0.5rem;">Disengagement ("I'm just doing my job now")</li>
+                        <li style="margin-bottom: 0.5rem;">Resistance ("This doesn't make sense")</li>
+                        <li style="margin-bottom: 0.5rem;">Departures ("I don't see a future here anymore")</li>
+                    </ul>
+
+                    <hr style="border: none; border-top: 2px solid var(--gold); margin: 3rem 0;">
+
+                    <h3 style="color: var(--gold-dark); margin-top: 3rem; margin-bottom: 1.5rem;">What Leaders Can Do</h3>
+                    
+                    <p><strong>If you're leading through structural change:</strong></p>
+
+                    <p style="margin-top: 2rem;"><strong>1. Name the meaning shift explicitly</strong></p>
+                    <p>Don't just announce the new org chart. Acknowledge what's changing beneath the surface:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "I know this changes who you're working closely with. That matters."
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "Your role looks different on paper. Let's talk about what that means for your work and your growth."
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "I recognize this affects how visible your work is. Here's how we're thinking about that."
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 2rem;"><strong>2. Create space for people to process</strong></p>
+                    <p>Structural changes aren't absorbed in a single announcement. Give people room to make sense of what's shifting:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Ask: "What does this change mean for you?"
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Ask: "What are you worried about?"
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Ask: "How can I help you navigate this transition?"
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 2rem;"><strong>3. Distinguish personal tension from structural tension</strong></p>
+                    <p>Before labeling someone as "resistant" or "not adapting well," ask:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Did this person's status/visibility/identity shift in the new structure?
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Are they reacting to the change, or to what the change means about them?
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Have I created conditions for them to re-establish their value in the new structure?
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 2rem;"><strong>4. Redefine meaning together</strong></p>
+                    <p>Don't assume people will figure out "where they fit" on their own. Help them reconstruct meaning in the new structure:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "Here's how I see your contributions evolving in this new model."
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "This is what visibility and growth look like for you now."
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            "Let's co-create what success means in your new scope."
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 3rem;"><strong>If you're experiencing a structural shift yourself:</strong></p>
+                    
+                    <p>Anchor in purpose, not position. Ask yourself:</p>
+                    <ul style="margin: 1rem 0 1rem 2rem; list-style: none;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            What was I entrusted to build? (That hasn't changed.)
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Am I focused on stewardship, or status?
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--gold);">→</span>
+                            Is this tension about my work—or about what the structure is signaling about my value?
+                        </li>
+                    </ul>
+
+                    <p style="margin-top: 2rem;">Structural changes are inevitable. Meaning shifts are real. And the more we understand the difference between architecture and deficiency, the more steadily we can lead—and the more dignity we can preserve for everyone navigating the change.</p>
+                </div>
+            </article>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        function showArticle(articleId) {
+            // Hide all articles
+            const articles = document.querySelectorAll('.full-article');
+            articles.forEach(article => article.style.display = 'none');
+            
+            // Show selected article
+            document.getElementById(articleId).style.display = 'block';
+            
+            // Show back button
+            document.getElementById('back-button').style.display = 'block';
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideArticles() {
+            // Hide all articles
+            const articles = document.querySelectorAll('.full-article');
+            articles.forEach(article => article.style.display = 'none');
+            
+            // Hide back button
+            document.getElementById('back-button').style.display = 'none';
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
