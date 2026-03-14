@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noespera Studio — Applied Organizational Meaning Science™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --gold-pale: #F7F0E3;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #1E1E1C;
+            --charcoal-mid: #2E2E2C;
+            --ivory: #EDEAE5;
+            --ivory-warm: #F5F2ED;
+            --white: #FFFFFF;
+            --rule: rgba(198,160,111,0.25);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background: var(--ivory);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── TYPE ── */
+        h1, h2, h3, h4, blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        h1 { font-size: clamp(2.8rem, 5.5vw, 5rem); line-height: 1.05; }
+        h2 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 1.5rem; }
+        h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); line-height: 1.25; margin-bottom: 0.75rem; }
+        h4 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+        p { font-size: 1rem; font-weight: 300; line-height: 1.8; margin-bottom: 1.1rem; letter-spacing: 0.01em; }
+        .lead { font-size: 1.2rem; line-height: 1.85; }
+        .caption { font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+        strong { font-weight: 500; }
+        em { font-style: italic; }
+
+        /* ── LAYOUT ── */
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+        .container--narrow { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 7rem 0; }
+
+        /* ── NAV ── */
+        nav {
+            background: var(--charcoal-deep);
+            padding: 1.4rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+        }
+        .nav-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.25s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.6rem; cursor: pointer; }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--charcoal-deep);
+            color: var(--white);
+            padding: 9rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 70% at 80% 50%, rgba(198,160,111,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(198,160,111,0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero h1 {
+            color: var(--white);
+            max-width: 820px;
+            margin-bottom: 2rem;
+        }
+        .hero h1 em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+        .hero-rule { width: 64px; height: 2px; background: var(--gold); margin: 2.5rem 0; }
+        .hero-lead {
+            max-width: 640px;
+            color: rgba(255,255,255,0.78);
+            font-size: 1.1rem;
+            line-height: 1.85;
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+        .hero-cta-group { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            background: var(--gold);
+            color: var(--charcoal-deep);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .btn-ghost {
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            border: 1px solid rgba(198,160,111,0.5);
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ── RESONANCE ── */
+        .resonance { background: var(--white); }
+        .resonance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--rule);
+        }
+        .resonance-card {
+            padding: 3.5rem;
+            position: relative;
+        }
+        .resonance-card:first-child {
+            border-right: 1px solid var(--rule);
+        }
+        .resonance-label {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .resonance-card h3 {
+            color: var(--charcoal-deep);
+            font-size: 1.7rem;
+            line-height: 1.25;
+            margin-bottom: 1.25rem;
+        }
+        .resonance-card p { color: var(--charcoal); }
+
+        /* ── PULL QUOTE ── */
+        .pull-quote-section { background: var(--charcoal-deep); padding: 6rem 0; }
+        .pull-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--gold-light);
+            line-height: 1.5;
+            text-align: center;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .pull-quote-attribution {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            font-weight: 400;
+        }
+
+        /* ── HOW MEANING TRAVELS ── */
+        .how-section { background: var(--ivory-warm); }
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0;
+            border: 1px solid var(--rule);
+            margin-top: 3rem;
+        }
+        .channel-item {
+            padding: 2rem 1.75rem;
+            border-right: 1px solid var(--rule);
+            position: relative;
+        }
+        .channel-item:last-child { border-right: none; }
+        .channel-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: rgba(198,160,111,0.55);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+        .channel-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--charcoal-deep);
+            margin-bottom: 0.6rem;
+        }
+        .channel-item p {
+            font-size: 0.88rem;
+            color: var(--charcoal);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* ── LANDSCAPE ── */
+        .landscape-section { background: var(--white); }
+        .landscape-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            margin-top: 3rem;
+        }
+        .landscape-card { background: var(--white); padding: 3rem 2.5rem; }
+        .landscape-icon {
+            width: 36px;
+            height: 3px;
+            margin-bottom: 1.5rem;
+        }
+        .landscape-icon.working { background: var(--gold); }
+        .landscape-icon.neutral { background: rgba(198,160,111,0.4); }
+        .landscape-icon.drifting { background: var(--charcoal); }
+        .landscape-card h3 {
+            font-size: 1.5rem;
+            color: var(--charcoal-deep);
+            margin-bottom: 0.75rem;
+        }
+        .landscape-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── OMM ── */
+        .omm-section { background: var(--charcoal-deep); color: var(--white); }
+        .omm-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+        .omm-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .omm-section h2 { color: var(--gold-light); }
+        .omm-section p { color: rgba(255,255,255,0.75); }
+        .omm-deliverables { margin-top: 2.5rem; }
+        .omm-deliverable {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+        }
+        .omm-deliverable:first-child { border-top: 1px solid rgba(198,160,111,0.15); }
+        .omm-arrow { color: var(--gold); font-size: 0.9rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .omm-deliverable-text {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.75);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .omm-aside {
+            padding: 3rem;
+            border: 1px solid rgba(198,160,111,0.2);
+            margin-top: 0;
+        }
+        .omm-aside h4 {
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        .omm-aside p { color: rgba(255,255,255,0.65); font-size: 0.9rem; }
+        .pathway-list { list-style: none; margin-top: 1.5rem; }
+        .pathway-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.12);
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+        }
+        .pathway-list li:last-child { border-bottom: none; }
+        .pathway-list strong { color: var(--gold-light); font-weight: 500; }
+
+        /* ── SYSTEM ── */
+        .system-section { background: var(--ivory); }
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .system-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-top: 3px solid var(--gold);
+            position: relative;
+        }
+        .system-tier {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .system-card h3 {
+            font-size: 1.5rem;
+            color: var(--charcoal-deep);
+            margin-bottom: 1rem;
+        }
+        .system-card p { font-size: 0.92rem; margin-bottom: 0; }
+
+        /* ── DISTINCTION ── */
+        .distinction-section { background: var(--ivory-warm); }
+        .distinction-inner { max-width: 860px; margin: 0 auto; }
+        .distinction-rule {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        .distinction-side { text-align: center; padding: 2.5rem; }
+        .distinction-side.not {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            opacity: 0.6;
+        }
+        .distinction-side.is {
+            background: var(--charcoal-deep);
+        }
+        .distinction-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .distinction-side.not .distinction-label { color: var(--charcoal); }
+        .distinction-side.is .distinction-label { color: var(--gold); }
+        .distinction-side.not h4 { font-size: 1.1rem; color: var(--charcoal); }
+        .distinction-side.is h4 { font-size: 1.1rem; color: var(--white); font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+        .distinction-vs {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold-dark);
+            text-align: center;
+        }
+
+        /* ── FOUNDER ── */
+        .founder-section { background: var(--white); }
+        .founder-inner { max-width: 900px; margin: 0 auto; }
+        .founder-photo-row {
+            display: flex;
+            gap: 3.5rem;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+        }
+        .founder-photo {
+            width: 220px;
+            flex-shrink: 0;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+        .founder-photo-text h2 { margin-bottom: 0.5rem; }
+        .founder-subtitle {
+            font-size: 0.82rem;
+            color: var(--gold-dark);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .founder-photo-text p { color: var(--charcoal); }
+        .credentials-box {
+            background: var(--ivory);
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 4px solid var(--gold);
+        }
+        .credentials-box h3 {
+            color: var(--gold-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+        .credentials-box ul { list-style: none; }
+        .credentials-box li {
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+        }
+        .credentials-box li:last-child { border-bottom: none; }
+        .credentials-box li strong { font-weight: 500; color: var(--charcoal-deep); }
+        @media (max-width: 600px) {
+            .founder-photo-row { flex-direction: column; gap: 1.5rem; }
+            .founder-photo { width: 160px; }
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: var(--charcoal-deep);
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(198,160,111,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        .cta-section p {
+            color: rgba(255,255,255,0.6);
+            max-width: 560px;
+            margin: 0 auto 3rem;
+        }
+        .cta-contact {
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+        .cta-contact a { color: var(--gold); text-decoration: none; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #141412;
+            color: rgba(255,255,255,0.4);
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(198,160,111,0.7); text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: var(--gold); }
+        footer p { margin-bottom: 0.5rem; }
+
+        /* ── MOBILE ── */
+        @media (max-width: 900px) {
+            .resonance-grid { grid-template-columns: 1fr; }
+            .resonance-card:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
+            .omm-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .landscape-grid { grid-template-columns: 1fr; }
+            .system-grid { grid-template-columns: 1fr; }
+            .founder-inner { grid-template-columns: 1fr; }
+            .founder-photo-wrap { max-width: 320px; }
+            .distinction-rule { grid-template-columns: 1fr; }
+            .distinction-vs { display: none; }
+            .channels-grid { grid-template-columns: repeat(2, 1fr); }
+            .channel-item { border-bottom: 1px solid var(--rule); }
+        }
+        @media (max-width: 600px) {
+            .channels-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; border-top: 1px solid rgba(198,160,111,0.15); }
+            .nav-links.open { display: flex; }
+            .nav-links li { border-bottom: 1px solid rgba(198,160,111,0.1); }
+            .nav-links a { display: block; padding: 0.9rem 2rem; font-size: 0.85rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+            .hero-cta-group { flex-direction: column; align-items: flex-start; }
+            section { padding: 5rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+        <button class="mobile-menu-btn" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">☰</button>
+        <ul class="nav-links" id="nav">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="dna-workshops.html">DNA Discovery Suite™</a></li>
+            <li><a href="services.html">Full Practice Suite</a></li>
+            <li class="nav-dropdown"><a href="insights.html">Perspectives</a><ul class="dropdown"><li><a href="insights.html">Articles</a></li><li><a href="leadership-meaning.html">Leadership Through the Meaning Lens</a></li></ul></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+    <div class="container">
+        <span class="hero-eyebrow">Applied Organizational Meaning Science™</span>
+        <h1>Do you know what your<br><em>organization is actually doing</em><br>with the meaning you're sending?</h1>
+        <div class="hero-rule"></div>
+        <p class="hero-lead">Meaning moves through your organization whether you're paying attention or not. Through every decision, every communication, every behavior people observe. The question isn't whether it's flowing. It's whether you know what it's doing.</p>
+        <div class="hero-cta-group">
+            <a href="contact.html" class="btn-primary">Schedule a Conversation</a>
+            <a href="#how" class="btn-ghost">See How It Works</a>
+        </div>
+    </div>
+</header>
+
+<!-- ── RESONANCE ── -->
+<section class="resonance">
+    <div class="container">
+        <p class="caption" style="color: var(--gold-dark); margin-bottom: 2.5rem;">Two ways leaders arrive at this work</p>
+        <div class="resonance-grid">
+            <div class="resonance-card">
+                <span class="resonance-label">The Opportunity-Driven Leader</span>
+                <h3>Things are working. The question is whether they're working<em> as well as they could be.</em></h3>
+                <p>Most high-performing organizations are leaving 30% of their potential on the table. Not because the strategy is wrong. Because meaning is partially aligned—but not fully. The gap between outward agreement and genuine alignment is where untapped performance lives.</p>
+                <p>When meaning is on point, results that seemed solid reveal themselves as the floor, not the ceiling.</p>
+            </div>
+            <div class="resonance-card">
+                <span class="resonance-label">The Pain-Driven Leader</span>
+                <h3>I have capable people. My strategy is sound. Something keeps <em>not following.</em></h3>
+                <p>Most leaders can't name it because everything looks fine on the surface. People are nodding. The room is agreeing. But agreement and alignment are not the same thing—and meaning is moving underneath whether you're aware of it or not.</p>
+                <p>Technically sound strategies fail to take hold. Culture initiatives stall. Leadership efforts fragment. This is what that looks like.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── PULL QUOTE ── -->
+<div class="pull-quote-section">
+    <div class="container">
+        <p class="pull-quote">"A leader can have agreement in the room and still not have alignment. Alignment is built on shared meaning—and meaning is formed in the minds of individuals, not declared from the front of the room."</p>
+        <p class="pull-quote-attribution">— Organizational Meaning Science™</p>
+    </div>
+</div>
+
+<!-- ── HOW MEANING TRAVELS ── -->
+<section class="how-section" id="how">
+    <div class="container">
+        <p class="caption" style="color: var(--gold-dark); margin-bottom: 1rem;">The channels of meaning</p>
+        <h2>Meaning isn't just carried by words.</h2>
+        <div class="container--narrow" style="padding: 0;">
+            <p class="lead">It travels through every signal an organization sends—intentionally and unintentionally. The gap between intent and interpretation is where organizations lose momentum.</p>
+        </div>
+        <div class="channels-grid">
+            <div class="channel-item">
+                <div class="channel-num">01</div>
+                <h4>What is said</h4>
+                <p>The explicit communication, the language chosen, the words in the email or the all-hands.</p>
+            </div>
+            <div class="channel-item">
+                <div class="channel-num">02</div>
+                <h4>How it's said</h4>
+                <p>Tone, warmth or distance, urgency or calm. The feeling of a message before its content is processed.</p>
+            </div>
+            <div class="channel-item">
+                <div class="channel-num">03</div>
+                <h4>What is done</h4>
+                <p>Behaviors and actions that either confirm or contradict the words. The gap where trust is made or lost.</p>
+            </div>
+            <div class="channel-item">
+                <div class="channel-num">04</div>
+                <h4>Who was involved</h4>
+                <p>Who was in the room. Who was consulted. Who shaped the decision—and who didn't.</p>
+            </div>
+            <div class="channel-item">
+                <div class="channel-num">05</div>
+                <h4>When it happened</h4>
+                <p>Timing sends its own signal. The same message lands differently in different organizational moments.</p>
+            </div>
+            <div class="channel-item">
+                <div class="channel-num">06</div>
+                <h4>What wasn't said</h4>
+                <p>Silence, omission, the thing everyone noticed wasn't addressed. Often the loudest signal of all.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── LANDSCAPE ── -->
+<section class="landscape-section">
+    <div class="container">
+        <p class="caption" style="color: var(--gold-dark); margin-bottom: 1rem;">What we measure. What you act on.</p>
+        <h2>The Three-Part Meaning Landscape</h2>
+        <p class="lead" style="max-width: 680px;">Every organization has meaning that is working well, meaning sitting untapped, and meaning causing drift. Most leaders can only see one of the three—and it's rarely the most important one.</p>
+        <div class="landscape-grid">
+            <div class="landscape-card">
+                <div class="landscape-icon working"></div>
+                <h3>Working Well</h3>
+                <p>Meaning is landing as intended. Alignment is strong. People are moving together—and you can see it in execution, in retention, in culture that holds under pressure. When you know where meaning lands well, you can intentionally repeat and scale those conditions.</p>
+            </div>
+            <div class="landscape-card">
+                <div class="landscape-icon neutral"></div>
+                <h3>Sitting Untapped</h3>
+                <p>Latent alignment that isn't yet activated. Untapped performance. Organizations rarely know it's there—which means they rarely reach for it. Neutral isn't neutral; it's potential that isn't working for you yet.</p>
+            </div>
+            <div class="landscape-card">
+                <div class="landscape-icon drifting"></div>
+                <h3>Causing Drift</h3>
+                <p>Interpretation is diverging from intent. Meaning is fracturing quietly—before it becomes visible as a problem, before results start slipping, before the question becomes unanswerable. Caught early, drift is workable. Ignored, it compounds.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── OMM ── -->
+<section class="omm-section">
+    <div class="container">
+        <div class="omm-inner">
+            <div>
+                <span class="omm-eyebrow">The Executive Entry Point</span>
+                <h2>Organizational Meaning Mapping™</h2>
+                <p>The flagship engagement. Combines foundational DNA discovery work with the Meaning Climate Profile™ to produce a complete picture of meaning in your organization—and a strategic roadmap for stewardship.</p>
+                <p>This is not a culture survey. It is not a leadership assessment. It is organizational intelligence you can act on—before results tell you something went wrong.</p>
+                <div class="omm-deliverables">
+                    <div class="omm-deliverable">
+                        <span class="omm-arrow">→</span>
+                        <span class="omm-deliverable-text">Organizational meaning map—where meaning is working, neutral, and drifting across your leadership system</span>
+                    </div>
+                    <div class="omm-deliverable">
+                        <span class="omm-arrow">→</span>
+                        <span class="omm-deliverable-text">Meaning Climate Profile™—the full interpretive landscape powered by the ITES™ Instrument (patent pending)</span>
+                    </div>
+                    <div class="omm-deliverable">
+                        <span class="omm-arrow">→</span>
+                        <span class="omm-deliverable-text">Individual leader reports for each executive participant</span>
+                    </div>
+                    <div class="omm-deliverable">
+                        <span class="omm-arrow">→</span>
+                        <span class="omm-deliverable-text">Strategic output and follow-up session to translate insight into decision</span>
+                    </div>
+                    <div class="omm-deliverable">
+                        <span class="omm-arrow">→</span>
+                        <span class="omm-deliverable-text">Predictive modeling—see where meaning will drift before a major decision is made</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="omm-aside">
+                    <h4>The Complete System</h4>
+                    <p>Organizational Meaning Mapping™ is the entry point into a three-layer system: Foundation, Intelligence, and Strategy.</p>
+                    <ul class="pathway-list">
+                        <li><strong>Foundation — DNA Discovery Suite™</strong><br>Surfaces foundational meaning through a structured, facilitated process. Purpose, vision, culture, and shared language—discovered, not declared.</li>
+                        <li><strong>Intelligence — Meaning Climate Profile™</strong><br>Maps the full interpretive landscape. Working well, neutral, causing drift. Delivered as a living instrument for continuous organizational visibility—not a periodic snapshot.</li>
+                        <li><strong>Strategy — Three Pathways</strong><br>Organizational Meaning Mapping™ · Meaning Architecture Engagement™ · Strategic Meaning Intensive™</li>
+                    </ul>
+                </div>
+                <div class="omm-aside" style="margin-top: 1.5rem;">
+                    <h4>What makes this different</h4>
+                    <p>Every major leadership framework—CliftonStrengths®, DiSC®, MBTI®—tells the leader about themselves. What none of them tell you is how your strengths and tendencies are being <em>experienced</em> by the specific people around you, in your specific context, right now.</p>
+                    <p style="margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 0.85rem;">That's the missing layer. This is it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── DISTINCTION ── -->
+<section class="distinction-section">
+    <div class="container">
+        <div class="distinction-inner">
+            <p class="caption" style="color: var(--gold-dark); margin-bottom: 1rem; text-align: center;">A critical distinction</p>
+            <h2 style="text-align: center;">This work is about authentic adjustment.<br><em>Not manipulation.</em></h2>
+            <p style="max-width: 640px; margin: 1.5rem auto 0; text-align: center; color: var(--charcoal);">You cannot control how people interpret. You can only steward the conditions. When leaders understand how meaning is actually flowing through their organization, they can make genuine adjustments—not spin, not messaging strategy. Real changes to how they lead and communicate, because they genuinely care about being understood.</p>
+            <div class="distinction-rule">
+                <div class="distinction-side not">
+                    <span class="distinction-label">Not this</span>
+                    <h4>Controlling meaning.<br>Messaging strategy.<br>Manufactured alignment.</h4>
+                </div>
+                <div class="distinction-vs">vs</div>
+                <div class="distinction-side is">
+                    <span class="distinction-label">This</span>
+                    <h4 style="color: var(--gold-light);">Stewarding meaning.<br>Authentic adjustment.<br>Genuine coherence.</h4>
+                </div>
+            </div>
+            <p style="max-width: 640px; margin: 0 auto; text-align: center; font-size: 0.92rem; color: var(--charcoal);">This is what separates Organizational Meaning Science™ from culture consulting, change management, and communications strategy. The goal is clarity and coherence—not compliance.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+    <div class="container">
+        <span class="cta-eyebrow">Ready when you are</span>
+        <h2>Schedule a Conversation</h2>
+        <p>Whether you're performing well and sensing there's more on the table—or navigating something that isn't quite adding up—this conversation is worth having. No obligation. No sales process. A direct exchange with someone who has seen this before.</p>
+        <a href="contact.html" class="btn-primary" style="font-size: 0.85rem;">Schedule a Conversation</a>
+        <p class="cta-contact">Or reach out directly: <a href="mailto:joan@noesperastudio.com">joan@noesperastudio.com</a><br>All inquiries receive a response within 48 hours.</p>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+        <p style="margin-top: 0.75rem;">
+            <a href="https://www.joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.25);">CliftonStrengths® and StrengthsFinder® are registered trademarks of Gallup, Inc. DiSC® is a registered trademark of Wiley/Inscape Publishing. Myers-Briggs® and MBTI® are registered trademarks of The Myers & Briggs Foundation. Referenced for analytical purposes only. Noespera Studio is not affiliated with or endorsed by any of these organizations.</p>
+    </div>
+</footer>
+
+</body>
+</html>
