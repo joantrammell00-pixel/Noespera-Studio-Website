@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Through the Meaning Lens — Noespera Studio</title>
+    <meta name="description" content="Every major leadership framework is missing the same layer: the interpretive layer, where behavior becomes meaning. Explore how leadership styles and frameworks land across your organization.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --gold-pale: #F7F0E3;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #1E1E1C;
+            --charcoal-mid: #2E2E2C;
+            --ivory: #EDEAE5;
+            --ivory-warm: #F5F2ED;
+            --white: #FFFFFF;
+            --rule: rgba(198,160,111,0.25);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background: var(--ivory);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: 1.05; }
+        h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); line-height: 1.15; margin-bottom: 1.25rem; }
+        h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); line-height: 1.25; margin-bottom: 0.75rem; }
+        h4 { font-size: 1.15rem; margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+        p { font-size: 1rem; font-weight: 300; line-height: 1.8; margin-bottom: 1rem; letter-spacing: 0.01em; }
+        .lead { font-size: 1.15rem; line-height: 1.85; }
+        .caption { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; }
+        strong { font-weight: 500; }
+        em { font-style: italic; }
+
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+        .container--narrow { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 7rem 0; }
+
+        /* ── NAV ── */
+        nav {
+            background: var(--charcoal-deep);
+            padding: 1.4rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+        }
+        .nav-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.25s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.6rem; cursor: pointer; }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal-mid) 100%);
+            color: var(--white);
+            padding: 7rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(198,160,111,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-header .caption { color: var(--gold); margin-bottom: 1.5rem; display: block; }
+        .page-header h1 { color: var(--gold-light); max-width: 820px; margin-bottom: 1.5rem; }
+        .page-header h1 em { color: var(--white); font-style: italic; }
+        .page-header-rule { width: 64px; height: 2px; background: var(--gold); margin: 2rem 0; }
+        .page-header .lead { color: rgba(255,255,255,0.72); max-width: 660px; }
+
+        /* ── MISSING LAYER INTRO ── */
+        .missing-layer { background: var(--white); }
+        .missing-layer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+        .missing-layer blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-style: italic;
+            color: var(--charcoal-deep);
+            line-height: 1.5;
+            border-left: 3px solid var(--gold);
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+        .framework-list { list-style: none; margin-top: 1.5rem; }
+        .framework-list li {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--rule);
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--charcoal);
+        }
+        .framework-list li:first-child { border-top: 1px solid var(--rule); }
+        .framework-list strong { color: var(--charcoal-deep); font-weight: 500; }
+        .framework-list .missing { color: var(--gold-dark); font-style: italic; font-size: 0.88rem; display: block; margin-top: 0.2rem; }
+
+        /* ── STYLES SECTION ── */
+        .styles-section { background: var(--ivory-warm); }
+        .styles-intro { max-width: 760px; margin-bottom: 3.5rem; }
+
+        /* Tab navigation */
+        .tab-nav-wrap {
+            position: sticky;
+            top: 64px;
+            z-index: 50;
+            background: var(--ivory-warm);
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 3rem;
+        }
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .tab-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            flex-shrink: 0;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 1rem 1.25rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(74,74,72,0.55);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--charcoal); }
+        .tab-btn.active {
+            color: var(--gold-dark);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Style panels */
+        .style-panel { display: none; }
+        .style-panel.active { display: block; }
+        .style-panel-inner {
+            background: var(--white);
+            border: 1px solid var(--rule);
+        }
+        .style-panel-header {
+            padding: 3rem 3.5rem 2.5rem;
+            border-bottom: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+        }
+        .style-intent-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .style-panel-header h3 {
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+            color: var(--charcoal-deep);
+            margin-bottom: 0;
+        }
+        .style-intent {
+            font-size: 0.88rem;
+            color: var(--charcoal);
+            font-weight: 300;
+            background: var(--ivory);
+            padding: 1.25rem 1.5rem;
+            border-left: 3px solid var(--gold);
+            min-width: 220px;
+            max-width: 260px;
+        }
+        .style-intent strong { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.4rem; font-weight: 600; }
+
+        .style-panel-body { padding: 2.5rem 3.5rem 3rem; }
+        .interpretations-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .interpretations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            margin-bottom: 2rem;
+        }
+        .interpretation-card {
+            background: var(--white);
+            padding: 1.75rem;
+        }
+        .interpretation-card .who {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .interpretation-card p {
+            font-size: 0.92rem;
+            margin-bottom: 0;
+            color: var(--charcoal);
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .style-insight {
+            background: var(--charcoal-deep);
+            padding: 1.75rem 2rem;
+            margin-top: 0.5rem;
+        }
+        .style-insight p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.92rem;
+            margin-bottom: 0;
+            line-height: 1.7;
+        }
+        .style-insight strong { color: var(--gold-light); font-weight: 500; }
+
+        /* ── FRAMEWORKS SECTION ── */
+        .frameworks-section { background: var(--white); }
+        .frameworks-intro { max-width: 760px; margin-bottom: 3.5rem; }
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+        .framework-card {
+            border: 1px solid var(--rule);
+            background: var(--ivory-warm);
+        }
+        .framework-card-header {
+            padding: 2rem 2.25rem 1.5rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        .framework-badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--gold-dark);
+            background: rgba(198,160,111,0.12);
+            padding: 0.3rem 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .framework-card-header h3 { font-size: 1.5rem; color: var(--charcoal-deep); margin-bottom: 0.4rem; }
+        .framework-card-header p { font-size: 0.88rem; margin-bottom: 0; color: var(--charcoal); }
+        .framework-card-body { padding: 1.75rem 2.25rem 2rem; }
+        .tells-you, .missing-layer-item {
+            margin-bottom: 1.25rem;
+        }
+        .tells-label {
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        .tells-label.what { color: var(--charcoal); }
+        .tells-label.missing { color: var(--gold-dark); }
+        .tells-you p, .missing-layer-item p {
+            font-size: 0.92rem;
+            margin-bottom: 0;
+            line-height: 1.65;
+        }
+        .missing-layer-item p { color: var(--gold-dark); font-style: italic; }
+
+        /* ── TEAM GAP ── */
+        .team-gap-section { background: var(--charcoal-deep); color: var(--white); }
+        .team-gap-inner { max-width: 860px; margin: 0 auto; }
+        .team-gap-section .caption { color: var(--gold); margin-bottom: 1.5rem; display: block; }
+        .team-gap-section h2 { color: var(--gold-light); margin-bottom: 1.5rem; }
+        .team-gap-section p { color: rgba(255,255,255,0.72); }
+        .team-gap-questions {
+            margin-top: 3rem;
+            border-top: 1px solid rgba(198,160,111,0.2);
+        }
+        .team-gap-q {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+            display: flex;
+            gap: 1.25rem;
+            align-items: baseline;
+        }
+        .team-gap-arrow { color: var(--gold); flex-shrink: 0; font-size: 0.9rem; }
+        .team-gap-q p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── CTA ── */
+        .cta-section {
+            background: var(--ivory);
+            padding: 7rem 0;
+            text-align: center;
+        }
+        .cta-inner { max-width: 700px; margin: 0 auto; }
+        .cta-section .caption { color: var(--gold-dark); margin-bottom: 1.5rem; display: block; }
+        .cta-section h2 { color: var(--charcoal-deep); margin-bottom: 1.25rem; }
+        .cta-section p { color: var(--charcoal); margin-bottom: 2.5rem; }
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            background: var(--gold);
+            color: var(--charcoal-deep);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .btn-ghost {
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            border: 1px solid var(--rule);
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            margin-left: 1rem;
+        }
+        .btn-ghost:hover { border-color: var(--gold); color: var(--gold-dark); }
+        .cta-note { margin-top: 2rem; font-size: 0.82rem; color: rgba(74,74,72,0.5); }
+        .cta-note a { color: var(--gold-dark); text-decoration: none; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #141412;
+            color: rgba(255,255,255,0.4);
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(198,160,111,0.7); text-decoration: none; transition: color 0.2s; }
+        footer a:hover { color: var(--gold); }
+        footer p { margin-bottom: 0.5rem; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .missing-layer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .style-panel-header { grid-template-columns: 1fr; }
+            .style-intent { max-width: 100%; }
+            .style-panel-header, .style-panel-body { padding: 2rem; }
+            .frameworks-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; border-top: 1px solid rgba(198,160,111,0.15); }
+            .nav-links.open { display: flex; }
+            .nav-links li { border-bottom: 1px solid rgba(198,160,111,0.1); }
+            .nav-links a { display: block; padding: 0.9rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+            section { padding: 5rem 0; }
+            .tab-btn { padding: 0.85rem 1rem; font-size: 0.7rem; }
+            .btn-ghost { margin-left: 0; margin-top: 0.75rem; display: block; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+        <button class="mobile-menu-btn" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">☰</button>
+        <ul class="nav-links" id="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dna-workshops.html">DNA Discovery Suite™</a></li>
+            <li><a href="services.html">Full Practice Suite</a></li>
+            <li class="nav-dropdown"><a href="insights.html" class="active">Perspectives</a><ul class="dropdown"><li><a href="insights.html">Articles</a></li><li><a href="leadership-meaning.html" class="active">Leadership Through the Meaning Lens</a></li></ul></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<section class="page-header">
+    <div class="container">
+        <span class="caption">Organizational Meaning Science™</span>
+        <h1>Every leadership framework<br>is missing <em>the same layer.</em></h1>
+        <div class="page-header-rule"></div>
+        <p class="lead">CliftonStrengths®. DiSC®. MBTI®. Servant leadership. Transformational leadership. Situational leadership. Each one tells you how to behave. None of them tell you how that behavior is actually being received—by whom, and under what conditions. That's the interpretive layer. And it's where most of the work is.</p>
+    </div>
+</section>
+
+<!-- ── MISSING LAYER INTRO ── -->
+<section class="missing-layer">
+    <div class="container">
+        <div class="container--narrow" style="padding: 0;">
+            <span class="caption" style="color: var(--gold-dark);">The gap no framework addresses</span>
+        </div>
+        <div class="missing-layer-grid">
+            <div>
+                <h2>Behavior does not produce<br>predictable interpretation.</h2>
+                <blockquote>"What a leader does and how it is experienced are not the same thing."</blockquote>
+                <p>Between the behavior and the outcome lives an interpretive process shaped by relationship history, past experiences with authority, cultural context, tone of delivery, who else was in the room, what happened the day before, and what the person was already carrying.</p>
+                <p>The same behavior produces completely different meaning experiences simultaneously. None of them are wrong. All of them are real. All of them are being acted on. The leader knows only their intent.</p>
+                <p>This is why technically sound strategies fail to take hold. Why culture initiatives stall. Why leadership efforts fragment. The framework described the behavior correctly. It just didn't account for what happens after the behavior leaves the room.</p>
+            </div>
+            <div>
+                <p class="caption" style="color: var(--charcoal); margin-bottom: 1rem;">What each framework tells you — and what it doesn't</p>
+                <ul class="framework-list">
+                    <li>
+                        <strong>CliftonStrengths®</strong> tells you what you're naturally good at.
+                        <span class="missing">Missing: how those strengths are being experienced by the specific people around you.</span>
+                    </li>
+                    <li>
+                        <strong>DiSC®</strong> tells you your behavioral style.
+                        <span class="missing">Missing: how that style lands with your specific team in your specific context.</span>
+                    </li>
+                    <li>
+                        <strong>Myers-Briggs® / MBTI®</strong> tells you your personality type.
+                        <span class="missing">Missing: how your type's natural tendencies are creating meaning for the people around you.</span>
+                    </li>
+                    <li>
+                        <strong>Servant leadership</strong> tells you to put your team first.
+                        <span class="missing">Missing: whether your team experiences that as support, or as a leader who can't make decisions.</span>
+                    </li>
+                    <li>
+                        <strong>Transformational leadership</strong> tells you to inspire and elevate.
+                        <span class="missing">Missing: whether your team feels inspired — or exhausted by perpetual transformation.</span>
+                    </li>
+                    <li>
+                        <strong>Situational leadership</strong> tells you to adapt your style.
+                        <span class="missing">Missing: whether your team experiences adaptation as responsiveness — or inconsistency.</span>
+                    </li>
+                </ul>
+                <div style="margin-top: 2rem; padding: 1.75rem; background: var(--ivory); border-left: 4px solid var(--gold);">
+                    <p style="margin-bottom: 0; font-size: 0.95rem;">This is not a critique of these tools. The research behind them is real. Every one of them is valuable. They are simply missing the same layer — and organizations have been trying to use them to do that layer's job for thirty years.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── LEADERSHIP STYLES ── -->
+<section class="styles-section">
+    <div class="container">
+        <div class="styles-intro">
+            <span class="caption" style="color: var(--gold-dark); display: block; margin-bottom: 1rem;">Leadership styles through the meaning lens</span>
+            <h2>Intent is one thing.<br>Interpretation is another.</h2>
+            <p class="lead">Below is every major leadership style — what the leader intends, and the range of simultaneous interpretive realities running in the room underneath. The leader knows only their intent. The people they lead are acting on their interpretations.</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav-wrap">
+            <div class="tab-nav" id="tabNav">
+                <button class="tab-btn active" onclick="showTab('directive', this)">Directive</button>
+                <button class="tab-btn" onclick="showTab('servant', this)">Servant</button>
+                <button class="tab-btn" onclick="showTab('transformational', this)">Transformational</button>
+                <button class="tab-btn" onclick="showTab('visionary', this)">Visionary</button>
+                <button class="tab-btn" onclick="showTab('coaching', this)">Coaching</button>
+                <button class="tab-btn" onclick="showTab('democratic', this)">Democratic</button>
+                <button class="tab-btn" onclick="showTab('affiliative', this)">Affiliative</button>
+                <button class="tab-btn" onclick="showTab('pacesetting', this)">Pacesetting</button>
+                <button class="tab-btn" onclick="showTab('situational', this)">Situational</button>
+                <button class="tab-btn" onclick="showTab('authentic', this)">Authentic</button>
+                <button class="tab-btn" onclick="showTab('inclusive', this)">Inclusive</button>
+                <button class="tab-btn" onclick="showTab('conflict-avoidant', this)">Conflict-Avoidant</button>
+                <button class="tab-btn" onclick="showTab('micromanaging', this)">Micromanaging</button>
+                <button class="tab-btn" onclick="showTab('absent', this)">Absent</button>
+                <button class="tab-btn" onclick="showTab('charismatic', this)">Charismatic</button>
+                <button class="tab-btn" onclick="showTab('narcissistic', this)">Narcissistic</button>
+                <button class="tab-btn" onclick="showTab('self-serving', this)">Self-Serving</button>
+            </div>
+        </div>
+
+        <!-- Style Panels -->
+
+        <div id="tab-directive" class="style-panel active">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Directive / Commanding</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Clarity, decisiveness, results. A steady hand that cuts through ambiguity and moves people forward.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some receive it as</span>
+                            <p>Exactly the clear direction they needed — steady and certain in a moment of uncertainty. Finally, someone who knows what we're doing.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret it as</span>
+                            <p>Harsh, dismissive, lacking care for the people doing the work. Told what to do and treated like a resource, not a person.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others find it</span>
+                            <p>Insufficient — told what to do but not why. The meaning gap fills with assumption: what does this say about whether my judgment is trusted?</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> The leader believes they are providing clarity. Multiple interpretive realities are running simultaneously underneath. All of them are real. All of them are being acted on.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-servant" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Servant Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Support, empowerment, putting the team first. Leadership as stewardship rather than authority.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some receive it as</span>
+                            <p>Genuinely seen, supported, and empowered to lead themselves. A leader who actually cares about them as people, not just as producers.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret it as</span>
+                            <p>The leader lacking authority. Where is the direction? The decisiveness? This team needs someone who will make the hard calls.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others receive it as</span>
+                            <p>Performative. They quietly wonder what the leader actually wants — and begin managing upward instead of doing the work.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> The intent is genuine. All three interpretations are real. And the leader is typically unaware that all three are happening at once — in the same room, often in the same meeting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-transformational" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Transformational Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Inspire, elevate, create meaningful change. Move people toward a vision that is bigger than the current moment.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some receive it as</span>
+                            <p>Genuinely moved and motivated. The vision pulls them forward. This is why they came to work here.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret it as</span>
+                            <p>Inspiration disconnected from daily reality. Beautiful words that don't touch their actual work or solve the real problems in front of them.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others experience</span>
+                            <p>Weariness of perpetual transformation. The ground keeps shifting. This is interpreted not as growth but as instability — and they begin to disengage quietly.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Inspiration is not a one-size outcome. The same vision speech produces motivation, skepticism, and exhaustion simultaneously — depending on what the individual brings to the room that day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-visionary" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Visionary Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Paint a compelling picture of the future. Give people a direction worth moving toward together.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some receive it as</span>
+                            <p>Energizing and orienting. The clarity of direction gives their daily work meaning. They know where they're going and why.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others feel</span>
+                            <p>Unmoored. The vision keeps evolving and the ground keeps shifting. This isn't direction — it's instability with good branding.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others interpret it as</span>
+                            <p>The leader's story, not the organization's. A vision they were handed rather than built together. They carry it outwardly but not internally — and disengage quietly.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> A vision declared is not a vision shared. The distance between "I have a vision" and "we share a vision" is exactly where the DNA Discovery Suite™ operates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-coaching" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Coaching Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Develop people, ask questions, build capability over time. Invest in the person, not just the output.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some feel</span>
+                            <p>Genuinely invested in and developed. A leader who sees their potential and is willing to spend time on it. This is what good leadership feels like.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret</span>
+                            <p>The questioning approach as the leader withholding answers they actually have. Frustrating rather than empowering — just tell me what you want.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others experience it as</span>
+                            <p>Evaluation disguised as development. Every question feels like a test. The coaching relationship becomes a performance rather than a conversation.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> The coaching method requires trust to work. In its absence, the same behavior that produces development in one person produces anxiety in another — and the leader rarely knows which is which.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-democratic" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Democratic / Participative</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Involve people, build shared ownership, make better decisions together through collective input.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some feel</span>
+                            <p>Genuinely empowered and heard. Their input shapes real decisions. This is an organization that respects what they know.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret</span>
+                            <p>Broad inclusion as the leader's inability to make decisions. We need someone who can read the room and commit — not one more meeting to discuss it.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others experience</span>
+                            <p>Performative participation. Asked for input that was never going to change the outcome. This teaches them that agreement is the only safe response.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Performative participation is one of the most corrosive meaning dynamics in organizations. Once people learn their input doesn't matter, they stop offering it honestly — and the leader loses their most valuable signal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-affiliative" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Affiliative Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Build relationships, create harmony, prioritize people and genuine human connection over task and output.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some feel</span>
+                            <p>Valued, safe, and genuinely connected. A team that actually cares about each other. This is where I want to do my best work.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret</span>
+                            <p>The relationship focus as avoidance of hard conversations and necessary accountability. Problems are left unaddressed in the name of harmony.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">High performers often experience</span>
+                            <p>Tolerance of mediocrity. They begin to disengage — quietly at first, then visibly — because they came here to do excellent work, not to manage around people who aren't.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Harmony is not the same as health. When affiliative leadership protects relationships at the expense of accountability, high performers interpret it as a ceiling — and they have the most options to leave.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-pacesetting" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Pacesetting Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Model excellence, set a high bar, drive performance by demonstrating what's possible.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some are</span>
+                            <p>Inspired to rise and match the energy. The high standard elevates everyone. This is what working at the top of your game feels like.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others experience</span>
+                            <p>"Nothing is ever good enough." An unspoken but pervasive message of inadequacy — regardless of how much they produce or how hard they work.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others</span>
+                            <p>Disengage entirely. The bar feels unreachable and the effort feels futile. They begin doing enough to stay — and saving their real energy for somewhere else.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Pacesetting without interpretive awareness burns through people selectively — often keeping those who match the pace and losing those with different strengths. The team that remains may be less capable than the one that left.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-situational" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Situational Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Adapt your style to the readiness and needs of each individual — responsiveness as the core discipline.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some experience</span>
+                            <p>The adaptation as attentive and deeply respectful. This leader sees who I am and adjusts accordingly. That's rare.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret</span>
+                            <p>The shifting approach as inconsistency or favoritism. Why does she treat us differently? What does that say about how she sees me relative to the others?</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others</span>
+                            <p>Miss the adaptation entirely — experiencing whatever style is being deployed without the context that frames it. The intentionality is invisible to them.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Situational leadership requires that the adaptation be legible — not just enacted. When people don't understand why they're being led differently, the adaptation itself becomes a source of meaning drift.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-authentic" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Authentic Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Lead from genuine values, be transparent, build trust through consistency between words and actions.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some experience it as</span>
+                            <p>Deeply trustworthy and grounding. A leader who is the same person in every room. That consistency creates safety that allows real work to happen.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others interpret</span>
+                            <p>Self-disclosure as oversharing — creating discomfort rather than connection. Professional distance has a purpose. This feels like too much.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others question</span>
+                            <p>Whether the authenticity is performance — particularly when words and actions diverge. The stated values and the actual decisions don't match, and people notice.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Authenticity is not a leadership style that can be performed. When words and actions diverge, the claim of authenticity makes the gap worse, not better. People are exquisitely sensitive to that fracture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-inclusive" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Inclusive Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Ensure all voices are heard, create genuine belonging, leverage diverse perspectives for better decisions.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some feel</span>
+                            <p>Genuinely empowered and valued. Their perspective is not just tolerated but actively sought. This is what psychological safety actually feels like.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others experience</span>
+                            <p>Performative inclusion. Asked for input that was never going to be used. The invitation is real; the influence is not. And they can tell.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Still others interpret</span>
+                            <p>Broad inclusion as an inability to make decisions and move forward. We keep expanding the circle. Who is actually accountable for the outcome?</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Inclusion without influence is one of the most damaging patterns in organizational life. It teaches people that their voice is wanted but their judgment is not — and once that lesson is learned, it is very difficult to unlearn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-conflict-avoidant" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Conflict-Avoidant Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Preserve harmony, protect relationships, keep the peace. Minimize disruption and maintain goodwill.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">The team hears</span>
+                            <p>"This will not be addressed. It is not safe to raise problems here." Problems exist. The leader knows. The silence is its own answer.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Some interpret</span>
+                            <p>"The leader knows and doesn't care — or doesn't have the standing to act." Either interpretation erodes confidence in leadership over time.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others conclude</span>
+                            <p>"The silence means I'm on my own with this." They stop bringing problems forward and begin managing around them — which creates new problems the leader never sees.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Conflict avoidance doesn't create peace. It creates meaning ambiguity that festers quietly — and the problems that aren't addressed don't disappear. They compound until they become impossible to ignore.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-micromanaging" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Micromanaging Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Thoroughness, quality control, care for outcomes. A commitment to excellence that shows up in the details.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">The team hears</span>
+                            <p>"You don't trust me." Regardless of the leader's actual intent, the interpretive reality is almost universal: this is a signal of distrust, not quality commitment.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Many conclude</span>
+                            <p>"You think I'm incompetent." The closeness of oversight is read as a judgment on capability — even when the leader genuinely believes in the person.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">High performers decide</span>
+                            <p>"There's no point bringing my full thinking. It will be redone anyway." They leave first — they have options, and they're least tolerant of what micromanagement communicates about their value.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Micromanagement is one of the clearest examples of intent and interpretation diverging completely. The leader is communicating care. The team is receiving distrust. Both are real. Only one is being acted on.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-absent" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Absent / Ghost Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Often framed as autonomy or trust. The leader believes their absence creates space for the team to lead themselves.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">The team hears</span>
+                            <p>"We don't matter enough to warrant attention." Absence reads as deprioritization — regardless of the leader's stated reason for being unavailable.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Some conclude</span>
+                            <p>"We're on our own." They begin making decisions that should involve leadership — and they carry the weight of those decisions alone.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">The team reorganizes</span>
+                            <p>"Whoever fills the vacuum is the real leader." Meaning migrates to whoever shows up. For better or worse, someone fills the interpretive space the leader has vacated — and the leader may never know it happened.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Leadership absence is not neutral. The interpretive space doesn't stay empty — it fills. And whoever fills it shapes the meaning climate in ways that are very difficult to reclaim later.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-charismatic" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Charismatic Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Inspire, energize, create belief and momentum. Make people want to follow — and want to do their best work.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Some are</span>
+                            <p>Genuinely moved and deeply committed. The energy is real and contagious. This is a leader worth following into hard things.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Others are drawn in</span>
+                            <p>Initially, then disillusioned when actions don't match the charismatic narrative. The higher the inspiration, the deeper the fracture when it doesn't hold.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> Charisma amplifies meaning — in both directions. It makes people want to believe. When a charismatic leader's actions diverge from their words, the disillusionment is more severe, not less. The investment in belief becomes the source of the wound.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-narcissistic" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Narcissistic Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        From the leader's perspective: excellence, high standards, doing what's necessary. A belief that their judgment is correct and their vision is right.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">Those above see</span>
+                            <p>Someone polished, confident, results-oriented, and politically sharp. They manage up with skill and intention. The picture upward is often genuinely impressive.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">Those below experience</span>
+                            <p>Their interpretive reality systematically discounted. The leader's version is the only one that registers. People learn quickly that their meaning doesn't matter — and stop offering it.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">The team learns</span>
+                            <p>That outward agreement is the only safe response. Ideas are mined without acknowledgment. Credit migrates upward. Relationships are managed strategically, not genuinely.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> The organization above and the team below are interpreting a completely different person. Both realities are real. Neither group has full information. And this gap can persist for years — until results make it impossible to ignore. The Meaning Climate Profile™ surfaces this structurally, without requiring any diagnosis of the individual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-self-serving" class="style-panel">
+            <div class="style-panel-inner">
+                <div class="style-panel-header">
+                    <div>
+                        <span class="style-intent-label">Leadership Style</span>
+                        <h3>Self-Serving Leadership</h3>
+                    </div>
+                    <div class="style-intent">
+                        <strong>The intent</strong>
+                        Often genuinely organizational — self-serving behavior is frequently unconscious. The leader believes they are acting for the good of the organization.
+                    </div>
+                </div>
+                <div class="style-panel-body">
+                    <span class="interpretations-label">How it actually lands — simultaneously</span>
+                    <div class="interpretations-grid">
+                        <div class="interpretation-card">
+                            <span class="who">The pattern upward</span>
+                            <p>Present for the wins, absent for the hard work. The leader's name attached to successes, quietly distant from failures. Those above are impressed. Those below are living a different story entirely.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">The team decodes</span>
+                            <p>Initiatives launched for optics, not outcomes. Ideas that travel upward wearing the leader's name. Strategic investment in those who can advance their career; less so in those who actually do the work.</p>
+                        </div>
+                        <div class="interpretation-card">
+                            <span class="who">The lasting damage</span>
+                            <p>The team learns that agreement is safer than truth. Once that lesson is learned, it persists long after the leader is gone — and the next leader, who may be genuinely committed, inherits a team conditioned to perform alignment rather than feel it.</p>
+                        </div>
+                    </div>
+                    <div class="style-insight">
+                        <p><strong>The meaning layer:</strong> This is the meaning legacy of self-serving leadership: a team that has been taught to agree. The Meaning Climate Profile™ measures the interpretive conditions — safety, trust, meaning coherence — not the individual. The pattern surfaces in the data without requiring anyone to make a diagnosis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+</section>
+
+<!-- ── FRAMEWORKS ── -->
+<section class="frameworks-section">
+    <div class="container">
+        <div class="frameworks-intro">
+            <span class="caption" style="color: var(--gold-dark); display: block; margin-bottom: 1rem;">The frameworks — and the missing layer</span>
+            <h2>The tools are valuable.<br>They are simply incomplete.</h2>
+            <p class="lead">The research behind these frameworks is real. The insights they surface are genuine. For organizations that have already invested in them — and most have — this is not a replacement conversation. It's a "now it finally makes sense" conversation. The meaning layer makes every prior investment more valuable, because now you can see whether it's working and why.</p>
+        </div>
+        <div class="frameworks-grid">
+
+            <div class="framework-card">
+                <div class="framework-card-header">
+                    <div class="framework-badge">Assessment Tool</div>
+                    <h3>CliftonStrengths®</h3>
+                    <p>Identifies what a leader is naturally good at across 34 talent themes.</p>
+                </div>
+                <div class="framework-card-body">
+                    <div class="tells-you">
+                        <span class="tells-label what">What it tells you</span>
+                        <p>Your natural strengths, how you're wired, and where you are most likely to produce excellence when you invest in developing those talents.</p>
+                    </div>
+                    <div class="missing-layer-item">
+                        <span class="tells-label missing">What it doesn't tell you</span>
+                        <p>How those strengths are being experienced by the specific people around you — right now, in this organizational context. A Command strength that reads as decisive to one person reads as domineering to another.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="framework-card-header">
+                    <div class="framework-badge">Behavioral Style</div>
+                    <h3>DiSC®</h3>
+                    <p>Maps behavioral preferences across Dominance, Influence, Steadiness, and Conscientiousness.</p>
+                </div>
+                <div class="framework-card-body">
+                    <div class="tells-you">
+                        <span class="tells-label what">What it tells you</span>
+                        <p>Your natural behavioral tendencies, how you communicate, how you respond to conflict, and how others with different profiles may experience you in theory.</p>
+                    </div>
+                    <div class="missing-layer-item">
+                        <span class="tells-label missing">What it doesn't tell you</span>
+                        <p>How your specific style is landing with your specific team in your specific organizational moment — and what they are interpreting that isn't being said out loud.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="framework-card-header">
+                    <div class="framework-badge">Personality Type</div>
+                    <h3>Myers-Briggs® / MBTI®</h3>
+                    <p>Identifies personality preferences across four dichotomies — how people perceive and make decisions.</p>
+                </div>
+                <div class="framework-card-body">
+                    <div class="tells-you">
+                        <span class="tells-label what">What it tells you</span>
+                        <p>Your personality type, how you process information and make decisions, and how your type's tendencies may create friction or flow with other types.</p>
+                    </div>
+                    <div class="missing-layer-item">
+                        <span class="tells-label missing">What it doesn't tell you</span>
+                        <p>How your type's natural tendencies are creating meaning for the specific people around you — and where interpretation is diverging from intent in ways that aren't visible from inside your type.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="framework-card-header">
+                    <div class="framework-badge">Leadership Model</div>
+                    <h3>Servant Leadership</h3>
+                    <p>Places the needs of the team above the needs of the leader — leadership as stewardship.</p>
+                </div>
+                <div class="framework-card-body">
+                    <div class="tells-you">
+                        <span class="tells-label what">What it tells you</span>
+                        <p>How to orient your leadership — toward the team rather than toward yourself. A values framework for what good leadership is supposed to look like.</p>
+                    </div>
+                    <div class="missing-layer-item">
+                        <span class="tells-label missing">What it doesn't tell you</span>
+                        <p>Whether your team is experiencing your service as support — or as a leader who can't make decisions. The same behavior produces both interpretations simultaneously.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="framework-card-header">
+                    <div class="framework-badge">Leadership Model</div>
+                    <h3>Transformational Leadership</h3>
+                    <p>Focuses on inspiring followers and creating meaningful change through vision and motivation.</p>
+                </div>
+                <div class="framework-card-body">
+                    <div class="tells-you">
+                        <span class="tells-label what">What it tells you</span>
+                        <p>How to lead in a way that elevates people beyond self-interest toward shared goals. A model for the kind of leadership that creates lasting organizational change.</p>
+                    </div>
+                    <div class="missing-layer-item">
+                        <span class="tells-label missing">What it doesn't tell you</span>
+                        <p>Whether your team is inspired — or exhausted by perpetual transformation. Whether your vision is pulling them forward or making the ground feel unstable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="framework-card-header">
+                    <div class="framework-badge">Leadership Model</div>
+                    <h3>Situational Leadership</h3>
+                    <p>Adapts leadership style to the development level and readiness of each individual follower.</p>
+                </div>
+                <div class="framework-card-body">
+                    <div class="tells-you">
+                        <span class="tells-label what">What it tells you</span>
+                        <p>How to read an individual's readiness level and adapt your style accordingly — a framework for leading people as individuals rather than as a uniform group.</p>
+                    </div>
+                    <div class="missing-layer-item">
+                        <span class="tells-label missing">What it doesn't tell you</span>
+                        <p>Whether your adaptation is legible — or whether your team is interpreting the different treatment as inconsistency, favoritism, or a signal about how you see them.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="max-width: 760px; margin: 3.5rem auto 0; padding: 2.5rem; background: var(--ivory); border-left: 4px solid var(--gold);">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--charcoal-deep);">The iceberg principle</h3>
+            <p>The frameworks describe what's visible above the water: strengths, styles, types, behaviors. The meaning instruments reveal what's moving beneath it. That's where most of the mass lives. That's where most of the force originates. That's what determines whether the visible surface holds — or quietly shifts.</p>
+            <p style="margin-bottom: 0;">The Meaning Climate Profile™ and Leadership Alignment Diagnostic™ don't sit on top of existing frameworks. They sit underneath them — as the foundation everything else rests on.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ── TEAM GAP ── -->
+<section class="team-gap-section">
+    <div class="container">
+        <div class="team-gap-inner">
+            <span class="caption">At the team level</span>
+            <h2>The framework is generic.<br>Your team is specific.</h2>
+            <p class="lead" style="color: rgba(255,255,255,0.72);">The gap between those two things is where meaning drift lives — invisibly, until it shows up in results. The Meaning Climate Profile™ makes the generic specific. Not "here's how Command tends to land" — but "here's how your Command is landing with this team, right now, in this organizational moment."</p>
+            <p style="color: rgba(255,255,255,0.65);">Together, the DNA Discovery Suite™ and Meaning Climate Profile™ answer questions no framework even thinks to ask:</p>
+            <div class="team-gap-questions">
+                <div class="team-gap-q">
+                    <span class="team-gap-arrow">→</span>
+                    <p>How does this team actually experience working together — not how should they, based on their style profiles?</p>
+                </div>
+                <div class="team-gap-q">
+                    <span class="team-gap-arrow">→</span>
+                    <p>Where does meaning break down at the handoff between this team and the next?</p>
+                </div>
+                <div class="team-gap-q">
+                    <span class="team-gap-arrow">→</span>
+                    <p>What does "good work" mean to each person on this team — and are those definitions compatible?</p>
+                </div>
+                <div class="team-gap-q">
+                    <span class="team-gap-arrow">→</span>
+                    <p>When you communicate a decision, what are the different interpretations happening simultaneously around the table?</p>
+                </div>
+                <div class="team-gap-q">
+                    <span class="team-gap-arrow">→</span>
+                    <p>Which team members are in outward agreement and inward resistance — and about what?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-inner">
+            <span class="caption">The next step</span>
+            <h2>See what's actually happening in your organization.</h2>
+            <p>Organizational Meaning Mapping™ combines the foundational DNA discovery process with the Meaning Climate Profile™ to give you a complete picture of how meaning is moving through your leadership system — and a strategic roadmap for what to do with it.</p>
+            <div>
+                <a href="contact.html" class="btn-primary">Schedule a Conversation</a>
+                <a href="index.html#how" class="btn-ghost">Back to Overview</a>
+            </div>
+            <p class="cta-note">Or reach out directly: <a href="mailto:joan@noesperastudio.com">joan@noesperastudio.com</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+        <p style="margin-top: 0.75rem;">
+            <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a>
+            &nbsp;·&nbsp;
+            <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.25);">CliftonStrengths® and StrengthsFinder® are registered trademarks of Gallup, Inc. DiSC® is a registered trademark of Wiley/Inscape Publishing. Myers-Briggs® and MBTI® are registered trademarks of The Myers & Briggs Foundation. All frameworks referenced for educational and analytical purposes only. Noespera Studio is not affiliated with or endorsed by any of these organizations.</p>
+    </div>
+</footer>
+
+<script>
+    function showTab(id, btn) {
+        // Hide all panels
+        document.querySelectorAll('.style-panel').forEach(p => p.classList.remove('active'));
+        // Deactivate all buttons
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        // Show selected
+        document.getElementById('tab-' + id).classList.add('active');
+        btn.classList.add('active');
+        // Scroll tab into view
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+</script>
+
+</body>
+</html>
