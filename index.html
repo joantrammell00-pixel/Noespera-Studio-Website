@@ -747,7 +747,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <button class="mobile-menu-btn" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
@@ -1128,9 +1128,8 @@
     </footer>
 
     <script>
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
+        
+        function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
     </script>
     <script>
 
