@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & Terms — Noespera Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {--gold:#C6A06F;--gold-dark:#A68B4E;--gold-light:#E8D5A8;--charcoal:#4A4A48;--charcoal-deep:#2A2A2A;--ivory:#EDEAE5;--white:#FFFFFF;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Montserrat',sans-serif;color:var(--charcoal);background:var(--ivory);line-height:1.7;}
+        h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:0.02em;}
+        h1{font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;margin-bottom:1rem;}
+        h2{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.2;margin-bottom:1.25rem;margin-top:3rem;color:var(--charcoal-deep);}
+        h3{font-size:1.2rem;margin-bottom:0.75rem;color:var(--charcoal-deep);font-family:'Montserrat',sans-serif;font-weight:600;}
+        p{font-size:1rem;font-weight:300;margin-bottom:1.2rem;line-height:1.8;}
+        ul{margin:0.5rem 0 1.2rem 1.5rem;}
+        ul li{font-size:1rem;font-weight:300;margin-bottom:0.5rem;line-height:1.7;}
+        a{color:var(--gold-dark);text-decoration:none;}
+        a:hover{color:var(--gold);}
+        .container{max-width:860px;margin:0 auto;padding:0 2rem;}
+        nav{background:var(--charcoal-deep);padding:1.5rem 0;position:sticky;top:0;z-index:100;}
+        .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
+        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:0.1em;color:var(--gold);text-decoration:none;}
+        .nav-links{display:flex;gap:2.5rem;list-style:none;}
+        .nav-links a{color:var(--white);text-decoration:none;font-size:0.95rem;font-weight:400;transition:color 0.3s;}
+        .nav-links a:hover{color:var(--gold);}
+        .mobile-menu-btn{display:none;background:none;border:none;color:var(--gold);font-size:1.8rem;cursor:pointer;padding:0.5rem;}
+        .page-header{background:linear-gradient(135deg,var(--charcoal-deep) 0%,var(--charcoal) 100%);color:var(--white);padding:4rem 0 3rem;}
+        .page-header h1{color:var(--gold-light);}
+        .back-link{display:inline-block;margin-bottom:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.3s;}
+        .back-link:hover{color:var(--gold);}
+        .last-updated{font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:0.5rem;font-weight:300;}
+        .content-section{background:var(--white);padding:5rem 0;}
+        .short-version{background:var(--ivory);padding:1.5rem 2rem;border-left:4px solid var(--gold);margin-bottom:3rem;}
+        .short-version p{margin-bottom:0;font-size:1.05rem;font-style:italic;color:var(--charcoal-deep);}
+        .divider{border:none;border-top:1px solid rgba(198,160,111,0.25);margin:3rem 0;}
+        .never-list li{list-style:none;margin-left:0;padding-left:0;}
+        .never-list li strong{color:var(--charcoal-deep);}
+        footer{background:var(--charcoal-deep);color:rgba(255,255,255,0.7);padding:3rem 0;text-align:center;}
+        footer .footer-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem;list-style:none;}
+        footer .footer-nav a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.3s;}
+        footer .footer-nav a:hover{color:var(--gold);}
+        footer p{font-size:0.88rem;margin-bottom:0.4rem;}
+        footer a{color:var(--gold-light);}
+        footer .ip-note{font-size:0.75rem;opacity:0.5;margin-top:1rem;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.7;}
+        @media(max-width:480px){
+            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--charcoal-deep);flex-direction:column;gap:0;padding:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
+            .nav-links.active{display:flex;}
+            .nav-links li{width:100%;text-align:center;border-bottom:1px solid rgba(198,160,111,0.2);}
+            .nav-links li:last-child{border-bottom:none;}
+            .nav-links a{display:block;padding:1rem 2rem;}
+            .mobile-menu-btn{display:block;}
+            nav{position:relative;}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html">Perspectives</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Let's Talk</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to home</a>
+            <h1>Privacy Policy & Terms</h1>
+            <p class="last-updated">Last updated: April 2026</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+
+            <div class="short-version">
+                <p>The short version: We collect only what we need to serve you well. We never sell your information. Ever. Your individual responses to any Noespera Studio instrument are confidential and will never be shared.</p>
+            </div>
+
+            <h2>Privacy Policy</h2>
+
+            <h3>Who We Are</h3>
+            <p>Noespera Studio, LLC is an organizational advisory and research practice founded by Dr. Joan deBien-Trammell, DSL, MBA, based in the United States. We provide meaning-based strategy, advisory, and organizational diagnostics grounded in Organizational Meaning Science™.</p>
+            <p>Questions about this policy? Contact us at <a href="mailto:joan@noesperastudio.com">joan@noesperastudio.com</a></p>
+
+            <h3>What Information We Collect</h3>
+            <p>We collect information in the following contexts:</p>
+            <ul>
+                <li><strong>Contact and demo requests</strong> — name, title, organization, organization size, email, phone (optional), preferred contact method, and a brief description of what prompted your interest</li>
+                <li><strong>ITES™ Index assessment</strong> — department, role level, tenure, and your responses to the 48-item instrument. Individual responses are confidential. Aggregated, de-identified patterns may be used for research purposes with your consent.</li>
+                <li><strong>Meaning poll responses</strong> — anonymous responses to the interpretation scenarios on our homepage. No personally identifying information is collected with poll responses.</li>
+                <li><strong>Website analytics</strong> — standard anonymous data (pages visited, time on site). This data is aggregated and never tied to individuals.</li>
+            </ul>
+
+            <h3>How We Use Your Information</h3>
+            <ul>
+                <li>To respond to your inquiry personally and thoughtfully</li>
+                <li>To understand your organizational context before we speak with you</li>
+                <li>To provide advisory services, workshops, and diagnostics</li>
+                <li>To advance the research program of Organizational Meaning Science™ (with your consent, and only in de-identified, aggregated form)</li>
+            </ul>
+
+            <h3>What We Never Do</h3>
+            <ul class="never-list">
+                <li><strong>We never sell your information</strong> to anyone, ever</li>
+                <li><strong>We never share your individual responses</strong> to any assessment or instrument with your organization, your manager, or any third party</li>
+                <li><strong>We never use your information</strong> for advertising or marketing by other companies</li>
+                <li><strong>We never contact you with spam</strong> or unsolicited offers</li>
+            </ul>
+
+            <h3>Research Participation</h3>
+            <p>Noespera Studio conducts ongoing research into organizational meaning dynamics as part of the Organizational Meaning Science™ research program. If you complete the ITES™ Index or any other Noespera Studio instrument, you will be asked whether you consent to your de-identified, aggregated responses contributing to this research. Participation is optional and does not affect your experience or results in any way.</p>
+
+            <h3>Data Security</h3>
+            <p>Your information is stored securely using industry-standard practices. We use Supabase for data storage, which maintains enterprise-grade security standards. We do not store payment information.</p>
+
+            <h3>Your Rights</h3>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Request a copy of the information we hold about you</li>
+                <li>Request correction of any inaccurate information</li>
+                <li>Request deletion of your information at any time</li>
+                <li>Withdraw your consent to research participation at any time</li>
+            </ul>
+            <p>To exercise any of these rights, contact <a href="mailto:joan@noesperastudio.com">joan@noesperastudio.com</a></p>
+
+            <h3>Cookies</h3>
+            <p>This website uses minimal cookies — only those necessary for basic analytics. We do not use advertising cookies or tracking pixels.</p>
+
+            <hr class="divider">
+
+            <h2>Terms of Service</h2>
+
+            <p><strong>Important:</strong> Noespera Studio is an organizational advisory and research practice. We are not a licensed therapist, psychologist, attorney, or financial advisor. Completing any Noespera Studio assessment or instrument does not constitute a clinical evaluation, legal advice, or financial counsel.</p>
+
+            <h3>Nature of Services</h3>
+            <p>Noespera Studio provides organizational advisory, strategic consulting, facilitated workshops, proprietary assessment instruments, and research-based frameworks. Our services include:</p>
+            <ul>
+                <li>Organizational Meaning Science™ advisory and diagnostics</li>
+                <li>DNA Workshop Suite™ facilitation — Brand DNA™, Team DNA™, Board DNA™, Leadership Team DNA™, Investor DNA™</li>
+                <li>ITES™ Index and Meaning Radar™ organizational diagnostics</li>
+                <li>Strategic advisory for leaders, boards, and organizations</li>
+                <li>Executive coaching focused on meaning stewardship and interpretive dynamics</li>
+                <li>Speaking, keynotes, and organizational training</li>
+            </ul>
+
+            <h3>Assessment Results</h3>
+            <p>Results from the ITES™ Index and any other Noespera Studio instruments reflect meaning conditions — the environment in which organizational communication occurs. They are not performance evaluations, clinical assessments, or diagnostic determinations. Results should be interpreted as organizational information, not as judgments about individual capability or worth.</p>
+
+            <h3>Intellectual Property</h3>
+            <p>Organizational Meaning Science™, DNA Workshop Suite™, ITES™, Meaning Radar™, Meaning Climate Index™, Meaning Architecture System™, and all associated frameworks, instruments, and methodologies are proprietary to Noespera Studio, LLC. Multiple patent-pending filings are active. Unauthorized reproduction, distribution, or commercial use of any Noespera Studio intellectual property is prohibited.</p>
+
+            <h3>Confidentiality</h3>
+            <p>All information shared with Noespera Studio in the context of an engagement, assessment, or advisory relationship is treated as strictly confidential. We do not discuss client situations, organizational information, or assessment results with unauthorized parties.</p>
+
+            <h3>No Guarantees</h3>
+            <p>While Noespera Studio is deeply committed to the quality and integrity of our work, we cannot guarantee specific organizational outcomes. Results depend on many factors including organizational conditions, leadership readiness, and implementation. We guarantee our commitment to honest, rigorous, and human-centered practice.</p>
+
+            <h3>Contact</h3>
+            <p>For questions about these terms or our privacy practices, contact us at <a href="mailto:joan@noesperastudio.com">joan@noesperastudio.com</a></p>
+            <p>Noespera Studio, LLC</p>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <ul class="footer-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html">Perspectives</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Let's Talk</a></li>
+                <li><a href="privacy.html">Privacy & Terms</a></li>
+            </ul>
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top:0.75rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> &nbsp;|&nbsp;
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+            <p class="ip-note">Organizational Meaning Science™, DNA Workshop Suite™, ITES™, Meaning Radar™, and Meaning Architecture System™ are trademarks of Noespera Studio, LLC. Patent pending.</p>
+        </div>
+    </footer>
+
+    <script>function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}</script>
+</body>
+</html>

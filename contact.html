@@ -198,6 +198,19 @@
         .expect-list li:last-child { border-bottom: none; }
         .expect-list li::before { content: '◆'; color: var(--gold); font-size: 0.45rem; margin-top: 0.6rem; flex-shrink: 0; }
 
+        /* ── Seeking checkboxes ── */
+        .seek-opt {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid rgba(198,160,111,0.2);
+            cursor: pointer; font-size: 0.88rem; font-weight: 300;
+            color: var(--charcoal); transition: all 0.2s;
+            background: var(--ivory);
+        }
+        .seek-opt:hover { border-color: var(--gold); background: rgba(198,160,111,0.05); }
+        .seek-opt input { margin-top: 0.15rem; accent-color: var(--gold-dark); flex-shrink: 0; }
+        .seek-opt.highlighted { border-color: var(--gold); background: rgba(198,160,111,0.08); }
+
         /* ── Error state ── */
         .field-error { font-size: 0.75rem; color: #C0392B; margin-top: 0.3rem; display: none; }
         .field-error.visible { display: block; }
@@ -321,6 +334,22 @@
                             </div>
                         </div>
 
+                        <!-- What are you seeking -->
+                        <div class="form-row single" style="margin-bottom:1.2rem;">
+                            <div class="form-group">
+                                <label>What are you looking for? <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:0.78rem;">(select all that apply)</span></label>
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem;" id="seekingOptions">
+                                    <label class="seek-opt" id="seek-demo-wrap"><input type="checkbox" id="seek-demo" value="Meaning Radar™ Demo"> <span>Book a Meaning Radar™ demo</span></label>
+                                    <label class="seek-opt"><input type="checkbox" id="seek-dna" value="DNA Workshop Suite™"> <span>DNA Workshop Suite™</span></label>
+                                    <label class="seek-opt"><input type="checkbox" id="seek-advisory" value="Strategic Advisory"> <span>Strategic Advisory</span></label>
+                                    <label class="seek-opt"><input type="checkbox" id="seek-leadership" value="Leadership Development"> <span>Leadership Development</span></label>
+                                    <label class="seek-opt"><input type="checkbox" id="seek-board" value="Board Advisory"> <span>Board Advisory</span></label>
+                                    <label class="seek-opt"><input type="checkbox" id="seek-speaking" value="Speaking / Keynote"> <span>Speaking / Keynote</span></label>
+                                    <label class="seek-opt"><input type="checkbox" id="seek-other" value="Other"> <span>Something else</span></label>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Preferred contact method -->
                         <p class="method-label">How would you like us to reach out? <span class="req">*</span></p>
                         <div class="method-options">
@@ -381,11 +410,11 @@
                                     <span class="co-value">Send a message</span>
                                 </span>
                             </a>
-                            <a href="tel:+1XXXXXXXXXX" class="connect-option" id="phoneLink">
-                                <span class="co-icon">📞</span>
+                            <a href="contact.html" class="connect-option" id="phoneLink">
+                                <span class="co-icon">📅</span>
                                 <span class="co-text">
-                                    <span class="co-label">Phone</span>
-                                    <span class="co-value">Schedule a call</span>
+                                    <span class="co-label">Schedule a Call</span>
+                                    <span class="co-value">We'll coordinate a time</span>
                                 </span>
                             </a>
                         </div>
@@ -409,8 +438,17 @@
 
     <footer>
         <div class="container">
+            <ul style="display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem;list-style:none;">
+                <li><a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.3s;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Home</a></li>
+                <li><a href="dna-workshops.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">DNA Workshop Suite™</a></li>
+                <li><a href="services.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Full Practice Suite</a></li>
+                <li><a href="insights.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Perspectives</a></li>
+                <li><a href="about.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">About</a></li>
+                <li><a href="contact.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Let's Talk</a></li>
+                <li><a href="privacy.html" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#C6A06F'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Privacy & Terms</a></li>
+            </ul>
             <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
-            <p style="margin-top: 1rem;">
+            <p style="margin-top: 0.75rem;">
                 <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> &nbsp;|&nbsp;
                 <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
             </p>
@@ -419,6 +457,18 @@
     </footer>
 
     <script>
+        // Pre-check demo if arrived via ?ref=demo
+        window.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('ref') === 'demo') {
+                const demoCheck = document.getElementById('seek-demo');
+                if (demoCheck) {
+                    demoCheck.checked = true;
+                    document.getElementById('seek-demo-wrap').classList.add('highlighted');
+                }
+            }
+        });
+
         const SUPABASE_URL = 'https://vasoyiljaptexuzvhyvi.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
 
@@ -482,8 +532,12 @@
             btn.disabled = true;
             btn.textContent = 'Sending...';
 
+            // Collect seeking checkboxes
+            const seekingChecked = Array.from(document.querySelectorAll('#seekingOptions input:checked')).map(el => el.value);
+
             const formData = {
                 full_name: document.getElementById('fullName').value.trim(),
+                seeking: seekingChecked.join(', ') || null,
                 title: document.getElementById('title').value.trim(),
                 org_name: document.getElementById('orgName').value.trim(),
                 org_size: document.getElementById('orgSize').value,
