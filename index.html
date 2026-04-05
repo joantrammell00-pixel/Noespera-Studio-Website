@@ -136,22 +136,25 @@
         /* ── Proof bar ── */
         .proof-bar {
             background: var(--gold-dark);
-            padding: 0.7rem 0;
+            padding: 0.75rem 1.5rem;
         }
         .proof-bar-inner {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 3rem;
+            gap: 0.4rem 2.5rem;
             flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
         }
         .proof-item {
             color: var(--white);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
-            letter-spacing: 0.07em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             opacity: 0.9;
+            white-space: nowrap;
         }
         .proof-divider { color: rgba(255,255,255,0.35); font-size: 1.2rem; }
 
@@ -467,7 +470,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: var(--ivory); color: var(--charcoal); }
 
-        .poll-section { padding: 6rem 0; background: var(--white); }
+        .poll-section { padding: 2.5rem 0 5rem; background: var(--white); }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
         .section-eyebrow {
@@ -531,8 +534,19 @@
         }
 
         /* ── Question blocks ── */
-        .question-block { padding: 1.5rem 2rem 2rem; border-top: 1px solid rgba(198,160,111,0.12); }
-        .question-block + .question-block { border-top: 1px solid rgba(198,160,111,0.12); }
+        .questions-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid rgba(198,160,111,0.12);
+        }
+        .question-block { padding: 1.5rem 2rem 2rem; }
+        .question-block + .question-block {
+            border-left: 1px solid rgba(198,160,111,0.12);
+        }
+        @media (max-width: 768px) {
+            .questions-row { grid-template-columns: 1fr; }
+            .question-block + .question-block { border-left: none; border-top: 1px solid rgba(198,160,111,0.12); }
+        }
         .q-label {
             font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
             text-transform: uppercase; color: var(--charcoal-deep);
@@ -546,25 +560,28 @@
 
         /* ── Emotion grid ── */
         .emotion-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem;
         }
         .emotion-btn {
-            display: flex; flex-direction: column; align-items: center;
-            padding: 0.75rem 0.5rem; background: none;
+            display: flex; flex-direction: row; align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1rem; background: none;
             border: 1px solid rgba(198,160,111,0.2); cursor: pointer;
             transition: all 0.2s; font-family: 'Montserrat', sans-serif;
+            text-align: left;
         }
         .emotion-btn:hover { border-color: var(--gold); background: rgba(198,160,111,0.05); }
         .emotion-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.1); }
         .emotion-btn.voted { cursor: default; }
-        .emotion-btn .emoji { font-size: 1.6rem; margin-bottom: 0.35rem; }
+        .emotion-btn .emoji { font-size: 1.8rem; flex-shrink: 0; }
+        .emotion-btn .emotion-text { display: flex; flex-direction: column; flex: 1; }
         .emotion-btn .emotion-label {
-            font-size: 0.7rem; font-weight: 500; color: var(--charcoal);
-            text-align: center; line-height: 1.3;
+            font-size: 0.82rem; font-weight: 400; color: var(--charcoal);
+            line-height: 1.3;
         }
         .emotion-btn .emotion-pct {
-            font-size: 0.72rem; font-weight: 600; color: var(--gold-dark);
-            margin-top: 0.3rem; opacity: 0; transition: opacity 0.4s;
+            font-size: 0.78rem; font-weight: 600; color: var(--gold-dark);
+            margin-top: 0.2rem; opacity: 0; transition: opacity 0.4s;
         }
         .emotion-btn.voted .emotion-pct { opacity: 1; }
 
@@ -700,13 +717,13 @@
         }
 
         @media (max-width: 768px) {
-            .emotion-grid { grid-template-columns: repeat(5, 1fr); }
+            .emotion-grid { grid-template-columns: repeat(2, 1fr); }
             .spectrum-grid { grid-template-columns: repeat(5, 1fr); }
             .interp-comparison { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
-            .emotion-grid { grid-template-columns: repeat(5, 1fr); }
-            .emotion-btn .emoji { font-size: 1.2rem; }
+            .emotion-grid { grid-template-columns: 1fr; }
+            .emotion-btn .emoji { font-size: 1.5rem; }
         }
     
     </style>
@@ -781,22 +798,23 @@
                 </div>
                 <div class="scenario-quote">"Come to my office in 15 minutes. We need to talk."</div>
 
-                <!-- Q1: Emotional reaction -->
+                <!-- Questions side by side -->
+                <div class="questions-row">
                 <div class="question-block">
                     <p class="q-label">Your immediate reaction
                         <span class="q-sublabel">Your gut response — before you think about it</span>
                     </p>
                     <div class="emotion-grid" id="emotions1">
-                        <button class="emotion-btn" onclick="selectEmotion(1,0)"><span class="emoji">😰</span><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,1)"><span class="emoji">😨</span><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,2)"><span class="emoji">😞</span><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,3)"><span class="emoji">😑</span><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,4)"><span class="emoji">😐</span><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,5)"><span class="emoji">🤔</span><span class="emotion-label">Curious</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,6)"><span class="emoji">🙂</span><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,7)"><span class="emoji">😊</span><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,8)"><span class="emoji">😄</span><span class="emotion-label">Excited</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(1,9)"><span class="emoji">🤩</span><span class="emotion-label">Energized</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,0)"><span class="emoji">😰</span><span class="emotion-text"><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,1)"><span class="emoji">😨</span><span class="emotion-text"><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,2)"><span class="emoji">😞</span><span class="emotion-text"><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,3)"><span class="emoji">😑</span><span class="emotion-text"><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,4)"><span class="emoji">😐</span><span class="emotion-text"><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,5)"><span class="emoji">🤔</span><span class="emotion-text"><span class="emotion-label">Curious</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,6)"><span class="emoji">🙂</span><span class="emotion-text"><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,7)"><span class="emoji">😊</span><span class="emotion-text"><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,8)"><span class="emoji">😄</span><span class="emotion-text"><span class="emotion-label">Excited</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,9)"><span class="emoji">🤩</span><span class="emotion-text"><span class="emotion-label">Energized</span><span class="emotion-pct"></span></span></button>
                     </div>
                     <div class="vote-count" id="emotioncount1"></div>
                 </div>
@@ -818,10 +836,12 @@
                     </div>
                     <div class="vote-count" id="interpcount1"></div>
                 </div>
+                </div><!-- end questions-row -->
             </div>
 
             <div class="next-wrap">
-                <button class="next-btn submit-btn" id="submit1" onclick="submitScenario(1)">Submit my responses</button>
+                <button class="next-btn submit-btn" id="submit1" onclick="submitScenario(1)">See how others responded</button>
+                <p style="font-size:0.78rem;color:rgba(74,74,72,0.5);margin-top:0.6rem;font-style:italic;">Submit to see your response alongside everyone else's</p>
                 <button class="next-btn" id="next1" onclick="goToScenario2()" style="display:none;">Next scenario →</button>
             </div>
         </div>
@@ -835,22 +855,23 @@
                 </div>
                 <div class="scenario-quote">"I saw your report — it's amazing. I have some thoughts. Come by in about 15 minutes."</div>
 
-                <!-- Q1: Emotional reaction -->
+                <!-- Questions side by side -->
+                <div class="questions-row">
                 <div class="question-block">
                     <p class="q-label">Your immediate reaction
                         <span class="q-sublabel">Your gut response — before you think about it</span>
                     </p>
                     <div class="emotion-grid" id="emotions2">
-                        <button class="emotion-btn" onclick="selectEmotion(2,0)"><span class="emoji">😰</span><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,1)"><span class="emoji">😨</span><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,2)"><span class="emoji">😞</span><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,3)"><span class="emoji">😑</span><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,4)"><span class="emoji">😐</span><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,5)"><span class="emoji">🤔</span><span class="emotion-label">Curious</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,6)"><span class="emoji">🙂</span><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,7)"><span class="emoji">😊</span><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,8)"><span class="emoji">😄</span><span class="emotion-label">Excited</span><span class="emotion-pct"></span></button>
-                        <button class="emotion-btn" onclick="selectEmotion(2,9)"><span class="emoji">🤩</span><span class="emotion-label">Energized</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,0)"><span class="emoji">😰</span><span class="emotion-text"><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,1)"><span class="emoji">😨</span><span class="emotion-text"><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,2)"><span class="emoji">😞</span><span class="emotion-text"><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,3)"><span class="emoji">😑</span><span class="emotion-text"><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,4)"><span class="emoji">😐</span><span class="emotion-text"><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,5)"><span class="emoji">🤔</span><span class="emotion-text"><span class="emotion-label">Curious</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,6)"><span class="emoji">🙂</span><span class="emotion-text"><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,7)"><span class="emoji">😊</span><span class="emotion-text"><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,8)"><span class="emoji">😄</span><span class="emotion-text"><span class="emotion-label">Excited</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,9)"><span class="emoji">🤩</span><span class="emotion-text"><span class="emotion-label">Energized</span><span class="emotion-pct"></span></span></button>
                     </div>
                     <div class="vote-count" id="emotioncount2"></div>
                 </div>
@@ -871,10 +892,12 @@
                     </div>
                     <div class="vote-count" id="interpcount2"></div>
                 </div>
+                </div><!-- end questions-row -->
             </div>
 
             <div class="next-wrap">
-                <button class="next-btn submit-btn" id="submit2" onclick="submitScenario(2)">Submit my responses</button>
+                <button class="next-btn submit-btn" id="submit2" onclick="submitScenario(2)">See how others responded</button>
+                <p style="font-size:0.78rem;color:rgba(74,74,72,0.5);margin-top:0.6rem;font-style:italic;">Submit to see your response alongside everyone else's</p>
                 <button class="next-btn" id="next2" onclick="showComparison()" style="display:none;">See the shift →</button>
             </div>
         </div>
@@ -923,11 +946,17 @@
                 </div>
             </div>
 
-            <!-- Summary -->
+            <!-- Summary — two beat sequence -->
             <div class="poll-summary">
-                <span class="shift-label">Progress, not perfection</span>
-                <p>"Stewarding meaning doesn't eliminate interpretation — it shapes the conditions so interpretation leads forward, not backward. Now imagine seeing this data across every team in your organization, in real time."</p>
-                <p class="cta-line">That's what Meaning Radar™ does. <a href="contact.html">Book a demo →</a></p>
+                <div class="beat-1" style="margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(198,160,111,0.2);">
+                    <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;font-weight:300;color:var(--white);line-height:1.6;margin-bottom:0;">That was just words. No tone. No expression. No history with this manager. And look at the range of responses. Now imagine layering in all of that &mdash; and multiply it across every interaction in your organization, every day.</p>
+                </div>
+                <div class="beat-2" style="margin-bottom:2rem;">
+                    <p style="font-size:0.95rem;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.9;margin-bottom:0;">The same words delivered with flat affect versus genuine excitement shift the interpretation again. Add body language. Eye contact &mdash; or the lack of it. The relationship history between these two people. Whether it's been a hard week.</p>
+                    <p style="font-size:0.95rem;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.9;margin-bottom:0;margin-top:1rem;">Every one of those layers adds complexity to how meaning forms. And every person in the room is running their own calculation simultaneously.</p>
+                    <p style="font-size:1.05rem;font-weight:500;color:var(--gold-light);line-height:1.7;margin-top:1.25rem;margin-bottom:0;">That's not a communication problem. That's a meaning climate &mdash; and it's measurable.</p>
+                </div>
+                <p class="cta-line" style="margin-top:2rem !important;">That's what Meaning Radar™ does. <a href="contact.html">Book a demo →</a></p>
             </div>
 
             <button class="reset-btn" onclick="resetPoll()">Start over</button>
