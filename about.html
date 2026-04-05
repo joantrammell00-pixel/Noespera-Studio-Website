@@ -6,168 +6,543 @@
     <title>About Dr. Joan deBien-Trammell — Noespera Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {--gold:#C6A06F;--gold-dark:#A68B4E;--gold-light:#E8D5A8;--charcoal:#4A4A48;--charcoal-deep:#2A2A2A;--ivory:#EDEAE5;--white:#FFF;}
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Montserrat',sans-serif;color:var(--charcoal);background-color:var(--ivory);line-height:1.7;}
-        h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:0.02em;}
-        h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;margin-bottom:1.5rem;}
-        h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.2;margin-bottom:2rem;}
-        h3{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:1rem;}
-        p{font-size:1.05rem;font-weight:300;letter-spacing:0.01em;margin-bottom:1.2rem;}
-        .large-text{font-size:1.25rem;line-height:1.8;}
-        .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
-        section{padding:6rem 0;}
-        nav{background:var(--charcoal-deep);padding:1.5rem 0;position:sticky;top:0;z-index:100;}
-        .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
-        .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:0.1em;color:var(--gold);text-decoration:none;}
-        .nav-links{display:flex;gap:2.5rem;list-style:none;}
-        .nav-links a{color:var(--white);text-decoration:none;font-size:0.95rem;font-weight:400;transition:color 0.3s;}
-        .nav-links a:hover,.nav-links a.active{color:var(--gold);}
-        .mobile-menu-btn{display:none;background:none;border:none;color:var(--gold);font-size:1.8rem;cursor:pointer;padding:0.5rem;}
-        .page-header{background:linear-gradient(135deg,var(--charcoal-deep) 0%,var(--charcoal) 100%);color:var(--white);padding:5rem 0;}
-        .page-header h1{color:var(--gold-light);}
-        .about-content{background:var(--white);}
-        .content-box{max-width:900px;margin:0 auto;}
-        .founder-photo-row{display:flex;gap:3.5rem;align-items:flex-start;margin-bottom:2.5rem;}
-        .founder-photo{width:220px;flex-shrink:0;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;}
-        @media(max-width:600px){.founder-photo-row{flex-direction:column;gap:1.5rem;}.founder-photo{width:160px;}}
-        .credentials-box{background:var(--ivory);padding:2.5rem;margin:3rem 0;border-left:4px solid var(--gold);}
-        .credentials-box h3{color:var(--gold-dark);margin-bottom:1.5rem;}
-        .credentials-box ul{list-style:none;}
-        .credentials-box li{padding:0.5rem 0;}
-        .experience{background:var(--ivory);}
-        .experience-list{margin-top:2rem;}
-        .experience-item{padding:1.5rem 0;border-bottom:1px solid rgba(198,160,111,0.3);}
-        .experience-item:last-child{border-bottom:none;}
-        .experience-item strong{color:var(--gold-dark);font-size:1.1rem;}
-        footer{background:var(--charcoal-deep);color:rgba(255,255,255,0.7);padding:3rem 0;text-align:center;}
-        footer a{color:var(--gold-light);text-decoration:none;transition:color 0.3s;}
-        footer a:hover{color:var(--gold);}
-        @media(max-width:480px){
-            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--charcoal-deep);flex-direction:column;gap:0;padding:1rem 0;box-shadow:0 4px 12px rgba(0,0,0,0.3);}
-            .nav-links.active{display:flex;}
-            .nav-links li{width:100%;text-align:center;border-bottom:1px solid rgba(198,160,111,0.2);}
-            .nav-links li:last-child{border-bottom:none;}
-            .nav-links a{display:block;padding:1rem 2rem;}
-            .mobile-menu-btn{display:block;}
-            nav{position:relative;}
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
+        h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin-bottom: 1rem; }
+        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.4rem; }
+        .large-text { font-size: 1.2rem; line-height: 1.9; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; }
+
+        /* Navigation */
+        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; padding: 0.5rem; }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(198,160,111,0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .page-header h1 { color: var(--gold-light); }
+        .page-header .subtitle {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-top: 0.5rem;
+            line-height: 1.8;
+        }
+
+        /* Founder Intro */
+        .founder-intro { background: var(--white); }
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .founder-photo-col { position: sticky; top: 7rem; }
+        .founder-photo {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            border: 1px solid rgba(198,160,111,0.25);
+        }
+        .photo-caption {
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.8;
+        }
+
+        /* Narrative */
+        .founder-narrative h2 { color: var(--charcoal-deep); margin-bottom: 2rem; }
+        .opening-line {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+            font-style: italic;
+            font-weight: 300;
+            color: var(--charcoal-deep);
+            line-height: 1.5;
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--gold);
+        }
+        .pull-quote {
+            background: var(--ivory);
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 4px solid var(--gold);
+        }
+        .pull-quote p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--charcoal-deep);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* IP Portfolio — new section */
+        .ip-section { background: var(--charcoal-deep); color: var(--white); }
+        .ip-section h2 { color: var(--gold-light); margin-bottom: 1rem; }
+        .ip-section .section-intro { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 750px; margin-bottom: 3rem; }
+        .ip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .ip-card {
+            border: 1px solid rgba(198,160,111,0.3);
+            padding: 1.75rem;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+        .ip-card:hover { border-color: var(--gold); }
+        .ip-card .ip-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(198,160,111,0.4);
+            padding: 0.2rem 0.6rem;
+            margin-bottom: 0.9rem;
+        }
+        .ip-card h3 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+        }
+        .ip-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        .ip-note {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(198,160,111,0.2);
+            padding-top: 2rem;
+            font-style: italic;
+        }
+
+        /* Credentials */
+        .credentials-section { background: var(--ivory); }
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .credential-card {
+            background: var(--white);
+            padding: 2rem;
+            border-top: 3px solid var(--gold);
+        }
+        .credential-card h3 {
+            color: var(--gold-dark);
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .credential-list { list-style: none; }
+        .credential-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+            font-size: 0.97rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .credential-list li:last-child { border-bottom: none; }
+        .credential-list strong { color: var(--charcoal-deep); font-weight: 500; display: block; }
+
+        /* Experience */
+        .experience-section { background: var(--white); }
+        .experience-list { margin-top: 2.5rem; max-width: 900px; }
+        .experience-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.2);
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        .experience-item:last-child { border-bottom: none; }
+        .exp-meta { font-size: 0.88rem; font-weight: 400; color: rgba(74,74,72,0.65); line-height: 1.7; }
+        .exp-meta .company { font-size: 1rem; font-weight: 600; color: var(--charcoal-deep); display: block; margin-bottom: 0.2rem; }
+        .exp-content strong { color: var(--charcoal-deep); font-size: 1rem; font-weight: 500; display: block; margin-bottom: 0.5rem; }
+        .exp-content p { font-size: 0.97rem; margin-bottom: 0; line-height: 1.7; }
+        .exp-note {
+            margin-top: 0.5rem;
+            font-size: 0.88rem;
+            font-style: italic;
+            color: var(--gold-dark);
+        }
+
+        /* Philosophy */
+        .philosophy-section { background: var(--ivory); }
+        .philosophy-section h2 { color: var(--charcoal-deep); }
+        .philosophy-body { max-width: 820px; }
+
+        /* CTA */
+        .cta-section { background: var(--white); text-align: center; padding: 5rem 0; }
+        .cta-section h2 { color: var(--charcoal-deep); margin-bottom: 1rem; }
+        .cta-section p { max-width: 600px; margin: 0 auto 2.5rem; }
+        .btn-primary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        .btn-primary:hover { background: var(--gold-dark); }
+
+        /* Footer */
+        footer { background: var(--charcoal-deep); color: rgba(255,255,255,0.7); padding: 3rem 0; text-align: center; }
+        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--gold); }
+        footer p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+        footer .ip-note { font-size: 0.78rem; opacity: 0.55; margin-top: 1.25rem; line-height: 1.7; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .founder-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .founder-photo-col { position: static; max-width: 300px; }
+            .experience-item { grid-template-columns: 1fr; gap: 0.4rem; }
+            .ip-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(198,160,111,0.2); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 1rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+            .credentials-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <button class="mobile-menu-btn" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
                 <li><a href="services.html">Full Practice Suite</a></li>
-                <li class="nav-dropdown"><a href="insights.html">Perspectives</a><ul class="dropdown"><li><a href="insights.html">Articles</a></li><li><a href="leadership-meaning.html">Leadership Through the Meaning Lens</a></li></ul></li>
+                <li><a href="insights.html">Perspectives</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>About Dr. Joan deBien-Trammell</h1>
-            <p class="large-text">Founder & Managing Director, Noespera Studio<br>Founder, Organizational Meaning Science™<br>Architect, DNA Workshop Suite™</p>
+            <h1>Dr. Joan deBien-Trammell</h1>
+            <p class="subtitle">
+                DSL, MBA &nbsp;·&nbsp; Founder &amp; Managing Director, Noespera Studio<br>
+                Founder, Organizational Meaning Science™ &nbsp;·&nbsp; Architect, DNA Workshop Suite™
+            </p>
         </div>
     </section>
-    <section class="about-content">
+
+    <!-- Founder Narrative -->
+    <section class="founder-intro">
         <div class="container">
-            <div class="content-box">
-                <div class="founder-photo-row">
-                    <img src="headshot_polished_v2.jpg" alt="Dr. Joan deBien-Trammell" class="founder-photo">
-                    <div>
-                        <h2>The Founder</h2>
-                        <p class="large-text">Dr. Joan deBien-Trammell brings 30+ years of strategic leadership experience across organizations including Gallup, L'Oréal, Johnson & Johnson, Pierre Fabre, and Sandoz Biopharmaceuticals.</p>
-                        <p>As the founder of Organizational Meaning Science™, she has developed proprietary frameworks and methodologies that help boards, executives, and leadership teams make coherent decisions in complex, regulated, and high-stakes environments.</p>
-                    </div>
-                </div>
-                <p>Her work translates organizational complexity into durable frameworks, decision architectures, and participatory methodologies grounded in rigorous research and applied across enterprise, nonprofit, and emerging organizational contexts.</p>
-                <div class="credentials-box">
-                    <h3>Credentials & Expertise</h3>
-                    <ul>
-                        <li><strong>Doctorate in Strategic Leadership (DSL)</strong>, Liberty University</li>
-                        <li><strong>Master of Business Administration (MBA)</strong>, University of Florida</li>
-                        <li><strong>Bachelor of Arts, Biology</strong>, Temple University</li>
-                        <li><strong>ITES™ (Interpretation Through Experience Scale)</strong> — Patent Pending</li>
-                        <li><strong>Scholarly publications</strong> forthcoming in Organizational Meaning Science™</li>
-                        <li><strong>Board experience</strong> across nonprofit and for-profit contexts</li>
-                        <li><strong>Advanced Executive Education:</strong> MIT (Business Strategy), Cornell (Strategic Marketing)</li>
-                    </ul>
-                </div>
-                <p style="margin-top:3rem;"><strong>Client Confidentiality:</strong> Client work remains confidential. Representative engagements available upon request.</p>
-            </div>
-        </div>
-    </section>
-    <section class="experience">
-        <div class="container">
-            <div class="content-box">
-                <h2>Selected Experience</h2>
-                <div class="experience-list">
-                    <div class="experience-item">
-                        <p><strong>Founder & Principal Advisor</strong><br>Noespera Studio | 2023–Present</p>
-                        <p>Strategic advisory to emerging and growth-stage brands across cosmeceutical, CPG, real estate technology, textile, and rent/lease-to-own industries. DNA Workshop Suite™ deployed with founders and leadership teams navigating capital readiness, team building, brand development, and organizational design.</p>
-                    </div>
-                    <div class="experience-item">
-                        <p><strong>Strategic Partner</strong><br>Volkano Labs | 2026–Present</p>
-                        <p>Strategic partnership in cosmeceutical R&D and manufacturing, leading business development architecture and founder advisory work in beauty and wellness sectors.</p>
-                    </div>
-                    <div class="experience-item">
-                        <p><strong>Vice President, Board of Directors</strong><br>Imagine Morrisville | 2024–Present</p>
-                        <p>Board leadership for community arts nonprofit, guiding capital campaign strategy, donor engagement architecture, and organizational development.</p>
-                    </div>
-                    <div class="experience-item">
-                        <p><strong>Associate Principal — Enterprise Advisory</strong><br>Gallup | 2022–2023</p>
-                        <p>Senior advisor to Fortune 500 organizations on culture transformation, leadership development, and engagement strategy.</p>
-                    </div>
-                    <div class="experience-item">
-                        <p><strong>Field Sales Vice President</strong><br>L'Oréal USA (Active Cosmetics) | 2015–2020</p>
-                        <p>Led organizational integration and growth across $400M+ portfolio, building national sales organization scaled by over 300%.</p>
-                    </div>
-                    <div class="experience-item">
-                        <p><strong>Executive Director of Sales</strong><br>Pierre Fabre USA | 2021–2022</p>
-                        <p>Led commercial transformation resulting in 275% marketplace penetration increase and 20% year-over-year growth.</p>
-                    </div>
-                    <div class="experience-item">
-                        <p><strong>Associate Director, Marketing</strong><br>Sandoz Biopharmaceuticals | 2012–2015</p>
-                        <p>Led U.S. brand strategy and launch execution for first FDA-approved biosimilar, achieving 2% market share within three quarters.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section style="background:var(--white);padding:6rem 0;">
-        <div class="container">
-            <div class="content-box">
-                <h2>Research & Tools</h2>
-                <p class="large-text">Organizational Meaning Science™ is grounded in rigorous research and proprietary measurement methodologies.</p>
-                
-                <div style="margin-top:3rem;padding:2.5rem;background:var(--ivory);border-left:4px solid var(--gold);">
-                    <h3 style="color:var(--gold-dark);margin-bottom:1.5rem;">ITES™ (Interpretation Through Experience Scale)</h3>
-                    <p><strong>Patent Pending</strong></p>
-                    <p style="margin-top:1rem;">A proprietary measurement instrument designed to surface how meaning is being interpreted across organizational contexts. ITES™ moves beyond traditional engagement surveys to map the organizational meaning climate—revealing where interpretation aligns, where it drifts, and where intervention creates the highest impact.</p>
-                    <p style="margin-top:1rem;">Used in DNA Workshop Suite™ engagements and organizational diagnostics to provide quantitative and qualitative insight into meaning-making patterns across teams, leadership layers, and external stakeholder relationships.</p>
+            <div class="founder-grid">
+
+                <div class="founder-photo-col">
+                    <img src="headshot.jpg" alt="Dr. Joan deBien-Trammell, DSL, MBA" class="founder-photo">
+                    <p class="photo-caption">
+                        Dr. Joan deBien-Trammell, DSL, MBA<br>
+                        Founder &amp; Managing Director<br>
+                        Noespera Studio
+                    </p>
                 </div>
 
-                <div style="margin-top:2rem;padding:2.5rem;background:var(--ivory);border-left:4px solid var(--gold-dark);">
-                    <h3 style="color:var(--gold-dark);margin-bottom:1.5rem;">Scholarly Publications</h3>
-                    <p>Research papers forthcoming in Organizational Meaning Science™, examining meaning as a systemic force in organizational decision-making, culture formation, and strategic alignment.</p>
+                <div class="founder-narrative">
+                    <p class="opening-line">Thirty years of watching meaning get lost in the space between what leaders intend and what people actually hear.</p>
+
+                    <p>It starts small. A strategy presentation where everyone nods but nobody moves. A reorganization announced with careful language that somehow lands as threat. A leader who genuinely cares — but whose team interprets every interaction through a lens of uncertainty. The meaning gets there. Just not the meaning that was sent.</p>
+
+                    <p>Across three decades and five major organizations — Gallup, L'Oréal, Johnson &amp; Johnson, Pierre Fabre, Sandoz Biopharmaceuticals — I watched this pattern repeat at every level. In boardrooms and on sales floors. In cultures that were thriving and in organizations in crisis. The gap between intention and interpretation wasn't a communication problem. It was a meaning problem.</p>
+
+                    <p>And no one had built the science to address it.</p>
+
+                    <div class="pull-quote">
+                        <p>"Leadership isn't about controlling how people interpret your decisions. It's about stewarding the conditions under which meaning forms."</p>
+                    </div>
+
+                    <p>That insight didn't come from a book. It came from years of sitting inside complex organizations — scaling a $400M portfolio at L'Oréal, leading commercial transformation at Pierre Fabre, advising Fortune 500 leaders at Gallup — and watching how meaning moved, or didn't, through every layer.</p>
+
+                    <p>The doctoral work gave me the language and the rigor. Liberty University's Strategic Leadership program became the container for something I'd been building in practice for decades: a formal research discipline examining how meaning functions as a systemic force. Not as metaphor. As mechanism.</p>
+
+                    <p>That discipline is Organizational Meaning Science™. Noespera Studio is where it lives in practice — in workshops, in advisory engagements, and in a growing platform of proprietary measurement instruments designed to make meaning visible, measurable, and actionable.</p>
+
+                    <p>The work matters most at the moments that matter most: a leadership transition, a capital raise, a culture at a crossroads, a team that keeps getting stuck in the same place. When the stakes are high and meaning can't be left to chance.</p>
+
+                    <p style="font-weight: 500; color: var(--charcoal-deep);">That's what I built Noespera to do.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- IP Portfolio -->
+    <section class="ip-section">
+        <div class="container">
+            <h2>A Proprietary Research Platform</h2>
+            <p class="section-intro">Organizational Meaning Science™ is grounded in a growing portfolio of proprietary measurement instruments and diagnostic frameworks — each designed to surface what traditional organizational tools miss entirely. Two instruments are currently patent-pending, with additional filings in progress.</p>
+
+            <div class="ip-grid">
+                <div class="ip-card">
+                    <span class="ip-badge">Patent Pending</span>
+                    <h3>Meaning Architecture System™</h3>
+                    <p>Computational infrastructure for modeling human meaning states using behavioral signals — the foundational architecture underlying the full instrument suite. Filed December 2025.</p>
+                </div>
+                <div class="ip-card">
+                    <span class="ip-badge">Patent Pending</span>
+                    <h3>ITES™</h3>
+                    <p>Interpretation Through Experience Scale. Measures how meaning is being interpreted across organizational contexts — from individual through enterprise level.</p>
+                </div>
+                <div class="ip-card" style="border-color: rgba(198,160,111,0.15); opacity: 0.7;">
+                    <span class="ip-badge" style="opacity:0.6;">Coming</span>
+                    <h3 style="color: rgba(255,255,255,0.5);">Additional Instruments</h3>
+                    <p>A suite of proprietary measurement instruments across interpretive pattern analysis, meaning climate diagnostics, and leadership alignment assessment. Filings in progress.</p>
+                </div>
+            </div>
+
+            <p class="ip-note">All instruments are proprietary to Noespera Studio, LLC. Meaning Architecture System™ and ITES™ are patent pending. Additional filings in progress.</p>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials-section">
+        <div class="container">
+            <h2>Credentials &amp; Expertise</h2>
+            <div class="credentials-grid">
+                <div class="credential-card">
+                    <h3>Education</h3>
+                    <ul class="credential-list">
+                        <li>
+                            <strong>Doctorate in Strategic Leadership (DSL)</strong>
+                            Liberty University
+                        </li>
+                        <li>
+                            <strong>Master of Business Administration (MBA)</strong>
+                            University of Florida
+                        </li>
+                        <li>
+                            <strong>Bachelor of Arts, Biology</strong>
+                            Temple University
+                        </li>
+                        <li>
+                            <strong>Advanced Executive Education</strong>
+                            MIT (Business Strategy) &nbsp;·&nbsp; Cornell (Strategic Marketing)
+                        </li>
+                    </ul>
+                </div>
+                <div class="credential-card">
+                    <h3>Current Roles</h3>
+                    <ul class="credential-list">
+                        <li>
+                            <strong>Founder &amp; Managing Director</strong>
+                            Noespera Studio
+                        </li>
+                        <li>
+                            <strong>Founder</strong>
+                            Organizational Meaning Science™ Institute
+                        </li>
+                        <li>
+                            <strong>Strategic Partner</strong>
+                            Volkano Labs
+                        </li>
+                        <li>
+                            <strong>Vice President, Board of Directors</strong>
+                            Imagine Morrisville
+                        </li>
+                    </ul>
+                </div>
+                <div class="credential-card">
+                    <h3>Areas of Expertise</h3>
+                    <ul class="credential-list">
+                        <li>Organizational Meaning Science™</li>
+                        <li>Interpretive instrument design &amp; measurement</li>
+                        <li>DNA Workshop facilitation &amp; methodology</li>
+                        <li>Strategic advisory &amp; organizational design</li>
+                        <li>Executive coaching &amp; leadership development</li>
+                        <li>Board governance &amp; fiduciary leadership</li>
+                        <li>Brand strategy &amp; commercial transformation</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Selected Experience -->
+    <section class="experience-section">
+        <div class="container">
+            <h2>Selected Experience</h2>
+            <p class="large-text" style="max-width: 750px;">Thirty years across five major organizations. One through-line: understanding how meaning moves — and what happens when it doesn't.</p>
+
+            <div class="experience-list">
+
+                <div class="experience-item">
+                    <div class="exp-meta">
+                        <span class="company">Noespera Studio</span>
+                        2023–Present
+                    </div>
+                    <div class="exp-content">
+                        <strong>Founder &amp; Principal Advisor</strong>
+                        <p>Strategic advisory to organizations across cosmeceutical, CPG, real estate technology, architecture, and other sectors. DNA Workshop Suite™ deployed with founders and leadership teams navigating capital readiness, team alignment, brand development, and organizational design. Platform development and proprietary instrument suite in active deployment.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-meta">
+                        <span class="company">Gallup</span>
+                        2022–2023
+                    </div>
+                    <div class="exp-content">
+                        <strong>Associate Principal — Enterprise Advisory</strong>
+                        <p>Senior advisor to Fortune 500 organizations on culture transformation, leadership development, and engagement strategy. Delivered transformation engagements exceeding $4M in value.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-meta">
+                        <span class="company">Pierre Fabre USA</span>
+                        2021–2022
+                    </div>
+                    <div class="exp-content">
+                        <strong>Executive Director of Sales</strong>
+                        <p>Led commercial transformation resulting in 275% marketplace penetration increase and 20% year-over-year growth.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-meta">
+                        <span class="company">L'Oréal USA</span>
+                        2015–2020
+                    </div>
+                    <div class="exp-content">
+                        <strong>Field Sales Vice President — Active Cosmetics</strong>
+                        <p>Led organizational integration and growth across a $400M+ portfolio. Built and scaled a national sales organization by over 300%.</p>
+                        <p class="exp-note">The scale of interpretive complexity here — across hundreds of people, dozens of markets, constant organizational change — became the laboratory for what would eventually become the methodology.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-meta">
+                        <span class="company">Sandoz Biopharmaceuticals</span>
+                        2012–2015
+                    </div>
+                    <div class="exp-content">
+                        <strong>Associate Director, Marketing</strong>
+                        <p>Led U.S. brand strategy and launch execution for the first FDA-approved biosimilar in the United States, achieving 2% market share within three quarters.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-body">
+                <h2>Approach &amp; Philosophy</h2>
+                <p class="large-text">Organizations thrive when people share common frameworks for interpreting information and making decisions.</p>
+                <p>Most organizational tools measure outcomes — what people feel, how engaged they are, whether they'd recommend the company to a friend. Those are trailing indicators. By the time you're measuring them, the meaning has already moved.</p>
+                <p>The work of Organizational Meaning Science™ is upstream. It measures the conditions under which people make sense of what's happening — interpretive patterns, meaning climate, alignment gaps — before they produce the outcomes everyone else is trying to fix.</p>
+                <p>That's the distinction that changes what's possible. Not better interventions after meaning breaks down. Structural intelligence that shows you how meaning is moving right now — so you can lead with it, not against it.</p>
+                <p>Engagements are built collaboratively with organizations, producing frameworks and insights that teams own long after the work is done. The goal is never dependency. It's durable capability — frameworks built from the inside, grounded in real interpretive data, designed to hold.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start the Conversation</h2>
+            <p>Whether you're navigating a leadership transition, a strategy that isn't landing, or a team that keeps getting stuck — the work begins with understanding what's actually moving through your organization.</p>
+            <a href="contact.html" class="btn-primary">Get in Touch</a>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
-            <p style="margin-top:1rem;"><a href="https://www.joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | <a href="https://www.organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a></p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> &nbsp;|&nbsp;
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+            <p class="ip-note">Organizational Meaning Science™, DNA Workshop Suite™, ITES™, and Meaning Architecture System™ are trademarks of Noespera Studio, LLC. Meaning Architecture System™ and ITES™ are patent pending. Additional filings in progress.</p>
         </div>
     </footer>
-    <script>function toggleMenu(){document.getElementById('navMenu').classList.toggle('active');}</script>
+
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+
 </body>
 </html>
