@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noespera Studio — Applied Organizational Meaning Science™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+        h1 { font-size: clamp(1.8rem, 2.6vw, 2.6rem); line-height: 1.18; margin-bottom: 1.25rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
+        h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin-bottom: 1rem; }
+        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.3rem; }
+        .large-text { font-size: 1.2rem; line-height: 1.9; font-weight: 300; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; }
+
+        /* ── Navigation ── */
+        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; padding: 0.5rem; }
+
+        /* ── Hero ── */
+        .hero {
+            background: var(--charcoal-deep);
+            color: var(--white);
+            padding: 3.5rem 0 3.5rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(198,160,111,0.04) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(198,160,111,0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        /* Animated subtle grid */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 55%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(198,160,111,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(198,160,111,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 820px; }
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .hero h1 { color: var(--white); }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+            font-weight: 300;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.72);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        .btn-primary:hover { background: var(--gold-dark); }
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* ── Proof bar ── */
+        .proof-bar {
+            background: var(--gold-dark);
+            padding: 0.75rem 1.5rem;
+        }
+        .proof-bar-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.4rem 2.5rem;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .proof-item {
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.9;
+            white-space: nowrap;
+        }
+        .proof-divider { color: rgba(255,255,255,0.35); font-size: 1.2rem; }
+
+        /* ── The Problem ── */
+        .problem-section { background: var(--white); }
+        .problem-intro {
+            max-width: 820px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+        .problem-intro h2 { color: var(--charcoal-deep); }
+        .problem-intro p { font-size: 1.15rem; }
+
+        /* Manager example — pulled up and dramatized */
+        .manager-example {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .example-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .example-label::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+        .example-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .example-col {
+            padding: 2.5rem;
+        }
+        .example-col.before { background: rgba(74,74,72,0.06); border-top: 3px solid var(--charcoal); }
+        .example-col.after { background: rgba(198,160,111,0.08); border-top: 3px solid var(--gold); }
+        .example-col-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            color: var(--charcoal);
+        }
+        .example-col.after .example-col-label { color: var(--gold-dark); }
+        .example-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal-deep);
+        }
+        .interpretation-list { list-style: none; }
+        .interpretation-list li {
+            padding: 0.5rem 0;
+            font-size: 0.97rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+        }
+        .interpretation-list li:last-child { border-bottom: none; }
+        .interpretation-list li::before { content: '→ '; color: var(--gold); font-weight: 500; }
+        .example-footer {
+            margin-top: 2.5rem;
+            padding: 2rem 2.5rem;
+            background: var(--charcoal-deep);
+            color: var(--white);
+        }
+        .example-footer p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        .example-footer strong { color: var(--gold-light); font-weight: 400; font-style: normal; }
+
+        /* ── Platform section ── */
+        .platform-section { background: var(--charcoal-deep); color: var(--white); }
+        .platform-section h2 { color: var(--gold-light); }
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+        .platform-copy p { color: rgba(255,255,255,0.75); }
+        .platform-copy .platform-distinction {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--gold-light);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--gold);
+        }
+        .platform-features { list-style: none; margin: 2rem 0; }
+        .platform-features li {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+            font-size: 0.97rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        .platform-features li:last-child { border-bottom: none; }
+        .platform-features li::before {
+            content: '◆';
+            color: var(--gold);
+            font-size: 0.5rem;
+            margin-top: 0.55rem;
+            flex-shrink: 0;
+        }
+        .platform-visual {
+            position: relative;
+        }
+        /* Animated radar visual */
+        .radar-container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .radar-svg { width: 100%; height: auto; }
+        @keyframes radarSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        .radar-sweep { transform-origin: 200px 200px; animation: radarSpin 6s linear infinite; }
+        .radar-dot { animation: pulse 2s ease-in-out infinite; }
+        .radar-dot-2 { animation: pulse 2s ease-in-out infinite 0.7s; }
+        .radar-dot-3 { animation: pulse 2s ease-in-out infinite 1.4s; }
+        .platform-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 2.5rem; }
+
+        /* ── Offerings ── */
+        .offerings-section { background: var(--ivory); }
+        .offerings-section h2 { color: var(--charcoal-deep); text-align: center; margin-bottom: 1rem; }
+        .offerings-intro { text-align: center; max-width: 650px; margin: 0 auto 4rem; font-size: 1.1rem; }
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .offering-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-top: 3px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+        }
+        .offering-card h3 { color: var(--charcoal-deep); margin-bottom: 1rem; }
+        .offering-card p { flex: 1; font-size: 0.97rem; color: var(--charcoal); }
+        .offering-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 0.2rem;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .offering-link:hover { color: var(--charcoal-deep); border-color: var(--charcoal-deep); }
+
+        /* ── Demo CTA ── */
+        .demo-section {
+            background: var(--white);
+            padding: 7rem 0;
+            text-align: center;
+        }
+        .demo-section h2 { color: var(--charcoal-deep); margin-bottom: 1rem; }
+        .demo-section .demo-sub {
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+        }
+        .demo-section .demo-detail {
+            max-width: 560px;
+            margin: 0 auto 3rem;
+            font-size: 0.92rem;
+            color: rgba(74,74,72,0.65);
+        }
+        .demo-ctas { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+        .btn-dark {
+            display: inline-block;
+            background: var(--charcoal-deep);
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        .btn-dark:hover { background: var(--charcoal); }
+        .btn-gold-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold-dark);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid var(--gold);
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn-gold-outline:hover { background: var(--gold); color: var(--white); }
+
+        /* ── Foundation ── */
+        .foundation-section { background: var(--ivory); }
+        .foundation-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .foundation-copy h2 { color: var(--charcoal-deep); }
+        .foundation-logos {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .logo-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.2);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--charcoal-deep);
+            letter-spacing: 0.02em;
+        }
+        .logo-item:last-child { border-bottom: none; }
+        .logo-item span {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(74,74,72,0.65);
+            margin-top: 0.2rem;
+        }
+
+        /* ── Footer ── */
+        footer { background: var(--charcoal-deep); color: rgba(255,255,255,0.7); padding: 3rem 0; text-align: center; }
+        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--gold); }
+        footer p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+        footer .ip-note { font-size: 0.78rem; opacity: 0.55; margin-top: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .example-cols { grid-template-columns: 1fr; }
+            .platform-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .offerings-grid { grid-template-columns: 1fr; }
+            .foundation-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .proof-bar-inner { gap: 1.5rem; }
+            .proof-divider { display: none; }
+        }
+        @media (max-width: 480px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(198,160,111,0.2); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 1rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+            .hero-ctas { flex-direction: column; }
+            .demo-ctas { flex-direction: column; align-items: center; }
+        }
+
+        /* ── Poll component ── */
+
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+            --threat: #C0392B;
+            --threat-light: #E8A090;
+            --neutral: #888;
+            --opportunity: #2E7D32;
+            --opportunity-light: #81C784;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--ivory); color: var(--charcoal); }
+
+        .poll-section { padding: 2.5rem 0 5rem; background: var(--white); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .section-eyebrow {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 0.8rem;
+        }
+        .section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+
+        .poll-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400;
+            color: var(--charcoal-deep); line-height: 1.2; margin-bottom: 1rem;
+        }
+        .poll-subhead {
+            font-size: 1.05rem; font-weight: 300; color: var(--charcoal);
+            max-width: 700px; margin-bottom: 3.5rem; line-height: 1.8;
+        }
+
+        /* ── Step indicator ── */
+        .step-indicator {
+            display: flex; gap: 0; margin-bottom: 3rem;
+            border-bottom: 2px solid rgba(198,160,111,0.2);
+        }
+        .step {
+            padding: 0.75rem 1.5rem; font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(74,74,72,0.35); border-bottom: 2px solid transparent;
+            margin-bottom: -2px; transition: all 0.3s;
+        }
+        .step.active { color: var(--gold-dark); border-bottom-color: var(--gold); }
+        .step.complete { color: var(--charcoal); }
+
+        /* ── Scenario panels ── */
+        .scenario-panel { display: none; }
+        .scenario-panel.active { display: block; }
+
+        .scenario-card {
+            border: 1px solid rgba(198,160,111,0.25);
+            background: var(--white); margin-bottom: 2rem;
+        }
+        .scenario-header {
+            padding: 1.25rem 2rem; border-bottom: 1px solid rgba(198,160,111,0.15);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .scenario-num {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold-dark);
+        }
+        .scenario-tag {
+            font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+            text-transform: uppercase; padding: 0.25rem 0.7rem;
+            border: 1px solid rgba(198,160,111,0.3); color: var(--charcoal);
+        }
+        .scenario-tag.with { border-color: var(--gold); color: var(--gold-dark); }
+        .scenario-quote {
+            padding: 2rem 2rem 1.75rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem; font-style: italic; font-weight: 400;
+            color: var(--charcoal-deep); line-height: 1.6;
+        }
+
+        /* ── Question blocks ── */
+        .questions-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid rgba(198,160,111,0.12);
+        }
+        .question-block { padding: 1.5rem 2rem 1rem; }
+        .question-block + .question-block {
+            border-left: 1px solid rgba(198,160,111,0.12);
+        }
+        @media (max-width: 768px) {
+            .questions-row { grid-template-columns: 1fr; }
+            .question-block + .question-block { border-left: none; border-top: 1px solid rgba(198,160,111,0.12); }
+        }
+        .q-label {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--charcoal-deep);
+            margin-bottom: 1.25rem;
+        }
+        .q-sublabel {
+            font-size: 0.82rem; font-weight: 300; color: rgba(74,74,72,0.65);
+            margin-top: 0.25rem; letter-spacing: 0; text-transform: none;
+            font-style: italic;
+        }
+
+        /* ── Emotion grid ── */
+        .emotion-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem;
+        }
+        .emotion-btn {
+            display: flex; flex-direction: row; align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1rem; background: none;
+            border: 1px solid rgba(198,160,111,0.2); cursor: pointer;
+            transition: all 0.2s; font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
+        .emotion-btn:hover { border-color: var(--gold); background: rgba(198,160,111,0.05); }
+        .emotion-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.1); }
+        .emotion-btn.voted { cursor: default; }
+        .emotion-btn .emoji { font-size: 1.8rem; flex-shrink: 0; }
+        .emotion-btn .emotion-text { display: flex; flex-direction: column; flex: 1; }
+        .emotion-btn .emotion-label {
+            font-size: 0.82rem; font-weight: 400; color: var(--charcoal);
+            line-height: 1.3;
+        }
+        .emotion-btn .emotion-pct {
+            font-size: 0.78rem; font-weight: 600; color: var(--gold-dark);
+            margin-top: 0.2rem; opacity: 0; transition: opacity 0.4s;
+        }
+        .emotion-btn.voted .emotion-pct { opacity: 1; }
+
+        /* ── Interpretation options ── */
+        .interp-options { display: flex; flex-direction: column; gap: 0.5rem; }
+        .interp-btn {
+            display: flex; align-items: center; width: 100%;
+            padding: 0.75rem 1rem; background: none;
+            border: 1px solid rgba(198,160,111,0.2); cursor: pointer;
+            text-align: left; font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem; font-weight: 300; color: var(--charcoal);
+            transition: all 0.2s; position: relative; overflow: hidden;
+        }
+        .interp-btn:hover { border-color: var(--gold); color: var(--charcoal-deep); background: rgba(198,160,111,0.04); }
+        .interp-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.08); }
+        .interp-btn.voted { cursor: default; }
+        .interp-btn .bar-fill {
+            position: absolute; left: 0; top: 0; bottom: 0;
+            background: rgba(198,160,111,0.12); width: 0%;
+            transition: width 0.8s ease; pointer-events: none;
+        }
+        .interp-btn.selected .bar-fill { background: rgba(198,160,111,0.18); }
+        .interp-btn .btn-text { position: relative; z-index: 1; flex: 1; }
+        .interp-btn .pct {
+            position: relative; z-index: 1; font-size: 0.82rem; font-weight: 600;
+            color: var(--gold-dark); margin-left: 1rem; min-width: 2.5rem;
+            text-align: right; opacity: 0; transition: opacity 0.4s;
+        }
+        .interp-btn.voted .pct { opacity: 1; }
+
+        /* ── Vote count ── */
+        .vote-count {
+            margin-top: 0.75rem; font-size: 0.78rem; font-weight: 400;
+            color: rgba(74,74,72,0.7); min-height: 1.2rem;
+        }
+
+        /* ── Next button ── */
+        .next-wrap { margin-top: 0.25rem; }
+        .next-btn {
+            display: inline-block; background: var(--gold); color: var(--white);
+            border: none; padding: 0.9rem 2.5rem; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+            opacity: 0.4; pointer-events: none;
+        }
+        .next-btn.ready { opacity: 1; pointer-events: auto; }
+        .next-btn:hover { background: var(--gold-dark); }
+        .submit-btn { background: var(--charcoal-deep); }
+        .submit-btn.ready { background: var(--charcoal-deep); }
+        .submit-btn.ready:hover { background: var(--charcoal); }
+
+        /* ── Comparison view ── */
+        .comparison-view { display: none; }
+        .comparison-view.active { display: block; }
+
+        .comparison-intro {
+            margin-bottom: 3rem; max-width: 720px;
+        }
+        .comparison-intro h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+            font-weight: 400; color: var(--charcoal-deep); margin-bottom: 0.75rem;
+        }
+        .comparison-intro p { font-size: 1rem; font-weight: 300; line-height: 1.8; }
+
+        /* Emotion spectrum comparison */
+        .spectrum-comparison { margin-bottom: 3rem; }
+        .spectrum-title {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1.5rem;
+        }
+        .spectrum-grid {
+            display: grid; grid-template-columns: repeat(10, 1fr); gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .spectrum-col { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+        .spectrum-col .emoji-sm { font-size: 1.2rem; }
+        .spectrum-col .label-sm {
+            font-size: 0.62rem; font-weight: 500; color: var(--charcoal);
+            text-align: center; line-height: 1.2; min-height: 2rem;
+        }
+        /* Bar pair for each emotion */
+        .bar-pair { display: flex; gap: 2px; align-items: flex-end; width: 100%; height: 80px; }
+        .bar-s1, .bar-s2 { flex: 1; transition: height 1s ease; border-radius: 1px 1px 0 0; min-height: 2px; }
+        .bar-s1 { background: rgba(74,74,72,0.4); }
+        .bar-s2 { background: var(--gold); }
+        .spectrum-legend {
+            display: flex; gap: 2rem; justify-content: center; margin-top: 1rem;
+            font-size: 0.78rem; font-weight: 500;
+        }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 1px; }
+        .legend-dot.s1 { background: rgba(74,74,72,0.4); }
+        .legend-dot.s2 { background: var(--gold); }
+
+        /* Interpretation comparison */
+        .interp-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+        .interp-comp-card { }
+        .interp-comp-title {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--charcoal); margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 2px solid rgba(198,160,111,0.2);
+        }
+        .interp-comp-title.s2 { border-bottom-color: var(--gold); color: var(--gold-dark); }
+        .comp-bar-row { margin-bottom: 0.6rem; }
+        .comp-bar-label { font-size: 0.82rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.25rem; display: flex; justify-content: space-between; }
+        .comp-bar-label span { font-weight: 600; color: var(--gold-dark); }
+        .comp-bar-track { background: rgba(198,160,111,0.12); height: 8px; border-radius: 4px; overflow: hidden; }
+        .comp-bar-fill { height: 100%; background: rgba(74,74,72,0.35); border-radius: 4px; transition: width 1s ease; }
+        .comp-bar-fill.s2 { background: var(--gold); }
+
+        /* Summary panel */
+        .poll-summary {
+            padding: 2.5rem; background: var(--charcoal-deep); color: var(--white);
+            margin-top: 2rem;
+        }
+        .shift-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem;
+        }
+        .poll-summary p {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+            font-style: italic; font-weight: 300; line-height: 1.6;
+            color: var(--white); margin-bottom: 1rem;
+        }
+        .cta-line { font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.7); margin-bottom: 0 !important; }
+        .cta-line a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(198,160,111,0.4); }
+
+        .reset-btn {
+            margin-top: 1.5rem; background: none; border: none;
+            color: rgba(74,74,72,0.7); font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+            text-decoration: underline; display: block;
+        }
+
+        @media (max-width: 768px) {
+            .emotion-grid { grid-template-columns: repeat(2, 1fr); }
+            .spectrum-grid { grid-template-columns: repeat(5, 1fr); }
+            .interp-comparison { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .questions-row { grid-template-columns: 1fr; }
+            .question-block + .question-block { border-left: none; border-top: 1px solid rgba(198,160,111,0.12); }
+            .emotion-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.4rem;
+            }
+            .emotion-btn {
+                flex-direction: column;
+                align-items: center;
+                padding: 0.5rem 0.25rem;
+                gap: 0.3rem;
+            }
+            .emotion-btn .emoji { font-size: 1.4rem; }
+            .emotion-btn .emotion-text { align-items: center; }
+            .emotion-btn .emotion-label { font-size: 0.6rem; text-align: center; }
+            .emotion-btn .emotion-pct { font-size: 0.65rem; }
+        }
+    
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html">Perspectives</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Applied Organizational Meaning Science™</p>
+                <h1>Your organization is full of intelligent people making decisions based on what they <em>think</em> is happening.</h1>
+                <p class="hero-sub">The gap between what's actually happening and what people believe is happening — that's not a communication problem. That's a meaning problem. We measure it.</p>
+                <div class="hero-ctas">
+                    <a href="contact.html" class="btn-primary">Book a Demo</a>
+                    <a href="about.html" class="btn-outline">Meet Dr. Joan deBien-Trammell</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── PROOF BAR ── -->
+    <div class="proof-bar">
+        <div class="container">
+            <div class="proof-bar-inner">
+                <span class="proof-item">30+ Years Organizational Leadership</span>
+                <span class="proof-divider">·</span>
+                <span class="proof-item">Gallup · L'Oréal · J&J · Pierre Fabre · Sandoz</span>
+                <span class="proof-divider">·</span>
+                <span class="proof-item">Doctorate in Strategic Leadership</span>
+                <span class="proof-divider">·</span>
+                <span class="proof-item">Patent-Pending Instrument Suite</span>
+            </div>
+        </div>
+    </div>
+
+<section class="poll-section">
+    <div class="container">
+
+        <p class="section-eyebrow">Experience it yourself</p>
+        <h2 class="poll-headline">Same message. What's your reaction?</h2>
+        <p class="poll-subhead">Read each scenario as if a manager just said this to you. Share your honest emotional reaction and your interpretation — then see how the full range of responses shifts between scenarios.</p>
+
+        <!-- Step indicator -->
+        <div class="step-indicator">
+            <div class="step active" id="step1">Scenario 1</div>
+            <div class="step" id="step2">Scenario 2</div>
+            <div class="step" id="step3">See the shift</div>
+        </div>
+
+        <!-- ── SCENARIO 1 ── -->
+        <div class="scenario-panel active" id="panel1">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-num">Scenario 1 of 2</span>
+                    
+                </div>
+                <div class="scenario-quote">"Come to my office in 15 minutes. We need to talk."</div>
+
+                <!-- Questions side by side -->
+                <div class="questions-row">
+                <div class="question-block">
+                    <p class="q-label">Your immediate reaction
+                        <span class="q-sublabel">Your gut response — before you think about it</span>
+                    </p>
+                    <div class="emotion-grid" id="emotions1">
+                        <button class="emotion-btn" onclick="selectEmotion(1,0)"><span class="emoji">😰</span><span class="emotion-text"><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,1)"><span class="emoji">😨</span><span class="emotion-text"><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,2)"><span class="emoji">😞</span><span class="emotion-text"><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,3)"><span class="emoji">😑</span><span class="emotion-text"><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,4)"><span class="emoji">😐</span><span class="emotion-text"><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,5)"><span class="emoji">🤔</span><span class="emotion-text"><span class="emotion-label">Curious</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,6)"><span class="emoji">🙂</span><span class="emotion-text"><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,7)"><span class="emoji">😊</span><span class="emotion-text"><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,8)"><span class="emoji">😄</span><span class="emotion-text"><span class="emotion-label">Excited</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(1,9)"><span class="emoji">🤩</span><span class="emotion-text"><span class="emotion-label">Energized</span><span class="emotion-pct"></span></span></button>
+                    </div>
+                    <div class="vote-count" id="emotioncount1"></div>
+                </div>
+
+                <!-- Q2: Interpretation -->
+                <div class="question-block">
+                    <p class="q-label">Your interpretation
+                        <span class="q-sublabel">What's going through your mind right now?</span>
+                    </p>
+                    <div class="interp-options" id="interp1">
+                        <button class="interp-btn" onclick="selectInterp(1,0)"><div class="bar-fill"></div><span class="btn-text" style="font-style:italic;font-weight:500;">Oh no.</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,1)"><div class="bar-fill"></div><span class="btn-text">Something is wrong — I'm worried</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,2)"><div class="bar-fill"></div><span class="btn-text">I'm probably in trouble</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,3)"><div class="bar-fill"></div><span class="btn-text">I wonder if I can reschedule — I'm not ready for this</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,4)"><div class="bar-fill"></div><span class="btn-text">Could be anything — hard to tell</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,5)"><div class="bar-fill"></div><span class="btn-text">Honestly, I'm fine with it</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,6)"><div class="bar-fill"></div><span class="btn-text">I'm curious what they want to discuss</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(1,7)"><div class="bar-fill"></div><span class="btn-text">I'm actually looking forward to it</span><span class="pct"></span></button>
+                    </div>
+                    <div class="vote-count" id="interpcount1"></div>
+                </div>
+                </div><!-- end questions-row -->
+            </div>
+
+            <div class="next-wrap">
+                <button class="next-btn submit-btn" id="submit1" onclick="submitScenario(1)">See how others responded</button>
+                <p id="helper1" style="font-size:0.78rem;color:rgba(74,74,72,0.75);margin-top:0.4rem;font-style:italic;">Submit to see your response alongside everyone else's</p>
+                <button class="next-btn" id="next1" onclick="goToScenario2()" style="display:none;">Next scenario →</button>
+            </div>
+        </div>
+
+        <!-- ── SCENARIO 2 ── -->
+        <div class="scenario-panel" id="panel2">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-num">Scenario 2 of 2</span>
+                    
+                </div>
+                <div class="scenario-quote">"I saw your report — it's amazing. I have some thoughts. Come by in about 15 minutes."</div>
+
+                <!-- Questions side by side -->
+                <div class="questions-row">
+                <div class="question-block">
+                    <p class="q-label">Your immediate reaction
+                        <span class="q-sublabel">Your gut response — before you think about it</span>
+                    </p>
+                    <div class="emotion-grid" id="emotions2">
+                        <button class="emotion-btn" onclick="selectEmotion(2,0)"><span class="emoji">😰</span><span class="emotion-text"><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,1)"><span class="emoji">😨</span><span class="emotion-text"><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,2)"><span class="emoji">😞</span><span class="emotion-text"><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,3)"><span class="emoji">😑</span><span class="emotion-text"><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,4)"><span class="emoji">😐</span><span class="emotion-text"><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,5)"><span class="emoji">🤔</span><span class="emotion-text"><span class="emotion-label">Curious</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,6)"><span class="emoji">🙂</span><span class="emotion-text"><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,7)"><span class="emoji">😊</span><span class="emotion-text"><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,8)"><span class="emoji">😄</span><span class="emotion-text"><span class="emotion-label">Excited</span><span class="emotion-pct"></span></span></button>
+                        <button class="emotion-btn" onclick="selectEmotion(2,9)"><span class="emoji">🤩</span><span class="emotion-text"><span class="emotion-label">Energized</span><span class="emotion-pct"></span></span></button>
+                    </div>
+                    <div class="vote-count" id="emotioncount2"></div>
+                </div>
+
+                <!-- Q2: Interpretation -->
+                <div class="question-block">
+                    <p class="q-label">Your interpretation
+                        <span class="q-sublabel">What's going through your mind right now?</span>
+                    </p>
+                    <div class="interp-options" id="interp2">
+                        <button class="interp-btn" onclick="selectInterp(2,0)"><div class="bar-fill"></div><span class="btn-text">I wonder if they really mean it</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(2,1)"><div class="bar-fill"></div><span class="btn-text">I'm a little cautious — not sure what to expect</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(2,2)"><div class="bar-fill"></div><span class="btn-text">Could be anything — staying neutral</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(2,3)"><div class="bar-fill"></div><span class="btn-text">I'm curious what they want to change</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(2,4)"><div class="bar-fill"></div><span class="btn-text">I feel recognized — this feels good</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(2,5)"><div class="bar-fill"></div><span class="btn-text">I'm genuinely excited for the conversation</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="selectInterp(2,6)"><div class="bar-fill"></div><span class="btn-text">I can't wait — this is great news</span><span class="pct"></span></button>
+                    </div>
+                    <div class="vote-count" id="interpcount2"></div>
+                </div>
+                </div><!-- end questions-row -->
+            </div>
+
+            <div class="next-wrap">
+                <button class="next-btn submit-btn" id="submit2" onclick="submitScenario(2)">See how others responded</button>
+                <p id="helper2" style="font-size:0.78rem;color:rgba(74,74,72,0.75);margin-top:0.4rem;font-style:italic;">Submit to see your response alongside everyone else's</p>
+                <button class="next-btn" id="next2" onclick="showComparison()" style="display:none;">See the shift →</button>
+            </div>
+        </div>
+
+        <!-- ── COMPARISON VIEW ── -->
+        <div class="comparison-view" id="comparisonView">
+
+            <div class="comparison-intro">
+                <h3>The range shifted.</h3>
+                <p>Here's what was different between the two scenarios.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0 2rem;">
+                    <div style="padding:1.25rem 1.5rem;border-top:3px solid rgba(74,74,72,0.3);background:var(--ivory);">
+                        <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:0.75rem;">Scenario 1</p>
+                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--charcoal-deep);margin-bottom:0;line-height:1.5;">&ldquo;Come to my office in 15 minutes. We need to talk.&rdquo;</p>
+                    </div>
+                    <div style="padding:1.25rem 1.5rem;border-top:3px solid var(--gold);background:var(--ivory);">
+                        <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:0.75rem;">Scenario 2</p>
+                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--charcoal-deep);margin-bottom:0;line-height:1.5;">&ldquo;I saw your report &mdash; it's amazing. I have some thoughts. Come by in about 15 minutes.&rdquo;</p>
+                    </div>
+                </div>
+                <p>Same request. The framing changed. Below is how everyone who has responded reacted &mdash; emotionally and interpretively &mdash; to each. The shift between them is what Organizational Meaning Science&trade; measures across your entire organization.</p>
+            </div>
+
+            <!-- Emotional spectrum side-by-side bars -->
+            <div class="spectrum-comparison">
+                <p class="spectrum-title">Emotional reaction — how the range shifted</p>
+                <div class="spectrum-grid" id="spectrumGrid">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="respondent-count" id="respondentCount" style="text-align:center;margin-bottom:1rem;font-size:0.82rem;font-weight:500;color:var(--gold-dark);letter-spacing:0.05em;"></div>
+                <div class="spectrum-legend">
+                    <div class="legend-item"><div class="legend-dot s1"></div><span>Scenario 1</span></div>
+                    <div class="legend-item"><div class="legend-dot s2"></div><span>Scenario 2</span></div>
+                </div>
+            </div>
+
+            <!-- Interpretation comparison -->
+            <div class="interp-comparison" id="interpComparison">
+                <div class="interp-comp-card">
+                    <p class="interp-comp-title">Scenario 1 — how people interpreted it</p>
+                    <div id="interpBars1"></div>
+                </div>
+                <div class="interp-comp-card">
+                    <p class="interp-comp-title s2">Scenario 2 — how people interpreted it</p>
+                    <div id="interpBars2"></div>
+                </div>
+            </div>
+
+            <!-- Summary — two beat sequence -->
+            <div class="poll-summary">
+                <div class="beat-1" style="margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(198,160,111,0.2);">
+                    <p style="font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-style:italic;font-weight:300;color:var(--white);line-height:1.6;margin-bottom:0;">That was just words. No tone. No expression. No history with this manager. And look at the range of responses. Now imagine layering in all of that &mdash; and multiply it across every interaction in your organization, every day.</p>
+                </div>
+                <div class="beat-2" style="margin-bottom:2rem;">
+                    <p style="font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.9;margin-bottom:0;">The same words delivered with flat affect versus genuine excitement shift the interpretation again. Add body language. Eye contact &mdash; or the lack of it. The relationship history between these two people. Whether it's been a hard week.</p>
+                    <p style="font-size:1.05rem;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.9;margin-bottom:0;margin-top:1rem;">Every one of those layers adds complexity to how meaning forms. And every person in the room is running their own calculation simultaneously.</p>
+                    <p style="font-size:1.2rem;font-weight:500;color:var(--gold-light);line-height:1.7;margin-top:1.25rem;margin-bottom:0;">That's not a communication problem. That's a meaning climate &mdash; and it's measurable.</p>
+                </div>
+                <p class="cta-line" style="margin-top:2rem !important;">That's what Meaning Radar™ does. <a href="contact.html">Book a demo →</a></p>
+            </div>
+
+            <button class="reset-btn" onclick="resetPoll()">Start over</button>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- ── PLATFORM — Meaning Radar ── -->
+    <section class="platform-section">
+        <div class="container">
+            <div class="platform-grid">
+                <div class="platform-copy">
+                    <h2>Meaning Radar™</h2>
+                    <p class="platform-distinction">Most leaders operate on assumptions about how their decisions, communications, and culture are landing. Meaning Radar™ replaces assumption with precision.</p>
+                    <p style="color: rgba(255,255,255,0.75);">A proprietary diagnostic platform grounded in the ITES™ instrument — measuring interpretive patterns, alignment gaps, and meaning climate conditions at every level of your organization in real time.</p>
+                    <ul class="platform-features">
+                        <li>Individual Interpretive Profiles for every participant</li>
+                        <li>Team and department-level meaning climate reports</li>
+                        <li>Leadership Interpretive Gap™ — the delta between how leaders think meaning is landing and how it actually is</li>
+                        <li>Role-filtered intelligence: Executive, Department Head, Team Leader, Individual</li>
+                        <li>Longitudinal tracking — measure how meaning climate shifts over time</li>
+                    </ul>
+                    <div class="platform-ctas">
+                        <a href="contact.html" class="btn-primary">Book a Demo</a>
+                    </div>
+                </div>
+
+                <div class="platform-visual">
+                    <div class="radar-container">
+                        <svg class="radar-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="radarBg" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0.08"/>
+                                    <stop offset="100%" stop-color="#C6A06F" stop-opacity="0"/>
+                                </radialGradient>
+                                <linearGradient id="sweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0"/>
+                                    <stop offset="100%" stop-color="#C6A06F" stop-opacity="0.4"/>
+                                </linearGradient>
+                                <radialGradient id="trailGrad" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0.35"/>
+                                    <stop offset="100%" stop-color="#C6A06F" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <!-- Background -->
+                            <circle cx="200" cy="200" r="190" fill="rgba(198,160,111,0.04)" stroke="rgba(198,160,111,0.15)" stroke-width="1"/>
+                            <!-- Rings -->
+                            <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(198,160,111,0.12)" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="110" fill="none" stroke="rgba(198,160,111,0.12)" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="70" fill="none" stroke="rgba(198,160,111,0.12)" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="30" fill="none" stroke="rgba(198,160,111,0.2)" stroke-width="1"/>
+                            <!-- Cross hairs -->
+                            <line x1="200" y1="10" x2="200" y2="390" stroke="rgba(198,160,111,0.1)" stroke-width="1"/>
+                            <line x1="10" y1="200" x2="390" y2="200" stroke="rgba(198,160,111,0.1)" stroke-width="1"/>
+                            <line x1="54" y1="54" x2="346" y2="346" stroke="rgba(198,160,111,0.07)" stroke-width="1"/>
+                            <line x1="346" y1="54" x2="54" y2="346" stroke="rgba(198,160,111,0.07)" stroke-width="1"/>
+                            <!-- Sweep arm -->
+                            <g class="radar-sweep">
+                                <!-- Trail wedge goes BEHIND (counter-clockwise from) the sweep line -->
+                                <path d="M200,200 L200,12 A188,188 0 0,0 12,274 Z" fill="url(#trailGrad)" opacity="0.6"/>
+                                <!-- Bright edge at leading sweep line -->
+                                <line x1="200" y1="200" x2="200" y2="12" stroke="#C6A06F" stroke-width="2" opacity="0.9"/>
+                            </g>
+                            <!-- Data points -->
+                            <circle class="radar-dot" cx="280" cy="130" r="5" fill="#C6A06F"/>
+                            <circle class="radar-dot" cx="280" cy="130" r="10" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.4"/>
+                            <circle class="radar-dot-2" cx="145" cy="255" r="4" fill="#C6A06F"/>
+                            <circle class="radar-dot-2" cx="145" cy="255" r="9" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.4"/>
+                            <circle class="radar-dot-3" cx="310" cy="270" r="6" fill="#E8D5A8"/>
+                            <circle class="radar-dot-3" cx="310" cy="270" r="12" fill="none" stroke="#E8D5A8" stroke-width="1" opacity="0.3"/>
+                            <circle class="radar-dot" cx="120" cy="155" r="3" fill="#C6A06F" style="animation-delay: 0.3s"/>
+                            <circle class="radar-dot-2" cx="240" cy="320" r="4" fill="#C6A06F" style="animation-delay: 1s"/>
+                            <!-- Center dot -->
+                            <circle cx="200" cy="200" r="4" fill="#C6A06F" opacity="0.8"/>
+                            <!-- Label -->
+                            <text x="200" y="385" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="11" font-weight="500" letter-spacing="3" fill="rgba(198,160,111,0.6)">MEANING RADAR™</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── OFFERINGS ── -->
+    <section class="offerings-section">
+        <div class="container">
+            <h2>What We Offer</h2>
+            <p class="offerings-intro">Delivered as standalone engagements or as a sequenced suite — the work meets your organization where it is.</p>
+
+            <div class="offerings-grid">
+                <div class="offering-card">
+                    <h3>DNA Workshop Suite™</h3>
+                    <p>Proprietary facilitated methodology surfacing foundational meaning through Brand DNA™, Team DNA™, Board DNA™, Leadership Team DNA™, Investor DNA™, and Custom DNA Frameworks. Deployed across scaling brands, enterprise organizations, and nonprofit boards.</p>
+                    <a href="dna-workshops.html" class="offering-link">Explore DNA Workshops</a>
+                </div>
+                <div class="offering-card">
+                    <h3>Strategic Advisory</h3>
+                    <p>Comprehensive practice across Organizational, Brand & Growth, and People & Performance dimensions. From business plan development and investor readiness to leadership development and culture design — addressing the full arc of organizational evolution.</p>
+                    <a href="services.html" class="offering-link">View Full Practice Suite</a>
+                </div>
+                <div class="offering-card">
+                    <h3>Board &amp; Leadership Advisory</h3>
+                    <p>Governance support for boards and fiduciary leadership navigating strategic change, mission alignment, or organizational transition. Executive coaching focused on sensemaking, decision architecture, and meaning stewardship.</p>
+                    <a href="services.html" class="offering-link">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DEMO CTA ── -->
+    <section class="demo-section">
+        <div class="container">
+            <h2>See What's Moving Through Your Organization</h2>
+            <p class="demo-sub">A 20-minute demo conversation is all it takes to see whether this is the right moment to bring Meaning Radar™ into your organization.</p>
+            <p class="demo-detail">We work with leadership teams navigating transition, strategy that isn't landing, or cultures where the gap between intention and interpretation has become costly.</p>
+            <div class="demo-ctas">
+                <a href="contact.html" class="btn-dark">Book a Demo</a>
+                <a href="about.html" class="btn-gold-outline">About Dr. Joan deBien-Trammell</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOUNDATION ── -->
+    <section class="foundation-section">
+        <div class="container">
+            <div class="foundation-inner">
+                <div class="foundation-copy">
+                    <h2>Grounded in 30 Years of Organizational Reality</h2>
+                    <p>Noespera Studio was built from the inside of complex organizations — not from the outside looking in. The frameworks, instruments, and advisory practice are grounded in what actually happens when meaning moves through a real organization at scale.</p>
+                    <p>Organizational Meaning Science™ is a proprietary research discipline — not a methodology borrowed from elsewhere, adapted, or rebranded. It was developed to address a gap that decades of organizational work made impossible to ignore.</p>
+                    <a href="about.html" class="offering-link" style="margin-top: 0.5rem;">Read the full story</a>
+                </div>
+                <div class="foundation-logos">
+                    <div class="logo-item">Gallup <span>Enterprise Advisory — Fortune 500 transformation</span></div>
+                    <div class="logo-item">L'Oréal USA <span>$400M+ portfolio · National sales organization scaled 300%</span></div>
+                    <div class="logo-item">Johnson &amp; Johnson <span>Enterprise leadership &amp; organizational development</span></div>
+                    <div class="logo-item">Pierre Fabre USA <span>Commercial transformation · 275% marketplace expansion</span></div>
+                    <div class="logo-item">Sandoz Biopharmaceuticals <span>First FDA-approved biosimilar U.S. launch</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> &nbsp;|&nbsp;
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+            <p class="ip-note">Organizational Meaning Science™, DNA Workshop Suite™, Meaning Radar™, ITES™, and Meaning Architecture System™ are trademarks of Noespera Studio, LLC. Meaning Architecture System™ and ITES™ are patent pending. Additional filings in progress.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
+    </script>
+    <script>
+
+    // ── Config ──
+    const SUPABASE_URL = 'https://vasoyiljaptexuzvhyvi.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
+    const SESSION_ID = crypto.randomUUID();
+
+    // ── Seed data ──
+    const emotionSeed = {
+        1: [38, 22, 12, 10, 8, 5, 3, 1, 1, 0],
+        2: [3, 2, 2, 3, 7, 18, 15, 24, 16, 10]
+    };
+    const interpSeed = {
+        1: [20, 22, 18, 10, 14, 8, 5, 3],
+        2: [8, 10, 10, 20, 22, 18, 12, 0]
+    };
+
+    const emotionLabels = ['Anxious / stressed','Fearful','Deflated','Resigned / numb','Neutral','Curious','Calm','Encouraged','Excited','Energized'];
+    const emojis = ['😰','😨','😞','😑','😐','🤔','🙂','😊','😄','🤩'];
+    const interp1Labels = ['Oh no.','Something is wrong — I am worried','I am probably in trouble','I wonder if I can reschedule — I am not ready','Could be anything — hard to tell','Honestly, I am fine with it','I am curious what they want to discuss','I am actually looking forward to it'];
+    const interp2Labels = ['I wonder if they really mean it','I am a little cautious — not sure what to expect','Could be anything — staying neutral','I am curious what they want to change','I feel recognized — this feels good','I am genuinely excited for the conversation','I cannot wait — this is great news', 'Not sure yet'];
+
+    // ── State ──
+    const selected = { emotion: {1: null, 2: null}, interp: {1: null, 2: null} };
+    const submitted = {1: false, 2: false};
+    const counts = {
+        emotion: { 1: [...emotionSeed[1]], 2: [...emotionSeed[2]] },
+        interp:  { 1: [...interpSeed[1]],  2: [...interpSeed[2]]  }
+    };
+    // Live counts fetched from Supabase added on top of seed
+    const liveCounts = {
+        emotion: { 1: [0,0,0,0,0,0,0,0,0,0], 2: [0,0,0,0,0,0,0,0,0,0] },
+        interp:  { 1: [0,0,0,0,0,0,0,0],     2: [0,0,0,0,0,0,0,0]     }
+    };
+
+    function totalE(s) { return counts.emotion[s].reduce((a,b)=>a+b,0) + liveCounts.emotion[s].reduce((a,b)=>a+b,0); }
+    function totalI(s) { return counts.interp[s].reduce((a,b)=>a+b,0) + liveCounts.interp[s].reduce((a,b)=>a+b,0); }
+    function getECount(s,i) { return counts.emotion[s][i] + liveCounts.emotion[s][i]; }
+    function getICount(s,i) { return counts.interp[s][i] + liveCounts.interp[s][i]; }
+
+    function checkSubmitReady(scenario) {
+        const ready = selected.emotion[scenario] !== null && selected.interp[scenario] !== null;
+        const btn = document.getElementById('submit' + scenario);
+        if (btn) btn.classList.toggle('ready', ready);
+    }
+
+    // ── Select emotion (no lock, can change) ──
+    function selectEmotion(scenario, idx) {
+        if (submitted[scenario]) return;
+        selected.emotion[scenario] = idx;
+        const btns = document.querySelectorAll('#emotions' + scenario + ' .emotion-btn');
+        btns.forEach((btn, i) => {
+            btn.classList.toggle('selected', i === idx);
+        });
+        checkSubmitReady(scenario);
+    }
+
+    // ── Select interpretation (no lock, can change) ──
+    function selectInterp(scenario, idx) {
+        if (submitted[scenario]) return;
+        selected.interp[scenario] = idx;
+        const btns = document.querySelectorAll('#interp' + scenario + ' .interp-btn');
+        btns.forEach((btn, i) => {
+            btn.classList.toggle('selected', i === idx);
+            btn.querySelector('.bar-fill').style.width = '0%';
+            btn.querySelector('.pct').textContent = '';
+        });
+        checkSubmitReady(scenario);
+    }
+
+    // ── Submit ──
+    async function submitScenario(scenario) {
+        if (submitted[scenario]) return;
+        if (selected.emotion[scenario] === null || selected.interp[scenario] === null) return;
+        submitted[scenario] = true;
+
+        const eIdx = selected.emotion[scenario];
+        const iIdx = selected.interp[scenario];
+
+        // Add to local counts
+        counts.emotion[scenario][eIdx]++;
+        counts.interp[scenario][iIdx]++;
+
+        // Save to Supabase
+        await Promise.all([
+            saveToSupabase('emotion', scenario, eIdx),
+            saveToSupabase('interp', scenario, iIdx)
+        ]);
+
+        // Fetch real live counts from Supabase
+        await fetchLiveCounts(scenario);
+
+        // Lock all buttons
+        document.querySelectorAll('#emotions' + scenario + ' .emotion-btn').forEach(btn => {
+            btn.disabled = true; btn.classList.add('voted');
+        });
+        document.querySelectorAll('#interp' + scenario + ' .interp-btn').forEach(btn => {
+            btn.disabled = true; btn.classList.add('voted');
+        });
+
+        // Reveal emotion results
+        const eBtns = document.querySelectorAll('#emotions' + scenario + ' .emotion-btn');
+        const tE = totalE(scenario);
+        eBtns.forEach((btn, i) => {
+            const pct = Math.round((getECount(scenario,i) / tE) * 100);
+            btn.querySelector('.emotion-pct').textContent = pct + '%';
+        });
+        document.getElementById('emotioncount' + scenario).textContent =
+            tE.toLocaleString() + ' people have responded';
+
+        // Reveal interp results
+        const iBtns = document.querySelectorAll('#interp' + scenario + ' .interp-btn');
+        const tI = totalI(scenario);
+        iBtns.forEach((btn, i) => {
+            const pct = Math.round((getICount(scenario,i) / tI) * 100);
+            btn.querySelector('.bar-fill').style.width = pct + '%';
+            btn.querySelector('.pct').textContent = pct + '%';
+        });
+        document.getElementById('interpcount' + scenario).textContent =
+            tI.toLocaleString() + ' people have responded';
+
+        // Hide submit and helper text, show next
+        document.getElementById('submit' + scenario).style.display = 'none';
+        const helperEl = document.getElementById('helper' + scenario);
+        if (helperEl) helperEl.style.display = 'none';
+        const nextBtn = document.getElementById('next' + scenario);
+        nextBtn.style.display = 'inline-block';
+        nextBtn.classList.add('ready');
+    }
+
+    async function fetchLiveCounts(scenario) {
+        try {
+            const res = await fetch(
+                SUPABASE_URL + '/rest/v1/meaning_poll_responses?scenario=eq.' + scenario + '&select=response_type,response_index',
+                { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY } }
+            );
+            const rows = await res.json();
+            // Reset live counts for this scenario
+            liveCounts.emotion[scenario] = [0,0,0,0,0,0,0,0,0,0];
+            liveCounts.interp[scenario]  = [0,0,0,0,0,0,0,0];
+            rows.forEach(r => {
+                if (r.response_type === 'emotion' && r.response_index < 10)
+                    liveCounts.emotion[scenario][r.response_index]++;
+                if (r.response_type === 'interp' && r.response_index < 8)
+                    liveCounts.interp[scenario][r.response_index]++;
+            });
+        } catch(e) { /* silent fail — seed data still shows */ }
+    }
+
+    function goToScenario2() {
+        document.getElementById('panel1').classList.remove('active');
+        document.getElementById('panel2').classList.add('active');
+        document.getElementById('step1').classList.remove('active');
+        document.getElementById('step1').classList.add('complete');
+        document.getElementById('step2').classList.add('active');
+        window.scrollTo({ top: document.querySelector('.step-indicator').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function showComparison() {
+        document.getElementById('panel2').classList.remove('active');
+        document.getElementById('comparisonView').classList.add('active');
+        document.getElementById('step2').classList.remove('active');
+        document.getElementById('step2').classList.add('complete');
+        document.getElementById('step3').classList.add('active');
+        renderComparison();
+        window.scrollTo({ top: document.querySelector('.step-indicator').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function renderComparison() {
+        const grid = document.getElementById('spectrumGrid');
+        grid.innerHTML = '';
+        const allE = [...Array(10).keys()].map(i => Math.max(getECount(1,i), getECount(2,i)));
+        const maxE = Math.max(...allE, 1);
+        const tE1 = totalE(1), tE2 = totalE(2);
+
+        for (let i = 0; i < 10; i++) {
+            const pct1 = Math.round((getECount(1,i) / tE1) * 100);
+            const pct2 = Math.round((getECount(2,i) / tE2) * 100);
+            const h1 = Math.max(2, Math.round((getECount(1,i) / maxE) * 76));
+            const h2 = Math.max(2, Math.round((getECount(2,i) / maxE) * 76));
+            grid.innerHTML += '<div class="spectrum-col"><div class="bar-pair"><div class="bar-s1" style="height:' + h1 + 'px" title="S1: ' + pct1 + '%"></div><div class="bar-s2" style="height:' + h2 + 'px" title="S2: ' + pct2 + '%"></div></div><span class="emoji-sm">' + emojis[i] + '</span><span class="label-sm">' + emotionLabels[i] + '</span></div>';
+        }
+
+        // Respondent count — use real live data
+        const respondentTotal = Math.round((tE1 + tE2) / 2);
+        const countEl = document.getElementById('respondentCount');
+        if (countEl) countEl.textContent = respondentTotal.toLocaleString() + ' people have responded to this scenario';
+
+        const tI1 = totalI(1), tI2 = totalI(2);
+        const b1 = document.getElementById('interpBars1');
+        const b2 = document.getElementById('interpBars2');
+        b1.innerHTML = ''; b2.innerHTML = '';
+        for (let i = 0; i < 8; i++) {
+            const p1 = Math.round((getICount(1,i) / tI1) * 100);
+            b1.innerHTML += '<div class="comp-bar-row"><div class="comp-bar-label">' + interp1Labels[i] + '<span>' + p1 + '%</span></div><div class="comp-bar-track"><div class="comp-bar-fill" style="width:' + p1 + '%"></div></div></div>';
+        }
+        for (let i = 0; i < 7; i++) {
+            const p2 = Math.round((getICount(2,i) / tI2) * 100);
+            b2.innerHTML += '<div class="comp-bar-row"><div class="comp-bar-label">' + interp2Labels[i] + '<span>' + p2 + '%</span></div><div class="comp-bar-track"><div class="comp-bar-fill s2" style="width:' + p2 + '%"></div></div></div>';
+        }
+    }
+
+    async function saveToSupabase(type, scenario, idx) {
+        try {
+            await fetch(SUPABASE_URL + '/rest/v1/meaning_poll_responses', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({ scenario, response_type: type, response_index: idx, source: 'website', session_id: SESSION_ID })
+            });
+        } catch(e) {}
+    }
+
+    function resetPoll() {
+        selected.emotion[1] = selected.emotion[2] = null;
+        selected.interp[1] = selected.interp[2] = null;
+        submitted[1] = submitted[2] = false;
+        counts.emotion[1] = [...emotionSeed[1]]; counts.emotion[2] = [...emotionSeed[2]];
+        counts.interp[1] = [...interpSeed[1]]; counts.interp[2] = [...interpSeed[2]];
+        liveCounts.emotion[1] = [0,0,0,0,0,0,0,0,0,0]; liveCounts.emotion[2] = [0,0,0,0,0,0,0,0,0,0];
+        liveCounts.interp[1] = [0,0,0,0,0,0,0,0]; liveCounts.interp[2] = [0,0,0,0,0,0,0,0];
+
+        [1,2].forEach(s => {
+            document.querySelectorAll('#emotions'+s+' .emotion-btn').forEach(b => {
+                b.classList.remove('voted','selected'); b.disabled = false;
+                b.querySelector('.emotion-pct').textContent = '';
+            });
+            document.querySelectorAll('#interp'+s+' .interp-btn').forEach(b => {
+                b.classList.remove('voted','selected'); b.disabled = false;
+                b.querySelector('.bar-fill').style.width = '0%';
+                b.querySelector('.pct').textContent = '';
+            });
+            document.getElementById('emotioncount'+s).textContent = '';
+            document.getElementById('interpcount'+s).textContent = '';
+            const sub = document.getElementById('submit'+s);
+            if (sub) { sub.classList.remove('ready'); sub.style.display = ''; }
+            const helper = document.getElementById('helper'+s);
+            if (helper) helper.style.display = '';
+            document.getElementById('next'+s).classList.remove('ready');
+        });
+
+        document.getElementById('panel1').classList.add('active');
+        document.getElementById('panel2').classList.remove('active');
+        document.getElementById('comparisonView').classList.remove('active');
+        ['step1','step2','step3'].forEach(s => document.getElementById(s).classList.remove('active','complete'));
+        document.getElementById('step1').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    </script>
+
+</body>
+</html>

@@ -70,26 +70,17 @@
             .mobile-menu-btn { display: block; }
             nav { position: relative; }
         }
-            /* ── DROPDOWN ── */
-        .nav-dropdown { position: relative; }
-        .nav-dropdown .dropdown { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: var(--charcoal-deep); min-width: 260px; border-top: 2px solid var(--gold); padding: 0.5rem 0; list-style: none; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-        .nav-dropdown:hover .dropdown { display: block; }
-        .nav-dropdown .dropdown li { border-bottom: 1px solid rgba(198,160,111,0.1); }
-        .nav-dropdown .dropdown li:last-child { border-bottom: none; }
-        .nav-dropdown .dropdown a { display: block; padding: 0.85rem 1.5rem; color: rgba(255,255,255,0.75); font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: color 0.2s, background 0.2s; }
-        .nav-dropdown .dropdown a:hover { color: var(--gold); background: rgba(198,160,111,0.06); }
-</style>
+    </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
                 <li><a href="services.html" class="active">Full Practice Suite</a></li>
-                <li><a href="insights.html">Perspectives</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -174,8 +165,8 @@
         <div class="container">
             <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
             <p style="margin-top: 1rem;">
-                <a href="https://www.joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
-                <a href="https://www.organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
             </p>
         </div>
     </footer>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Talk — Noespera Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
+        h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1.2; margin-bottom: 1.5rem; }
+        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.2rem; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ── Nav ── */
+        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; padding: 0.5rem; }
+
+        /* ── Page Header ── */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 5rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -40%; right: -5%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(198,160,111,0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .page-header h1 { color: var(--gold-light); }
+        .page-header p { color: rgba(255,255,255,0.72); max-width: 600px; font-size: 1.1rem; margin-bottom: 0; }
+
+        /* ── Main layout ── */
+        .main-section { background: var(--white); padding: 5rem 0; }
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        /* ── Intake Form ── */
+        .form-wrap h2 { color: var(--charcoal-deep); margin-bottom: 0.5rem; }
+        .form-intro { font-size: 0.97rem; color: var(--charcoal); margin-bottom: 2.5rem; line-height: 1.7; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+        .form-row.single { grid-template-columns: 1fr; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--charcoal-deep);
+            margin-bottom: 0.4rem;
+        }
+        .form-group label .req { color: var(--gold-dark); margin-left: 2px; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(198,160,111,0.3);
+            background: var(--ivory);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 300;
+            color: var(--charcoal-deep);
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--gold); background: var(--white); }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A68B4E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+
+        /* ── Contact method ── */
+        .method-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--charcoal-deep);
+            margin-bottom: 0.75rem;
+        }
+        .method-options { display: flex; gap: 0.75rem; margin-bottom: 1.2rem; }
+        .method-btn {
+            flex: 1; padding: 0.75rem 0.5rem;
+            border: 1px solid rgba(198,160,111,0.3);
+            background: var(--ivory);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem; font-weight: 500;
+            color: var(--charcoal); cursor: pointer;
+            text-align: center; transition: all 0.2s;
+            display: flex; flex-direction: column;
+            align-items: center; gap: 0.3rem;
+        }
+        .method-btn:hover { border-color: var(--gold); background: var(--white); }
+        .method-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.08); color: var(--charcoal-deep); }
+        .method-btn .method-icon { font-size: 1.3rem; }
+
+        /* Phone field - shows/hides based on method */
+        .phone-field { display: none; margin-bottom: 1.2rem; }
+        .phone-field.visible { display: block; }
+
+        /* ── Submit button ── */
+        .submit-wrap { margin-top: 2rem; }
+        .submit-btn-form {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gold);
+            color: var(--white);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            cursor: pointer; transition: background 0.3s;
+        }
+        .submit-btn-form:hover { background: var(--gold-dark); }
+        .submit-btn-form:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ── Success state ── */
+        .success-message {
+            display: none;
+            padding: 2.5rem;
+            background: var(--ivory);
+            border-left: 4px solid var(--gold);
+            margin-top: 1rem;
+        }
+        .success-message.visible { display: block; }
+        .success-message h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; color: var(--charcoal-deep);
+            margin-bottom: 0.75rem;
+        }
+        .success-message p { font-size: 0.97rem; margin-bottom: 0; }
+
+        /* ── Connect sidebar ── */
+        .connect-sidebar { position: sticky; top: 7rem; }
+        .connect-card {
+            background: var(--charcoal-deep);
+            padding: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .connect-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem; color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+        .connect-card p { color: rgba(255,255,255,0.65); font-size: 0.92rem; margin-bottom: 1.75rem; }
+        .connect-options { display: flex; flex-direction: column; gap: 0.75rem; }
+        .connect-option {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 0.9rem 1.1rem;
+            border: 1px solid rgba(198,160,111,0.25);
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .connect-option:hover { border-color: var(--gold); background: rgba(198,160,111,0.06); }
+        .connect-option .co-icon { font-size: 1.2rem; }
+        .connect-option .co-text { display: flex; flex-direction: column; }
+        .connect-option .co-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+        .connect-option .co-value { font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.8); }
+
+        /* What to expect */
+        .expect-card {
+            background: var(--ivory);
+            padding: 2rem;
+            border-top: 3px solid var(--gold);
+        }
+        .expect-card h3 { font-size: 1.1rem; color: var(--charcoal-deep); margin-bottom: 1.25rem; }
+        .expect-list { list-style: none; }
+        .expect-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+            font-size: 0.92rem; font-weight: 300;
+            display: flex; gap: 0.75rem; align-items: flex-start;
+        }
+        .expect-list li:last-child { border-bottom: none; }
+        .expect-list li::before { content: '◆'; color: var(--gold); font-size: 0.45rem; margin-top: 0.6rem; flex-shrink: 0; }
+
+        /* ── Error state ── */
+        .field-error { font-size: 0.75rem; color: #C0392B; margin-top: 0.3rem; display: none; }
+        .field-error.visible { display: block; }
+        .form-group input.error, .form-group select.error { border-color: rgba(192,57,43,0.5); }
+
+        /* ── Footer ── */
+        footer { background: var(--charcoal-deep); color: rgba(255,255,255,0.7); padding: 3rem 0; text-align: center; }
+        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--gold); }
+        footer p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+        footer .ip-note { font-size: 0.78rem; opacity: 0.55; margin-top: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .main-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .connect-sidebar { position: static; }
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .method-options { gap: 0.5rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(198,160,111,0.2); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 1rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html">Perspectives</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Let's Talk</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Let's Talk</h1>
+            <p>Tell us a little about your organization and how you'd like to connect. We'll reach out your way — within 24 hours.</p>
+        </div>
+    </section>
+
+    <!-- Main -->
+    <section class="main-section">
+        <div class="container">
+            <div class="main-grid">
+
+                <!-- ── Intake Form ── -->
+                <div class="form-wrap">
+                    <h2>About You & Your Organization</h2>
+                    <p class="form-intro">This helps us come prepared — so our first conversation is immediately useful to you.</p>
+
+                    <div id="contactForm">
+                        <!-- Name + Title -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name <span class="req">*</span></label>
+                                <input type="text" id="fullName" placeholder="Your name">
+                                <span class="field-error" id="err-fullName">Please enter your name</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Title / Role <span class="req">*</span></label>
+                                <input type="text" id="title" placeholder="e.g. Chief People Officer">
+                                <span class="field-error" id="err-title">Please enter your title</span>
+                            </div>
+                        </div>
+
+                        <!-- Org + Size -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Organization <span class="req">*</span></label>
+                                <input type="text" id="orgName" placeholder="Organization name">
+                                <span class="field-error" id="err-orgName">Please enter your organization</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Organization Size <span class="req">*</span></label>
+                                <select id="orgSize">
+                                    <option value="">Select employee count</option>
+                                    <option value="1-50">1 – 50</option>
+                                    <option value="51-200">51 – 200</option>
+                                    <option value="201-500">201 – 500</option>
+                                    <option value="501-1000">501 – 1,000</option>
+                                    <option value="1001-5000">1,001 – 5,000</option>
+                                    <option value="5001-25000">5,001 – 25,000</option>
+                                    <option value="25001-100000">25,001 – 100,000</option>
+                                    <option value="100000+">100,000+</option>
+                                </select>
+                                <span class="field-error" id="err-orgSize">Please select organization size</span>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label>Email Address <span class="req">*</span></label>
+                                <input type="email" id="email" placeholder="your@email.com">
+                                <span class="field-error" id="err-email">Please enter a valid email</span>
+                            </div>
+                        </div>
+
+                        <!-- What prompted interest -->
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label>What prompted your interest?</label>
+                                <textarea id="interest" placeholder="What's the context — a specific challenge, a transition, something you're navigating?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Preferred contact method -->
+                        <p class="method-label">How would you like us to reach out? <span class="req">*</span></p>
+                        <div class="method-options">
+                            <button class="method-btn" id="method-email" onclick="selectMethod('email')">
+                                <span class="method-icon">✉️</span>
+                                <span>Email</span>
+                            </button>
+                            <button class="method-btn" id="method-text" onclick="selectMethod('text')">
+                                <span class="method-icon">💬</span>
+                                <span>Text</span>
+                            </button>
+                            <button class="method-btn" id="method-phone" onclick="selectMethod('phone')">
+                                <span class="method-icon">📞</span>
+                                <span>Phone Call</span>
+                            </button>
+                        </div>
+                        <span class="field-error" id="err-method">Please select a preferred contact method</span>
+
+                        <!-- Phone field - appears for text/phone -->
+                        <div class="phone-field" id="phoneField">
+                            <div class="form-group">
+                                <label>Phone Number <span class="req">*</span></label>
+                                <input type="tel" id="phone" placeholder="Your phone number">
+                                <span class="field-error" id="err-phone">Please enter your phone number</span>
+                            </div>
+                        </div>
+
+                        <div class="submit-wrap">
+                            <button class="submit-btn-form" id="submitBtn" onclick="submitForm()">Send My Request</button>
+                        </div>
+                    </div>
+
+                    <!-- Success message -->
+                    <div class="success-message" id="successMsg">
+                        <h3>Thank you — we'll be in touch.</h3>
+                        <p id="successDetail"></p>
+                    </div>
+                </div>
+
+                <!-- ── Connect Sidebar ── -->
+                <div class="connect-sidebar">
+
+                    <div class="connect-card">
+                        <h3>Reach Out Directly</h3>
+                        <p>Prefer to connect on your own terms? We're here.</p>
+                        <div class="connect-options">
+                            <a href="mailto:joan@noesperastudio.com" class="connect-option">
+                                <span class="co-icon">✉️</span>
+                                <span class="co-text">
+                                    <span class="co-label">Email</span>
+                                    <span class="co-value">joan@noesperastudio.com</span>
+                                </span>
+                            </a>
+                            <a href="sms:+1XXXXXXXXXX" class="connect-option" id="textLink">
+                                <span class="co-icon">💬</span>
+                                <span class="co-text">
+                                    <span class="co-label">Text</span>
+                                    <span class="co-value">Send a message</span>
+                                </span>
+                            </a>
+                            <a href="tel:+1XXXXXXXXXX" class="connect-option" id="phoneLink">
+                                <span class="co-icon">📞</span>
+                                <span class="co-text">
+                                    <span class="co-label">Phone</span>
+                                    <span class="co-value">Schedule a call</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="expect-card">
+                        <h3>What to Expect</h3>
+                        <ul class="expect-list">
+                            <li>A response within 24 hours via your preferred channel</li>
+                            <li>A 20-minute conversation — no sales pressure, just a real exchange</li>
+                            <li>We'll come prepared based on what you've shared</li>
+                            <li>If there's a fit, we'll outline a clear path forward</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> &nbsp;|&nbsp;
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+            <p class="ip-note">Organizational Meaning Science™, DNA Workshop Suite™, ITES™, and Meaning Architecture System™ are trademarks of Noespera Studio, LLC. Patent pending.</p>
+        </div>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = 'https://vasoyiljaptexuzvhyvi.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
+
+        let selectedMethod = null;
+
+        function selectMethod(method) {
+            selectedMethod = method;
+            ['email','text','phone'].forEach(m => {
+                document.getElementById('method-' + m).classList.toggle('selected', m === method);
+            });
+            // Show phone field for text or phone
+            const phoneField = document.getElementById('phoneField');
+            phoneField.classList.toggle('visible', method === 'text' || method === 'phone');
+            document.getElementById('err-method').style.display = 'none';
+        }
+
+        function validateForm() {
+            let valid = true;
+
+            const required = [
+                { id: 'fullName', err: 'err-fullName' },
+                { id: 'title', err: 'err-title' },
+                { id: 'orgName', err: 'err-orgName' },
+                { id: 'orgSize', err: 'err-orgSize' },
+                { id: 'email', err: 'err-email' },
+            ];
+
+            required.forEach(f => {
+                const el = document.getElementById(f.id);
+                const err = document.getElementById(f.err);
+                const empty = !el.value.trim();
+                const emailInvalid = f.id === 'email' && el.value && !el.value.includes('@');
+                if (empty || emailInvalid) {
+                    el.classList.add('error');
+                    err.classList.add('visible');
+                    valid = false;
+                } else {
+                    el.classList.remove('error');
+                    err.classList.remove('visible');
+                }
+            });
+
+            if (!selectedMethod) {
+                document.getElementById('err-method').style.display = 'block';
+                valid = false;
+            }
+
+            if ((selectedMethod === 'text' || selectedMethod === 'phone') && !document.getElementById('phone').value.trim()) {
+                document.getElementById('phone').classList.add('error');
+                document.getElementById('err-phone').classList.add('visible');
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        async function submitForm() {
+            if (!validateForm()) return;
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            const formData = {
+                full_name: document.getElementById('fullName').value.trim(),
+                title: document.getElementById('title').value.trim(),
+                org_name: document.getElementById('orgName').value.trim(),
+                org_size: document.getElementById('orgSize').value,
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || null,
+                interest: document.getElementById('interest').value.trim() || null,
+                preferred_contact: selectedMethod,
+                submitted_at: new Date().toISOString()
+            };
+
+            try {
+                // 1. Save to Supabase
+                const saveRes = await fetch(SUPABASE_URL + '/rest/v1/demo_requests', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // 2. Trigger notification Edge Function
+                await fetch(SUPABASE_URL + '/functions/v1/notify-demo-request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show success
+                document.getElementById('contactForm').style.display = 'none';
+                const successMsg = document.getElementById('successMsg');
+                successMsg.classList.add('visible');
+
+                const methodMessages = {
+                    email: 'We\'ll reach out to ' + formData.email + ' within 24 hours.',
+                    text: 'We\'ll send a text to ' + formData.phone + ' within 24 hours.',
+                    phone: 'We\'ll call ' + formData.phone + ' within 24 hours.'
+                };
+                document.getElementById('successDetail').textContent = methodMessages[selectedMethod];
+
+            } catch(e) {
+                btn.disabled = false;
+                btn.textContent = 'Send My Request';
+                alert('Something went wrong. Please email joan@noesperastudio.com directly.');
+            }
+        }
+
+        // Clear error on input
+        ['fullName','title','orgName','orgSize','email','phone'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', () => {
+                    el.classList.remove('error');
+                    const err = document.getElementById('err-' + id);
+                    if (err) err.classList.remove('visible');
+                });
+            }
+        });
+        function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
+    </script>
+
+</body>
+</html>
