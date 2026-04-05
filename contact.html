@@ -197,6 +197,7 @@
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
                 <li><a href="services.html">Full Practice Suite</a></li>
                 <li><a href="insights.html">Perspectives</a></li>
+                <li><a href="https://ites-assessment.onrender.com" target="_blank">ITES™ Index</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html" class="active">Let's Talk</a></li>
             </ul>
@@ -412,7 +413,7 @@
                                     <span class="co-value">joan@noesperastudio.com</span>
                                 </span>
                             </a>
-                            <a href="sms:+1XXXXXXXXXX" class="connect-option">
+                            <a href="sms:+12022400054" class="connect-option">
                                 <span class="co-icon">💬</span>
                                 <span class="co-text">
                                     <span class="co-label">Text</span>
@@ -450,6 +451,7 @@
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
                 <li><a href="services.html">Full Practice Suite</a></li>
                 <li><a href="insights.html">Perspectives</a></li>
+                <li><a href="https://ites-assessment.onrender.com" target="_blank">ITES™ Index</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Let's Talk</a></li>
                 <li><a href="privacy.html">Privacy &amp; Terms</a></li>
@@ -802,6 +804,9 @@
             document.getElementById('contactForm').style.display = 'none';
             var successMsg = document.getElementById('successMsg');
             successMsg.classList.add('visible');
+            setTimeout(function() {
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
 
             var methodMsg = {
                 email: "We'll be in touch at " + formData.email + " shortly.",
