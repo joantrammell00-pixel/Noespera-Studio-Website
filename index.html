@@ -6,7 +6,7 @@
     <title>Noespera Studio — Applied Organizational Meaning Science™</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #C6A06F;
@@ -17,769 +17,703 @@
             --ivory: #EDEAE5;
             --white: #FFFFFF;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 0.02em; }
+        h1 { font-size: clamp(2.8rem, 5.5vw, 5.5rem); line-height: 1.08; margin-bottom: 2rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2; margin-bottom: 2rem; }
+        h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); margin-bottom: 1rem; }
+        p { font-size: 1.05rem; font-weight: 300; letter-spacing: 0.01em; margin-bottom: 1.3rem; }
+        .large-text { font-size: 1.2rem; line-height: 1.9; font-weight: 300; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ── Navigation ── */
+        nav { background: var(--charcoal-deep); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; padding: 0.5rem; }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--charcoal);
-            background-color: var(--ivory);
-            line-height: 1.7;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        h3 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.05rem;
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            margin-bottom: 1.2rem;
-        }
-
-        .large-text {
-            font-size: 1.25rem;
-            line-height: 1.8;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 6rem 0;
-        }
-
-        /* Navigation */
-        nav {
+        /* ── Hero ── */
+        .hero {
             background: var(--charcoal-deep);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            color: var(--white);
+            padding: 9rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 90vh;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
-
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            color: var(--gold);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--gold);
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
-            color: var(--white);
-            padding: 8rem 0 10rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(198,160,111,0.04) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(198,160,111,0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        /* Animated subtle grid */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 55%;
             height: 100%;
-            background-image: 
-                linear-gradient(30deg, transparent 40%, rgba(198, 160, 111, 0.03) 40%, rgba(198, 160, 111, 0.03) 42%, transparent 42%),
-                linear-gradient(60deg, transparent 58%, rgba(198, 160, 111, 0.04) 58%, rgba(198, 160, 111, 0.04) 60%, transparent 60%),
-                linear-gradient(90deg, transparent 48%, rgba(198, 160, 111, 0.02) 48%, rgba(198, 160, 111, 0.02) 52%, transparent 52%);
-            background-size: 120px 120px;
-            opacity: 0.4;
+            background-image:
+                linear-gradient(rgba(198,160,111,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(198,160,111,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(to left, rgba(0,0,0,0.4) 0%, transparent 100%);
             pointer-events: none;
         }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(198, 160, 111, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
+        .hero-content { position: relative; z-index: 2; max-width: 820px; }
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
             color: var(--gold);
             margin-bottom: 2rem;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
-
-        .subtitle {
-            color: var(--gold-light);
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .accent-line {
-            width: 80px;
-            height: 2px;
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
             background: var(--gold);
-            margin: 3rem 0;
         }
-
-        /* Journey Section */
-        .journey-section {
-            background: var(--ivory);
-            padding: 6rem 0;
-            color: var(--charcoal);
+        .hero h1 { color: var(--white); }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+            font-weight: 300;
         }
-
-        .journey-section p {
-            color: var(--charcoal);
+        .hero-sub {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.72);
+            max-width: 640px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
         }
-
-        .journey-section h2,
-        .journey-section h3 {
-            color: var(--charcoal-deep);
+        .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.3s;
         }
-
-        .journey-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+        .btn-primary:hover { background: var(--gold-dark); }
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: border-color 0.3s, color 0.3s;
         }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-        .journey-card {
-            background: var(--white);
-            padding: 3rem 2.5rem;
-            border-top: 4px solid var(--gold);
-            transition: all 0.4s ease;
+        /* ── Proof bar ── */
+        .proof-bar {
+            background: var(--gold-dark);
+            padding: 1.2rem 0;
+        }
+        .proof-bar-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .proof-item {
+            color: var(--white);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+        .proof-divider { color: rgba(255,255,255,0.35); font-size: 1.2rem; }
+
+        /* ── The Problem ── */
+        .problem-section { background: var(--white); }
+        .problem-intro {
+            max-width: 820px;
+            margin: 0 auto 5rem;
             text-align: center;
         }
+        .problem-intro h2 { color: var(--charcoal-deep); }
+        .problem-intro p { font-size: 1.15rem; }
 
-        .journey-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.15);
-            border-top-color: var(--gold-dark);
-        }
-
-        .journey-card h3 {
-            color: var(--gold-dark);
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .journey-subtitle {
-            color: var(--charcoal);
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .journey-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 1.5rem auto;
-        }
-
-        .journey-list {
-            text-align: left;
-            list-style: none;
-            margin: 1.5rem 0 2rem;
-        }
-
-        .journey-list li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .journey-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        .journey-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            margin-top: 1rem;
-        }
-
-        .journey-btn:hover {
-            background: var(--gold);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(198, 160, 111, 0.3);
-        }
-
-        /* Foundation */
-        .foundation {
-            background: var(--white);
-            position: relative;
-        }
-
-        .foundation::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: -5%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(198, 160, 111, 0.04) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .intro-box {
-            max-width: 900px;
+        /* Manager example — pulled up and dramatized */
+        .manager-example {
+            max-width: 860px;
             margin: 0 auto;
         }
-
-        /* Offerings Preview */
-        .offerings-preview {
-            background: var(--ivory);
-        }
-
-        .offerings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .offering-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-top: 3px solid var(--gold);
-            transition: all 0.4s ease;
-        }
-
-        .offering-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
-            background: linear-gradient(135deg, var(--white) 0%, rgba(198, 160, 111, 0.02) 100%);
-        }
-
-        .offering-card h3 {
-            color: var(--gold-dark);
-            margin-bottom: 1rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 0.08em;
+        .example-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            transition: all 0.4s ease;
-            margin-top: 1.5rem;
+            color: var(--gold-dark);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
-
-        .btn:hover {
+        .example-label::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
             background: var(--gold);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(198, 160, 111, 0.3);
         }
-
-        /* ─── Meaning Radar Teaser ─── */
-        .meaning-radar-teaser {
+        .example-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .example-col {
+            padding: 2.5rem;
+        }
+        .example-col.before { background: rgba(74,74,72,0.06); border-top: 3px solid var(--charcoal); }
+        .example-col.after { background: rgba(198,160,111,0.08); border-top: 3px solid var(--gold); }
+        .example-col-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            color: var(--charcoal);
+        }
+        .example-col.after .example-col-label { color: var(--gold-dark); }
+        .example-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal-deep);
+        }
+        .interpretation-list { list-style: none; }
+        .interpretation-list li {
+            padding: 0.5rem 0;
+            font-size: 0.97rem;
+            font-weight: 300;
+            color: var(--charcoal);
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+        }
+        .interpretation-list li:last-child { border-bottom: none; }
+        .interpretation-list li::before { content: '→ '; color: var(--gold); font-weight: 500; }
+        .example-footer {
+            margin-top: 2.5rem;
+            padding: 2rem 2.5rem;
             background: var(--charcoal-deep);
             color: var(--white);
-            position: relative;
-            overflow: hidden;
         }
-
-        .meaning-radar-teaser::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(198, 160, 111, 0.07) 0%, transparent 65%);
-            border-radius: 50%;
-            pointer-events: none;
+        .example-footer p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 0;
+            line-height: 1.6;
         }
+        .example-footer strong { color: var(--gold-light); font-weight: 400; font-style: normal; }
 
-        .meaning-radar-teaser::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -5%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(198, 160, 111, 0.05) 0%, transparent 65%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .radar-inner {
-            position: relative;
-            z-index: 1;
+        /* ── Platform section ── */
+        .platform-section { background: var(--charcoal-deep); color: var(--white); }
+        .platform-section h2 { color: var(--gold-light); }
+        .platform-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5rem;
             align-items: center;
+            margin-top: 3rem;
         }
-
-        .radar-label {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .radar-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(198, 160, 111, 0.3);
-            max-width: 60px;
-        }
-
-        .radar-teaser-heading {
+        .platform-copy p { color: rgba(255,255,255,0.75); }
+        .platform-copy .platform-distinction {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.2rem, 4vw, 3.8rem);
-            font-weight: 400;
-            color: var(--white);
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-        }
-
-        .radar-teaser-heading em {
-            color: var(--gold-light);
+            font-size: 1.5rem;
             font-style: italic;
+            font-weight: 300;
+            color: var(--gold-light);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--gold);
         }
-
-        .radar-teaser-body {
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-        }
-
-        .radar-teaser-body:last-of-type {
-            margin-bottom: 2.5rem;
-        }
-
-        .radar-access-btn {
-            display: inline-block;
-            padding: 1.1rem 2.8rem;
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .radar-access-btn:hover {
-            background: var(--gold);
-            color: var(--charcoal-deep);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(198, 160, 111, 0.25);
-        }
-
-        /* Radar SVG visual */
-        .radar-visual {
+        .platform-features { list-style: none; margin: 2rem 0; }
+        .platform-features li {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.15);
+            font-size: 0.97rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
             display: flex;
-            justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            gap: 0.8rem;
         }
-
-        .radar-svg-wrap {
+        .platform-features li:last-child { border-bottom: none; }
+        .platform-features li::before {
+            content: '◆';
+            color: var(--gold);
+            font-size: 0.5rem;
+            margin-top: 0.55rem;
+            flex-shrink: 0;
+        }
+        .platform-visual {
             position: relative;
-            width: 340px;
-            height: 340px;
         }
-
-        .radar-svg-wrap svg {
+        /* Animated radar visual */
+        .radar-container {
             width: 100%;
-            height: 100%;
-            animation: radarPulse 6s ease-in-out infinite;
+            max-width: 420px;
+            margin: 0 auto;
+            position: relative;
         }
-
-        @keyframes radarPulse {
-            0%, 100% { opacity: 0.85; }
-            50% { opacity: 1; }
-        }
-
-        .radar-sweep {
-            transform-origin: 170px 170px;
-            animation: sweep 8s linear infinite;
-            opacity: 0.35;
-        }
-
-        @keyframes sweep {
+        .radar-svg { width: 100%; height: auto; }
+        @keyframes radarSpin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
-        /* Participant badges */
-        .radar-participants {
-            margin-top: 3rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid rgba(198, 160, 111, 0.2);
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
+        .radar-sweep { transform-origin: 200px 200px; animation: radarSpin 6s linear infinite; }
+        .radar-dot { animation: pulse 2s ease-in-out infinite; }
+        .radar-dot-2 { animation: pulse 2s ease-in-out infinite 0.7s; }
+        .radar-dot-3 { animation: pulse 2s ease-in-out infinite 1.4s; }
+        .platform-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 2.5rem; }
 
-        .radar-participants-label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.45);
-            margin-bottom: 1.2rem;
+        /* ── Offerings ── */
+        .offerings-section { background: var(--ivory); }
+        .offerings-section h2 { color: var(--charcoal-deep); text-align: center; margin-bottom: 1rem; }
+        .offerings-intro { text-align: center; max-width: 650px; margin: 0 auto 4rem; font-size: 1.1rem; }
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
-
-        .participant-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .participant-badge {
-            padding: 0.45rem 1.1rem;
-            border: 1px solid rgba(198, 160, 111, 0.35);
-            color: rgba(255, 255, 255, 0.65);
-            font-size: 0.8rem;
-            font-weight: 400;
-            letter-spacing: 0.06em;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Early access form (hidden by default) */
-        .radar-form-wrap {
-            display: none;
-            margin-top: 2rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(198, 160, 111, 0.25);
-        }
-
-        .radar-form-wrap.visible {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .radar-form-wrap p {
-            color: rgba(255, 255, 255, 0.65);
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .radar-form-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .radar-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.85rem 1.2rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(198, 160, 111, 0.35);
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .radar-input::placeholder {
-            color: rgba(255, 255, 255, 0.35);
-        }
-
-        .radar-input:focus {
-            border-color: var(--gold);
-        }
-
-        .radar-select {
-            width: 100%;
-            padding: 0.85rem 1.2rem;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(198, 160, 111, 0.35);
-            color: rgba(255, 255, 255, 0.75);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            outline: none;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: border-color 0.3s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C6A06F' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1.2rem center;
-            padding-right: 2.5rem;
-        }
-
-        .radar-select:focus {
-            border-color: var(--gold);
-        }
-
-        .radar-select option {
-            background: var(--charcoal-deep);
-            color: var(--white);
-        }
-
-        .radar-submit {
-            display: inline-block;
-            padding: 0.9rem 2.2rem;
-            background: var(--gold);
-            border: none;
-            color: var(--charcoal-deep);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .radar-submit:hover {
-            background: var(--gold-dark);
-            transform: translateY(-2px);
-        }
-
-        .radar-success {
-            display: none;
-            padding: 1.2rem 1.5rem;
-            background: rgba(198, 160, 111, 0.1);
-            border-left: 3px solid var(--gold);
-            color: var(--gold-light);
-            font-size: 0.95rem;
-        }
-
-        .radar-success.visible {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--charcoal-deep);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            color: var(--gold-light);
-        }
-
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .btn-light {
-            border-color: var(--white);
-            color: var(--white);
-        }
-
-        .btn-light:hover {
+        .offering-card {
             background: var(--white);
-            color: var(--charcoal-deep);
+            padding: 2.5rem;
+            border-top: 3px solid var(--gold);
+            display: flex;
+            flex-direction: column;
         }
+        .offering-card h3 { color: var(--charcoal-deep); margin-bottom: 1rem; }
+        .offering-card p { flex: 1; font-size: 0.97rem; color: var(--charcoal); }
+        .offering-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 0.2rem;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .offering-link:hover { color: var(--charcoal-deep); border-color: var(--charcoal-deep); }
 
-        /* Footer */
-        footer {
-            background: var(--charcoal-deep);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 3rem 0;
+        /* ── Demo CTA ── */
+        .demo-section {
+            background: var(--white);
+            padding: 7rem 0;
             text-align: center;
         }
-
-        footer a {
-            color: var(--gold-light);
+        .demo-section h2 { color: var(--charcoal-deep); margin-bottom: 1rem; }
+        .demo-section .demo-sub {
+            max-width: 640px;
+            margin: 0 auto 1rem;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+        }
+        .demo-section .demo-detail {
+            max-width: 560px;
+            margin: 0 auto 3rem;
+            font-size: 0.92rem;
+            color: rgba(74,74,72,0.65);
+        }
+        .demo-ctas { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+        .btn-dark {
+            display: inline-block;
+            background: var(--charcoal-deep);
+            color: var(--white);
             text-decoration: none;
-            transition: color 0.3s ease;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        .btn-dark:hover { background: var(--charcoal); }
+        .btn-gold-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--gold-dark);
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid var(--gold);
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn-gold-outline:hover { background: var(--gold); color: var(--white); }
+
+        /* ── Foundation ── */
+        .foundation-section { background: var(--ivory); }
+        .foundation-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .foundation-copy h2 { color: var(--charcoal-deep); }
+        .foundation-logos {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .logo-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(198,160,111,0.2);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--charcoal-deep);
+            letter-spacing: 0.02em;
+        }
+        .logo-item:last-child { border-bottom: none; }
+        .logo-item span {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(74,74,72,0.65);
+            margin-top: 0.2rem;
         }
 
-        footer a:hover {
-            color: var(--gold);
-        }
+        /* ── Footer ── */
+        footer { background: var(--charcoal-deep); color: rgba(255,255,255,0.7); padding: 3rem 0; text-align: center; }
+        footer a { color: var(--gold-light); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--gold); }
+        footer p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+        footer .ip-note { font-size: 0.78rem; opacity: 0.55; margin-top: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.7; }
 
-        /* Responsive */
+        /* ── Responsive ── */
         @media (max-width: 900px) {
-            .radar-inner {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .radar-visual {
-                order: -1;
-            }
-            .radar-svg-wrap {
-                width: 260px;
-                height: 260px;
-            }
+            .example-cols { grid-template-columns: 1fr; }
+            .platform-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .offerings-grid { grid-template-columns: 1fr; }
+            .foundation-inner { grid-template-columns: 1fr; gap: 3rem; }
+            .proof-bar-inner { gap: 1.5rem; }
+            .proof-divider { display: none; }
+        }
+        @media (max-width: 480px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--charcoal-deep); flex-direction: column; gap: 0; padding: 1rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(198,160,111,0.2); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 1rem 2rem; }
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+            .hero-ctas { flex-direction: column; }
+            .demo-ctas { flex-direction: column; align-items: center; }
+        }
+
+        /* ── Poll component ── */
+
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+            --threat: #C0392B;
+            --threat-light: #E8A090;
+            --neutral: #888;
+            --opportunity: #2E7D32;
+            --opportunity-light: #81C784;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--ivory); color: var(--charcoal); }
+
+        .poll-section { padding: 6rem 0; background: var(--white); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .section-eyebrow {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 0.8rem;
+        }
+        .section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+
+        .poll-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400;
+            color: var(--charcoal-deep); line-height: 1.2; margin-bottom: 1rem;
+        }
+        .poll-subhead {
+            font-size: 1.05rem; font-weight: 300; color: var(--charcoal);
+            max-width: 700px; margin-bottom: 3.5rem; line-height: 1.8;
+        }
+
+        /* ── Step indicator ── */
+        .step-indicator {
+            display: flex; gap: 0; margin-bottom: 3rem;
+            border-bottom: 2px solid rgba(198,160,111,0.2);
+        }
+        .step {
+            padding: 0.75rem 1.5rem; font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(74,74,72,0.35); border-bottom: 2px solid transparent;
+            margin-bottom: -2px; transition: all 0.3s;
+        }
+        .step.active { color: var(--gold-dark); border-bottom-color: var(--gold); }
+        .step.complete { color: var(--charcoal); }
+
+        /* ── Scenario panels ── */
+        .scenario-panel { display: none; }
+        .scenario-panel.active { display: block; }
+
+        .scenario-card {
+            border: 1px solid rgba(198,160,111,0.25);
+            background: var(--white); margin-bottom: 2rem;
+        }
+        .scenario-header {
+            padding: 1.25rem 2rem; border-bottom: 1px solid rgba(198,160,111,0.15);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .scenario-num {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold-dark);
+        }
+        .scenario-tag {
+            font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+            text-transform: uppercase; padding: 0.25rem 0.7rem;
+            border: 1px solid rgba(198,160,111,0.3); color: var(--charcoal);
+        }
+        .scenario-tag.with { border-color: var(--gold); color: var(--gold-dark); }
+        .scenario-quote {
+            padding: 2rem 2rem 1.75rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.45rem; font-style: italic; font-weight: 400;
+            color: var(--charcoal-deep); line-height: 1.6;
+        }
+
+        /* ── Question blocks ── */
+        .question-block { padding: 1.5rem 2rem 2rem; border-top: 1px solid rgba(198,160,111,0.12); }
+        .question-block + .question-block { border-top: 1px solid rgba(198,160,111,0.12); }
+        .q-label {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--charcoal-deep);
+            margin-bottom: 1.25rem;
+        }
+        .q-sublabel {
+            font-size: 0.82rem; font-weight: 300; color: rgba(74,74,72,0.65);
+            margin-top: 0.25rem; letter-spacing: 0; text-transform: none;
+            font-style: italic;
+        }
+
+        /* ── Emotion grid ── */
+        .emotion-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem;
+        }
+        .emotion-btn {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 0.75rem 0.5rem; background: none;
+            border: 1px solid rgba(198,160,111,0.2); cursor: pointer;
+            transition: all 0.2s; font-family: 'Montserrat', sans-serif;
+        }
+        .emotion-btn:hover { border-color: var(--gold); background: rgba(198,160,111,0.05); }
+        .emotion-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.1); }
+        .emotion-btn.voted { cursor: default; }
+        .emotion-btn .emoji { font-size: 1.6rem; margin-bottom: 0.35rem; }
+        .emotion-btn .emotion-label {
+            font-size: 0.7rem; font-weight: 500; color: var(--charcoal);
+            text-align: center; line-height: 1.3;
+        }
+        .emotion-btn .emotion-pct {
+            font-size: 0.72rem; font-weight: 600; color: var(--gold-dark);
+            margin-top: 0.3rem; opacity: 0; transition: opacity 0.4s;
+        }
+        .emotion-btn.voted .emotion-pct { opacity: 1; }
+
+        /* ── Interpretation options ── */
+        .interp-options { display: flex; flex-direction: column; gap: 0.5rem; }
+        .interp-btn {
+            display: flex; align-items: center; width: 100%;
+            padding: 0.75rem 1rem; background: none;
+            border: 1px solid rgba(198,160,111,0.2); cursor: pointer;
+            text-align: left; font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem; font-weight: 300; color: var(--charcoal);
+            transition: all 0.2s; position: relative; overflow: hidden;
+        }
+        .interp-btn:hover { border-color: var(--gold); color: var(--charcoal-deep); background: rgba(198,160,111,0.04); }
+        .interp-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.08); }
+        .interp-btn.voted { cursor: default; }
+        .interp-btn .bar-fill {
+            position: absolute; left: 0; top: 0; bottom: 0;
+            background: rgba(198,160,111,0.12); width: 0%;
+            transition: width 0.8s ease; pointer-events: none;
+        }
+        .interp-btn.selected .bar-fill { background: rgba(198,160,111,0.18); }
+        .interp-btn .btn-text { position: relative; z-index: 1; flex: 1; }
+        .interp-btn .pct {
+            position: relative; z-index: 1; font-size: 0.82rem; font-weight: 600;
+            color: var(--gold-dark); margin-left: 1rem; min-width: 2.5rem;
+            text-align: right; opacity: 0; transition: opacity 0.4s;
+        }
+        .interp-btn.voted .pct { opacity: 1; }
+
+        /* ── Vote count ── */
+        .vote-count {
+            margin-top: 0.75rem; font-size: 0.78rem; font-weight: 400;
+            color: rgba(74,74,72,0.45); min-height: 1.2rem;
+        }
+
+        /* ── Next button ── */
+        .next-wrap { margin-top: 2rem; }
+        .next-btn {
+            display: inline-block; background: var(--gold); color: var(--white);
+            border: none; padding: 0.9rem 2.5rem; font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+            opacity: 0.4; pointer-events: none;
+        }
+        .next-btn.ready { opacity: 1; pointer-events: auto; }
+        .next-btn:hover { background: var(--gold-dark); }
+
+        /* ── Comparison view ── */
+        .comparison-view { display: none; }
+        .comparison-view.active { display: block; }
+
+        .comparison-intro {
+            margin-bottom: 3rem; max-width: 720px;
+        }
+        .comparison-intro h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 2rem;
+            font-weight: 400; color: var(--charcoal-deep); margin-bottom: 0.75rem;
+        }
+        .comparison-intro p { font-size: 1rem; font-weight: 300; line-height: 1.8; }
+
+        /* Emotion spectrum comparison */
+        .spectrum-comparison { margin-bottom: 3rem; }
+        .spectrum-title {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1.5rem;
+        }
+        .spectrum-grid {
+            display: grid; grid-template-columns: repeat(10, 1fr); gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .spectrum-col { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+        .spectrum-col .emoji-sm { font-size: 1.2rem; }
+        .spectrum-col .label-sm {
+            font-size: 0.62rem; font-weight: 500; color: var(--charcoal);
+            text-align: center; line-height: 1.2; min-height: 2rem;
+        }
+        /* Bar pair for each emotion */
+        .bar-pair { display: flex; gap: 2px; align-items: flex-end; width: 100%; height: 80px; }
+        .bar-s1, .bar-s2 { flex: 1; transition: height 1s ease; border-radius: 1px 1px 0 0; min-height: 2px; }
+        .bar-s1 { background: rgba(74,74,72,0.4); }
+        .bar-s2 { background: var(--gold); }
+        .spectrum-legend {
+            display: flex; gap: 2rem; justify-content: center; margin-top: 1rem;
+            font-size: 0.78rem; font-weight: 500;
+        }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 1px; }
+        .legend-dot.s1 { background: rgba(74,74,72,0.4); }
+        .legend-dot.s2 { background: var(--gold); }
+
+        /* Interpretation comparison */
+        .interp-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+        .interp-comp-card { }
+        .interp-comp-title {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--charcoal); margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 2px solid rgba(198,160,111,0.2);
+        }
+        .interp-comp-title.s2 { border-bottom-color: var(--gold); color: var(--gold-dark); }
+        .comp-bar-row { margin-bottom: 0.6rem; }
+        .comp-bar-label { font-size: 0.82rem; font-weight: 300; color: var(--charcoal); margin-bottom: 0.25rem; display: flex; justify-content: space-between; }
+        .comp-bar-label span { font-weight: 600; color: var(--gold-dark); }
+        .comp-bar-track { background: rgba(198,160,111,0.12); height: 8px; border-radius: 4px; overflow: hidden; }
+        .comp-bar-fill { height: 100%; background: rgba(74,74,72,0.35); border-radius: 4px; transition: width 1s ease; }
+        .comp-bar-fill.s2 { background: var(--gold); }
+
+        /* Summary panel */
+        .poll-summary {
+            padding: 2.5rem; background: var(--charcoal-deep); color: var(--white);
+            margin-top: 2rem;
+        }
+        .shift-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem;
+        }
+        .poll-summary p {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+            font-style: italic; font-weight: 300; line-height: 1.6;
+            color: var(--white); margin-bottom: 1rem;
+        }
+        .cta-line { font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.7); margin-bottom: 0 !important; }
+        .cta-line a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(198,160,111,0.4); }
+
+        .reset-btn {
+            margin-top: 1.5rem; background: none; border: none;
+            color: rgba(74,74,72,0.45); font-size: 0.78rem; font-weight: 500;
+            letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+            text-decoration: underline; display: block;
         }
 
         @media (max-width: 768px) {
-            .offerings-grid {
-                grid-template-columns: 1fr;
-            }
+            .emotion-grid { grid-template-columns: repeat(5, 1fr); }
+            .spectrum-grid { grid-template-columns: repeat(5, 1fr); }
+            .interp-comparison { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 480px) {
-            .nav-links {
-            .journey-grid { grid-template-columns: 1fr; }
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--charcoal-deep);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 1rem 2rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                position: relative;
-            }
-
-            .radar-form-row {
-                flex-direction: column;
-            }
+            .emotion-grid { grid-template-columns: repeat(5, 1fr); }
+            .emotion-btn .emoji { font-size: 1.2rem; }
         }
+    
     </style>
 </head>
 <body>
+
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <button class="mobile-menu-btn" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="dna-workshops.html">DNA Workshop Suite™</a></li>
@@ -791,244 +725,345 @@
         </div>
     </nav>
 
-    <header>
+    <!-- ── HERO ── -->
+    <header class="hero">
         <div class="container">
-            <div class="logo">NOESPERA STUDIO</div>
-            <div class="subtitle">Applied Organizational Meaning Science™</div>
-            <h1>In every interaction, every communication, every behavior, interpretations are forming. Do you know what they are?</h1>
-            <div class="accent-line"></div>
-            
-            <p class="large-text">Whether you're starting with an idea, growing a team, or leading an established organization, you're in the right place. We help leaders understand how meaning moves through their teams, how decisions, communications, and behaviors get interpreted, so you can lead with clarity and move together.</p>
+            <div class="hero-content">
+                <p class="hero-eyebrow">Applied Organizational Meaning Science™</p>
+                <h1>Your organization is full of intelligent people making decisions based on what they <em>think</em> is happening.</h1>
+                <p class="hero-sub">The gap between what's actually happening and what people believe is happening — that's not a communication problem. That's a meaning problem. We measure it.</p>
+                <div class="hero-ctas">
+                    <a href="contact.html" class="btn-primary">Book a Demo</a>
+                    <a href="about.html" class="btn-outline">Meet Dr. Joan deBien-Trammell</a>
+                </div>
+            </div>
         </div>
-        
-        <svg class="header-graphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" style="position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 50%; height: auto; opacity: 0.15; pointer-events: none;">
-            <defs>
-                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#C6A06F;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#A68B4E;stop-opacity:0.6" />
-                </linearGradient>
-            </defs>
-            <circle cx="200" cy="150" r="40" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
-            <circle cx="400" cy="100" r="50" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
-            <circle cx="600" cy="200" r="35" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
-            <circle cx="300" cy="350" r="45" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
-            <circle cx="550" cy="400" r="38" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
-            <line x1="200" y1="150" x2="400" y2="100" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
-            <line x1="400" y1="100" x2="600" y2="200" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
-            <line x1="200" y1="150" x2="300" y2="350" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
-            <line x1="400" y1="100" x2="300" y2="350" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
-            <line x1="600" y1="200" x2="550" y2="400" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
-            <line x1="300" y1="350" x2="550" y2="400" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5"/>
-            <circle cx="300" cy="225" r="8" fill="#C6A06F" opacity="0.3"/>
-            <circle cx="475" cy="250" r="6" fill="#C6A06F" opacity="0.3"/>
-            <circle cx="425" cy="475" r="7" fill="#C6A06F" opacity="0.3"/>
-        </svg>
     </header>
 
-    <!-- ═══════════════════════════════════════════════
-         MEANING RADAR™ TEASER SECTION
-         ═══════════════════════════════════════════════ -->
-    <section class="meaning-radar-teaser">
+    <!-- ── PROOF BAR ── -->
+    <div class="proof-bar">
         <div class="container">
-            <div class="radar-inner">
+            <div class="proof-bar-inner">
+                <span class="proof-item">30+ Years Organizational Leadership</span>
+                <span class="proof-divider">·</span>
+                <span class="proof-item">Gallup · L'Oréal · J&J · Pierre Fabre · Sandoz</span>
+                <span class="proof-divider">·</span>
+                <span class="proof-item">Doctorate in Strategic Leadership</span>
+                <span class="proof-divider">·</span>
+                <span class="proof-item">Patent-Pending Instrument Suite</span>
+            </div>
+        </div>
+    </div>
 
-                <!-- Left: Copy -->
-                <div>
-                    <div class="radar-label">Coming Soon</div>
-                    <h2 class="radar-teaser-heading">Meaning Radar™<br><em>See what's actually moving through your organization.</em></h2>
+<section class="poll-section">
+    <div class="container">
 
-                    <p class="radar-teaser-body">Most leaders operate on assumptions about how their decisions, communications, and culture are landing. Meaning Radar™ replaces assumption with precision — a proprietary diagnostic platform that maps meaning climate across your organization in real time.</p>
+        <p class="section-eyebrow">Experience it yourself</p>
+        <h2 class="poll-headline">Same message. What's your reaction?</h2>
+        <p class="poll-subhead">Read each scenario as if a manager just said this to you. Share your honest emotional reaction and your interpretation — then see how the full range of responses shifts between scenarios.</p>
 
-                    <p class="radar-teaser-body">Grounded in the ITES™ instrument and the Meaning Climate Index™, Meaning Radar™ surfaces interpretive patterns, alignment gaps, and climate conditions at every level — from individual contributor to the executive suite — so you can lead with actual intelligence, not educated guesses.</p>
+        <!-- Step indicator -->
+        <div class="step-indicator">
+            <div class="step active" id="step1">Scenario 1</div>
+            <div class="step" id="step2">Scenario 2</div>
+            <div class="step" id="step3">See the shift</div>
+        </div>
 
-                    <button class="radar-access-btn" onclick="toggleRadarForm()">Request Early Access</button>
+        <!-- ── SCENARIO 1 ── -->
+        <div class="scenario-panel active" id="panel1">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-num">Scenario 1 of 2</span>
+                    
+                </div>
+                <div class="scenario-quote">"Come to my office in 15 minutes. We need to talk."</div>
 
-                    <div class="radar-form-wrap" id="radarForm">
-                        <p>We're opening Meaning Radar™ to a small group of founding organizations. Tell us a little about yourself and we'll be in touch.</p>
-                        <div class="radar-form-row">
-                            <input type="text" class="radar-input" placeholder="Your name" id="radarName" />
-                            <input type="email" class="radar-input" placeholder="Work email" id="radarEmail" />
-                        </div>
-                        <select class="radar-select" id="radarRole">
-                            <option value="" disabled selected>Your role in the organization</option>
-                            <option value="ic">Individual Contributor</option>
-                            <option value="team-leader">Team Leader</option>
-                            <option value="division-leader">Division Leader</option>
-                            <option value="executive">CEO / Executive</option>
-                            <option value="consultant">Consultant / Advisor</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="text" class="radar-input" placeholder="Organization name" id="radarOrg" style="width: 100%; margin-bottom: 1.2rem;" />
-                        <br/>
-                        <button class="radar-submit" onclick="submitRadarForm()">Submit Request</button>
+                <!-- Q1: Emotional reaction -->
+                <div class="question-block">
+                    <p class="q-label">Your immediate reaction
+                        <span class="q-sublabel">Your gut response — before you think about it</span>
+                    </p>
+                    <div class="emotion-grid" id="emotions1">
+                        <button class="emotion-btn" onclick="voteEmotion(1,0)"><span class="emoji">😰</span><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,1)"><span class="emoji">😨</span><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,2)"><span class="emoji">😞</span><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,3)"><span class="emoji">😑</span><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,4)"><span class="emoji">😐</span><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,5)"><span class="emoji">🤔</span><span class="emotion-label">Curious</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,6)"><span class="emoji">🙂</span><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,7)"><span class="emoji">😊</span><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,8)"><span class="emoji">😄</span><span class="emotion-label">Excited</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(1,9)"><span class="emoji">🤩</span><span class="emotion-label">Energized</span><span class="emotion-pct"></span></button>
                     </div>
+                    <div class="vote-count" id="emotioncount1"></div>
+                </div>
 
-                    <div class="radar-success" id="radarSuccess">
-                        Thank you. We'll be in touch shortly about early access to Meaning Radar™.
+                <!-- Q2: Interpretation -->
+                <div class="question-block">
+                    <p class="q-label">Your interpretation
+                        <span class="q-sublabel">What's going through your mind right now?</span>
+                    </p>
+                    <div class="interp-options" id="interp1">
+                        <button class="interp-btn" onclick="voteInterp(1,0)" style="border-color:rgba(192,57,43,0.3);"><div class="bar-fill"></div><span class="btn-text" style="font-style:italic;font-weight:500;">Oh no.</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,1)"><div class="bar-fill"></div><span class="btn-text">Something is wrong — I'm worried</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,2)"><div class="bar-fill"></div><span class="btn-text">I'm probably in trouble</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,3)"><div class="bar-fill"></div><span class="btn-text">I wonder if I can reschedule — I'm not ready for this</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,4)"><div class="bar-fill"></div><span class="btn-text">Could be anything — hard to tell</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,5)"><div class="bar-fill"></div><span class="btn-text">Honestly, I'm fine with it</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,6)"><div class="bar-fill"></div><span class="btn-text">I'm curious what they want to discuss</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(1,7)"><div class="bar-fill"></div><span class="btn-text">I'm actually looking forward to it</span><span class="pct"></span></button>
                     </div>
+                    <div class="vote-count" id="interpcount1"></div>
+                </div>
+            </div>
 
-                    <div class="radar-participants">
-                        <div class="radar-participants-label">Designed for every level of leadership</div>
-                        <div class="participant-badges">
-                            <span class="participant-badge">Individual Contributors</span>
-                            <span class="participant-badge">Team Leaders</span>
-                            <span class="participant-badge">Division Leaders</span>
-                            <span class="participant-badge">C-Suite &amp; Executives</span>
-                        </div>
+            <div class="next-wrap">
+                <button class="next-btn" id="next1" onclick="goToScenario2()">Next scenario →</button>
+            </div>
+        </div>
+
+        <!-- ── SCENARIO 2 ── -->
+        <div class="scenario-panel" id="panel2">
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-num">Scenario 2 of 2</span>
+                    
+                </div>
+                <div class="scenario-quote">"I saw your report — it's amazing. I have some thoughts. Come by in about 15 minutes."</div>
+
+                <!-- Q1: Emotional reaction -->
+                <div class="question-block">
+                    <p class="q-label">Your immediate reaction
+                        <span class="q-sublabel">Your gut response — before you think about it</span>
+                    </p>
+                    <div class="emotion-grid" id="emotions2">
+                        <button class="emotion-btn" onclick="voteEmotion(2,0)"><span class="emoji">😰</span><span class="emotion-label">Anxious / stressed</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,1)"><span class="emoji">😨</span><span class="emotion-label">Fearful</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,2)"><span class="emoji">😞</span><span class="emotion-label">Deflated</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,3)"><span class="emoji">😑</span><span class="emotion-label">Resigned / numb</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,4)"><span class="emoji">😐</span><span class="emotion-label">Neutral — waiting</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,5)"><span class="emoji">🤔</span><span class="emotion-label">Curious</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,6)"><span class="emoji">🙂</span><span class="emotion-label">Calm / unbothered</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,7)"><span class="emoji">😊</span><span class="emotion-label">Encouraged</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,8)"><span class="emoji">😄</span><span class="emotion-label">Excited</span><span class="emotion-pct"></span></button>
+                        <button class="emotion-btn" onclick="voteEmotion(2,9)"><span class="emoji">🤩</span><span class="emotion-label">Energized</span><span class="emotion-pct"></span></button>
+                    </div>
+                    <div class="vote-count" id="emotioncount2"></div>
+                </div>
+
+                <!-- Q2: Interpretation -->
+                <div class="question-block">
+                    <p class="q-label">Your interpretation
+                        <span class="q-sublabel">What's going through your mind right now?</span>
+                    </p>
+                    <div class="interp-options" id="interp2">
+                        <button class="interp-btn" onclick="voteInterp(2,0)"><div class="bar-fill"></div><span class="btn-text">I wonder if they really mean it</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(2,1)"><div class="bar-fill"></div><span class="btn-text">I'm a little cautious — not sure what to expect</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(2,2)"><div class="bar-fill"></div><span class="btn-text">Could be anything — staying neutral</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(2,3)"><div class="bar-fill"></div><span class="btn-text">I'm curious what they want to change</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(2,4)"><div class="bar-fill"></div><span class="btn-text">I feel recognized — this feels good</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(2,5)"><div class="bar-fill"></div><span class="btn-text">I'm genuinely excited for the conversation</span><span class="pct"></span></button>
+                        <button class="interp-btn" onclick="voteInterp(2,6)"><div class="bar-fill"></div><span class="btn-text">I can't wait — this is great news</span><span class="pct"></span></button>
+                    </div>
+                    <div class="vote-count" id="interpcount2"></div>
+                </div>
+            </div>
+
+            <div class="next-wrap">
+                <button class="next-btn" id="next2" onclick="showComparison()">See the shift →</button>
+            </div>
+        </div>
+
+        <!-- ── COMPARISON VIEW ── -->
+        <div class="comparison-view" id="comparisonView">
+
+            <div class="comparison-intro">
+                <h3>The range shifted.</h3>
+                <p>Here's what was different between the two scenarios.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0 2rem;">
+                    <div style="padding:1.25rem 1.5rem;border-top:3px solid rgba(74,74,72,0.3);background:var(--ivory);">
+                        <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);margin-bottom:0.75rem;">Scenario 1 — no stewardship</p>
+                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--charcoal-deep);margin-bottom:0;line-height:1.5;">&ldquo;Come to my office in 15 minutes. We need to talk.&rdquo;</p>
+                    </div>
+                    <div style="padding:1.25rem 1.5rem;border-top:3px solid var(--gold);background:var(--ivory);">
+                        <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:0.75rem;">Scenario 2 — with stewardship</p>
+                        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--charcoal-deep);margin-bottom:0;line-height:1.5;">&ldquo;I saw your report &mdash; it's amazing. I have some thoughts. Come by in about 15 minutes.&rdquo;</p>
+                    </div>
+                </div>
+                <p>Same request. The framing changed. Below is how everyone who has responded reacted &mdash; emotionally and interpretively &mdash; to each. The shift between them is what Organizational Meaning Science&trade; measures across your entire organization.</p>
+            </div>
+
+            <!-- Emotional spectrum side-by-side bars -->
+            <div class="spectrum-comparison">
+                <p class="spectrum-title">Emotional reaction — how the range shifted</p>
+                <div class="spectrum-grid" id="spectrumGrid">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="spectrum-legend">
+                    <div class="legend-item"><div class="legend-dot s1"></div><span>Scenario 1 — without stewardship</span></div>
+                    <div class="legend-item"><div class="legend-dot s2"></div><span>Scenario 2 — stewardship shifts the range</span></div>
+                </div>
+            </div>
+
+            <!-- Interpretation comparison -->
+            <div class="interp-comparison" id="interpComparison">
+                <div class="interp-comp-card">
+                    <p class="interp-comp-title">Scenario 1 — how people interpreted it</p>
+                    <div id="interpBars1"></div>
+                </div>
+                <div class="interp-comp-card">
+                    <p class="interp-comp-title s2">Scenario 2 — how people interpreted it</p>
+                    <div id="interpBars2"></div>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="poll-summary">
+                <span class="shift-label">Progress, not perfection</span>
+                <p>"Stewarding meaning doesn't eliminate interpretation — it shapes the conditions so interpretation leads forward, not backward. Now imagine seeing this data across every team in your organization, in real time."</p>
+                <p class="cta-line">That's what Meaning Radar™ does. <a href="contact.html">Book a demo →</a></p>
+            </div>
+
+            <button class="reset-btn" onclick="resetPoll()">Start over</button>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- ── PLATFORM — Meaning Radar ── -->
+    <section class="platform-section">
+        <div class="container">
+            <div class="platform-grid">
+                <div class="platform-copy">
+                    <h2>Meaning Radar™</h2>
+                    <p class="platform-distinction">Most leaders operate on assumptions about how their decisions, communications, and culture are landing. Meaning Radar™ replaces assumption with precision.</p>
+                    <p style="color: rgba(255,255,255,0.75);">A proprietary diagnostic platform grounded in the ITES™ instrument — measuring interpretive patterns, alignment gaps, and meaning climate conditions at every level of your organization in real time.</p>
+                    <ul class="platform-features">
+                        <li>Individual Interpretive Profiles for every participant</li>
+                        <li>Team and department-level meaning climate reports</li>
+                        <li>Leadership Interpretive Gap™ — the delta between how leaders think meaning is landing and how it actually is</li>
+                        <li>Role-filtered intelligence: Executive, Department Head, Team Leader, Individual</li>
+                        <li>Longitudinal tracking — measure how meaning climate shifts over time</li>
+                    </ul>
+                    <div class="platform-ctas">
+                        <a href="contact.html" class="btn-primary">Book a Demo</a>
                     </div>
                 </div>
 
-                <!-- Right: Radar Visual -->
-                <div class="radar-visual">
-                    <div class="radar-svg-wrap">
-                        <svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <div class="platform-visual">
+                    <div class="radar-container">
+                        <svg class="radar-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <radialGradient id="radarBg" cx="50%" cy="50%" r="50%">
-                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0.06"/>
+                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0.08"/>
                                     <stop offset="100%" stop-color="#C6A06F" stop-opacity="0"/>
                                 </radialGradient>
                                 <linearGradient id="sweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0.5"/>
-                                    <stop offset="100%" stop-color="#C6A06F" stop-opacity="0"/>
+                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0"/>
+                                    <stop offset="100%" stop-color="#C6A06F" stop-opacity="0.4"/>
                                 </linearGradient>
+                                <radialGradient id="trailGrad" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#C6A06F" stop-opacity="0.35"/>
+                                    <stop offset="100%" stop-color="#C6A06F" stop-opacity="0"/>
+                                </radialGradient>
                             </defs>
-
-                            <!-- Background fill -->
-                            <circle cx="170" cy="170" r="160" fill="url(#radarBg)"/>
-
-                            <!-- Concentric rings -->
-                            <circle cx="170" cy="170" r="40"  fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.25"/>
-                            <circle cx="170" cy="170" r="80"  fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.2"/>
-                            <circle cx="170" cy="170" r="120" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.15"/>
-                            <circle cx="170" cy="170" r="160" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.12"/>
-
+                            <!-- Background -->
+                            <circle cx="200" cy="200" r="190" fill="rgba(198,160,111,0.04)" stroke="rgba(198,160,111,0.15)" stroke-width="1"/>
+                            <!-- Rings -->
+                            <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(198,160,111,0.12)" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="110" fill="none" stroke="rgba(198,160,111,0.12)" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="70" fill="none" stroke="rgba(198,160,111,0.12)" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="30" fill="none" stroke="rgba(198,160,111,0.2)" stroke-width="1"/>
                             <!-- Cross hairs -->
-                            <line x1="170" y1="10"  x2="170" y2="330" stroke="#C6A06F" stroke-width="0.75" opacity="0.15"/>
-                            <line x1="10"  y1="170" x2="330" y2="170" stroke="#C6A06F" stroke-width="0.75" opacity="0.15"/>
-                            <line x1="56"  y1="56"  x2="284" y2="284" stroke="#C6A06F" stroke-width="0.5" opacity="0.1"/>
-                            <line x1="284" y1="56"  x2="56"  y2="284" stroke="#C6A06F" stroke-width="0.5" opacity="0.1"/>
-
+                            <line x1="200" y1="10" x2="200" y2="390" stroke="rgba(198,160,111,0.1)" stroke-width="1"/>
+                            <line x1="10" y1="200" x2="390" y2="200" stroke="rgba(198,160,111,0.1)" stroke-width="1"/>
+                            <line x1="54" y1="54" x2="346" y2="346" stroke="rgba(198,160,111,0.07)" stroke-width="1"/>
+                            <line x1="346" y1="54" x2="54" y2="346" stroke="rgba(198,160,111,0.07)" stroke-width="1"/>
                             <!-- Sweep arm -->
                             <g class="radar-sweep">
-                                <path d="M170 170 L170 10 A160 160 0 0 1 330 170 Z" fill="url(#sweepGrad)" opacity="0.18"/>
-                                <line x1="170" y1="170" x2="170" y2="10" stroke="#C6A06F" stroke-width="1.5" opacity="0.6"/>
+                                <!-- Trail wedge goes BEHIND (counter-clockwise from) the sweep line -->
+                                <path d="M200,200 L200,12 A188,188 0 0,0 12,274 Z" fill="url(#trailGrad)" opacity="0.6"/>
+                                <!-- Bright edge at leading sweep line -->
+                                <line x1="200" y1="200" x2="200" y2="12" stroke="#C6A06F" stroke-width="2" opacity="0.9"/>
                             </g>
-
-                            <!-- Data points — static blips -->
-                            <circle cx="210" cy="110" r="5" fill="#C6A06F" opacity="0.7">
-                                <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3.2s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="130" cy="200" r="4" fill="#C6A06F" opacity="0.5">
-                                <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4.1s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="240" cy="220" r="3.5" fill="#C6A06F" opacity="0.6">
-                                <animate attributeName="opacity" values="0.6;0.15;0.6" dur="2.8s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="100" cy="130" r="4.5" fill="#C6A06F" opacity="0.4">
-                                <animate attributeName="opacity" values="0.4;0.08;0.4" dur="5s" repeatCount="indefinite"/>
-                            </circle>
-                            <circle cx="195" cy="255" r="3" fill="#C6A06F" opacity="0.55">
-                                <animate attributeName="opacity" values="0.55;0.1;0.55" dur="3.7s" repeatCount="indefinite"/>
-                            </circle>
-
+                            <!-- Data points -->
+                            <circle class="radar-dot" cx="280" cy="130" r="5" fill="#C6A06F"/>
+                            <circle class="radar-dot" cx="280" cy="130" r="10" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.4"/>
+                            <circle class="radar-dot-2" cx="145" cy="255" r="4" fill="#C6A06F"/>
+                            <circle class="radar-dot-2" cx="145" cy="255" r="9" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.4"/>
+                            <circle class="radar-dot-3" cx="310" cy="270" r="6" fill="#E8D5A8"/>
+                            <circle class="radar-dot-3" cx="310" cy="270" r="12" fill="none" stroke="#E8D5A8" stroke-width="1" opacity="0.3"/>
+                            <circle class="radar-dot" cx="120" cy="155" r="3" fill="#C6A06F" style="animation-delay: 0.3s"/>
+                            <circle class="radar-dot-2" cx="240" cy="320" r="4" fill="#C6A06F" style="animation-delay: 1s"/>
                             <!-- Center dot -->
-                            <circle cx="170" cy="170" r="4" fill="#C6A06F" opacity="0.9"/>
-                            <circle cx="170" cy="170" r="8" fill="none" stroke="#C6A06F" stroke-width="1" opacity="0.4"/>
+                            <circle cx="200" cy="200" r="4" fill="#C6A06F" opacity="0.8"/>
+                            <!-- Label -->
+                            <text x="200" y="385" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="11" font-weight="500" letter-spacing="3" fill="rgba(198,160,111,0.6)">MEANING RADAR™</text>
                         </svg>
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════ -->
-
-    <section class="journey-section">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem;">How is meaning flowing through your team, brand, or organization?</h2>
-            
-            <div style="max-width: 900px; margin: 0 auto 4rem;">
-                <p class="large-text">Meaning moves through organizations whether you're paying attention or not. People interpret decisions, behaviors, communications, your brand, your leadership through their own lenses—and apply their own meaning. Understanding how meaning flows—the organizational meaning climate—means seeing what's working, what's neutral, and what needs adjustment. Leadership isn't about controlling how people interpret your decisions or communications. It's about stewarding meaning authentically so people can understand, interpret clearly, and move together. When meaning aligns, adoption happens naturally and engagement holds.</p>
-            </div>
-
-            <div style="max-width: 900px; margin: 0 auto 4rem; padding: 2.5rem; background: var(--white); border-left: 4px solid var(--gold);">
-                <h3 style="color: var(--gold-dark); margin-bottom: 1.5rem;">Here's what this looks like in practice:</h3>
-                
-                <p style="margin-bottom: 1rem;">A manager says: <em>"Come to my office in 15 minutes. We need to talk."</em></p>
-                
-                <p style="margin-bottom: 1rem;">Depending on tone, relationship, and recent context, people might interpret:</p>
-                <ul style="list-style: none; margin: 1rem 0 1.5rem 1.5rem;">
-                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"I'm getting fired."</em></li>
-                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"I'm in trouble—what did I do?"</em></li>
-                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"There's an emergency."</em></li>
-                </ul>
-                
-                <p style="margin-bottom: 1rem;">Now imagine instead: <em>"I saw your report—it's amazing. I have some thoughts. Come to my office in about 15 minutes so we can talk about it."</em></p>
-                
-                <p style="margin-bottom: 1rem;">Interpretation shifts to:</p>
-                <ul style="list-style: none; margin: 1rem 0 1.5rem 1.5rem;">
-                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"Collaborative feedback session."</em></li>
-                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"What changes are they thinking?"</em></li>
-                    <li style="margin: 0.5rem 0; color: var(--charcoal);">→ <em>"Are they being genuine?"</em></li>
-                </ul>
-                
-                <p style="font-weight: 500; margin-top: 1.5rem;">Same request. Different framing. The interpretation range shifts from anxiety to curiosity.</p>
-                
-                <p style="margin-top: 1.5rem;">Stewarding meaning doesn't eliminate interpretation—it shapes the conditions so interpretation leads forward, not backward.</p>
-            </div>
-
-            <div style="max-width: 900px; margin: 0 auto; padding: 2.5rem; background: var(--ivory); border-left: 4px solid var(--gold-dark);">
-                <h3 style="color: var(--gold-dark); margin-bottom: 1.5rem;">Stewarding meaning isn't about manipulation—it's about adaptation.</h3>
-                
-                <p>When you understand someone's past experiences, their relationship with you, what they need to interpret clearly—you can adjust your tone, your body language, your framing to match their energy. Not because you're being fake, but because you care about being understood.</p>
-                
-                <p style="margin-top: 1.5rem;">That's the difference between controlling meaning and stewarding it.</p>
             </div>
         </div>
     </section>
 
-    <section class="foundation">
-        <div class="container">
-            <div class="intro-box">
-                <h2>The Foundation</h2>
-                <p class="large-text">Noespera Studio provides meaning-based strategy and advisory across organizational, brand, and people dimensions—from early-stage business building through enterprise-level leadership development and board governance.</p>
-                <p>Grounded in Organizational Meaning Science™, a proprietary research discipline examining how meaning functions as a systemic force, our work helps organizations make coherent decisions in complex, high-stakes environments.</p>
-                <p>Drawing on 30+ years of strategic leadership experience across organizations including Gallup, L'Oréal, Johnson & Johnson, Pierre Fabre, and Sandoz Biopharmaceuticals, we translate organizational complexity into durable frameworks, decision architectures, and participatory methodologies.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="offerings-preview">
+    <!-- ── OFFERINGS ── -->
+    <section class="offerings-section">
         <div class="container">
             <h2>What We Offer</h2>
-            
+            <p class="offerings-intro">Delivered as standalone engagements or as a sequenced suite — the work meets your organization where it is.</p>
+
             <div class="offerings-grid">
                 <div class="offering-card">
                     <h3>DNA Workshop Suite™</h3>
-                    <p>A proprietary facilitated methodology developed and deployed across scaling consumer brands, enterprise organizations, startups, and nonprofit boards. Surfaces foundational meaning through Brand DNA™, Team DNA™, Board DNA™, Leadership Team DNA™, Investor DNA™, and Custom DNA Frameworks.</p>
-                    <a href="dna-workshops.html" class="btn">Explore DNA Workshops</a>
+                    <p>Proprietary facilitated methodology surfacing foundational meaning through Brand DNA™, Team DNA™, Board DNA™, Leadership Team DNA™, Investor DNA™, and Custom DNA Frameworks. Deployed across scaling brands, enterprise organizations, and nonprofit boards.</p>
+                    <a href="dna-workshops.html" class="offering-link">Explore DNA Workshops</a>
                 </div>
-
                 <div class="offering-card">
                     <h3>Strategic Advisory</h3>
-                    <p>Comprehensive practice extending across Organizational, Brand & Growth, and People & Performance dimensions. From business plan development and investor readiness to leadership development and culture design—addressing the full arc of organizational evolution.</p>
-                    <a href="services.html" class="btn">View All Services</a>
+                    <p>Comprehensive practice across Organizational, Brand & Growth, and People & Performance dimensions. From business plan development and investor readiness to leadership development and culture design — addressing the full arc of organizational evolution.</p>
+                    <a href="services.html" class="offering-link">View Full Practice Suite</a>
                 </div>
-
                 <div class="offering-card">
-                    <h3>Board & Leadership Advisory</h3>
-                    <p>Governance support for boards and fiduciary leadership navigating strategic change, mission alignment, or organizational transition. Executive coaching and training focused on sensemaking, decision architecture, and meaning stewardship.</p>
-                    <a href="services.html" class="btn">Learn More</a>
+                    <h3>Board &amp; Leadership Advisory</h3>
+                    <p>Governance support for boards and fiduciary leadership navigating strategic change, mission alignment, or organizational transition. Executive coaching focused on sensemaking, decision architecture, and meaning stewardship.</p>
+                    <a href="services.html" class="offering-link">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
+    <!-- ── DEMO CTA ── -->
+    <section class="demo-section">
         <div class="container">
-            <h2>Start the Conversation</h2>
-            <p class="large-text">Delivered as standalone engagements or as a sequenced suite—bundled or à la carte, in-person or virtual.</p>
-            <a href="contact.html" class="btn btn-light">Get in Touch</a>
+            <h2>See What's Moving Through Your Organization</h2>
+            <p class="demo-sub">A 20-minute demo conversation is all it takes to see whether this is the right moment to bring Meaning Radar™ into your organization.</p>
+            <p class="demo-detail">We work with leadership teams navigating transition, strategy that isn't landing, or cultures where the gap between intention and interpretation has become costly.</p>
+            <div class="demo-ctas">
+                <a href="contact.html" class="btn-dark">Book a Demo</a>
+                <a href="about.html" class="btn-gold-outline">About Dr. Joan deBien-Trammell</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOUNDATION ── -->
+    <section class="foundation-section">
+        <div class="container">
+            <div class="foundation-inner">
+                <div class="foundation-copy">
+                    <h2>Grounded in 30 Years of Organizational Reality</h2>
+                    <p>Noespera Studio was built from the inside of complex organizations — not from the outside looking in. The frameworks, instruments, and advisory practice are grounded in what actually happens when meaning moves through a real organization at scale.</p>
+                    <p>Organizational Meaning Science™ is a proprietary research discipline — not a methodology borrowed from elsewhere, adapted, or rebranded. It was developed to address a gap that decades of organizational work made impossible to ignore.</p>
+                    <a href="about.html" class="offering-link" style="margin-top: 0.5rem;">Read the full story</a>
+                </div>
+                <div class="foundation-logos">
+                    <div class="logo-item">Gallup <span>Enterprise Advisory — Fortune 500 transformation</span></div>
+                    <div class="logo-item">L'Oréal USA <span>$400M+ portfolio · National sales organization scaled 300%</span></div>
+                    <div class="logo-item">Johnson &amp; Johnson <span>Enterprise leadership &amp; organizational development</span></div>
+                    <div class="logo-item">Pierre Fabre USA <span>Commercial transformation · 275% marketplace expansion</span></div>
+                    <div class="logo-item">Sandoz Biopharmaceuticals <span>First FDA-approved biosimilar U.S. launch</span></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1036,76 +1071,220 @@
         <div class="container">
             <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
             <p style="margin-top: 1rem;">
-                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> | 
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> &nbsp;|&nbsp;
                 <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
             </p>
+            <p class="ip-note">Organizational Meaning Science™, DNA Workshop Suite™, Meaning Radar™, ITES™, and Meaning Architecture System™ are trademarks of Noespera Studio, LLC. Meaning Architecture System™ and ITES™ are patent pending. Additional filings in progress.</p>
         </div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-
-        function toggleRadarForm() {
-            const form = document.getElementById('radarForm');
-            const success = document.getElementById('radarSuccess');
-            if (success.classList.contains('visible')) return;
-            form.classList.toggle('visible');
-        }
-
-        async function submitRadarForm() {
-            const name  = document.getElementById('radarName').value.trim();
-            const email = document.getElementById('radarEmail').value.trim();
-            const role  = document.getElementById('radarRole').value;
-            const org   = document.getElementById('radarOrg').value.trim();
-
-            if (!name || !email || !role) {
-                alert('Please fill in your name, email, and role before submitting.');
-                return;
-            }
-
-            // Supabase connection — vasoyljaptexuzvhyvi
-            const SUPABASE_URL    = 'https://vasoyiljaptexuzvhyvi.supabase.co';
-            const SUPABASE_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
-
-            const submitBtn = document.querySelector('.radar-submit');
-            submitBtn.textContent = 'Submitting…';
-            submitBtn.disabled = true;
-
-            try {
-                const res = await fetch(`${SUPABASE_URL}/rest/v1/early_access_requests`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'apikey': SUPABASE_ANON,
-                        'Authorization': `Bearer ${SUPABASE_ANON}`,
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify({
-                        name:         name,
-                        email:        email,
-                        role:         role,
-                        organization: org,
-                        source:       'noesperastudio.com homepage'
-                    })
-                });
-
-                if (!res.ok) {
-                    throw new Error(`Supabase error: ${res.status}`);
-                }
-
-                document.getElementById('radarForm').classList.remove('visible');
-                document.getElementById('radarSuccess').classList.add('visible');
-
-            } catch (err) {
-                console.error('Early access submission error:', err);
-                submitBtn.textContent = 'Submit Request';
-                submitBtn.disabled = false;
-                alert('Something went wrong — please try again or email us directly.');
-            }
-        }
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
     </script>
+    <script>
+
+    // ── Config ──
+    const SUPABASE_URL = 'https://vasoyiljaptexuzvhyvi.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
+
+    // ── Session ID — unique per visit, links both scenario responses together ──
+    const SESSION_ID = crypto.randomUUID();
+
+    // ── Seed data ──
+    // Emotion seeds: [anxious, fearful, deflated, resigned, neutral, curious, calm, encouraged, excited, energized]
+    const emotionSeed = {
+        1: [38, 22, 12, 10, 8, 5, 3, 1, 1, 0],   // heavily threat-side
+        2: [3, 2, 2, 3, 7, 18, 15, 24, 16, 10]    // shifted toward opportunity
+    };
+    // Interp seeds
+    const interpSeed = {
+        1: [20, 22, 18, 10, 14, 8, 5, 3],
+        2: [8, 10, 10, 20, 22, 18, 12, 0]
+    };
+
+    const emotionLabels = ['Anxious / stressed','Fearful','Deflated','Resigned / numb','Neutral','Curious','Calm','Encouraged','Excited','Energized'];
+    const emojis = ['😰','😨','😞','😑','😐','🤔','🙂','😊','😄','🤩'];
+
+    const interp1Labels = ['I\'m in trouble — something I did','Something is wrong — bad news coming','Could be anything — I\'m not sure','Probably routine — no big deal','Something good — maybe recognition'];
+    const interp2Labels = ['Looking forward to the conversation','I feel seen and recognized','Curious what they want to change','I wonder if they really mean it','Could still be anything — staying cautious'];
+
+    // ── State ──
+    const voted = { emotion: {1: false, 2: false}, interp: {1: false, 2: false} };
+    const counts = {
+        emotion: { 1: [...emotionSeed[1]], 2: [...emotionSeed[2]] },
+        interp:  { 1: [...interpSeed[1]],  2: [...interpSeed[2]]  }
+    };
+
+    function totalE(s) { return counts.emotion[s].reduce((a,b)=>a+b,0); }
+    function totalI(s) { return counts.interp[s].reduce((a,b)=>a+b,0); }
+
+    function checkNextReady(scenario) {
+        if (voted.emotion[scenario] && voted.interp[scenario]) {
+            document.getElementById('next' + scenario).classList.add('ready');
+        }
+    }
+
+    function voteEmotion(scenario, idx) {
+        if (voted.emotion[scenario]) return;
+        voted.emotion[scenario] = true;
+        counts.emotion[scenario][idx]++;
+        saveToSupabase('emotion', scenario, idx);
+
+        const btns = document.querySelectorAll('#emotions' + scenario + ' .emotion-btn');
+        const total = totalE(scenario);
+        btns.forEach((btn, i) => {
+            const pct = Math.round((counts.emotion[scenario][i] / total) * 100);
+            btn.classList.add('voted');
+            if (i === idx) btn.classList.add('selected');
+            btn.querySelector('.emotion-pct').textContent = pct + '%';
+            btn.disabled = true;
+        });
+        document.getElementById('emotioncount' + scenario).textContent =
+            total.toLocaleString() + ' responses so far';
+        checkNextReady(scenario);
+    }
+
+    function voteInterp(scenario, idx) {
+        if (voted.interp[scenario]) return;
+        voted.interp[scenario] = true;
+        counts.interp[scenario][idx]++;
+        saveToSupabase('interp', scenario, idx);
+
+        const btns = document.querySelectorAll('#interp' + scenario + ' .interp-btn');
+        const total = totalI(scenario);
+        btns.forEach((btn, i) => {
+            const pct = Math.round((counts.interp[scenario][i] / total) * 100);
+            btn.classList.add('voted');
+            if (i === idx) btn.classList.add('selected');
+            btn.querySelector('.bar-fill').style.width = pct + '%';
+            btn.querySelector('.pct').textContent = pct + '%';
+            btn.disabled = true;
+        });
+        document.getElementById('interpcount' + scenario).textContent =
+            total.toLocaleString() + ' responses so far';
+        checkNextReady(scenario);
+    }
+
+    function goToScenario2() {
+        document.getElementById('panel1').classList.remove('active');
+        document.getElementById('panel2').classList.add('active');
+        document.getElementById('step1').classList.remove('active');
+        document.getElementById('step1').classList.add('complete');
+        document.getElementById('step2').classList.add('active');
+        window.scrollTo({ top: document.querySelector('.step-indicator').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function showComparison() {
+        document.getElementById('panel2').classList.remove('active');
+        document.getElementById('comparisonView').classList.add('active');
+        document.getElementById('step2').classList.remove('active');
+        document.getElementById('step2').classList.add('complete');
+        document.getElementById('step3').classList.add('active');
+        renderComparison();
+        window.scrollTo({ top: document.querySelector('.step-indicator').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function renderComparison() {
+        // Emotion spectrum bars
+        const grid = document.getElementById('spectrumGrid');
+        grid.innerHTML = '';
+        const maxE = Math.max(...counts.emotion[1], ...counts.emotion[2]);
+        const totalE1 = totalE(1), totalE2 = totalE(2);
+
+        for (let i = 0; i < 10; i++) {
+            const pct1 = Math.round((counts.emotion[1][i] / totalE1) * 100);
+            const pct2 = Math.round((counts.emotion[2][i] / totalE2) * 100);
+            const h1 = Math.round((counts.emotion[1][i] / maxE) * 76);
+            const h2 = Math.round((counts.emotion[2][i] / maxE) * 76);
+
+            grid.innerHTML += `
+                <div class="spectrum-col">
+                    <div class="bar-pair">
+                        <div class="bar-s1" style="height:${h1}px" title="S1: ${pct1}%"></div>
+                        <div class="bar-s2" style="height:${h2}px" title="S2: ${pct2}%"></div>
+                    </div>
+                    <span class="emoji-sm">${emojis[i]}</span>
+                    <span class="label-sm">${emotionLabels[i]}</span>
+                </div>`;
+        }
+
+        // Interpretation bars
+        const totalI1 = totalI(1), totalI2 = totalI(2);
+        const b1 = document.getElementById('interpBars1');
+        const b2 = document.getElementById('interpBars2');
+        b1.innerHTML = ''; b2.innerHTML = '';
+
+        for (let i = 0; i < 5; i++) {
+            const p1 = Math.round((counts.interp[1][i] / totalI1) * 100);
+            b1.innerHTML += `
+                <div class="comp-bar-row">
+                    <div class="comp-bar-label">${interp1Labels[i]}<span>${p1}%</span></div>
+                    <div class="comp-bar-track"><div class="comp-bar-fill" style="width:${p1}%"></div></div>
+                </div>`;
+        }
+        for (let i = 0; i < 5; i++) {
+            const p2 = Math.round((counts.interp[2][i] / totalI2) * 100);
+            b2.innerHTML += `
+                <div class="comp-bar-row">
+                    <div class="comp-bar-label">${interp2Labels[i]}<span>${p2}%</span></div>
+                    <div class="comp-bar-track"><div class="comp-bar-fill s2" style="width:${p2}%"></div></div>
+                </div>`;
+        }
+    }
+
+    async function saveToSupabase(type, scenario, idx) {
+        if (SUPABASE_ANON_KEY === 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0') return;
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/meaning_poll_responses`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    scenario, response_type: type,
+                    response_index: idx,
+                    source: 'website',
+                    session_id: SESSION_ID
+                })
+            });
+        } catch(e) { /* silent fail */ }
+    }
+
+    function resetPoll() {
+        voted.emotion[1] = voted.emotion[2] = false;
+        voted.interp[1] = voted.interp[2] = false;
+        counts.emotion[1] = [...emotionSeed[1]]; counts.emotion[2] = [...emotionSeed[2]];
+        counts.interp[1] = [...interpSeed[1]]; counts.interp[2] = [...interpSeed[2]];
+
+        [1,2].forEach(s => {
+            document.querySelectorAll('#emotions'+s+' .emotion-btn').forEach(b => {
+                b.classList.remove('voted','selected'); b.disabled = false;
+                b.querySelector('.emotion-pct').textContent = '';
+            });
+            document.querySelectorAll('#interp'+s+' .interp-btn').forEach(b => {
+                b.classList.remove('voted','selected'); b.disabled = false;
+                b.querySelector('.bar-fill').style.width = '0%';
+                b.querySelector('.pct').textContent = '';
+            });
+            document.getElementById('emotioncount'+s).textContent = '';
+            document.getElementById('interpcount'+s).textContent = '';
+            document.getElementById('next'+s).classList.remove('ready');
+        });
+
+        document.getElementById('panel1').classList.add('active');
+        document.getElementById('panel2').classList.remove('active');
+        document.getElementById('comparisonView').classList.remove('active');
+        ['step1','step2','step3'].forEach(s => document.getElementById(s).classList.remove('active','complete'));
+        document.getElementById('step1').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    </script>
+
 </body>
 </html>
