@@ -528,8 +528,8 @@
         document.getElementById('slotSummary').classList.remove('visible');
         document.getElementById('meetOptions').style.display = 'none';
         document.getElementById('meetLabel').classList.remove('visible');
-        // Re-render with new slot set
-        renderScheduler();
+        // Re-render only if already initialized
+        if (bookedRanges !== undefined) renderScheduler();
         // Update slot summary if slot already selected
         if (selectedSlot) {
             var dateObj = selectedSlot.dateObj;
@@ -928,8 +928,9 @@
             tzEl.textContent = 'Times shown in ' + tzLabel + (tzLabel !== 'ET' && tzLabel !== 'EST' && tzLabel !== 'EDT' ? ' · Also shown in ET' : '');
         }
 
-        // Set default duration
-        selectDuration(50);
+        // Set default duration (without triggering render yet)
+        selectedDuration = 50;
+        document.getElementById('dur-50').classList.add('selected');
 
         // Load booked slots then render
         loadBookedSlots().then(function() { renderScheduler(); });
