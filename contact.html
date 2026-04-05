@@ -394,7 +394,7 @@
                     </div>
 
                     <div class="success-message" id="successMsg">
-                        <h3>Thank you — we'll be in touch.</h3>
+                        <h3>Looking forward to connecting.</h3>
                         <p id="successDetail"></p>
                     </div>
                 </div>
@@ -749,7 +749,10 @@
             interest: document.getElementById('interest').value.trim() || null,
             seeking: seekingVals.join(', ') || null,
             preferred_contact: selectedMethod,
-            submitted_at: new Date().toISOString()
+            submitted_at: new Date().toISOString(),
+            scheduled_date: selectedSlot ? selectedSlot.date : null,
+            scheduled_time_et: selectedSlot ? selectedSlot.time : null,
+            meeting_type: selectedMeet || null
         };
 
         try {
@@ -801,14 +804,14 @@
             successMsg.classList.add('visible');
 
             var methodMsg = {
-                email: "We'll reach out to " + formData.email + " within 24 hours.",
-                text: "We'll send a text to " + formData.phone + " within 24 hours.",
-                phone: "We'll call " + formData.phone + " within 24 hours."
+                email: "We'll be in touch at " + formData.email + " shortly.",
+                text: "We'll send you a text at " + formData.phone + " shortly.",
+                phone: "We'll give you a call at " + formData.phone + " shortly."
             };
-            var msg = methodMsg[selectedMethod] || "We'll be in touch within 24 hours.";
+            var msg = methodMsg[selectedMethod] || "We'll be in touch shortly.";
             if (selectedSlot && selectedMeet) {
                 var dLabel = selectedSlot.dateObj.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-                msg += " Your " + selectedMeet + " is scheduled for " + dLabel + " at " + selectedSlot.time + " ET.";
+                msg += " Your " + selectedMeet + " is confirmed for " + dLabel + " at " + selectedSlot.time + " ET — you'll receive a calendar invite shortly.";
             }
             document.getElementById('successDetail').textContent = msg;
 
