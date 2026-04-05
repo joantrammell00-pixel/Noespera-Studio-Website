@@ -359,9 +359,24 @@
 
                         <!-- SCHEDULER -->
                         <div class="scheduler-wrap" id="schedulerWrap">
-                            <span class="scheduler-heading">Schedule a Google Meet <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:0.78rem;font-style:italic;">(optional)</span></span>
+                            <span class="scheduler-heading">Schedule a Google Meet <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:0.78rem;font-style:italic;">(optional · 50 minutes)</span></span>
                             <span class="scheduler-sub">Pick a time now or we'll coordinate via your preferred contact method</span>
                             <div class="tz-note" id="tzNote">Detecting your timezone...</div>
+
+                            <!-- Call duration -->
+                            <span class="scheduler-label" style="display:block;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--charcoal-deep);margin-bottom:0.6rem;">How long do you need?</span>
+                            <div class="duration-options">
+                                <button type="button" class="duration-btn" id="dur-20" onclick="selectDuration(20)">
+                                    <span class="dur-mins">20</span>
+                                    <span class="dur-label">minutes</span>
+                                    <span class="dur-desc">Quick intro conversation</span>
+                                </button>
+                                <button type="button" class="duration-btn" id="dur-50" onclick="selectDuration(50)">
+                                    <span class="dur-mins">50</span>
+                                    <span class="dur-label">minutes</span>
+                                    <span class="dur-desc">Full Meaning Radar™ demo</span>
+                                </button>
+                            </div>
 
                             <div class="week-nav">
                                 <button type="button" class="week-nav-btn" id="prevWeekBtn" onclick="changeWeek(-1)" disabled>←</button>
@@ -470,6 +485,7 @@
     var selectedMethod = null;
     var selectedSlot = null;
     var selectedMeet = null;
+    var selectedDuration = 50;
     var schedulerSkipped = false;
     var bookedSlots = [];
     var currentWeekOffset = 0;
@@ -480,14 +496,32 @@
 
     // Availability: day-of-week (2=Tue,3=Wed,4=Thu,5=Fri) → slots in ET
     var AVAILABILITY = {
-        2: { slots: ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'], evening: [] },
-        3: { slots: ['11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM'], evening: [] },
-        4: { slots: ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'], evening: ['5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM'] },
-        5: { slots: ['11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM'], evening: [] }
+        2: { slots: ['1:00 PM','2:05 PM','3:10 PM','4:15 PM'], evening: [] },
+        3: { slots: ['11:00 AM','12:05 PM','1:10 PM','2:15 PM'], evening: [] },
+        4: { slots: ['1:00 PM','2:05 PM','3:10 PM','4:15 PM'], evening: ['5:00 PM','6:05 PM','7:10 PM'] },
+        5: { slots: ['11:00 AM','12:05 PM','1:10 PM','2:15 PM'], evening: [] }
     };
 
     // ── NAV ──
     function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+
+    // ── CALL DURATION ──
+    function selectDuration(mins) {
+        selectedDuration = mins;
+        document.getElementById('dur-20').classList.toggle('selected', mins === 20);
+        document.getElementById('dur-50').classList.toggle('selected', mins === 50);
+        // Update slot summary if slot already selected
+        if (selectedSlot) {
+            var dateObj = selectedSlot.dateObj;
+            var dateLabel = dateObj.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+            var tzLabel = getVisitorTZLabel();
+            var showBoth = tzLabel !== 'ET' && tzLabel !== 'EST' && tzLabel !== 'EDT';
+            var localT = convertETtoLocal(selectedSlot.date, selectedSlot.time);
+            var timeDisplay = showBoth ? localT + ' (' + selectedSlot.time + ' ET)' : selectedSlot.time + ' ET';
+            var summary = document.getElementById('slotSummary');
+            summary.innerHTML = '📅 <strong>' + dateLabel + '</strong> at ' + timeDisplay + ' · ' + mins + ' minutes';
+        }
+    }
 
     // ── ROLE ──
     function handleRoleChange() {
@@ -654,7 +688,7 @@
             var timeDisplay = showBoth ? localT + ' (' + timeET + ' ET)' : timeET + ' ET';
             var dateLabel = dateObj.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
             var summary = document.getElementById('slotSummary');
-            summary.innerHTML = '📅 <strong>' + dateLabel + '</strong> at ' + timeDisplay + ' · 20 minutes';
+            summary.innerHTML = '📅 <strong>' + dateLabel + '</strong> at ' + timeDisplay + ' · ' + selectedDuration + ' minutes';
             summary.classList.add('visible');
             document.getElementById('meetOptions').style.display = 'flex';
             document.getElementById('meetLabel').classList.add('visible');
@@ -754,7 +788,8 @@
             submitted_at: new Date().toISOString(),
             scheduled_date: selectedSlot ? selectedSlot.date : null,
             scheduled_time_et: selectedSlot ? selectedSlot.time : null,
-            meeting_type: selectedMeet || null
+            meeting_type: selectedMeet || null,
+            call_duration: selectedDuration
         };
 
         try {
@@ -788,6 +823,7 @@
                         email: formData.email,
                         phone: formData.phone,
                         meeting_type: selectedMeet,
+                        call_duration: selectedDuration,
                         status: 'pending'
                     })
                 });
@@ -816,7 +852,7 @@
             var msg = methodMsg[selectedMethod] || "We'll be in touch shortly.";
             if (selectedSlot && selectedMeet) {
                 var dLabel = selectedSlot.dateObj.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-                msg += " Your " + selectedMeet + " is confirmed for " + dLabel + " at " + selectedSlot.time + " ET — you'll receive a calendar invite shortly.";
+                msg += " Your " + selectedDuration + "-minute " + selectedMeet + " is confirmed for " + dLabel + " at " + selectedSlot.time + " ET — you'll receive a calendar invite shortly.";
             }
             document.getElementById('successDetail').textContent = msg;
 
@@ -834,6 +870,9 @@
         if (tzEl) {
             tzEl.textContent = 'Times shown in ' + tzLabel + (tzLabel !== 'ET' && tzLabel !== 'EST' && tzLabel !== 'EDT' ? ' · Also shown in ET' : '');
         }
+
+        // Set default duration
+        selectDuration(50);
 
         // Load booked slots then render
         loadBookedSlots().then(function() { renderScheduler(); });
