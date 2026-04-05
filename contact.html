@@ -211,6 +211,112 @@
         .seek-opt input { margin-top: 0.15rem; accent-color: var(--gold-dark); flex-shrink: 0; }
         .seek-opt.highlighted { border-color: var(--gold); background: rgba(198,160,111,0.08); }
 
+
+        /* ── Scheduler ── */
+        .scheduler-wrap {
+            margin-top: 2.5rem;
+            border-top: 1px solid rgba(198,160,111,0.25);
+            padding-top: 2rem;
+        }
+        .scheduler-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--charcoal-deep);
+            margin-bottom: 0.4rem; display: block;
+        }
+        .scheduler-sublabel {
+            font-size: 0.82rem; font-weight: 300; color: rgba(74,74,72,0.7);
+            margin-bottom: 1.25rem; font-style: italic;
+        }
+        .tz-note {
+            font-size: 0.78rem; font-weight: 400; color: var(--gold-dark);
+            margin-bottom: 1.25rem; padding: 0.5rem 0.75rem;
+            background: rgba(198,160,111,0.08); border-left: 2px solid var(--gold);
+            display: inline-block;
+        }
+        /* Week navigation */
+        .week-nav {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .week-nav-btn {
+            background: none; border: 1px solid rgba(198,160,111,0.3);
+            color: var(--charcoal); cursor: pointer; padding: 0.4rem 0.8rem;
+            font-size: 0.9rem; transition: all 0.2s;
+        }
+        .week-nav-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+        .week-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .week-label {
+            font-size: 0.88rem; font-weight: 500; color: var(--charcoal-deep);
+        }
+        /* Day columns */
+        .day-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .day-col { display: flex; flex-direction: column; gap: 0.4rem; }
+        .day-header {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--charcoal);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(198,160,111,0.2);
+            margin-bottom: 0.25rem;
+            text-align: center;
+        }
+        .day-header.today { color: var(--gold-dark); border-bottom-color: var(--gold); }
+        .slot-btn {
+            padding: 0.5rem 0.25rem;
+            border: 1px solid rgba(198,160,111,0.2);
+            background: var(--ivory);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem; font-weight: 400;
+            color: var(--charcoal); cursor: pointer;
+            text-align: center; transition: all 0.2s;
+            line-height: 1.3;
+        }
+        .slot-btn:hover { border-color: var(--gold); background: rgba(198,160,111,0.06); color: var(--charcoal-deep); }
+        .slot-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.15); color: var(--charcoal-deep); font-weight: 500; }
+        .slot-btn.booked { background: rgba(74,74,72,0.06); color: rgba(74,74,72,0.35); cursor: not-allowed; border-color: rgba(198,160,111,0.1); text-decoration: line-through; }
+        .slot-btn.evening { border-style: dashed; }
+        .slot-btn.evening.selected { border-style: solid; }
+        .no-slots { font-size: 0.82rem; font-weight: 300; color: rgba(74,74,72,0.45); text-align: center; padding: 1rem 0; font-style: italic; }
+
+        /* Meeting type */
+        .meet-options { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .meet-btn {
+            flex: 1; min-width: 120px; padding: 0.65rem 0.5rem;
+            border: 1px solid rgba(198,160,111,0.2);
+            background: var(--ivory);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem; font-weight: 400;
+            color: var(--charcoal); cursor: pointer;
+            text-align: center; transition: all 0.2s;
+            display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+        }
+        .meet-btn:hover { border-color: var(--gold); background: var(--white); }
+        .meet-btn.selected { border-color: var(--gold); background: rgba(198,160,111,0.1); color: var(--charcoal-deep); }
+        .meet-btn .meet-icon { font-size: 1.2rem; }
+        .selected-slot-summary {
+            padding: 0.9rem 1.25rem;
+            background: var(--ivory);
+            border-left: 3px solid var(--gold);
+            font-size: 0.9rem; font-weight: 300;
+            color: var(--charcoal-deep);
+            margin-bottom: 1.25rem;
+            display: none;
+        }
+        .selected-slot-summary.visible { display: block; }
+        .scheduler-skip {
+            font-size: 0.78rem; color: rgba(74,74,72,0.5);
+            text-decoration: underline; cursor: pointer;
+            background: none; border: none;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0.5rem; display: block;
+        }
+        @media (max-width: 600px) {
+            .day-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         /* ── Error state ── */
         .field-error { font-size: 0.75rem; color: #C0392B; margin-top: 0.3rem; display: none; }
         .field-error.visible { display: block; }
@@ -377,6 +483,51 @@
                             </div>
                         </div>
 
+
+                        <!-- ── SCHEDULER ── -->
+                        <div class="scheduler-wrap" id="schedulerWrap">
+                            <span class="scheduler-label">Schedule your 20-minute conversation <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:0.78rem;font-style:italic;">(optional — or we'll coordinate via your preferred contact method)</span></span>
+                            <div class="tz-note" id="tzNote">Loading your timezone...</div>
+
+                            <!-- Week navigation -->
+                            <div class="week-nav">
+                                <button class="week-nav-btn" id="prevWeek" onclick="changeWeek(-1)" disabled>←</button>
+                                <span class="week-label" id="weekLabel"></span>
+                                <button class="week-nav-btn" id="nextWeek" onclick="changeWeek(1)">→</button>
+                            </div>
+
+                            <!-- Day/time grid -->
+                            <div class="day-grid" id="dayGrid">
+                                <!-- Populated by JS -->
+                            </div>
+
+                            <!-- Selected slot summary -->
+                            <div class="selected-slot-summary" id="slotSummary"></div>
+
+                            <!-- Meeting type -->
+                            <div id="meetTypeWrap" style="display:none;">
+                                <span class="scheduler-label" style="margin-bottom:0.75rem;">How would you like to meet?</span>
+                                <div class="meet-options">
+                                    <button class="meet-btn" id="meet-gmeet" onclick="selectMeetType('Google Meet')">
+                                        <span class="meet-icon">📹</span>
+                                        <span>Google Meet</span>
+                                        <span style="font-size:0.68rem;opacity:0.6;">I'll send a link</span>
+                                    </button>
+                                    <button class="meet-btn" id="meet-phone" onclick="selectMeetType('Phone Call')">
+                                        <span class="meet-icon">📞</span>
+                                        <span>Phone Call</span>
+                                        <span style="font-size:0.68rem;opacity:0.6;">I'll call you</span>
+                                    </button>
+                                    <button class="meet-btn" id="meet-pref" onclick="selectMeetType('Your preference')">
+                                        <span class="meet-icon">💬</span>
+                                        <span>Your preference</span>
+                                        <span style="font-size:0.68rem;opacity:0.6;">Tell me below</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button class="scheduler-skip" onclick="skipScheduler()">Skip — I'll coordinate via my preferred contact method instead</button>
+                        </div>
                         <div class="submit-wrap">
                             <button class="submit-btn-form" id="submitBtn" onclick="submitForm()">Send My Request</button>
                         </div>
@@ -545,7 +696,11 @@
                 phone: document.getElementById('phone').value.trim() || null,
                 interest: document.getElementById('interest').value.trim() || null,
                 preferred_contact: selectedMethod,
-                submitted_at: new Date().toISOString()
+                submitted_at: new Date().toISOString(),
+                scheduled_date: selectedSlot ? selectedSlot.date : null,
+                scheduled_time_et: selectedSlot ? selectedSlot.time : null,
+                meeting_type: selectedMeetType || null,
+                scheduler_skipped: schedulerSkipped
             };
 
             try {
@@ -560,6 +715,29 @@
                     },
                     body: JSON.stringify(formData)
                 });
+
+                // 1b. Save scheduled call if slot selected
+                if (selectedSlot && selectedMeetType) {
+                    await fetch(SUPA_URL + '/rest/v1/scheduled_calls', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'apikey': SUPA_KEY,
+                            'Authorization': 'Bearer ' + SUPA_KEY,
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify({
+                            date: selectedSlot.date,
+                            time_et: selectedSlot.time,
+                            time_slot_key: selectedSlot.key,
+                            full_name: formData.full_name,
+                            email: formData.email,
+                            phone: formData.phone || null,
+                            meeting_type: selectedMeetType,
+                            status: 'pending'
+                        })
+                    });
+                }
 
                 // 2. Trigger notification Edge Function
                 await fetch(SUPABASE_URL + '/functions/v1/notify-demo-request', {
