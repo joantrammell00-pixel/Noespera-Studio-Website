@@ -495,12 +495,25 @@
     var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
 
     // Availability: day-of-week (2=Tue,3=Wed,4=Thu,5=Fri) → slots in ET
-    var AVAILABILITY = {
-        2: { slots: ['1:00 PM','2:05 PM','3:10 PM','4:15 PM'], evening: [] },
-        3: { slots: ['11:00 AM','12:05 PM','1:10 PM','2:15 PM'], evening: [] },
-        4: { slots: ['1:00 PM','2:05 PM','3:10 PM','4:15 PM'], evening: ['5:00 PM','6:05 PM','7:10 PM'] },
-        5: { slots: ['11:00 AM','12:05 PM','1:10 PM','2:15 PM'], evening: [] }
+    // Slots for 20-min calls (30-min blocks including buffer)
+    var AVAILABILITY_20 = {
+        2: { slots: ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'], evening: [] },
+        3: { slots: ['11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM'], evening: [] },
+        4: { slots: ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'], evening: ['5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM'] },
+        5: { slots: ['11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM'], evening: [] }
     };
+
+    // Slots for 50-min calls (60-min blocks including buffer)
+    var AVAILABILITY_50 = {
+        2: { slots: ['1:00 PM','2:00 PM','3:00 PM','4:00 PM'], evening: [] },
+        3: { slots: ['11:00 AM','12:00 PM','1:00 PM','2:00 PM'], evening: [] },
+        4: { slots: ['1:00 PM','2:00 PM','3:00 PM','4:00 PM'], evening: ['5:00 PM','6:00 PM','7:00 PM'] },
+        5: { slots: ['11:00 AM','12:00 PM','1:00 PM','2:00 PM'], evening: [] }
+    };
+
+    function getAvailability() {
+        return selectedDuration === 20 ? AVAILABILITY_20 : AVAILABILITY_50;
+    }
 
     // ── NAV ──
     function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
@@ -510,6 +523,13 @@
         selectedDuration = mins;
         document.getElementById('dur-20').classList.toggle('selected', mins === 20);
         document.getElementById('dur-50').classList.toggle('selected', mins === 50);
+        // Clear selected slot when duration changes — it may no longer be valid
+        selectedSlot = null;
+        document.getElementById('slotSummary').classList.remove('visible');
+        document.getElementById('meetOptions').style.display = 'none';
+        document.getElementById('meetLabel').classList.remove('visible');
+        // Re-render with new slot set
+        renderScheduler();
         // Update slot summary if slot already selected
         if (selectedSlot) {
             var dateObj = selectedSlot.dateObj;
@@ -627,7 +647,7 @@
         grid.innerHTML = '';
         dates.forEach(function(date) {
             var dow = date.getDay();
-            var avail = AVAILABILITY[dow];
+            var avail = getAvailability()[dow];
             if (!avail) return;
             var dateKey = formatDateKey(date);
 
@@ -647,7 +667,7 @@
             } else {
                 allSlots.forEach(function(slot) {
                     var slotKey = dateKey + '_' + slot.t;
-                    var isBooked = bookedSlots.indexOf(slotKey) !== -1;
+                    var isBooked = isSlotBlocked(dateKey, slot.t);
                     var isSelected = selectedSlot && selectedSlot.key === slotKey;
 
                     var btn = document.createElement('button');
@@ -716,14 +736,49 @@
         document.getElementById('schedulerWrap').style.display = 'none';
     }
 
+    // Convert ET time string to minutes since midnight
+    function timeToMinutes(timeStr) {
+        var parts = timeStr.split(' ');
+        var tp = parts[0].split(':');
+        var h = parseInt(tp[0]);
+        var m = parseInt(tp[1]);
+        var ampm = parts[1];
+        if (ampm === 'PM' && h !== 12) h += 12;
+        if (ampm === 'AM' && h === 12) h = 0;
+        return h * 60 + m;
+    }
+
+    // Booked ranges: [{date, startMins, endMins}]
+    var bookedRanges = [];
+
     async function loadBookedSlots() {
         try {
-            var res = await fetch(SUPABASE_URL + '/rest/v1/scheduled_calls?status=eq.pending&select=date,time_et', {
+            var res = await fetch(SUPABASE_URL + '/rest/v1/scheduled_calls?status=eq.pending&select=date,time_et,call_duration', {
                 headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
             });
             var rows = await res.json();
             bookedSlots = rows.map(function(r) { return r.date + '_' + r.time_et; });
-        } catch(e) { bookedSlots = []; }
+            // Build ranges for overlap detection
+            bookedRanges = rows.map(function(r) {
+                var startMins = timeToMinutes(r.time_et);
+                var blockMins = r.call_duration === 20 ? 30 : 60; // 20-min call = 30-min block, 50-min = 60-min block
+                return { date: r.date, startMins: startMins, endMins: startMins + blockMins };
+            });
+        } catch(e) { bookedSlots = []; bookedRanges = []; }
+    }
+
+    function isSlotBlocked(dateKey, timeET) {
+        var slotStart = timeToMinutes(timeET);
+        var blockMins = selectedDuration === 20 ? 30 : 60;
+        var slotEnd = slotStart + blockMins;
+        // Check if this slot overlaps with any booked range on the same date
+        for (var i = 0; i < bookedRanges.length; i++) {
+            var range = bookedRanges[i];
+            if (range.date !== dateKey) continue;
+            // Overlap if slotStart < rangeEnd AND slotEnd > rangeStart
+            if (slotStart < range.endMins && slotEnd > range.startMins) return true;
+        }
+        return false;
     }
 
     // ── VALIDATION ──
@@ -789,7 +844,8 @@
             scheduled_date: selectedSlot ? selectedSlot.date : null,
             scheduled_time_et: selectedSlot ? selectedSlot.time : null,
             meeting_type: selectedMeet || null,
-            call_duration: selectedDuration
+            call_duration: selectedDuration,
+            calendar_block_mins: selectedDuration === 20 ? 30 : 60
         };
 
         try {
@@ -824,6 +880,7 @@
                         phone: formData.phone,
                         meeting_type: selectedMeet,
                         call_duration: selectedDuration,
+            calendar_block_mins: selectedDuration === 20 ? 30 : 60,
                         status: 'pending'
                     })
                 });
