@@ -610,10 +610,11 @@
 
     function getAvailableDates(weekOffset) {
         var today = new Date(); today.setHours(0,0,0,0);
+        var avail = getAvailability();
         var dates = [];
         for (var d = 1; d <= 14; d++) {
             var date = new Date(today); date.setDate(today.getDate() + d);
-            if (AVAILABILITY[date.getDay()]) dates.push(date);
+            if (avail[date.getDay()]) dates.push(date);
         }
         var week0 = dates.slice(0, Math.ceil(dates.length/2));
         var week1 = dates.slice(Math.ceil(dates.length/2));
