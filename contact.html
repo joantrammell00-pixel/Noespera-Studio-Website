@@ -210,6 +210,19 @@
         .seek-opt:hover { border-color: var(--gold); background: rgba(198,160,111,0.05); }
         .seek-opt input { margin-top: 0.15rem; accent-color: var(--gold-dark); flex-shrink: 0; }
         .seek-opt.highlighted { border-color: var(--gold); background: rgba(198,160,111,0.08); }
+        .seek-opt:has(input:checked) {
+            border-color: var(--gold);
+            background: rgba(198,160,111,0.12);
+            color: var(--charcoal-deep);
+            font-weight: 400;
+        }
+        /* Fallback for browsers without :has() support */
+        .seek-opt.checked {
+            border-color: var(--gold);
+            background: rgba(198,160,111,0.12);
+            color: var(--charcoal-deep);
+            font-weight: 400;
+        }
 
 
         /* ── Scheduler ── */
@@ -385,17 +398,40 @@
                     <p class="form-intro">This helps us come prepared — so our first conversation is immediately useful to you.</p>
 
                     <div id="contactForm">
-                        <!-- Name + Title -->
+                        <!-- First + Last name -->
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Full Name <span class="req">*</span></label>
-                                <input type="text" id="fullName" placeholder="Your name">
-                                <span class="field-error" id="err-fullName">Please enter your name</span>
+                                <label>First Name <span class="req">*</span></label>
+                                <input type="text" id="firstName" placeholder="First name" autocomplete="given-name">
+                                <span class="field-error" id="err-firstName">Please enter your first name</span>
                             </div>
                             <div class="form-group">
-                                <label>Title / Role <span class="req">*</span></label>
-                                <input type="text" id="title" placeholder="e.g. Chief People Officer">
-                                <span class="field-error" id="err-title">Please enter your title</span>
+                                <label>Last Name <span class="req">*</span></label>
+                                <input type="text" id="lastName" placeholder="Last name" autocomplete="family-name">
+                                <span class="field-error" id="err-lastName">Please enter your last name</span>
+                            </div>
+                        </div>
+                        <!-- Title / Role -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Role <span class="req">*</span></label>
+                                <select id="title">
+                                    <option value="">Select your role...</option>
+                                    <option value="C-Suite / Executive">C-Suite / Executive</option>
+                                    <option value="Vice President / SVP">Vice President / SVP</option>
+                                    <option value="Director / Senior Director">Director / Senior Director</option>
+                                    <option value="Manager / Team Leader">Manager / Team Leader</option>
+                                    <option value="Individual Contributor">Individual Contributor</option>
+                                    <option value="Board Member">Board Member</option>
+                                    <option value="Consultant / Advisor">Consultant / Advisor</option>
+                                    <option value="Founder / Owner">Founder / Owner</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span class="field-error" id="err-title">Please select your role</span>
+                            </div>
+                            <div class="form-group" id="otherRoleWrap" style="display:none;">
+                                <label>Please specify</label>
+                                <input type="text" id="otherRole" placeholder="Your role">
                             </div>
                         </div>
 
@@ -529,7 +565,7 @@
                             <button type="button" class="scheduler-skip" onclick="skipScheduler()">Skip — I'll coordinate via my preferred contact method instead</button>
                         </div>
                         <div class="submit-wrap">
-                            <button class="submit-btn-form" id="submitBtn" onclick="submitForm()">Send My Request</button>
+                            <button class="submit-btn-form" id="submitBtn" onclick="event.preventDefault(); submitForm()">Send My Request</button>
                         </div>
                     </div>
 
@@ -687,7 +723,10 @@
             const seekingChecked = Array.from(document.querySelectorAll('#seekingOptions input:checked')).map(el => el.value);
 
             const formData = {
-                full_name: document.getElementById('fullName').value.trim(),
+                first_name: document.getElementById('firstName').value.trim(),
+                last_name: document.getElementById('lastName').value.trim(),
+                full_name: (document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim()).trim(),
+                role_other: document.getElementById('otherRole') ? document.getElementById('otherRole').value.trim() : null,
                 seeking: seekingChecked.join(', ') || null,
                 title: document.getElementById('title').value.trim(),
                 org_name: document.getElementById('orgName').value.trim(),
@@ -731,6 +770,8 @@
                             time_et: selectedSlot.time,
                             time_slot_key: selectedSlot.key,
                             full_name: formData.full_name,
+                            first_name: formData.first_name,
+                            last_name: formData.last_name,
                             email: formData.email,
                             phone: formData.phone || null,
                             meeting_type: selectedMeetType,
@@ -769,7 +810,7 @@
         }
 
         // Clear error on input
-        ['fullName','title','orgName','orgSize','email','phone'].forEach(id => {
+        ['firstName','lastName','title','orgName','orgSize','email','phone'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
                 el.addEventListener('input', () => {
