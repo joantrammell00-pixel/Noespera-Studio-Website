@@ -899,6 +899,7 @@
                 <div class="spectrum-grid" id="spectrumGrid">
                     <!-- Populated by JS -->
                 </div>
+                <div class="respondent-count" id="respondentCount" style="text-align:center;margin-bottom:1rem;font-size:0.82rem;font-weight:500;color:var(--gold-dark);letter-spacing:0.05em;"></div>
                 <div class="spectrum-legend">
                     <div class="legend-item"><div class="legend-dot s1"></div><span>Scenario 1 — without stewardship</span></div>
                     <div class="legend-item"><div class="legend-dot s2"></div><span>Scenario 2 — stewardship shifts the range</span></div>
@@ -1132,18 +1133,25 @@
         counts.emotion[scenario][idx]++;
         saveToSupabase('emotion', scenario, idx);
 
+        // Mark selected visually but do NOT reveal results yet
+        const btns = document.querySelectorAll('#emotions' + scenario + ' .emotion-btn');
+        btns.forEach((btn, i) => {
+            if (i === idx) btn.classList.add('selected');
+            btn.disabled = true;
+        });
+        checkNextReady(scenario);
+    }
+
+    function revealEmotionResults(scenario) {
         const btns = document.querySelectorAll('#emotions' + scenario + ' .emotion-btn');
         const total = totalE(scenario);
         btns.forEach((btn, i) => {
             const pct = Math.round((counts.emotion[scenario][i] / total) * 100);
             btn.classList.add('voted');
-            if (i === idx) btn.classList.add('selected');
             btn.querySelector('.emotion-pct').textContent = pct + '%';
-            btn.disabled = true;
         });
         document.getElementById('emotioncount' + scenario).textContent =
             total.toLocaleString() + ' responses so far';
-        checkNextReady(scenario);
     }
 
     function voteInterp(scenario, idx) {
@@ -1164,6 +1172,9 @@
         });
         document.getElementById('interpcount' + scenario).textContent =
             total.toLocaleString() + ' responses so far';
+
+        // Now reveal emotion results too — both sets appear together
+        revealEmotionResults(scenario);
         checkNextReady(scenario);
     }
 
@@ -1208,6 +1219,13 @@
                     <span class="emoji-sm">${emojis[i]}</span>
                     <span class="label-sm">${emotionLabels[i]}</span>
                 </div>`;
+        }
+
+        // Respondent count — use average of both scenario totals
+        const respondentTotal = Math.round((totalE(1) + totalE(2)) / 2);
+        const countEl = document.getElementById('respondentCount');
+        if (countEl) {
+            countEl.textContent = respondentTotal.toLocaleString() + ' people have responded to this scenario';
         }
 
         // Interpretation bars
