@@ -210,21 +210,21 @@
                     <p style="font-size:0.95rem;margin-bottom:0;">You may request deletion of your data at any time by contacting <a href="mailto:joan@noesperastudio.com" style="color:var(--gold-dark);">joan@noesperastudio.com</a></p>
                 </div>
 
-                <div class="consent-check-wrap" onclick="toggleConsent()">
+                <label class="consent-check-wrap" for="consent-research" onclick="">
                     <input type="checkbox" id="consent-research" onchange="checkConsent()">
-                    <label for="consent-research">
+                    <span>
                         <strong>I'm happy for my anonymized responses to contribute to research</strong><br>
                         <span style="font-size:0.85rem;font-weight:300;color:rgba(74,74,72,0.75);">Optional — de-identified and aggregated patterns may contribute to Noespera Studio's ongoing research into how meaning flows in organizations. Not required to proceed.</span>
-                    </label>
-                </div>
+                    </span>
+                </label>
 
-                <div class="consent-check-wrap" onclick="toggleRequired()">
-                    <input type="checkbox" id="consent-required" onchange="checkConsent()">
+                <label class="consent-check-wrap" for="consent-required" onclick="">
+                    <input type="checkbox" id="consent-required" onchange="checkConsent(); this.closest('.consent-check-wrap').classList.toggle('checked', this.checked)">
                     <label for="consent-required">
                         <strong>I understand and agree to proceed <span style="color:var(--gold-dark);">*</span></strong><br>
                         <span style="font-size:0.85rem;font-weight:300;color:rgba(74,74,72,0.75);">I acknowledge my individual responses are confidential and will not be shared.</span>
-                    </label>
-                </div>
+                    </span>
+                </label>
                 <p class="consent-required" id="consent-error">Please confirm you understand and agree to proceed.</p>
 
                 <div class="button-group">
@@ -603,6 +603,10 @@
                     <a href="https://noesperastudio.com/contact.html?ref=ites" class="cta-report">Request My Full Report →</a>
                     <p class="cta-sub">No obligation · Responses within 24 hours</p>
                 </div>
+            </div>
+
+            <div style="background:var(--charcoal-deep);padding:1rem 1.5rem;margin-bottom:2rem;border-radius:4px;text-align:center;">
+                <p style="font-size:0.72rem;color:rgba(198,160,111,0.7);margin:0;letter-spacing:0.06em;">ITES™ is a patent-pending instrument of Noespera Studio, LLC. The full Interpretive Profile is a proprietary deliverable. Unauthorized reproduction or commercial use is prohibited. © 2026 Noespera Studio, LLC. All rights reserved.</p>
             </div>
 
             <div style="background:var(--ivory);padding:1.5rem;border-left:3px solid var(--gold);margin-bottom:2rem;border-radius:0 6px 6px 0;">
