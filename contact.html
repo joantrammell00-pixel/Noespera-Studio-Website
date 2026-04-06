@@ -339,9 +339,6 @@
                             <button type="button" class="method-btn" id="method-email" onclick="selectMethod('email')">
                                 <span class="method-icon">✉️</span><span>Email</span>
                             </button>
-                            <button type="button" class="method-btn" id="method-text" onclick="selectMethod('text')">
-                                <span class="method-icon">💬</span><span>Text</span>
-                            </button>
                             <button type="button" class="method-btn" id="method-phone" onclick="selectMethod('phone')">
                                 <span class="method-icon">📞</span><span>Phone Call</span>
                             </button>
@@ -560,7 +557,7 @@
         ['email','text','phone'].forEach(function(m) {
             document.getElementById('method-' + m).classList.toggle('selected', m === method);
         });
-        document.getElementById('phoneField').classList.toggle('visible', method === 'text' || method === 'phone');
+        document.getElementById('phoneField').classList.toggle('visible', method === 'phone');
         document.getElementById('err-method').style.display = 'none';
     }
 
@@ -913,15 +910,19 @@
                 successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
 
-            var methodMsg = {
-                email: "We'll be in touch at " + formData.email + " shortly.",
-                text: "We'll send you a text at " + formData.phone + " shortly.",
-                phone: "We'll give you a call at " + formData.phone + " shortly."
-            };
-            var msg = methodMsg[selectedMethod] || "We'll be in touch shortly.";
+            // Build success message
+            var msg = "";
             if (selectedSlot && selectedMeet) {
+                // They booked a slot - lead with the confirmation
                 var dLabel = selectedSlot.dateObj.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-                msg += " Your " + selectedDuration + "-minute " + selectedMeet + " is confirmed for " + dLabel + " at " + selectedSlot.time + " ET — you'll receive a calendar invite shortly.";
+                msg = "Your " + selectedDuration + "-minute " + selectedMeet + " is confirmed for " + dLabel + " at " + selectedSlot.time + " ET. You'll find the calendar invite in your inbox.";
+            } else {
+                // No slot booked - just contact method follow-up
+                var methodMsg = {
+                    email: "We'll be in touch at " + formData.email + " shortly.",
+                                        phone: "We'll give you a call at " + formData.phone + " shortly."
+                };
+                msg = methodMsg[selectedMethod] || "We'll be in touch shortly.";
             }
             document.getElementById('successDetail').textContent = msg;
 
