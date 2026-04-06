@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>ITES™ Index - Noespera Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--charcoal); background-color: var(--ivory); line-height: 1.7; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 12px; box-shadow: 0 10px 40px rgba(74,74,72,0.1); overflow: hidden; }
+        .header { background: var(--charcoal-deep); color: var(--ivory); padding: 50px 40px; text-align: center; border-bottom: 4px solid var(--gold); }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 10px; color: var(--white); }
+        .tagline { font-size: 0.9rem; color: var(--gold-light); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 300; }
+        .content { padding: 50px 40px; }
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--charcoal-deep); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--gold-light); }
+        .intro { background: var(--ivory); padding: 25px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid var(--gold); }
+        .intro p { color: var(--charcoal); line-height: 1.7; margin-bottom: 12px; }
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+        .form-group { margin-bottom: 25px; }
+        .form-label { display: block; font-weight: 600; color: var(--charcoal-deep); margin-bottom: 8px; font-size: 1rem; }
+        .form-label .required { color: var(--gold-dark); margin-left: 4px; }
+        .form-input, .form-select { width: 100%; padding: 12px 15px; border: 2px solid var(--ivory); border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 1rem; color: var(--charcoal); background: var(--white); transition: border-color 0.2s; }
+        .form-input:focus, .form-select:focus { outline: none; border-color: var(--gold); }
+        .form-help { font-size: 0.85rem; color: var(--charcoal); opacity: 0.7; margin-top: 6px; }
+        .question-block { margin-bottom: 30px; padding: 25px; background: var(--ivory); border-radius: 8px; border-left: 4px solid var(--gold); }
+        .question-text { font-size: 1.05rem; color: var(--charcoal-deep); margin-bottom: 15px; font-weight: 500; line-height: 1.6; }
+        .question-number { color: var(--gold-dark); font-weight: 600; margin-right: 8px; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option-label { display: flex; align-items: center; padding: 12px; background: var(--white); border: 2px solid var(--ivory); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .option-label:hover { border-color: var(--gold-light); background: #fafafa; }
+        .option-label input[type="radio"] { margin-right: 12px; width: 18px; height: 18px; cursor: pointer; accent-color: var(--gold-dark); }
+        .option-label input[type="radio"]:checked + span { color: var(--gold-dark); font-weight: 500; }
+        .btn { padding: 15px 30px; border: none; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: var(--gold-dark); color: var(--white); }
+        .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(166,139,78,0.3); }
+        .btn-primary:disabled { background: #cbd5e0; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: var(--ivory); color: var(--charcoal); border: 2px solid var(--gold-light); margin-right: 10px; }
+        .btn-secondary:hover { background: var(--gold-light); }
+        .button-group { display: flex; gap: 15px; margin-top: 30px; }
+        .progress { margin-bottom: 30px; background: var(--ivory); height: 8px; border-radius: 4px; overflow: hidden; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 100%); width: 0%; transition: width 0.3s; }
+        .progress-text { text-align: center; margin-bottom: 10px; font-size: 0.9rem; color: var(--charcoal); }
+        .loading { text-align: center; padding: 40px; display: none; }
+        .loading.active { display: block; }
+        .spinner { border: 4px solid var(--ivory); border-top: 4px solid var(--gold); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .results { display: none; }
+        .results.active { display: block; }
+        .error { background: #fed7d7; color: #c53030; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none; }
+        .error.active { display: block; }
+
+        /* ── Consent screen ── */
+        .consent-check-wrap {
+            display: flex; align-items: flex-start; gap: 1rem;
+            padding: 1.25rem; background: var(--ivory);
+            border: 1px solid rgba(198,160,111,0.3);
+            border-radius: 6px; margin: 1.5rem 0; cursor: pointer;
+        }
+        .consent-check-wrap input[type="checkbox"] {
+            width: 20px; height: 20px; margin-top: 2px;
+            accent-color: var(--gold-dark); flex-shrink: 0; cursor: pointer;
+        }
+        .consent-check-wrap label { cursor: pointer; font-size: 0.95rem; line-height: 1.6; }
+        .consent-required { font-size: 0.82rem; color: var(--gold-dark); margin-top: 0.5rem; display: none; }
+        .consent-required.visible { display: block; }
+
+        /* ── Glimpse results ── */
+        .glimpse-score-wrap {
+            text-align: center; padding: 3rem 2rem 2rem;
+            background: var(--charcoal-deep); color: var(--white);
+            border-radius: 8px; margin-bottom: 2rem;
+        }
+        .glimpse-score-label {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+        }
+        .glimpse-score-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem; font-weight: 300; color: var(--gold-light);
+            line-height: 1; margin-bottom: 0.5rem;
+        }
+        .glimpse-score-desc {
+            font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.75);
+            margin-bottom: 1.5rem;
+        }
+        .glimpse-scale {
+            display: flex; justify-content: center; gap: 0;
+            margin: 0 auto; max-width: 500px; border-radius: 4px; overflow: hidden;
+        }
+        .scale-block {
+            flex: 1; padding: 0.4rem 0.25rem; font-size: 0.65rem;
+            font-weight: 500; text-align: center; color: rgba(255,255,255,0.6);
+        }
+        .scale-block.active { color: var(--white); font-weight: 600; }
+        .scale-0 { background: rgba(192,57,43,0.7); }
+        .scale-1 { background: rgba(211,84,0,0.7); }
+        .scale-2 { background: rgba(166,139,78,0.8); }
+        .scale-3 { background: rgba(39,174,96,0.7); }
+        .glimpse-dims {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;
+        }
+        .dim-glimpse {
+            padding: 1.25rem; border-radius: 8px; border: 1px solid rgba(198,160,111,0.2);
+        }
+        .dim-glimpse.highest { background: rgba(39,174,96,0.08); border-color: rgba(39,174,96,0.3); }
+        .dim-glimpse.lowest { background: rgba(192,57,43,0.06); border-color: rgba(192,57,43,0.2); }
+        .dim-glimpse-label {
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; margin-bottom: 0.4rem;
+        }
+        .dim-glimpse.highest .dim-glimpse-label { color: #27ae60; }
+        .dim-glimpse.lowest .dim-glimpse-label { color: #c0392b; }
+        .dim-glimpse-name { font-size: 0.95rem; font-weight: 500; color: var(--charcoal-deep); margin-bottom: 0.2rem; }
+        .dim-glimpse-score { font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+        .dim-glimpse.highest .dim-glimpse-score { color: #27ae60; }
+        .dim-glimpse.lowest .dim-glimpse-score { color: #c0392b; }
+
+        /* Blurred section */
+        .blurred-report {
+            position: relative; margin-bottom: 2rem;
+            border-radius: 8px; overflow: hidden;
+        }
+        .blurred-report-inner {
+            filter: blur(6px); user-select: none; pointer-events: none;
+            padding: 2rem; background: var(--ivory);
+        }
+        .blurred-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(237,234,229,0) 0%, rgba(237,234,229,0.85) 50%, rgba(237,234,229,0.98) 100%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: flex-end;
+            padding: 2rem; text-align: center;
+        }
+        .blurred-overlay h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem; color: var(--charcoal-deep);
+            margin-bottom: 0.75rem; font-weight: 400;
+        }
+        .blurred-overlay p {
+            font-size: 0.95rem; font-weight: 300;
+            color: var(--charcoal); margin-bottom: 1.25rem;
+            max-width: 480px; line-height: 1.7;
+        }
+        .blurred-fake-content { }
+        .fake-dim { padding: 1rem; margin-bottom: 0.75rem; background: var(--white); border-left: 3px solid var(--gold); border-radius: 4px; }
+        .fake-dim-title { font-weight: 600; color: var(--charcoal-deep); margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .fake-dim-bar { height: 8px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); border-radius: 4px; }
+
+        .cta-report {
+            display: inline-block; background: var(--gold-dark); color: var(--white);
+            text-decoration: none; padding: 1rem 2.5rem;
+            font-size: 0.88rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; border-radius: 4px;
+            transition: background 0.3s; margin-bottom: 0.75rem;
+        }
+        .cta-report:hover { background: var(--gold); }
+        .cta-sub { font-size: 0.8rem; color: rgba(74,74,72,0.6); font-style: italic; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 40px; background: var(--ivory); border-top: 1px solid var(--gold-light); }
+        .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold-dark); margin-bottom: 5px; }
+        .footer-tagline { font-size: 0.85rem; color: var(--charcoal); opacity: 0.7; margin-bottom: 0.5rem; }
+        .footer-ip { font-size: 0.72rem; color: var(--charcoal); opacity: 0.5; margin-top: 0.5rem; }
+
+        @media (max-width: 600px) {
+            .content { padding: 30px 20px; }
+            .glimpse-dims { grid-template-columns: 1fr; }
+            .glimpse-score-number { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="tagline">Applied Organizational Meaning Science™</div>
+            <h1>ITES™ Index</h1>
+            <p style="font-size:1.1rem;margin-top:10px;color:var(--gold-light);">Interpretation Through Experience Scale</p>
+            <p style="font-size:0.72rem;margin-top:1rem;color:rgba(232,213,168,0.45);letter-spacing:0.08em;">© 2026 Noespera Studio, LLC · ITES™ Patent Pending</p>
+        </div>
+
+        <div class="content">
+            <div class="error" id="error-message"></div>
+
+            <!-- SECTION 0: CONSENT -->
+            <div class="form-section active" id="consent-section">
+                <h2>Before You Begin</h2>
+                <div class="intro">
+                    <p><strong>About this Index</strong></p>
+                    <p>The ITES™ Index measures how leadership communication is experienced and interpreted across five dimensions of organizational meaning. It takes approximately 10 minutes.</p>
+                    <p>Your results reflect the conditions under which meaning forms in your specific organizational environment — not an evaluation of your performance or capability.</p>
+                    <p style="margin-bottom:0;"><strong>Time:</strong> Approximately 10 minutes &nbsp;·&nbsp; <strong>Questions:</strong> 48</p>
+                </div>
+
+                <div style="background:var(--white);padding:1.5rem;border:1px solid rgba(198,160,111,0.25);border-radius:8px;margin-bottom:1.5rem;">
+                    <p style="font-weight:600;color:var(--charcoal-deep);margin-bottom:0.75rem;">A note on your privacy</p>
+                    <p style="font-size:0.95rem;margin-bottom:0.75rem;">Your individual responses are completely confidential and will never be shared with anyone — including your organization, your manager, or any third party.</p>
+                    <p style="font-size:0.95rem;margin-bottom:0;">You may request deletion of your data at any time by contacting <a href="mailto:joan@noesperastudio.com" style="color:var(--gold-dark);">joan@noesperastudio.com</a></p>
+                </div>
+
+                <div class="consent-check-wrap" onclick="toggleConsent()">
+                    <input type="checkbox" id="consent-research" onchange="checkConsent()">
+                    <label for="consent-research">
+                        <strong>I'm happy for my anonymized responses to contribute to research</strong><br>
+                        <span style="font-size:0.85rem;font-weight:300;color:rgba(74,74,72,0.75);">Optional — de-identified and aggregated patterns may contribute to Noespera Studio's ongoing research into how meaning flows in organizations. Not required to proceed.</span>
+                    </label>
+                </div>
+
+                <div class="consent-check-wrap" onclick="toggleRequired()">
+                    <input type="checkbox" id="consent-required" onchange="checkConsent()">
+                    <label for="consent-required">
+                        <strong>I understand and agree to proceed <span style="color:var(--gold-dark);">*</span></strong><br>
+                        <span style="font-size:0.85rem;font-weight:300;color:rgba(74,74,72,0.75);">I acknowledge my individual responses are confidential and will not be shared.</span>
+                    </label>
+                </div>
+                <p class="consent-required" id="consent-error">Please confirm you understand and agree to proceed.</p>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" id="consent-next-btn" onclick="proceedFromConsent()">
+                        Continue →
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION 1: DEMOGRAPHICS -->
+            <div class="form-section" id="demographics-section">
+                <h2>About You</h2>
+                <p style="margin-bottom:30px;font-size:1.05rem;">This helps us understand organizational patterns. All information is confidential.</p>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="firstName" placeholder="First name" autocomplete="given-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="lastName" placeholder="Last name" autocomplete="family-name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" class="form-input" id="email" placeholder="your@email.com" required>
+                    <div class="form-help">Used only to send you information about your results if you request them. Never shared.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="department">Department <span class="required">*</span></label>
+                    <select class="form-select" id="department" required>
+                        <option value="">Select your department...</option>
+                        <option value="Leadership / Executive">Leadership / Executive</option>
+                        <option value="Planning">Planning</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Interior Design">Interior Design</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Project Management">Project Management</option>
+                        <option value="Business Development">Business Development</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Product">Product</option>
+                        <option value="Technology / IT">Technology / IT</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Customer Success">Customer Success</option>
+                        <option value="Legal / Compliance">Legal / Compliance</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="team">Team / Group <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="team" placeholder="e.g., Enterprise Sales, Product Design, Finance Operations" required>
+                    <div class="form-help">Enter your specific team or working group</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="role">Role Level <span class="required">*</span></label>
+                    <select class="form-select" id="role" required>
+                        <option value="">Select your role level...</option>
+                        <option value="Individual Contributor">Individual Contributor</option>
+                        <option value="Team Lead / Manager">Team Lead / Manager</option>
+                        <option value="Senior Manager">Senior Manager</option>
+                        <option value="Director">Director</option>
+                        <option value="Senior Director">Senior Director</option>
+                        <option value="Vice President">Vice President</option>
+                        <option value="Senior Vice President">Senior Vice President</option>
+                        <option value="C-Suite / Executive">C-Suite / Executive</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="tenure">Tenure (Optional)</label>
+                    <select class="form-select" id="tenure">
+                        <option value="">Select if you'd like to share...</option>
+                        <option value="Less than 6 months">Less than 6 months</option>
+                        <option value="6 months - 1 year">6 months - 1 year</option>
+                        <option value="1-2 years">1-2 years</option>
+                        <option value="2-5 years">2-5 years</option>
+                        <option value="5-10 years">5-10 years</option>
+                        <option value="10+ years">10+ years</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" id="begin-assessment-btn" disabled>
+                        Begin Index
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION 2: ASSESSMENT QUESTIONS -->
+            <div class="form-section" id="assessment-section">
+                <div class="progress-text" id="progress-text">Question 1 of 48</div>
+                <div class="progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <form id="assessment-form">
+                    <div id="questions-container"></div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn" disabled>
+                        Complete Index
+                    </button>
+                </form>
+            </div>
+
+            <!-- SECTION 3: LOADING -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Calculating your Interpretive Profile...</p>
+            </div>
+
+            <!-- SECTION 4: RESULTS (GLIMPSE) -->
+            <div class="results" id="results">
+                <div id="results-content"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-brand">Noespera Studio</div>
+            <div class="footer-tagline">Applied Organizational Meaning Science™</div>
+            <div class="footer-ip">© 2026 Noespera Studio, LLC · ITES™ Patent Pending · All rights reserved</div>
+        </div>
+    </div>
+
+    <script>
+    // ── CONFIG ──
+    const SUPABASE_URL = 'https://vasoyiljaptexuzvhyvi.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZhc295aWxqYXB0ZXh1enZoeXZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0MDQwOTQsImV4cCI6MjA4OTk4MDA5NH0.j81aiOMtHkwaokV4j3LOWq0oORXPaK5GyXCYprOEWA0';
+
+    let demographics = {};
+    let consentResearch = false;
+
+    // ── CONSENT ──
+    function toggleConsent() {
+        const cb = document.getElementById('consent-research');
+        cb.checked = !cb.checked;
+        checkConsent();
+    }
+    function toggleRequired() {
+        const cb = document.getElementById('consent-required');
+        cb.checked = !cb.checked;
+        checkConsent();
+    }
+    function checkConsent() {
+        consentResearch = document.getElementById('consent-research').checked;
+    }
+    function proceedFromConsent() {
+        const required = document.getElementById('consent-required').checked;
+        if (!required) {
+            document.getElementById('consent-error').classList.add('visible');
+            return;
+        }
+        document.getElementById('consent-error').classList.remove('visible');
+        document.getElementById('consent-section').classList.remove('active');
+        document.getElementById('demographics-section').classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // ── DEMOGRAPHICS ──
+    const departmentInput = document.getElementById('department');
+    const teamInput = document.getElementById('team');
+    const roleInput = document.getElementById('role');
+    const emailInput = document.getElementById('email');
+    const beginBtn = document.getElementById('begin-assessment-btn');
+
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+
+    function checkDemographicsComplete() {
+        const emailValid = emailInput.value && emailInput.value.includes('@');
+        const complete = firstNameInput.value.trim() && lastNameInput.value.trim() && emailValid && departmentInput.value && teamInput.value && roleInput.value;
+        beginBtn.disabled = !complete;
+    }
+
+    departmentInput.addEventListener('change', checkDemographicsComplete);
+    teamInput.addEventListener('input', checkDemographicsComplete);
+    roleInput.addEventListener('change', checkDemographicsComplete);
+    emailInput.addEventListener('input', checkDemographicsComplete);
+    firstNameInput.addEventListener('input', checkDemographicsComplete);
+    lastNameInput.addEventListener('input', checkDemographicsComplete);
+
+    beginBtn.addEventListener('click', () => {
+        demographics = {
+            first_name: firstNameInput.value.trim(),
+            last_name: lastNameInput.value.trim(),
+            full_name: (firstNameInput.value.trim() + ' ' + lastNameInput.value.trim()).trim(),
+            email: emailInput.value,
+            department: departmentInput.value,
+            team: teamInput.value,
+            role: roleInput.value,
+            tenure: document.getElementById('tenure').value || 'Not specified',
+            consent_research: consentResearch
+        };
+        document.getElementById('demographics-section').classList.remove('active');
+        document.getElementById('assessment-section').classList.add('active');
+        window.scrollTo(0, 0);
+    });
+
+    // ── QUESTIONS ──
+    const questions = [
+        "The organization's stated values align with day-to-day decisions",
+        "Leadership behavior consistently reflects stated priorities",
+        "What leadership says matches what actually happens",
+        "The organization's mission guides actual work",
+        "Decisions reflect the values leadership promotes",
+        "Leadership actions align with their words",
+        "The organization practices what it preaches",
+        "Core values influence real decisions",
+        "Leadership messaging is consistent across situations",
+        "Promised outcomes typically materialize",
+        "Results align with stated objectives",
+        "What we accomplish matches what was communicated",
+        "Team efforts produce expected results",
+        "Outcomes reflect leadership's stated goals",
+        "Actions lead to promised results",
+        "Deliverables match commitments",
+        "I understand the organization's strategic direction",
+        "The path forward is clear to me",
+        "I know how my work contributes to organizational goals",
+        "Strategic priorities are communicated clearly",
+        "I understand where the organization is headed",
+        "Leadership direction is easy to follow",
+        "Organizational goals make sense to me",
+        "I know what success looks like",
+        "Leadership messages remain consistent over time",
+        "What I'm told today aligns with what I heard before",
+        "Strategic direction doesn't shift unexpectedly",
+        "Leadership messaging is predictable",
+        "Communication from leadership is reliable",
+        "Messages don't contradict previous statements",
+        "Leadership maintains consistent positions",
+        "I can depend on what leadership says",
+        "I feel safe expressing concerns about decisions",
+        "I can question leadership approaches without penalty",
+        "My input is genuinely welcomed",
+        "I can disagree with approaches openly",
+        "Raising questions is encouraged",
+        "I can voice differing perspectives safely",
+        "Challenging ideas is seen as valuable",
+        "I feel comfortable sharing honest feedback",
+        "Open dialogue is supported here",
+        "Critical thinking is encouraged",
+        "I can suggest alternative approaches",
+        "Questions are treated as helpful",
+        "Dissenting views are heard respectfully",
+        "I can express uncertainty without judgment",
+        "Pushback on ideas is welcomed",
+        "Different opinions strengthen our decisions"
+    ];
+
+    const container = document.getElementById('questions-container');
+    const form = document.getElementById('assessment-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    questions.forEach((question, index) => {
+        const block = document.createElement('div');
+        block.className = 'question-block';
+        block.innerHTML = `
+            <div class="question-text">
+                <span class="question-number">Q${index + 1}.</span>${question}
+            </div>
+            <div class="options">
+                ${[1,2,3,4,5].map(v => `
+                    <label class="option-label">
+                        <input type="radio" name="q${index+1}" value="${v}" required>
+                        <span>${v===1?'Strongly Disagree':v===2?'Disagree':v===3?'Neutral':v===4?'Agree':'Strongly Agree'}</span>
+                    </label>
+                `).join('')}
+            </div>
+        `;
+        container.appendChild(block);
+    });
+
+    form.addEventListener('change', () => {
+        const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+        const progress = (answered / questions.length) * 100;
+        progressBar.style.width = progress + '%';
+        progressText.textContent = `Question ${answered} of ${questions.length}`;
+        submitBtn.disabled = answered < questions.length;
+    });
+
+    // ── DIMENSION NAMES ──
+    const DIM_NAMES = {
+        VOS: 'Value-Outcome Synchronization',
+        ICS: 'Interpretive Clarity',
+        CRS: 'Consistency-Reliability',
+        PFS: 'Psychological Freedom',
+        IVS: 'Interpretation Velocity'
+    };
+
+    // ── SCORE LABEL ──
+    function scoreLabel(score) {
+        if (score >= 75) return 'Strong meaning clarity';
+        if (score >= 50) return 'Mixed meaning environment';
+        if (score >= 25) return 'Significant interpretation load';
+        return 'High meaning strain';
+    }
+
+    function scaleActiveIndex(score) {
+        if (score >= 75) return 3;
+        if (score >= 50) return 2;
+        if (score >= 25) return 1;
+        return 0;
+    }
+
+    // ── BUILD GLIMPSE RESULTS ──
+    function buildGlimpse(data) {
+        const composite = data.composite_score || data.composite || 50;
+        const dimensions = data.dimensions || data.scores || {};
+
+        // Find highest and lowest dimension
+        const dimEntries = Object.entries(dimensions);
+        dimEntries.sort((a, b) => b[1] - a[1]);
+        const highest = dimEntries[0];
+        const lowest = dimEntries[dimEntries.length - 1];
+
+        const activeIdx = scaleActiveIndex(composite);
+        const scaleLabels = ['High strain', 'Interpretation load', 'Mixed environment', 'Strong clarity'];
+
+        return `
+            <h2 style="margin-bottom:1.5rem;">Your ITES™ Index Results</h2>
+
+            <!-- Composite score -->
+            <div class="glimpse-score-wrap">
+                <div class="glimpse-score-label">Composite ITES Score</div>
+                <div class="glimpse-score-number">${composite.toFixed(1)}</div>
+                <div class="glimpse-score-desc">${scoreLabel(composite)}</div>
+                <div class="glimpse-scale">
+                    ${scaleLabels.map((label, i) => `
+                        <div class="scale-block scale-${i} ${i === activeIdx ? 'active' : ''}">${label}</div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Highest + Lowest -->
+            <p style="font-size:0.82rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:1rem;">Your meaning profile — highlights</p>
+            <div class="glimpse-dims">
+                ${highest ? `
+                <div class="dim-glimpse highest">
+                    <div class="dim-glimpse-label">↑ Strongest dimension</div>
+                    <div class="dim-glimpse-name">${DIM_NAMES[highest[0]] || highest[0]}</div>
+                    <div class="dim-glimpse-score">${Number(highest[1]).toFixed(1)}</div>
+                </div>` : ''}
+                ${lowest ? `
+                <div class="dim-glimpse lowest">
+                    <div class="dim-glimpse-label">↓ Most friction here</div>
+                    <div class="dim-glimpse-name">${DIM_NAMES[lowest[0]] || lowest[0]}</div>
+                    <div class="dim-glimpse-score">${Number(lowest[1]).toFixed(1)}</div>
+                </div>` : ''}
+            </div>
+
+            <!-- Blurred full report -->
+            <div class="blurred-report">
+                <div class="blurred-report-inner">
+                    <div class="blurred-fake-content">
+                        ${dimEntries.map(([key, score]) => `
+                            <div class="fake-dim">
+                                <div class="fake-dim-title">${DIM_NAMES[key] || key} — ${Number(score).toFixed(1)}</div>
+                                <div class="fake-dim-bar" style="width:${score}%"></div>
+                            </div>
+                        `).join('')}
+                        <p style="margin-top:1.5rem;font-size:0.95rem;">Your balanced approach gives you flexibility across communication contexts. This pattern suggests a meaning environment where...</p>
+                        <p style="font-size:0.95rem;margin-top:0.75rem;">Questions to consider: In which situations do you naturally slow down your interpretation? What helps you know when...</p>
+                    </div>
+                </div>
+                <div class="blurred-overlay">
+                    <h3>Your Full Interpretive Profile</h3>
+                    <p>Detailed insights across all five dimensions — with personalized questions to consider and suggested actions — are available in a conversation with Dr. Joan deBien-Trammell.</p>
+                    <a href="https://noesperastudio.com/contact.html?ref=ites" class="cta-report">Request My Full Report →</a>
+                    <p class="cta-sub">No obligation · Responses within 24 hours</p>
+                </div>
+            </div>
+
+            <div style="background:var(--ivory);padding:1.5rem;border-left:3px solid var(--gold);margin-bottom:2rem;border-radius:0 6px 6px 0;">
+                <p style="font-size:0.88rem;font-weight:300;color:var(--charcoal);margin:0;line-height:1.7;">
+                    These scores describe <em>meaning conditions</em> — not performance. A lower score reflects the environment you're navigating, and is often the starting point for the most meaningful organizational work.
+                </p>
+            </div>
+        `;
+    }
+
+    // ── NOTIFY SUPABASE ──
+    async function notifyCompletion(demographics, scores) {
+        try {
+            await fetch(SUPABASE_URL + '/functions/v1/notify-ites-completion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + SUPABASE_KEY
+                },
+                body: JSON.stringify({
+                    email: demographics.email,
+                    department: demographics.department,
+                    team: demographics.team,
+                    role: demographics.role,
+                    tenure: demographics.tenure,
+                    consent_research: demographics.consent_research,
+                    composite_score: scores.composite_score || scores.composite,
+                    dimensions: scores.dimensions || scores.scores,
+                    completed_at: new Date().toISOString()
+                })
+            });
+        } catch(e) {
+            console.log('Notification failed silently:', e);
+        }
+    }
+
+    // ── SUBMIT ──
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const responses = {};
+        for (let [key, value] of formData.entries()) {
+            responses[key] = value;
+        }
+        responses.demographics = demographics;
+
+        document.getElementById('assessment-section').style.display = 'none';
+        document.getElementById('loading').classList.add('active');
+        document.getElementById('error-message').classList.remove('active');
+
+        try {
+            const response = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(responses)
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Notify Supabase silently
+                await notifyCompletion(demographics, data);
+
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('results').classList.add('active');
+
+                // Build glimpse results
+                const glimpseHTML = buildGlimpse(data);
+                document.getElementById('results-content').innerHTML = glimpseHTML;
+
+                window.scrollTo(0, 0);
+            } else {
+                throw new Error(data.error || 'Index submission failed');
+            }
+        } catch (error) {
+            document.getElementById('loading').classList.remove('active');
+            document.getElementById('assessment-section').style.display = 'block';
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = 'Error: ' + error.message;
+            errorDiv.classList.add('active');
+        }
+    });
+    </script>
+</body>
+</html>
