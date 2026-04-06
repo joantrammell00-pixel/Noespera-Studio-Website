@@ -812,6 +812,17 @@
         return valid;
     }
 
+    // ── PHONE FORMATTING ──
+    function formatPhone(phone) {
+        var digits = phone.replace(/\D/g, '');
+        if (digits.length === 10) {
+            return '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+        } else if (digits.length === 11 && digits[0] === '1') {
+            return '(' + digits.slice(1,4) + ') ' + digits.slice(4,7) + '-' + digits.slice(7);
+        }
+        return phone;
+    }
+
     // ── SUBMIT ──
     async function submitForm() {
         if (!validateForm()) return;
@@ -837,7 +848,7 @@
             org_name: document.getElementById('orgName').value.trim(),
             org_size: document.getElementById('orgSize').value,
             email: document.getElementById('email').value.trim(),
-            phone: document.getElementById('phone') ? document.getElementById('phone').value.trim() || null : null,
+            phone: document.getElementById('phone') && document.getElementById('phone').value.trim() ? formatPhone(document.getElementById('phone').value.trim()) : null,
             interest: document.getElementById('interest').value.trim() || null,
             seeking: seekingVals.join(', ') || null,
             preferred_contact: selectedMethod,
