@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand DNA™ Workshop — Noespera Studio</title>
+    <meta name="description" content="Brand DNA™ is the foundational engagement in Noespera Studio's proprietary DNA Workshop Suite™: a facilitated methodology that surfaces the founder story, brand voice, and the meaning beneath the positioning. The foundation beneath every meaningful brand.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Schema Markup for Brand DNA™ Workshop -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Brand DNA™ Workshop",
+      "alternateName": "Brand DNA Workshop",
+      "description": "A facilitated methodology that surfaces the founder story, brand voice, and the meaning beneath the positioning: the foundation beneath every meaningful brand. The flagship engagement of Noespera Studio's DNA Workshop Suite™.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Noespera Studio, LLC",
+        "url": "https://noesperastudio.com"
+      },
+      "serviceType": "Brand Strategy & Organizational Meaning Science",
+      "areaServed": "Worldwide"
+    }
+    </script>
+
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --cream: #F5F1E8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--gold-dark);
+        }
+
+        p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.2rem;
+        }
+
+        .large-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 0.85rem;
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--charcoal-deep);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 6rem 0 5rem;
+        }
+
+        .page-header .eyebrow {
+            color: var(--gold);
+        }
+
+        .page-header h1 {
+            color: var(--gold-light);
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: rgba(232, 213, 168, 0.7);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .breadcrumb a {
+            color: rgba(232, 213, 168, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        /* Lead Section */
+        .lead-section {
+            background: var(--white);
+        }
+
+        .lead-box {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .lead-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+            line-height: 1.4;
+            color: var(--charcoal-deep);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 0 1rem 2rem;
+            margin: 2rem 0;
+            font-weight: 300;
+        }
+
+        .lead-quote .accent {
+            color: var(--gold-dark);
+            font-style: italic;
+        }
+
+        /* What It Is */
+        .what-it-is {
+            background: var(--ivory);
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .col-card h3 {
+            color: var(--charcoal-deep);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .col-card ul {
+            list-style: none;
+        }
+
+        .col-card li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        .col-card li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: var(--white);
+        }
+
+        /* Stages of Engagement */
+        .stages-section {
+            background: var(--ivory);
+        }
+
+        .stages-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stage-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-top: 3px solid var(--gold);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .stage-tier {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .stage-audience {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            color: var(--charcoal-deep);
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+        }
+
+        .stage-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(198, 160, 111, 0.3);
+        }
+
+        .stage-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+            margin-bottom: 0;
+            flex-grow: 1;
+        }
+
+        .stages-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--charcoal);
+            font-size: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .process-card {
+            background: var(--cream);
+            padding: 2.5rem 2rem;
+            border-top: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .process-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-card h3 {
+            color: var(--charcoal-deep);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .process-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* Process Cards - Expandable Accordion */
+        .process-card-expandable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .process-card-expandable:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(74, 74, 72, 0.08);
+        }
+
+        .process-card-expandable.is-expanded {
+            background: var(--white);
+            border-top-color: var(--gold-dark);
+            box-shadow: 0 12px 32px rgba(74, 74, 72, 0.1);
+        }
+
+        .process-expand-btn {
+            margin-top: 1.5rem;
+            padding: 0.6rem 1rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .process-expand-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .process-expand-btn .btn-text-expanded {
+            display: none;
+        }
+
+        .process-card-expandable.is-expanded .btn-text-collapsed {
+            display: none;
+        }
+
+        .process-card-expandable.is-expanded .btn-text-expanded {
+            display: inline;
+        }
+
+        .process-expand-btn .btn-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .process-card-expandable.is-expanded .btn-icon {
+            transform: rotate(45deg);
+        }
+
+        .process-expanded {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(198, 160, 111, 0.3);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .process-expanded-inner p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 1.2rem;
+        }
+
+        .process-callout {
+            background: var(--cream);
+            border-left: 3px solid var(--gold);
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .process-callout .callout-label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .process-callout ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .process-callout li {
+            padding: 0.35rem 0 0.35rem 1.2rem;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--charcoal);
+        }
+
+        .process-callout li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .process-callout li strong {
+            color: var(--charcoal-deep);
+            font-weight: 600;
+        }
+
+        .process-deeper-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--gold-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gold-light);
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .process-deeper-link:hover {
+            color: var(--charcoal-deep);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Walk Away Section */
+        .walk-away {
+            background: var(--cream);
+        }
+
+        .walk-away-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3.5rem;
+            border: 2px solid var(--gold);
+            border-radius: 2px;
+        }
+
+        .walk-away-box h2 {
+            color: var(--charcoal-deep);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .walk-away-list {
+            list-style: none;
+        }
+
+        .walk-away-list li {
+            padding: 0.8rem 0 0.8rem 2rem;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(198, 160, 111, 0.2);
+        }
+
+        .walk-away-list li:last-child {
+            border-bottom: none;
+        }
+
+        .walk-away-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        /* Why It Works */
+        .why-it-works {
+            background: var(--charcoal-deep);
+            color: var(--white);
+        }
+
+        .why-it-works h2 {
+            color: var(--gold-light);
+        }
+
+        .why-it-works p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .why-it-works .container {
+            max-width: 900px;
+        }
+
+        .why-it-works .highlight {
+            color: var(--gold-light);
+            font-weight: 400;
+        }
+
+        /* The Build */
+        .the-build {
+            background: var(--ivory);
+        }
+
+        .build-intro {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .build-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-left: 4px solid var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        .build-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .build-card h3 {
+            color: var(--charcoal-deep);
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .build-card ul {
+            list-style: none;
+        }
+
+        .build-card li {
+            padding: 0.4rem 0 0.4rem 1.2rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .build-card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .build-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--charcoal);
+            font-size: 1rem;
+        }
+
+        /* Investment */
+        .investment {
+            background: var(--white);
+        }
+
+        .investment-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--cream);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-top: 4px solid var(--gold);
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .pricing-tier {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: var(--charcoal-deep);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-starting {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .pricing-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+            margin-bottom: 0;
+        }
+
+        .pricing-note {
+            text-align: center;
+            font-style: italic;
+            color: var(--charcoal);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--charcoal-deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--gold-light);
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--charcoal-deep);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--gold);
+            color: var(--gold-light);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--charcoal-deep);
+        }
+
+        /* Related Workshops */
+        .related-workshops {
+            background: var(--ivory);
+        }
+
+        .related-workshops h2 {
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .related-card {
+            background: var(--white);
+            padding: 2rem;
+            border-top: 2px solid var(--gold);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+            display: block;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .related-card h4 {
+            margin-bottom: 0.8rem;
+        }
+
+        .related-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal-deep);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .build-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .walk-away-box {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-card-expandable {
+                cursor: pointer;
+            }
+
+            .process-callout {
+                padding: 1rem 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--charcoal-deep);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            section {
+                padding: 3.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dna-workshops.html" class="active">DNA Workshop Suite™</a></li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html">Insights</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Let's Talk</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="dna-workshops.html">DNA Workshop Suite™</a> &nbsp;/&nbsp; Brand DNA™
+            </div>
+            <span class="eyebrow">The Foundational Engagement</span>
+            <h1>Brand DNA™ Workshop</h1>
+            <p class="large-text">Meaning-Based Strategy for Founders &amp; Scaling Brands</p>
+        </div>
+    </section>
+
+    <section class="lead-section">
+        <div class="container">
+            <div class="lead-box">
+                <p class="large-text">Before a brand can communicate clearly, raise capital effectively, or build a team that holds together under pressure, it must surface its foundational meaning.</p>
+                <div class="lead-quote">
+                    Brand DNA™ is <span class="accent">where we begin.</span>
+                </div>
+                <p>It is not a branding exercise. It is a meaning excavation — the work before the work that makes naming, positioning, design, messaging, pitch decks, and go-to-market strategy actually cohere.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-it-is">
+        <div class="container">
+            <span class="eyebrow">What It Is</span>
+            <h2>The Foundation Beneath the Brand</h2>
+            <p class="large-text">Brand DNA™ is the foundational engagement in Noespera Studio's proprietary DNA Workshop Suite™: a facilitated methodology grounded in Applied Organizational Meaning Science™. It reveals the founder story and the brand voice that drive every downstream brand decision.</p>
+
+            <div class="two-col">
+                <div class="col-card">
+                    <h3>Who It's For</h3>
+                    <ul>
+                        <li>Early-stage founders preparing to launch</li>
+                        <li>Growth-stage brands scaling through complexity</li>
+                        <li>Companies preparing for capital conversations</li>
+                        <li>Leadership teams whose brand has drifted from its origin</li>
+                        <li>Portfolio companies needing a coherent foundation</li>
+                    </ul>
+                </div>
+                <div class="col-card">
+                    <h3>What It Surfaces</h3>
+                    <ul>
+                        <li>The founder story</li>
+                        <li>The core identity of the brand</li>
+                        <li>Brand voice and language signature</li>
+                        <li>The meaning beneath the positioning</li>
+                        <li>The interpretive layer that makes everything cohere</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stages-section">
+        <div class="container">
+            <span class="eyebrow">Stages of Engagement</span>
+            <h2>Meeting You Where You Are</h2>
+            <p class="large-text">Brand DNA™ meets founders and leadership teams where they are. Each stage reflects a different reality, a different starting point, and a different engagement design.</p>
+
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <div class="stage-tier">Early Stage</div>
+                    <p class="stage-audience">For founders with vision and limited existing brand assets, preparing to launch or just beginning to scale.</p>
+                    <p class="stage-description">Brand DNA™ becomes excavation from scratch&nbsp;— surfacing the founder story and brand voice that will drive every downstream decision. A streamlined, founder-focused engagement with faster turnaround.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-tier">Growth&nbsp;Stage</div>
+                    <p class="stage-audience">For brands with an established body of work: websites, decks, messaging, team interpretations.</p>
+                    <p class="stage-description">Brand DNA™ becomes excavation plus audit&nbsp;— surfacing what's there, identifying drift, reconciling the original meaning with how it's living in the world. Pre-work analysis, broader stakeholder input, more findings to articulate.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-tier">Enterprise</div>
+                    <p class="stage-audience">For multi-brand portfolios and leadership teams navigating organizational complexity and meaning at scale.</p>
+                    <p class="stage-description">Brand DNA™ becomes systemic&nbsp;— often connecting to Leadership Team DNA™, Team DNA™, and Meaning Climate work. Bespoke design, multiple stakeholders, deeper integration with other DNA frameworks.</p>
+                </div>
+            </div>
+
+            <p class="stages-note">Delivered in-person or virtual. Standalone or sequenced with Team DNA™, Investor DNA™, Leadership Team DNA™, and Board DNA™. Every engagement begins with a complimentary discovery call.</p>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <span class="eyebrow">The Process &mdash; The Brand DNA™ Engagement</span>
+            <h2>Three Stages. Built for Depth.</h2>
+            <p class="large-text">A carefully sequenced engagement that honors the work it takes to surface meaning, integrate what's found, and translate it into a strategic foundation built to last.</p>
+
+            <div class="process-grid">
+                <div class="process-card process-card-expandable" data-stage="01">
+                    <div class="process-number">01</div>
+                    <h3>Discovery</h3>
+                    <p>Facilitated sessions guided by a personalized Brand DNA™ Journal. Goes deep into the why &mdash; surfacing the founder story and brand voice that drive every downstream brand decision.</p>
+                    <button class="process-expand-btn" aria-expanded="false" aria-controls="stage-01-content">
+                        <span class="btn-text-collapsed">Read more</span>
+                        <span class="btn-text-expanded">Show less</span>
+                        <span class="btn-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="process-expanded" id="stage-01-content" hidden>
+                        <div class="process-expanded-inner">
+                            <p>Discovery is where the meaning excavation begins. Every founder receives their own Brand DNA™ Journal&nbsp;— a personalized, designed document prepared in advance with their name, their organization, and prompts shaped to the questions only this brand needs to answer.</p>
+                            <p>The conversations are organic, authentic, and often deeply emotional&nbsp;— this is meaning excavation, and meaning lives close to the surface of what matters most.</p>
+                            <p>This isn't a Q&amp;A. It's structured meaning-making&nbsp;— the kind of work that surfaces what's been driving the brand all along, but never quite named.</p>
+                            <a href="brand-dna-discovery.html" class="process-deeper-link">See the full Discovery experience&nbsp;→</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-card process-card-expandable" data-stage="02">
+                    <div class="process-number">02</div>
+                    <h3>Synthesis</h3>
+                    <p>The interpretive work between sessions. Patterns are found. The "why behind the why" surfaces. The labor that makes the Findings Report worth reading three years later.</p>
+                    <button class="process-expand-btn" aria-expanded="false" aria-controls="stage-02-content">
+                        <span class="btn-text-collapsed">Read more</span>
+                        <span class="btn-text-expanded">Show less</span>
+                        <span class="btn-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="process-expanded" id="stage-02-content" hidden>
+                        <div class="process-expanded-inner">
+                            <p>Synthesis is where the substance of Discovery gets shaped into something legible. Between and after the Discovery sessions, the threads from each conversation are woven together&nbsp;— patterns identified, contradictions reconciled, the deep architecture of the brand made visible.</p>
+                            <p>This is the interpretive labor that founders can't do for themselves while inside their own story. The "why behind the why" only becomes visible when someone else can see across the whole journey at once.</p>
+                            <p>It's quiet work. Slow work. The kind that takes the substance of what surfaced and shapes it into something coherent enough to articulate.</p>
+                            <p><em>This stage is what makes the Findings Report different from every brand document the founder has ever received.</em></p>
+                            <a href="brand-dna-synthesis.html" class="process-deeper-link">See the full Synthesis experience&nbsp;→</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-card process-card-expandable" data-stage="03">
+                    <div class="process-number">03</div>
+                    <h3>Articulation</h3>
+                    <p>The Brand DNA™ Findings Report and Executive Summary. The result of the work, made tangible &mdash; a strategic foundation, written for this specific brand.</p>
+                    <button class="process-expand-btn" aria-expanded="false" aria-controls="stage-03-content">
+                        <span class="btn-text-collapsed">Read more</span>
+                        <span class="btn-text-expanded">Show less</span>
+                        <span class="btn-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="process-expanded" id="stage-03-content" hidden>
+                        <div class="process-expanded-inner">
+                            <p>What Discovery surfaced and Synthesis integrated becomes the Brand DNA™ Findings Report and Executive Summary&nbsp;— the result of the work, made tangible.</p>
+                            <p>What makes the Findings Report different from typical brand documents is that it doesn't just define what the brand is&nbsp;— it captures the interpretive layer beneath. The "why behind the why." That's what makes it hold up under pressure, through pivots, through scale, through the inevitable hard quarters.</p>
+                            <p>It's not a deck. It's not a brief. It's a foundation, written for this specific brand, drawn from the founder's own words, organized into the structure that makes everything that follows possible.</p>
+                            <div class="process-callout">
+                                <span class="callout-label">The Result of the Work</span>
+                                <ul>
+                                    <li><strong>Brand DNA™ Executive Summary</strong>&nbsp;— a concise, shareable distillation ready to hand to investors, designers, and team members</li>
+                                    <li><strong>Brand DNA™ Findings Report</strong>&nbsp;— the complete strategic foundation, scoped to what surfaced</li>
+                                </ul>
+                            </div>
+                            <a href="brand-dna-articulation.html" class="process-deeper-link">See the full Articulation experience&nbsp;→</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="walk-away">
+        <div class="container">
+            <div class="walk-away-box">
+                <span class="eyebrow" style="text-align: center; display: block;">The Outcome</span>
+                <h2>What You Walk Away With</h2>
+                <ul class="walk-away-list">
+                    <li>The Brand DNA™ Findings Report and Executive Summary: language and positioning ready to hand to a designer, investor, or new hire</li>
+                    <li>An articulated founder story</li>
+                    <li>Defined voice and meaning architecture</li>
+                    <li>A pressure-tested foundation ready for what comes next</li>
+                    <li>Clarity that makes every subsequent strategic decision faster and more coherent</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-it-works">
+        <div class="container">
+            <span class="eyebrow">Why It Works</span>
+            <h2>Underneath the Surface</h2>
+            <p><span class="highlight">Brand DNA™ goes underneath.</span> Beneath positioning, beneath messaging, beneath the visible expressions of a brand, there's an interpretive layer&nbsp;— the meaning that shapes how every brand decision actually lands. That's where this work lives.</p>
+            <p>Founders who do this work don't just define what they're building&nbsp;— they pressure-test it before they scale, raise capital, or walk into a retailer. The foundation holds, because the meaning is real.</p>
+        </div>
+    </section>
+
+    <section class="the-build" id="the-build">
+        <div class="container">
+            <span class="eyebrow">Beyond Brand DNA™ &mdash; The Long-Term Relationship</span>
+            <h2>The Build: From Foundation to Execution</h2>
+            <div class="build-intro">
+                <p class="large-text">Brand DNA™ produces a pressure-tested foundation. The Build is what comes next&nbsp;— the long-term relationship where the strategic foundation gets brought to life through tailored work shaped by what the Findings Report revealed.</p>
+                <p>What we build depends entirely on what the work reveals. No two engagements are identical. Recent builds have included a full brand identity system and website for a strategic services firm, a custom CRM and contracts platform for the same firm, investor-ready pitch decks, customized marketing plans, and ongoing advisory engagements.</p>
+                <p><em>Build engagements are scoped separately from Brand DNA™. The categories below are common areas of build, not a fixed menu&nbsp;— modular by design: select what's needed now, return for what's needed next.</em></p>
+            </div>
+
+            <div class="build-grid">
+                <div class="build-card">
+                    <h3>Brand Identity</h3>
+                    <ul>
+                        <li>Visual identity system: logo, palette, typography</li>
+                        <li>Brand standards and design system</li>
+                        <li>Print, packaging, and signage applications</li>
+                    </ul>
+                </div>
+                <div class="build-card">
+                    <h3>Digital &amp; Operational</h3>
+                    <ul>
+                        <li>Website design and development</li>
+                        <li>Custom CRM and client / contract management platforms</li>
+                        <li>SEO foundation and structured data</li>
+                    </ul>
+                </div>
+                <div class="build-card">
+                    <h3>Go-to-Market</h3>
+                    <ul>
+                        <li>Communication plan grounded in the Brand DNA™ Findings</li>
+                        <li>Marketing plan aligned with the brand's foundational meaning</li>
+                        <li>Investor-ready pitch deck and sales collateral</li>
+                    </ul>
+                </div>
+                <div class="build-card">
+                    <h3>Strategic Continuation</h3>
+                    <ul>
+                        <li>Team DNA™, Leadership Team DNA™, and Investor DNA™</li>
+                        <li>Board DNA™ and governance alignment</li>
+                        <li>Ongoing advisory and meaning stewardship</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="build-note">All build engagements scoped per project, grounded in the Brand DNA™ findings.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <span class="eyebrow">Learn More &amp; Let's Talk</span>
+            <h2>Start the Conversation</h2>
+            <p>Every Brand DNA™ engagement begins with a complimentary discovery call&nbsp;— a chance to explore fit, understand your situation, and answer your questions before any commitment.</p>
+            <a href="contact.html" class="btn">Let's Talk</a>
+            <a href="dna-workshops.html" class="btn btn-secondary">Explore the Full Suite</a>
+        </div>
+    </section>
+
+    <section class="related-workshops">
+        <div class="container">
+            <span class="eyebrow" style="text-align: center; display: block;">Continue the Work</span>
+            <h2>Other Workshops in the Suite</h2>
+            <div class="related-grid">
+                <a href="dna-workshops.html#team" class="related-card">
+                    <h4>Team DNA™</h4>
+                    <p>Maps interpretive patterns and shared meaning-making across teams. Often the natural next step after Brand DNA™.</p>
+                </a>
+                <a href="dna-workshops.html#investor" class="related-card">
+                    <h4>Investor DNA™</h4>
+                    <p>Purpose-built for founders preparing for capital conversations. Goes deeper than the deck.</p>
+                </a>
+                <a href="dna-workshops.html#leadership" class="related-card">
+                    <h4>Leadership Team DNA™</h4>
+                    <p>Supports executive teams in how meaning is interpreted, communicated, and carried.</p>
+                </a>
+                <a href="dna-workshops.html#board" class="related-card">
+                    <h4>Board DNA™</h4>
+                    <p>Establishes governance coherence and interpretive alignment at the board level.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> |
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Process card accordion behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.process-card-expandable');
+
+            cards.forEach(function(card) {
+                const btn = card.querySelector('.process-expand-btn');
+                const expanded = card.querySelector('.process-expanded');
+
+                function toggle(e) {
+                    // Don't trigger when clicking the deeper link inside expanded content
+                    if (e.target.closest('.process-deeper-link')) return;
+                    // Don't trigger if clicking inside expanded content (let users select text)
+                    if (e.target.closest('.process-expanded') && e.target.tagName !== 'BUTTON') return;
+
+                    const isExpanded = card.classList.toggle('is-expanded');
+                    btn.setAttribute('aria-expanded', isExpanded);
+                    if (isExpanded) {
+                        expanded.removeAttribute('hidden');
+                    } else {
+                        expanded.setAttribute('hidden', '');
+                    }
+                }
+
+                // Whole card clickable
+                card.addEventListener('click', toggle);
+
+                // Prevent button click from bubbling and double-triggering
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggle(e);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
