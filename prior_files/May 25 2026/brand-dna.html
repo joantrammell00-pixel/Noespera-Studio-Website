@@ -943,83 +943,18 @@
                 padding: 3.5rem 0;
             }
         }
-    
-        /* Dropdown nav styling */
-        .has-dropdown { position: relative; }
-        .dropdown-arrow { font-size: 0.7em; margin-left: 0.2em; opacity: 0.7; display: inline-block; transition: transform 0.3s; }
-        .has-dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #2A2A2A;
-            min-width: 240px;
-            padding: 0.5rem 0;
-            margin: 0;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-            border: 1px solid rgba(198,160,111,0.15);
-            border-radius: 4px;
-            list-style: none;
-            z-index: 100;
-        }
-        .has-dropdown:hover .dropdown-menu,
-        .has-dropdown:focus-within .dropdown-menu { display: block; }
-        .dropdown-menu li { display: block; width: auto; border-bottom: none; }
-        .dropdown-menu a {
-            display: block;
-            padding: 0.7rem 1.25rem;
-            font-size: 0.88rem;
-            color: rgba(255,255,255,0.85);
-            white-space: nowrap;
-            text-decoration: none;
-        }
-        .dropdown-menu a:hover,
-        .dropdown-menu a.active { background: rgba(198,160,111,0.1); color: #C6A06F; }
-        /* Mobile: dropdown becomes inline expanded */
-        @media (max-width: 900px) {
-            .nav-links { gap: 1.2rem; font-size: 0.88rem; }
-        }
-        @media (max-width: 768px) {
-            .dropdown-arrow { display: none; }
-            .dropdown-menu {
-                display: block;
-                position: static;
-                background: rgba(0,0,0,0.2);
-                box-shadow: none;
-                border: none;
-                padding: 0;
-                min-width: 0;
-                border-radius: 0;
-            }
-            .dropdown-menu a {
-                padding: 0.7rem 3rem;
-                font-size: 0.82rem;
-                font-style: italic;
-            }
-        }
-        </style>
+    </style>
 </head>
 <body>
-        <nav>
+    <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="index.html">Home</a></li>
-                <li class="has-dropdown active">
-                    <a href="dna-workshops.html">DNA Workshop Suite™ <span class="dropdown-arrow">▾</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="brand-dna.html" class="active">Brand DNA™</a></li>
-                        <li><a href="brand-dna-discovery.html">Brand DNA™ Discovery</a></li>
-                        <li><a href="brand-dna-synthesis.html">Brand DNA™ Synthesis</a></li>
-                        <li><a href="brand-dna-articulation.html">Brand DNA™ Articulation</a></li>
-                    </ul>
-                </li>
+                <li><a href="dna-workshops.html" class="active">DNA Workshop Suite™</a></li>
                 <li><a href="services.html">Full Practice Suite</a></li>
-                <li><a href="insights.html">Research &amp; Perspectives</a></li>
-                <li><a href="leadership-meaning.html">Leadership Through the Meaning Lens</a></li>
-                <li><a href="https://ites-assessment.onrender.com" target="_blank">ITES™ Index</a></li>
+                <li><a href="insights.html">Insights</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Let's Talk</a></li>
             </ul>
