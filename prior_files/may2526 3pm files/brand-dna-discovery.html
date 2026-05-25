@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discovery — Stage One of Brand DNA™ | Noespera Studio</title>
+    <meta name="description" content="Discovery is where the meaning excavation begins. Every founder receives their own personalized Brand DNA™ Journal: a designed document prepared in advance with their name, organization, and prompts shaped to their specific questions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #C6A06F;
+            --gold-dark: #A68B4E;
+            --gold-light: #E8D5A8;
+            --charcoal: #4A4A48;
+            --charcoal-deep: #2A2A2A;
+            --ivory: #EDEAE5;
+            --cream: #F5F1E8;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 0.65rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin-bottom: 1.2rem;
+        }
+
+        .large-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 0.65rem;
+            display: block;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--charcoal-deep);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            padding: 5rem 0 4rem;
+        }
+
+        .page-header .eyebrow {
+            color: var(--gold);
+        }
+
+        .page-header h1 {
+            color: var(--gold-light);
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: rgba(232, 213, 168, 0.7);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .breadcrumb a {
+            color: rgba(232, 213, 168, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--gold);
+        }
+
+        .stage-hero {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .stage-hero-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(5rem, 10vw, 8rem);
+            font-weight: 300;
+            color: var(--gold);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .stage-hero-titles {
+            flex-grow: 1;
+        }
+
+        .stage-hero-titles h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .stage-hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.4;
+            margin-bottom: 0;
+            font-weight: 300;
+        }
+
+        /* Lead Section */
+        .lead-section {
+            background: var(--white);
+        }
+
+        .content-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-narrow p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-narrow .large-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: var(--charcoal-deep);
+            margin-bottom: 1.5rem;
+        }
+
+        .lead-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+            line-height: 1.4;
+            color: var(--charcoal-deep);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 0 1rem 2rem;
+            margin: 2.5rem 0;
+            font-weight: 300;
+        }
+
+        .lead-quote .accent {
+            color: var(--gold-dark);
+            font-style: italic;
+        }
+
+        /* Callout Box */
+        .full-callout {
+            background: var(--cream);
+            border-left: 5px solid var(--gold);
+            padding: 2.5rem 3rem;
+            margin: 3rem 0;
+        }
+
+        .full-callout .callout-label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .full-callout ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .full-callout li {
+            padding: 0.6rem 0 0.6rem 1.5rem;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .full-callout li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .full-callout li strong {
+            color: var(--charcoal-deep);
+            font-weight: 600;
+        }
+
+        /* What's Next Section */
+        .whats-next {
+            background: var(--ivory);
+        }
+
+        .whats-next h2 {
+            text-align: center;
+        }
+
+        .next-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .next-card {
+            background: var(--white);
+            padding: 2rem;
+            border-top: 2px solid var(--gold);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+            display: block;
+        }
+
+        .next-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(74, 74, 72, 0.12);
+        }
+
+        .next-card .next-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+
+        .next-card h4 {
+            margin-bottom: 0.8rem;
+            color: var(--charcoal-deep);
+        }
+
+        .next-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--charcoal-deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--gold-light);
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--charcoal-deep);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--gold);
+            color: var(--gold-light);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--charcoal-deep);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal-deep);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        /* Mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .stage-hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .stage-hero-number {
+                font-size: 5rem;
+            }
+
+            .next-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .full-callout {
+                padding: 1.75rem 1.5rem;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--charcoal-deep);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active { display: flex; }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(198, 160, 111, 0.2);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            .mobile-menu-btn { display: block; }
+            nav { position: relative; }
+        }
+    
+        /* Dropdown nav styling */
+        .has-dropdown { position: relative; }
+        .dropdown-arrow { font-size: 0.7em; margin-left: 0.2em; opacity: 0.7; display: inline-block; transition: transform 0.3s; }
+        .has-dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #2A2A2A;
+            min-width: 240px;
+            padding: 0.5rem 0;
+            margin: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            border: 1px solid rgba(198,160,111,0.15);
+            border-radius: 4px;
+            list-style: none;
+            z-index: 100;
+        }
+        .has-dropdown:hover .dropdown-menu,
+        .has-dropdown:focus-within .dropdown-menu { display: block; }
+        .dropdown-menu li { display: block; width: auto; border-bottom: none; }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.25rem;
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.85);
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover,
+        .dropdown-menu a.active { background: rgba(198,160,111,0.1); color: #C6A06F; }
+        /* Mobile: dropdown becomes inline expanded */
+        @media (max-width: 900px) {
+            .nav-links { gap: 1.2rem; font-size: 0.88rem; }
+        }
+        @media (max-width: 768px) {
+            .dropdown-arrow { display: none; }
+            .dropdown-menu {
+                display: block;
+                position: static;
+                background: rgba(0,0,0,0.2);
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                min-width: 0;
+                border-radius: 0;
+            }
+            .dropdown-menu a {
+                padding: 0.7rem 3rem;
+                font-size: 0.82rem;
+                font-style: italic;
+            }
+        }
+        </style>
+</head>
+<body>
+        <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">NOESPERA STUDIO</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown active">
+                    <a href="dna-workshops.html">DNA Workshop Suite™ <span class="dropdown-arrow">▾</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="brand-dna.html">Brand DNA™</a></li>
+                        <li><a href="brand-dna-discovery.html" class="active">Brand DNA™ Discovery</a></li>
+                        <li><a href="brand-dna-synthesis.html">Brand DNA™ Synthesis</a></li>
+                        <li><a href="brand-dna-articulation.html">Brand DNA™ Articulation</a></li>
+                    </ul>
+                </li>
+                <li><a href="services.html">Full Practice Suite</a></li>
+                <li><a href="insights.html">Research &amp; Perspectives</a></li>
+                <li><a href="leadership-meaning.html">Leadership Through the Meaning Lens</a></li>
+                <li><a href="https://ites-assessment.onrender.com" target="_blank">ITES™ Index</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Let's Talk</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="dna-workshops.html">DNA Workshop Suite™</a> &nbsp;/&nbsp; <a href="brand-dna.html">Brand DNA™</a> &nbsp;/&nbsp; Discovery
+            </div>
+            <span class="eyebrow">Stage One of Three</span>
+            <div class="stage-hero">
+                <div class="stage-hero-number">01</div>
+                <div class="stage-hero-titles">
+                    <h1>Discovery</h1>
+                    <p class="stage-hero-subtitle">Where the meaning excavation begins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lead-section">
+        <div class="container">
+            <div class="content-narrow">
+                <p class="large-text">Discovery is where the meaning excavation begins. Every founder receives their own Brand DNA™ Journal&nbsp;— a personalized, designed document prepared in advance with their name, their organization, and prompts shaped to the questions only this brand needs to answer.</p>
+
+                <div class="lead-quote">
+                    Not a workbook.<br><span class="accent">A journal of guided meaning-making.</span>
+                </div>
+
+                <p>The conversations are organic, authentic, and often deeply emotional&nbsp;— this is meaning excavation, and meaning lives close to the surface of what matters most.</p>
+
+                <p>This isn't a Q&amp;A. It's structured meaning-making&nbsp;— the kind of work that surfaces what's been driving the brand all along, but never quite named.</p>
+
+                <p>Discovery is the foundation of everything that follows. What surfaces here is the founder story and brand voice that drive every downstream brand decision. It's not a rushed conversation. It's the work of finding language for what's been driving the brand all along.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="whats-next">
+        <div class="container">
+            <span class="eyebrow" style="text-align: center; display: block;">Continue the Journey</span>
+            <h2>What Comes Next</h2>
+            <div class="next-cards">
+                <a href="brand-dna-synthesis.html" class="next-card">
+                    <span class="next-label">Stage Two</span>
+                    <h4>Synthesis</h4>
+                    <p>The interpretive work between sessions. Patterns are found. The "why behind the why" surfaces. The labor that makes the Findings Report worth reading three years later.</p>
+                </a>
+                <a href="brand-dna-articulation.html" class="next-card">
+                    <span class="next-label">Stage Three</span>
+                    <h4>Articulation</h4>
+                    <p>The Brand DNA™ Findings Report and Executive Summary. The result of the work, made tangible&nbsp;— a strategic foundation, written for this specific brand.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <span class="eyebrow">Learn More &amp; Let's Talk</span>
+            <h2>Start the Conversation</h2>
+            <p>Every Brand DNA™ engagement begins with a complimentary discovery call&nbsp;— a chance to explore fit, understand your situation, and answer your questions before any commitment.</p>
+            <a href="contact.html" class="btn">Let's Talk</a>
+            <a href="brand-dna.html" class="btn btn-secondary">Return to Brand DNA™</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Noespera Studio, LLC. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://joandebientrammell.com" target="_blank">Dr. Joan deBien-Trammell</a> |
+                <a href="https://organizationalmeaningscience.org" target="_blank">Organizational Meaning Science™ Institute</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
