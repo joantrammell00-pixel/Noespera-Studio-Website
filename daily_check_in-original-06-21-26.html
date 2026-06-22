@@ -226,14 +226,6 @@
   .dd-line{font-size:14px;color:var(--ink);font-weight:600}
   .dd-empty{color:var(--ink-soft);font-style:italic;padding:12px 0}
 
-  .daypick{display:flex;align-items:center;gap:8px;margin-top:11px;flex-wrap:wrap}
-  .daypick button{width:34px;height:32px;border:1.5px solid var(--line);background:#F4F1E8;color:var(--sage-deep);border-radius:10px;font-size:17px;font-weight:800;cursor:pointer;line-height:1;padding:0}
-  .daypick button:disabled{opacity:.35;cursor:default}
-  .daypick #dpLabel{font-size:13px;font-weight:700;color:var(--ink-soft)}
-  .daypick .dp-today{width:auto;padding:0 12px;font-size:12.5px;background:var(--sage-deep);color:#fff;border-color:var(--sage-deep)}
-  .daypick.editing{background:#FBEFD8;border:1.5px solid var(--honey);border-radius:13px;padding:8px 10px;margin-top:11px}
-  .daypick.editing #dpLabel{color:#8A6520}
-
   #printView{display:none}
   @media print{
     body>*:not(#printView){display:none!important}
@@ -258,12 +250,6 @@
     <div class="eyebrow">Daily check-in</div>
     <h1 id="greeting">Hello, Joan</h1>
     <div class="date" id="date"></div>
-    <div class="daypick" id="dayPick">
-      <button id="dpPrev" type="button" aria-label="Edit the previous day">‹</button>
-      <span id="dpLabel">Logging today</span>
-      <button id="dpNext" type="button" aria-label="Move toward today">›</button>
-      <button id="dpToday" type="button" class="dp-today" style="display:none">Back to today</button>
-    </div>
     <div class="stones" id="stones" aria-label="Your last seven days"></div>
   </header>
 
@@ -577,9 +563,7 @@
 
   var PRO_GOAL=120, BOTTLE_OZ=16.9, BOTTLE_GOAL=4, BOTTLE_SLOTS=6;
   var today=new Date();
-  var activeDate=new Date(today), activeOffset=0;
-  function localISO(d){ var y=d.getFullYear(), m=("0"+(d.getMonth()+1)).slice(-2), dd=("0"+d.getDate()).slice(-2); return y+"-"+m+"-"+dd; }
-  function key(d){ return "checkin:"+localISO(d); }
+  function key(d){ return "checkin:"+d.toISOString().slice(0,10); }
   var CFG="checkin-cfg", FOODKEY="checkin-foods", WINKEY="checkin-wins";
 
   var bpFields=["bpMornS","bpMornD","bpAftS","bpAftD","bpEveS","bpEveD"];
@@ -588,7 +572,7 @@
     caloriesBurned:null,steps:null,miles:null,energy:null,palp:false,sleepHours:null,
     weight:null,waist:null,chest:null,thigh:null,arm:null,note:"",
     bpMornS:null,bpMornD:null,bpAftS:null,bpAftD:null,bpEveS:null,bpEveD:null,medsTaken:[]};
-  var state=Object.assign({},blank); state.meals=[]; state.medsTaken=[];
+  var state=Object.assign({},blank);
   var fiberTarget=15, memoryOnly=false, mem={};
   var proteinStart=null, fiberGoal=28, fiberStart=null;
   var activityLevel="sedentary", lastWeight=null;
@@ -682,29 +666,6 @@
   async function showDay(off){ ddOffset=Math.max(0,off); var d=new Date(today); d.setDate(today.getDate()-ddOffset);
     var data=ddOffset===0?state:(await load(key(d))); renderDayDetailFrom(d,data); }
 
-  // edit any day (active-day model)
-  function updateDayPick(){
-    var isT=sameDay(activeDate,today);
-    document.getElementById("dpLabel").textContent=isT?"Logging today":("\u270f\ufe0f Editing "+activeDate.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"}));
-    document.getElementById("dpToday").style.display=isT?"none":"inline-block";
-    document.getElementById("dpNext").disabled=isT;
-    document.getElementById("dayPick").classList.toggle("editing",!isT);
-  }
-  async function gotoDay(off){
-    activeOffset=Math.max(0,off);
-    var d=new Date(today); d.setDate(today.getDate()-activeOffset); activeDate=d;
-    var saved=await load(key(activeDate));
-    state=saved?Object.assign({},blank,saved):Object.assign({},blank);
-    state.meals=(saved&&saved.meals)?saved.meals.slice():[];
-    state.medsTaken=(saved&&saved.medsTaken)?saved.medsTaken.slice():[];
-    numFields.concat(["note"]).forEach(function(id){ var el=document.getElementById(id); if(el) el.value=""; });
-    recompute(); fillInputs(); syncUnit(); render(); renderMeds(); updateDayPick();
-    await buildStones(); await buildTrends();
-  }
-  document.getElementById("dpPrev").addEventListener("click",function(){ gotoDay(activeOffset+1); });
-  document.getElementById("dpNext").addEventListener("click",function(){ gotoDay(activeOffset-1); });
-  document.getElementById("dpToday").addEventListener("click",function(){ gotoDay(0); });
-
   async function rawSet(k,v){
     try{ if(window.storage){ await window.storage.set(k,v); } }catch(e){}
     try{ localStorage.setItem(k,v); }catch(e){}
@@ -715,7 +676,7 @@
     try{ var l=localStorage.getItem(k); if(l!=null) return l; }catch(e){}
     return (k in mem)?mem[k]:null;
   }
-  async function save(){ await rawSet(key(activeDate),JSON.stringify(state)); }
+  async function save(){ await rawSet(key(today),JSON.stringify(state)); }
   async function load(k){ var v=await rawGet(k); return v?JSON.parse(v):null; }
   async function saveCfg(){ await rawSet(CFG,JSON.stringify({fiberTarget:fiberTarget,proteinGoal:PRO_GOAL,proteinStart:proteinStart,fiberGoal:fiberGoal,fiberStart:fiberStart,activityLevel:activityLevel,lastWeight:lastWeight})); }
   async function loadCfg(){ var v=await rawGet(CFG); if(v){ try{ var c=JSON.parse(v); fiberTarget=c.fiberTarget||15; if(c.proteinGoal) PRO_GOAL=c.proteinGoal; if(c.proteinStart!=null) proteinStart=c.proteinStart; if(c.fiberGoal) fiberGoal=c.fiberGoal; if(c.fiberStart!=null) fiberStart=c.fiberStart; if(c.activityLevel) activityLevel=c.activityLevel; if(c.lastWeight!=null) lastWeight=c.lastWeight; }catch(e){} } }
@@ -930,7 +891,7 @@
       rm.addEventListener("click",function(){ wins.splice(idx,1); saveWins(); renderWins(); });
       li.appendChild(left); li.appendChild(rm); ul.appendChild(li); });
   }
-  async function addWin(){ var el=document.getElementById("winInput"); var t=el.value.trim(); if(!t) return; wins.unshift({date:localISO(today),text:t}); el.value=""; await saveWins(); renderWins(); }
+  async function addWin(){ var el=document.getElementById("winInput"); var t=el.value.trim(); if(!t) return; wins.unshift({date:today.toISOString().slice(0,10),text:t}); el.value=""; await saveWins(); renderWins(); }
   document.getElementById("winAdd").addEventListener("click",addWin);
   document.getElementById("winInput").addEventListener("keydown",function(e){ if(e.key==="Enter") addWin(); });
 
@@ -976,7 +937,7 @@
     var json=JSON.stringify(await gatherData(),null,2);
     var area=document.getElementById("backupArea"); area.value=json; area.classList.add("show");
     try{ var blob=new Blob([json],{type:"application/json"}); var a=document.createElement("a");
-      a.href=URL.createObjectURL(blob); a.download="health-tracker-backup-"+localISO(today)+".json";
+      a.href=URL.createObjectURL(blob); a.download="health-tracker-backup-"+today.toISOString().slice(0,10)+".json";
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
     }catch(e){}
   }
@@ -1031,10 +992,10 @@
   var histCache=null;
   async function buildTrends(){
     histCache=[];
-    for(var i=13;i>=0;i--){ var d=new Date(today); d.setDate(today.getDate()-i); histCache.push(await load(key(d))); }
+    for(var i=13;i>=0;i--){ if(i===0){ histCache.push(null); } else { var d=new Date(today); d.setDate(today.getDate()-i); histCache.push(await load(key(d))); } }
     renderTrends();
   }
-  function effArr(){ return histCache.map(function(d,idx){ var daysBack=(histCache.length-1)-idx, dt=new Date(today); dt.setDate(today.getDate()-daysBack); return sameDay(dt,activeDate)?state:(d||blank); }); }
+  function effArr(){ return histCache.map(function(d,idx){ return idx===histCache.length-1?state:(d||blank); }); }
   function pairs(eff,field){ var out=[]; eff.forEach(function(x,i){ var v=x[field]; if(v!==null&&v!==undefined&&v!==""&&!isNaN(v)&&Number(v)>0) out.push({i:i,v:Number(v)}); }); return out; }
   function bpPairs(eff,which){ var out=[]; eff.forEach(function(x,i){ var a=bpAvg(x); if(a[which]) out.push({i:i,v:a[which]}); }); return out; }
 
@@ -1138,7 +1099,7 @@
     document.querySelectorAll("[data-energy]").forEach(function(ch){ ch.classList.toggle("on",state.energy===ch.dataset.energy); });
     document.getElementById("palpToggle").classList.toggle("on",state.palp);
     encourage(); updateBalance(); renderTrends();
-    if(ddOffset===0 && sameDay(activeDate,today)) renderDayDetailFrom(today,state);
+    if(ddOffset===0) renderDayDetailFrom(today,state);
   }
 
   function encourage(){
@@ -1233,7 +1194,7 @@
     document.getElementById("actLevel").value=activityLevel;
     var saved=await load(key(today));
     if(saved){ state=Object.assign({},blank,saved); if(!state.meals) state.meals=[]; if(!state.medsTaken) state.medsTaken=[]; }
-    recompute(); fillInputs(); syncUnit(); render(); renderMeds(); updateDayPick();
+    recompute(); fillInputs(); syncUnit(); render(); renderMeds();
     await buildStones(); await buildTrends();
   })();
 })();
