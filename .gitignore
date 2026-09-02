@@ -1,0 +1,11 @@
+
+# Working copies and superseded versions. Kept on disk, not published.
+#
+# GitHub Pages serves every file in the repository, so these were all publicly
+# reachable at their own URLs: ten dated copies of the homepage and an archive
+# folder, each carrying whatever claims were current when it was saved. Nothing
+# links to them, but a URL does not need a link to be found.
+index-*.html
+index_*.html
+prior_files/
+daily_check_in*.html
