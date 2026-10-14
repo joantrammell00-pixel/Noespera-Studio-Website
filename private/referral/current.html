@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Referral Intelligence Portal · Private</title>
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+/* Layout: white-label hospital portal. Left rail nav, main work area; hospital brand color drives header + letterhead. */
+:root {
+  --bg: #f5f6f4; --panel: #ffffff; --ink: #1d2523; --muted: #5d6965; --line: #dde2df;
+  --brand: #0e5a5e; --brand-ink: #ffffff; --brand-soft: #e3efee; --accent: #b4572e;
+  --ok: #2f7d4f; --warn: #a86a12; --pot: #3d5f9e; --ws: #7a4e9a;
+  --chip: #eef1ef; --shadow: 0 1px 2px rgba(20,30,28,.06), 0 4px 16px rgba(20,30,28,.05);
+  --ui: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --paper: #ffffff; --paper-ink: #1d2523;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121615; --panel: #1a201f; --ink: #e6ebe9; --muted: #9aa7a3; --line: #2c3533;
+  --brand: #2f8c8f; --brand-ink: #ffffff; --brand-soft: #1d3233; --accent: #e08a5f;
+  --ok: #6cc28f; --warn: #e0a84e; --pot: #8fa9e0; --ws: #c19ae0; --chip: #232a29;
+  --shadow: none; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #121615; --panel: #1a201f; --ink: #e6ebe9; --muted: #9aa7a3; --line: #2c3533;
+  --brand: #2f8c8f; --brand-ink: #ffffff; --brand-soft: #1d3233; --accent: #e08a5f;
+  --ok: #6cc28f; --warn: #e0a84e; --pot: #8fa9e0; --ws: #c19ae0; --chip: #232a29;
+  --shadow: none; color-scheme: dark; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--ui); font-size: 14px; line-height: 1.5; }
+* { box-sizing: border-box; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.demo { background: var(--accent); color: #fff; font-size: 12px; text-align: center; padding: 4px 16px; }
+.top { background: var(--brand); color: var(--brand-ink); display: flex; align-items: center; gap: 16px; padding: 10px 16px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+.logo svg { flex: none; }
+.logo small { display: block; font-weight: 400; font-size: 11px; opacity: .8; letter-spacing: .04em; text-transform: uppercase; }
+.top .spacer { flex: 1; }
+.role { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.role select { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); color: #fff; border-radius: 6px; padding: 4px 8px; }
+.role select option { color: #1d2523; }
+.shell { display: grid; grid-template-columns: 210px 1fr; min-height: calc(100% - 80px); }
+nav.rail { border-right: 1px solid var(--line); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; background: var(--panel); }
+nav.rail button { all: unset; cursor: pointer; padding: 8px 12px; border-radius: 8px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+nav.rail button:hover { background: var(--chip); color: var(--ink); }
+nav.rail button[aria-current="page"] { background: var(--brand-soft); color: var(--ink); font-weight: 500; }
+nav.rail button:focus-visible { outline: 2px solid var(--brand); }
+nav.rail .count { margin-left: auto; font-size: 11px; background: var(--accent); color: #fff; border-radius: 999px; padding: 0 7px; }
+nav.rail .sep { height: 1px; background: var(--line); margin: 10px 4px; }
+nav.rail .foot { margin-top: auto; font-size: 11px; color: var(--muted); padding: 8px 12px; }
+main { padding: 24px 16px 48px; min-width: 0; }
+.wrap { max-width: 1120px; margin-inline: auto; display: grid; gap: 20px; }
+h1.view { font-size: 22px; font-weight: 600; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); margin: 2px 0 0; max-width: 70ch; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; box-shadow: var(--shadow); min-width: 0; }
+.card h2 { font-size: 15px; font-weight: 600; margin: 0 0 4px; }
+.card .sub { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: 12px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.tile .k { font-size: 12px; color: var(--muted); }
+.tile .v { font-size: 28px; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.tile .d { font-size: 12px; color: var(--muted); }
+.tile .up { color: var(--ok); }
+.ptile { text-align: left; cursor: pointer; font: inherit; color: inherit; }
+.ptile:hover { border-color: var(--brand); }
+.up { color: var(--ok); }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th { text-align: left; font-weight: 500; color: var(--muted); font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tr.click { cursor: pointer; }
+tr.click:hover td { background: var(--chip); }
+.num { text-align: right; }
+.tablewrap { overflow-x: auto; }
+.pill { display: inline-block; font-size: 11.5px; border-radius: 999px; padding: 1px 9px; border: 1px solid currentColor; white-space: nowrap; }
+.s-active { color: var(--ok); } .s-lapsed { color: var(--warn); } .s-aff { color: var(--pot); } .s-ws { color: var(--ws); }
+.meter { display: inline-block; width: 52px; height: 6px; border-radius: 3px; background: var(--chip); vertical-align: middle; margin-right: 6px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 3px; }
+.btn { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 7px 14px; }
+.btn:hover { border-color: var(--brand); }
+.btn.primary { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.btn.small { padding: 3px 10px; font-size: 12px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.link { all: unset; cursor: pointer; color: var(--brand); text-decoration: underline; text-underline-offset: 2px; }
+.link:focus-visible { outline: 2px solid var(--brand); }
+:root:not([data-theme="light"]) .link { }
+.segbar { display: grid; gap: 10px; }
+.segrow { display: grid; grid-template-columns: minmax(0, 170px) 1fr 40px; gap: 10px; align-items: center; cursor: pointer; border-radius: 6px; padding: 2px 4px; }
+.segrow:hover { background: var(--chip); }
+.segrow .bar { height: 14px; border-radius: 4px; }
+.doclist { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.doc { all: unset; cursor: pointer; border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--panel); display: grid; gap: 6px; align-content: start; }
+.doc:hover, .doc[aria-pressed="true"] { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+.doc:focus-visible { outline: 2px solid var(--brand); }
+.doc .t { font-weight: 600; }
+.doc .kind { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; align-items: start; }
+.field { display: grid; gap: 4px; }
+.field label { font-size: 12px; color: var(--muted); }
+.field input, .field select, .field textarea { border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; background: var(--bg); width: 100%; min-width: 0; }
+.form { display: grid; gap: 12px; }
+.paper { background: var(--paper); color: var(--paper-ink); border-radius: 6px; border: 1px solid var(--line); box-shadow: 0 6px 24px rgba(0,0,0,.08); overflow: hidden; color-scheme: light; }
+.lh { background: #0e5a5e; color: #fff; padding: 18px 26px; display: flex; align-items: center; gap: 12px; }
+.lh .n { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.1; }
+.lh .u { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+.paper .body { padding: 22px 26px 8px; font-family: var(--serif); font-size: 15.5px; line-height: 1.55; }
+.paper .body h3 { font-family: var(--serif); font-size: 21px; margin: 0 0 10px; font-weight: 600; text-wrap: balance; }
+.paper .body p { margin: 0 0 10px; }
+.paper .body ul { margin: 0 0 10px; padding-left: 20px; }
+.paper .foot { border-top: 1px solid #dde2df; padding: 10px 26px 14px; font-size: 11.5px; color: #5d6965; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.merge { background: #fff4c7; border-radius: 3px; padding: 0 2px; }
+.mail { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); }
+.mail .hdr { padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 12.5px; display: grid; gap: 2px; }
+.mail .hdr b { font-weight: 500; }
+.mail .in { padding: 14px; background: var(--bg); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { all: unset; cursor: pointer; border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; font-size: 12.5px; background: var(--panel); }
+.chip[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.chip:focus-visible { outline: 2px solid var(--brand); }
+.timeline { display: grid; gap: 0; }
+.ev { display: grid; grid-template-columns: 70px 14px 1fr; gap: 10px; align-items: start; }
+.ev .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand); margin-top: 6px; position: relative; }
+.ev .dot::after { content: ""; position: absolute; left: 4px; top: 12px; width: 2px; height: 30px; background: var(--line); }
+.ev:last-child .dot::after { display: none; }
+.ev .when { color: var(--muted); font-size: 12px; padding-top: 2px; }
+.ev .what { padding-bottom: 12px; }
+.callout { border-left: 3px solid var(--accent); background: var(--chip); padding: 10px 14px; border-radius: 0 8px 8px 0; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-size: 13px; box-shadow: 0 6px 24px rgba(0,0,0,.2); max-width: calc(100% - 32px); }
+.spark { display: block; }
+.note { font-size: 12px; color: var(--muted); }
+.credit { max-width: 1120px; margin: 40px auto 0; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; color: var(--muted); }
+.credit b { font-weight: 600; color: var(--ink); }
+@media (max-width: 820px) {
+  .shell { grid-template-columns: 1fr; }
+  nav.rail { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 8px; }
+  nav.rail button { white-space: nowrap; }
+  nav.rail .sep, nav.rail .foot { display: none; }
+  .split { grid-template-columns: 1fr; }
+  .hide-n { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) { .view-in { animation: fade .25s ease-out; } @keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } } }
+</style>
+
+<div class="demo"><b>Prepared for Robert · Private and confidential.</b> Prototype with sample data: the hospital, physicians and figures are fictional, and nothing is sent.</div>
+<header class="top">
+  <div class="logo" id="logo"></div>
+  <div class="spacer"></div>
+  <div class="role"><label for="role">Viewing as</label>
+    <select id="role">
+      <option value="hospital">Larkspur Health · Physician liaison</option>
+      <option value="bracco">Program team · All accounts</option>
+    </select>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" id="rail" aria-label="Sections"></nav>
+  <main><div class="wrap view-in" id="view"></div><footer class="credit">Prototype designed and built by <b>Noespera Studio</b> · Applied Organizational Meaning Science™<br>Confidential: prepared for Robert for internal discussion at Bracco. Please present it, but don’t forward it.</footer></main>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const PHYS = [{"id": "P001", "name": "Dr. Keiko Ellery", "spec": "Internal medicine", "town": "Doylestown", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 61, "eng": 74, "last": "2026-10-09", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-08", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-03", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-02", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P002", "name": "Dr. Paula Quill", "spec": "Family medicine", "town": "Abington", "seg": "Active referrer", "ref": 12, "ctmr": 26, "eng": 70, "last": "2026-09-15", "next": "Share ultrasound case study; ask for service feedback", "hist": [0, 1, 3, 2, 1, 1, 1, 2, 2, 1, 2, 0], "events": [{"date": "2026-10-08", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-11", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-04", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P003", "name": "Dr. Ben Coldwell", "spec": "Cardiology", "town": "Glen Mills", "seg": "White space", "ref": 0, "ctmr": 89, "eng": 25, "last": "2026-10-09", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-12", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-08", "what": "Read to the end", "doc": "When ultrasound is the right first study"}]}, {"id": "P004", "name": "Dr. Hugo Brightwell", "spec": "Internal medicine", "town": "Bensalem", "seg": "White space", "ref": 0, "ctmr": 30, "eng": 36, "last": "2026-09-23", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-02", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-01", "what": "Opened", "doc": "Liver lesion case study"}]}, {"id": "P005", "name": "Dr. Rosa Coldwell", "spec": "Cardiology", "town": "Voorhees", "seg": "Active referrer", "ref": 20, "ctmr": 27, "eng": 70, "last": "2026-10-08", "next": "Share ultrasound case study; ask for service feedback", "hist": [1, 3, 3, 0, 1, 3, 2, 4, 1, 0, 2, 3], "events": [{"date": "2026-10-02", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-10-02", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-01", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P006", "name": "Dr. Sam Brightwell", "spec": "Family medicine", "town": "Glen Mills", "seg": "Active referrer", "ref": 28, "ctmr": 89, "eng": 58, "last": "2026-09-19", "next": "Share ultrasound case study; ask for service feedback", "hist": [2, 3, 1, 2, 4, 3, 2, 2, 2, 4, 0, 4], "events": [{"date": "2026-10-05", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-10-01", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-01", "what": "Read to the end", "doc": "Same-day results from our imaging team"}]}, {"id": "P007", "name": "Dr. Jonah Hartwell", "spec": "Internal medicine", "town": "Voorhees", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 82, "eng": 63, "last": "2026-09-21", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-05", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-10", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-04", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P008", "name": "Dr. Yara Oakes", "spec": "Internal medicine", "town": "King of Prussia", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 36, "eng": 96, "last": "2026-09-21", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-04", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-10-03", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-07", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-03", "what": "Read to the end", "doc": "Liver lesion case study"}]}, {"id": "P009", "name": "Dr. Elena Pembroke", "spec": "Hepatology", "town": "Doylestown", "seg": "Active referrer", "ref": 44, "ctmr": 58, "eng": 88, "last": "2026-09-20", "next": "Share ultrasound case study; ask for service feedback", "hist": [5, 2, 5, 5, 4, 3, 2, 2, 6, 3, 4, 3], "events": [{"date": "2026-10-05", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-05", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-04", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-02", "what": "Opened", "doc": "Liver lesion case study"}]}, {"id": "P010", "name": "Dr. Tara Pembroke", "spec": "Internal medicine", "town": "Glen Mills", "seg": "White space", "ref": 0, "ctmr": 75, "eng": 44, "last": "2026-08-31", "next": "Introduce imaging services", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-09", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-01", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P011", "name": "Dr. Carla Brightwell", "spec": "Urology", "town": "King of Prussia", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 51, "eng": 91, "last": "2026-09-18", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-11", "what": "Read to the end", "doc": "Same-day results from our imaging team"}, {"date": "2026-10-06", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-10", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-06", "what": "Opened", "doc": "Liver lesion case study"}]}, {"id": "P012", "name": "Dr. Owen Vance", "spec": "Internal medicine", "town": "Media", "seg": "White space", "ref": 0, "ctmr": 22, "eng": 13, "last": "2026-09-24", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-10", "what": "Delivered, not opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P013", "name": "Dr. Elena Yardley", "spec": "Oncology", "town": "Abington", "seg": "Lapsed referrer", "ref": 0, "ctmr": 36, "eng": 57, "last": "2026-09-17", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-12", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-12", "what": "Read to the end", "doc": "Imaging children without sedation"}, {"date": "2026-09-02", "what": "Opened", "doc": "Liver lesion case study"}]}, {"id": "P014", "name": "Dr. Rosa Ingram", "spec": "Pediatrics", "town": "Voorhees", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 60, "eng": 87, "last": "2026-09-18", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-10", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-10", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-10-06", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "Same-day results from our imaging team"}]}, {"id": "P015", "name": "Dr. Hugo Ellery", "spec": "Internal medicine", "town": "Cherry Hill", "seg": "Active referrer", "ref": 22, "ctmr": 77, "eng": 75, "last": "2026-10-01", "next": "Share ultrasound case study; ask for service feedback", "hist": [0, 0, 0, 1, 1, 1, 4, 3, 2, 2, 2, 2], "events": [{"date": "2026-10-10", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-01", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-05", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-04", "what": "Read to the end", "doc": "Same-day results from our imaging team"}]}, {"id": "P016", "name": "Dr. Ines Jessup", "spec": "Cardiology", "town": "Center City", "seg": "Active referrer", "ref": 47, "ctmr": 55, "eng": 16, "last": "2026-08-29", "next": "Share ultrasound case study; ask for service feedback", "hist": [2, 4, 4, 5, 3, 6, 4, 3, 4, 3, 4, 5], "events": [{"date": "2026-09-07", "what": "Delivered, not opened", "doc": "Liver lesion case study"}]}, {"id": "P017", "name": "Dr. Noor Quill", "spec": "Gastroenterology", "town": "Glen Mills", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 65, "eng": 50, "last": "2026-09-17", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-12", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-03", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-02", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P018", "name": "Dr. Maya Dunmore", "spec": "Internal medicine", "town": "Marlton", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 71, "eng": 20, "last": "2026-10-05", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-07", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P019", "name": "Dr. Keiko Thorne", "spec": "Cardiology", "town": "Center City", "seg": "Active referrer", "ref": 42, "ctmr": 136, "eng": 46, "last": "2026-09-03", "next": "Share ultrasound case study; ask for service feedback", "hist": [4, 4, 4, 5, 4, 3, 5, 3, 4, 4, 3, 3], "events": [{"date": "2026-09-11", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-01", "what": "Read to the end", "doc": "Same-day results from our imaging team"}]}, {"id": "P020", "name": "Dr. Amara Castellan", "spec": "Internal medicine", "town": "Abington", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 92, "eng": 46, "last": "2026-09-12", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-02", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-03", "what": "Read to the end", "doc": "Imaging children without sedation"}]}, {"id": "P021", "name": "Dr. Dev Dunmore", "spec": "Family medicine", "town": "Marlton", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 25, "eng": 18, "last": "2026-10-06", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-11", "what": "Delivered, not opened", "doc": "Imaging children without sedation"}]}, {"id": "P022", "name": "Dr. Yara Kettering", "spec": "Gastroenterology", "town": "King of Prussia", "seg": "Lapsed referrer", "ref": 0, "ctmr": 41, "eng": 67, "last": "2026-09-19", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-03", "what": "Read to the end", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "Imaging children without sedation"}, {"date": "2026-09-03", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P023", "name": "Dr. Elena Whitlock", "spec": "Hepatology", "town": "Bensalem", "seg": "White space", "ref": 0, "ctmr": 104, "eng": 54, "last": "2026-09-26", "next": "Introduce imaging services", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-09", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-08", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "Liver lesion case study"}]}, {"id": "P024", "name": "Dr. Quinn Lockhart", "spec": "Internal medicine", "town": "Voorhees", "seg": "Lapsed referrer", "ref": 4, "ctmr": 57, "eng": 81, "last": "2026-09-28", "next": "Liaison call on turnaround and same-day results", "hist": [0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-12", "what": "Read to the end", "doc": "Imaging children without sedation"}, {"date": "2026-09-05", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-04", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-01", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P025", "name": "Dr. Tara Brambleton", "spec": "Pediatrics", "town": "Abington", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 40, "eng": 66, "last": "2026-09-11", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-05", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-09", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-02", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P026", "name": "Dr. Liam Yardley", "spec": "Pediatrics", "town": "Center City", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 39, "eng": 88, "last": "2026-09-04", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-08", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-10-03", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-09-09", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-08", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P027", "name": "Dr. Liam Oakes", "spec": "Family medicine", "town": "Media", "seg": "White space", "ref": 0, "ctmr": 44, "eng": 30, "last": "2026-09-30", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-05", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-05", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P028", "name": "Dr. Keiko Galloway", "spec": "Oncology", "town": "Marlton", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 131, "eng": 83, "last": "2026-09-20", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-10", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-10-09", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-09", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-09", "what": "Read to the end", "doc": "Same-day results from our imaging team"}]}, {"id": "P029", "name": "Dr. Leah Underhill", "spec": "Internal medicine", "town": "Cherry Hill", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 76, "eng": 22, "last": "2026-09-15", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-08", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P030", "name": "Dr. Keiko Castellan", "spec": "Hepatology", "town": "Doylestown", "seg": "Lapsed referrer", "ref": 1, "ctmr": 36, "eng": 16, "last": "2026-10-11", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-07", "what": "Delivered, not opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P031", "name": "Dr. Elena Sterling", "spec": "Internal medicine", "town": "Marlton", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 140, "eng": 60, "last": "2026-08-31", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-07", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-10-04", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-10-02", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P032", "name": "Dr. Paula Lockhart", "spec": "Internal medicine", "town": "Voorhees", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 82, "eng": 95, "last": "2026-10-04", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-06", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-02", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-05", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-04", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P033", "name": "Dr. Nadia Dashwood", "spec": "Internal medicine", "town": "Abington", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 52, "eng": 64, "last": "2026-09-27", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-01", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-09", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-09", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P034", "name": "Dr. Zane Sterling", "spec": "Internal medicine", "town": "Media", "seg": "White space", "ref": 0, "ctmr": 129, "eng": 29, "last": "2026-08-31", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-09", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-04", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P035", "name": "Dr. Sam Coldwell", "spec": "Oncology", "town": "Bensalem", "seg": "Lapsed referrer", "ref": 1, "ctmr": 83, "eng": 19, "last": "2026-09-09", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-10", "what": "Delivered, not opened", "doc": "Liver lesion case study"}]}, {"id": "P036", "name": "Dr. Quinn Abernathy", "spec": "Cardiology", "town": "Marlton", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 37, "eng": 18, "last": "2026-09-12", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-04", "what": "Delivered, not opened", "doc": "Liver lesion case study"}]}, {"id": "P037", "name": "Dr. Tara Yardley", "spec": "Family medicine", "town": "Cherry Hill", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 86, "eng": 61, "last": "2026-10-06", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-02", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-04", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-03", "what": "Read to the end", "doc": "Liver lesion case study"}]}, {"id": "P038", "name": "Dr. Owen Ravenscroft", "spec": "Internal medicine", "town": "Center City", "seg": "Active referrer", "ref": 57, "ctmr": 79, "eng": 57, "last": "2026-09-07", "next": "Share ultrasound case study; ask for service feedback", "hist": [5, 3, 4, 5, 6, 7, 3, 5, 6, 5, 5, 4], "events": [{"date": "2026-10-03", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-10-02", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-03", "what": "Read to the end", "doc": "When ultrasound is the right first study"}]}, {"id": "P039", "name": "Dr. Amara Ashgrove", "spec": "Cardiology", "town": "Cherry Hill", "seg": "Lapsed referrer", "ref": 4, "ctmr": 80, "eng": 25, "last": "2026-08-29", "next": "Liaison call on turnaround and same-day results", "hist": [1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0], "events": [{"date": "2026-10-07", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-11", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P040", "name": "Dr. Ines Oakes", "spec": "Family medicine", "town": "Bensalem", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 127, "eng": 33, "last": "2026-09-07", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-07", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-11", "what": "Read to the end", "doc": "Imaging children without sedation"}]}, {"id": "P041", "name": "Dr. Owen Galloway", "spec": "Internal medicine", "town": "Marlton", "seg": "Active referrer", "ref": 36, "ctmr": 24, "eng": 85, "last": "2026-09-27", "next": "Share ultrasound case study; ask for service feedback", "hist": [4, 2, 3, 4, 3, 2, 2, 3, 1, 5, 4, 4], "events": [{"date": "2026-10-07", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-10-05", "what": "Read to the end", "doc": "Imaging children without sedation"}, {"date": "2026-10-03", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-09-09", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P042", "name": "Dr. Nadia Castellan", "spec": "Hepatology", "town": "Abington", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 135, "eng": 91, "last": "2026-09-01", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-08", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-10-04", "what": "Read to the end", "doc": "Imaging children without sedation"}, {"date": "2026-09-12", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-04", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P043", "name": "Dr. Victor Lockhart", "spec": "Internal medicine", "town": "Voorhees", "seg": "Active referrer", "ref": 37, "ctmr": 110, "eng": 12, "last": "2026-09-17", "next": "Share ultrasound case study; ask for service feedback", "hist": [3, 3, 3, 5, 4, 4, 4, 5, 1, 4, 4, 2], "events": [{"date": "2026-09-04", "what": "Delivered, not opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P044", "name": "Dr. Owen Pembroke", "spec": "Pediatrics", "town": "Voorhees", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 80, "eng": 51, "last": "2026-09-21", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-11", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-09", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-05", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P045", "name": "Dr. Nadia Galloway", "spec": "Gastroenterology", "town": "Media", "seg": "Lapsed referrer", "ref": 2, "ctmr": 85, "eng": 58, "last": "2026-09-14", "next": "Liaison call on turnaround and same-day results", "hist": [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-09", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-10-08", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "Same-day results from our imaging team"}]}, {"id": "P046", "name": "Dr. Wen Abernathy", "spec": "Cardiology", "town": "Doylestown", "seg": "Lapsed referrer", "ref": 0, "ctmr": 29, "eng": 100, "last": "2026-09-28", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-11", "what": "Read to the end", "doc": "Imaging children without sedation"}, {"date": "2026-10-09", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-11", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-06", "what": "Read to the end", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-01", "what": "Read to the end", "doc": "Imaging children without sedation"}]}, {"id": "P047", "name": "Dr. Owen Dunmore", "spec": "Internal medicine", "town": "Cherry Hill", "seg": "Active referrer", "ref": 57, "ctmr": 49, "eng": 96, "last": "2026-10-04", "next": "Share ultrasound case study; ask for service feedback", "hist": [3, 7, 7, 3, 6, 4, 5, 7, 4, 5, 6, 6], "events": [{"date": "2026-09-10", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-06", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-04", "what": "Read to the end", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-01", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P048", "name": "Dr. Marco Northcote", "spec": "Cardiology", "town": "King of Prussia", "seg": "Lapsed referrer", "ref": 4, "ctmr": 78, "eng": 89, "last": "2026-09-22", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-06", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-10-05", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-10-02", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-05", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P049", "name": "Dr. Carla Ingram", "spec": "Internal medicine", "town": "Center City", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 135, "eng": 2, "last": "2026-09-02", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-11", "what": "Delivered, not opened", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P050", "name": "Dr. Carla Brambleton", "spec": "Internal medicine", "town": "King of Prussia", "seg": "Active referrer", "ref": 15, "ctmr": 16, "eng": 43, "last": "2026-09-07", "next": "Share ultrasound case study; ask for service feedback", "hist": [0, 3, 1, 2, 0, 2, 2, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-11", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-09-02", "what": "Read to the end", "doc": "Imaging children without sedation"}]}, {"id": "P051", "name": "Dr. Nadia Ingram", "spec": "Internal medicine", "town": "Glen Mills", "seg": "White space", "ref": 0, "ctmr": 48, "eng": 3, "last": "2026-10-01", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-06", "what": "Delivered, not opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P052", "name": "Dr. Grace Jessup", "spec": "Internal medicine", "town": "King of Prussia", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 101, "eng": 22, "last": "2026-09-25", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-12", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P053", "name": "Dr. Liam Brambleton", "spec": "Internal medicine", "town": "Center City", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 85, "eng": 24, "last": "2026-09-10", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-08", "what": "Read to the end", "doc": "When ultrasound is the right first study"}]}, {"id": "P054", "name": "Dr. Priya Hartwell", "spec": "Pediatrics", "town": "Marlton", "seg": "Active referrer", "ref": 35, "ctmr": 84, "eng": 50, "last": "2026-09-10", "next": "Share ultrasound case study; ask for service feedback", "hist": [3, 4, 2, 3, 2, 4, 2, 4, 5, 2, 3, 4], "events": [{"date": "2026-10-11", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-10-10", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-06", "what": "Opened", "doc": "When ultrasound is the right first study"}]}, {"id": "P055", "name": "Dr. Jonah Whitlock", "spec": "Family medicine", "town": "Abington", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 66, "eng": 44, "last": "2026-10-09", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-01", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-12", "what": "Opened", "doc": "Liver lesion case study"}]}, {"id": "P056", "name": "Dr. Marco Ellery", "spec": "Hepatology", "town": "Center City", "seg": "Active referrer", "ref": 24, "ctmr": 35, "eng": 7, "last": "2026-10-07", "next": "Share ultrasound case study; ask for service feedback", "hist": [3, 3, 1, 1, 1, 3, 1, 0, 3, 2, 4, 4], "events": [{"date": "2026-10-09", "what": "Delivered, not opened", "doc": "Imaging children without sedation"}]}, {"id": "P057", "name": "Dr. Victor Coldwell", "spec": "Gastroenterology", "town": "Doylestown", "seg": "White space", "ref": 0, "ctmr": 46, "eng": 44, "last": "2026-09-24", "next": "Introduce imaging services", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-06", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-02", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P058", "name": "Dr. Ben Oakes", "spec": "Family medicine", "town": "Voorhees", "seg": "Active referrer", "ref": 24, "ctmr": 138, "eng": 42, "last": "2026-09-07", "next": "Share ultrasound case study; ask for service feedback", "hist": [1, 1, 2, 2, 1, 2, 3, 2, 3, 2, 1, 3], "events": [{"date": "2026-09-10", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-04", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P059", "name": "Dr. Keiko Hartwell", "spec": "Family medicine", "town": "Center City", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 15, "eng": 42, "last": "2026-09-18", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-02", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-06", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P060", "name": "Dr. Carla Pembroke", "spec": "Internal medicine", "town": "King of Prussia", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 26, "eng": 33, "last": "2026-10-07", "next": "Send CT-to-ultrasound education track", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-02", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-12", "what": "Read to the end", "doc": "Liver lesion case study"}]}, {"id": "P061", "name": "Dr. Elena Merriweather", "spec": "Family medicine", "town": "Glen Mills", "seg": "White space", "ref": 0, "ctmr": 89, "eng": 33, "last": "2026-10-03", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-08", "what": "Opened", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-12", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P062", "name": "Dr. Victor Whitlock", "spec": "Family medicine", "town": "Glen Mills", "seg": "Lapsed referrer", "ref": 1, "ctmr": 51, "eng": 92, "last": "2026-09-03", "next": "Liaison call on turnaround and same-day results", "hist": [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-09-09", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-08", "what": "Opened", "doc": "Imaging children without sedation"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "Imaging children without sedation"}]}, {"id": "P063", "name": "Dr. Uma Ellery", "spec": "Gastroenterology", "town": "Center City", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 108, "eng": 89, "last": "2026-09-10", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-05", "what": "Read to the end", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-12", "what": "Opened", "doc": "Liver lesion case study"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-06", "what": "Opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P064", "name": "Dr. Elena Quill", "spec": "Pediatrics", "town": "Bensalem", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 117, "eng": 91, "last": "2026-08-30", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-05", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-02", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-10", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-03", "what": "Read to the end", "doc": "Imaging children without sedation"}]}, {"id": "P065", "name": "Dr. Wen Underhill", "spec": "Internal medicine", "town": "Abington", "seg": "Active referrer", "ref": 48, "ctmr": 137, "eng": 13, "last": "2026-09-18", "next": "Share ultrasound case study; ask for service feedback", "hist": [3, 4, 4, 4, 4, 4, 6, 4, 6, 6, 5, 6], "events": [{"date": "2026-10-05", "what": "Delivered, not opened", "doc": "CT, MR or ultrasound: a quick guide"}]}, {"id": "P066", "name": "Dr. Marco Oakes", "spec": "Cardiology", "town": "Bensalem", "seg": "White space", "ref": 0, "ctmr": 48, "eng": 0, "last": "2026-09-13", "next": "Add to white-space introduction cadence", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-11", "what": "Delivered, not opened", "doc": "Same-day results from our imaging team"}]}, {"id": "P067", "name": "Dr. Leah Castellan", "spec": "Internal medicine", "town": "Bensalem", "seg": "White space", "ref": 0, "ctmr": 110, "eng": 47, "last": "2026-09-12", "next": "Introduce imaging services", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-04", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-07", "what": "Read to the end", "doc": "Liver lesion case study"}]}, {"id": "P068", "name": "Dr. Ines Brambleton", "spec": "Internal medicine", "town": "Cherry Hill", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 44, "eng": 94, "last": "2026-09-01", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-03", "what": "Read to the end", "doc": "Liver lesion case study"}, {"date": "2026-10-01", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-12", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-08", "what": "Read to the end", "doc": "Liver lesion case study"}]}, {"id": "P069", "name": "Dr. Omar Pembroke", "spec": "Internal medicine", "town": "Doylestown", "seg": "Active referrer", "ref": 10, "ctmr": 95, "eng": 82, "last": "2026-09-30", "next": "Share ultrasound case study; ask for service feedback", "hist": [0, 2, 2, 0, 2, 1, 1, 0, 1, 0, 0, 2], "events": [{"date": "2026-10-01", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-11", "what": "Opened", "doc": "Same-day results from our imaging team"}, {"date": "2026-09-08", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-09-02", "what": "Opened", "doc": "Liver lesion case study"}]}, {"id": "P070", "name": "Dr. Carla Thorne", "spec": "Gastroenterology", "town": "Voorhees", "seg": "Lapsed referrer", "ref": 2, "ctmr": 94, "eng": 72, "last": "2026-10-04", "next": "Liaison call on turnaround and same-day results", "hist": [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], "events": [{"date": "2026-10-09", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-08", "what": "Read to the end", "doc": "CT, MR or ultrasound: a quick guide"}, {"date": "2026-10-05", "what": "Opened", "doc": "Imaging children without sedation"}]}, {"id": "P071", "name": "Dr. Amara Pembroke", "spec": "Urology", "town": "Center City", "seg": "Affiliated, not referring", "ref": 0, "ctmr": 101, "eng": 62, "last": "2026-09-24", "next": "Invite to speaker dinner", "hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "events": [{"date": "2026-10-11", "what": "Opened", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-02", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-10-01", "what": "Read to the end", "doc": "When ultrasound is the right first study"}]}, {"id": "P072", "name": "Dr. Wen Quill", "spec": "Family medicine", "town": "King of Prussia", "seg": "Lapsed referrer", "ref": 4, "ctmr": 40, "eng": 39, "last": "2026-10-07", "next": "Liaison call on turnaround and same-day results", "hist": [0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0], "events": [{"date": "2026-10-01", "what": "Read to the end", "doc": "When ultrasound is the right first study"}, {"date": "2026-09-05", "what": "Read to the end", "doc": "Liver lesion case study"}]}];
+const SEGS = [
+  { key: 'Active referrer', cls: 's-active', group: 'Existing', color: 'var(--ok)' },
+  { key: 'Lapsed referrer', cls: 's-lapsed', group: 'Existing', color: 'var(--warn)' },
+  { key: 'Affiliated, not referring', cls: 's-aff', group: 'Potential', color: 'var(--pot)' },
+  { key: 'White space', cls: 's-ws', group: 'Potential', color: 'var(--ws)' }
+];
+const segOf = (k) => SEGS.find((s) => s.key === k);
+const TOWNS_NO_SAT = ['King of Prussia', 'Media', 'Doylestown', 'Bensalem', 'Glen Mills'];
+const DOCS = [
+  { id: 'first-study', kind: 'Education', title: 'When ultrasound is the right first study', for: 'Affiliated, not referring', blurb: 'Patient concerns where contrast ultrasound can answer the question first.',
+    body: (f) => `<h3>When ultrasound is the right first study</h3><p>Dear ${f.dr},</p><p>Many of the patients you send us for CT or MR can be imaged first with contrast-enhanced ultrasound. It uses no ionizing radiation, rarely needs sedation, and our team can often share results the same day.</p><p>It is worth considering for patients with:</p><ul><li>An indeterminate liver lesion found on a prior scan</li><li>A history of reactions to other imaging agents, or kidney concerns</li><li>A need for repeat follow-up imaging over time</li></ul><p>To arrange a study or talk a case through, call ${f.contact} in ${f.service}.</p>` },
+  { id: 'liver-case', kind: 'Case study', title: 'Liver lesion case study', for: 'Active referrer', blurb: 'A short, de-identified case from the hospital’s own imaging team.',
+    body: (f) => `<h3>Case study: characterizing a liver lesion in one visit</h3><p>Dear ${f.dr},</p><p>A 58-year-old patient was referred after an incidental liver finding on CT. Our ${f.service} team performed contrast-enhanced ultrasound the same week. The lesion was characterized during the exam and the result reached the referring physician that afternoon, with no further cross-sectional imaging needed.</p><p>We share cases like this so you know what to expect when you refer. Questions? Call ${f.contact}.</p>` },
+  { id: 'peds', kind: 'Education', title: 'Imaging children without sedation', for: 'Affiliated, not referring', blurb: 'For pediatric referrers: what contrast ultrasound offers families.',
+    body: (f) => `<h3>Imaging children without sedation or radiation</h3><p>Dear ${f.dr},</p><p>For many pediatric questions, contrast-enhanced ultrasound lets us image children without sedation and without radiation. Parents can stay with their child throughout the exam.</p><p>Our ${f.service} team is glad to advise on whether ultrasound fits a specific patient. Reach us at ${f.contact}.</p>` },
+  { id: 'same-day', kind: 'Letter', title: 'Same-day results from our imaging team', for: 'Lapsed referrer', blurb: 'Re-engagement letter on turnaround times and scheduling.',
+    body: (f) => `<h3>Faster answers for your patients</h3><p>Dear ${f.dr},</p><p>We have changed how our ${f.service} team schedules and reports ultrasound studies. Most patients can now be seen within days, and results are often available the same day.</p><p>We would value the chance to care for your patients again. A direct line for scheduling: ${f.contact}.</p>` },
+  { id: 'guide', kind: 'Quick guide', title: 'CT, MR or ultrasound: a quick guide', for: 'White space', blurb: 'One page, by patient concern, introducing the hospital’s imaging services.',
+    body: (f) => `<h3>CT, MR or ultrasound: choosing the first study</h3><p>Dear ${f.dr},</p><p>Our imaging team offers CT, MR and contrast-enhanced ultrasound. We would like to help you choose the study that answers the question fastest, with the least burden on the patient.</p><ul><li><b>Ultrasound first</b> when radiation, sedation or kidney function is a concern, or when a lesion needs characterizing</li><li><b>CT</b> when speed across a wide area matters most</li><li><b>MR</b> for detailed soft-tissue questions</li></ul><p>To discuss a patient, call ${f.contact}.</p>` },
+  { id: 'dinner', kind: 'Invitation', title: 'Speaker dinner invitation', for: 'Affiliated, not referring', blurb: 'Small dinner with a hospital radiologist as speaker.',
+    body: (f) => `<h3>You’re invited: an evening with our imaging team</h3><p>Dear ${f.dr},</p><p>Please join a small group of colleagues for dinner and a short talk from our ${f.service} team on when ultrasound can replace or precede CT and MR.</p><p>Seating is limited. To reserve a place, reply to this invitation or call ${f.contact}.</p>` },
+  { id: 'survey', kind: 'Feedback', title: 'How are we doing? Referrer survey', for: 'Active referrer', blurb: 'Three questions on speed and quality of results.',
+    body: (f) => `<h3>Three questions about our imaging service</h3><p>Dear ${f.dr},</p><p>Thank you for trusting our ${f.service} team with your patients. Would you take one minute to tell us:</p><ul><li>How quickly did you receive results?</li><li>Were the reports clear and useful?</li><li>Is there a study you wish we offered, or offered faster?</li></ul><p>Or simply call ${f.contact}.</p>` }
+];
+const ACCOUNTS = [
+  { cohort:'Pilot', live:'Apr 2026', liaisons:2, days:34, split:[17,12,31,12], topSpec:'Internal medicine', name: 'Larkspur Health', mapped: 72, engaged: 0.46, newRef: 9, us: [38,42,40,37,35,42,48,60,62,77,79,95] },
+  { cohort:'OTH cohort 1', live:'May 2026', liaisons:3, days:41, split:[30,18,44,26], topSpec:'Cardiology', name: 'Bellmoor Medical Center', mapped: 118, engaged: 0.39, newRef: 12, us: [55,52,58,54,57,60,63,70,74,79,84,88] },
+  { cohort:'OTH cohort 1', live:'May 2026', liaisons:1, days:58, split:[14,9,25,16], topSpec:'Family medicine', name: 'St. Aldric Hospital', mapped: 64, engaged: 0.31, newRef: 4, us: [22,25,21,24,23,26,27,29,30,31,33,34] },
+  { cohort:'OTH cohort 1', live:'Apr 2026', liaisons:4, days:29, split:[44,22,58,32], topSpec:'Gastroenterology', name: 'Harrowgate University Health', mapped: 156, engaged: 0.52, newRef: 17, us: [90,88,94,91,97,99,108,117,125,131,140,152] },
+  { cohort:'OTH cohort 2', live:'Jul 2026', liaisons:1, days:71, split:[11,8,17,13], topSpec:'Pediatrics', name: 'Northvale Regional', mapped: 49, engaged: 0.22, newRef: 2, us: [14,15,13,16,14,15,15,16,17,16,18,18] },
+  { cohort:'OTH cohort 2', live:'Jun 2026', liaisons:2, days:46, split:[19,13,30,21], topSpec:'Internal medicine', name: 'Quillon Valley Health', mapped: 83, engaged: 0.35, newRef: 6, us: [31,30,33,32,34,33,38,41,44,46,49,53] }
+];
+const SENT = [
+  { date: '2026-10-06', doc: 'same-day', to: 'Lapsed referrers', n: 12, opened: 8, read: 5, demo: false },
+  { date: '2026-09-29', doc: 'first-study', to: 'Affiliated, not referring', n: 31, opened: 17, read: 9, demo: false },
+  { date: '2026-09-22', doc: 'liver-case', to: 'Active referrers', n: 17, opened: 14, read: 11, demo: false },
+  { date: '2026-09-15', doc: 'guide', to: 'White space', n: 12, opened: 4, read: 2, demo: false }
+];
+const MONTHS = ['Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'];
+const PROGRAM_VIEWS = ['program', 'impact', 'content', 'rollout', 'compliance', 'programdocs'];
+const state = { valPerStudy: '', invest: '', ptile: null, acct: null, view: 'home', role: 'hospital', seg: null, spec: null, q: '', sort: 'opp', dir: -1, doc: 'first-study', phys: null, compose: { mode: 'segment', seg: 'Affiliated, not referring', phys: null, doc: 'first-study', subject: '' }, fields: { dr: '', service: 'Larkspur Health Imaging', contact: 'the imaging scheduling line, 215-555-0142' } };
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const fmt = (n) => n.toLocaleString('en-US');
+const day = (iso) => { const m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Number(iso.slice(5, 7)) - 1]; return `${m} ${Number(iso.slice(8, 10))}`; };
+const pill = (k) => `<span class="pill ${segOf(k).cls}">${esc(k)}</span>`;
+const meter = (v) => `<span class="meter"><i style="width:${v}%"></i></span>${v}`;
+const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 2800); };
+const docById = (id) => DOCS.find((d) => d.id === id);
+const logoMark = `<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 18c4-4 8 4 12 0s6-4 8-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5 13c4-4 8 4 12 0s6-4 8-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".6"/></svg>`;
+
+function renderTop() {
+  $('#logo').innerHTML = state.role === 'hospital'
+    ? `${logoMark}<div>Larkspur Health<small>Referral portal · Imaging services</small></div>`
+    : `${logoMark}<div>Referral Intelligence Program<small>Program view · All accounts</small></div>`;
+  const items = state.role === 'hospital'
+    ? [['home', 'This week'], ['map', 'Referral map'], ['library', 'Document library'], ['compose', 'Send'], ['sent', 'Sent and results']]
+    : [['program', 'All accounts'], ['impact', 'Impact and value'], ['content', 'Content performance'], ['rollout', 'Rollout pipeline'], ['compliance', 'Compliance log'], ['programdocs', 'Approved library']];
+  const ready = PHYS.filter((p) => p.seg !== 'Active referrer' && p.eng >= 60).length;
+  $('#rail').innerHTML = items.map(([k, label]) => `<button data-go="${k}" ${state.view === k || (k === 'map' && state.view === 'physician') ? 'aria-current="page"' : ''}>${label}${k === 'home' ? `<span class="count">${ready}</span>` : ''}</button>`).join('')
+    + `<div class="sep"></div><div class="foot">${state.role === 'hospital' ? 'Signed in as Dana Whitfield, physician liaison' : 'Program-level results only. Physician detail stays with each hospital.'}</div>`;
+}
+
+function go(view, opts = {}) { Object.assign(state, opts, { view }); render(); window.scrollTo(0, 0); }
+
+const VIEWS = {
+  home() {
+    const notRef = PHYS.filter((p) => p.seg !== 'Active referrer');
+    const ready = notRef.filter((p) => p.eng >= 60).sort((a, b) => b.eng - a.eng);
+    const active = PHYS.filter((p) => p.seg === 'Active referrer').length;
+    return `<div><h1 class="view">Good morning, Dana</h1><p class="lede">${ready.length} physicians who don’t refer to us yet engaged with recent pieces. Start with the top of this list.</p></div>
+    <div class="tiles">
+      <div class="tile"><div class="k">Physicians mapped</div><div class="v">${PHYS.length}</div><div class="d">Larkspur list plus registry</div></div>
+      <div class="tile"><div class="k">Active referrers</div><div class="v">${active}</div><div class="d"><span class="up">+3</span> since September</div></div>
+      <div class="tile"><div class="k">Ready for follow-up</div><div class="v">${ready.length}</div><div class="d">Not referring, engagement 60+</div></div>
+      <div class="tile"><div class="k">Contrast US orders</div><div class="v">95</div><div class="d"><span class="up">+20%</span> vs. August</div></div>
+    </div>
+    <div class="card"><h2>This week’s follow-up list</h2><p class="sub">Ranked by engagement. Each row says why the physician is on the list and what to do next.</p>
+    <div class="tablewrap"><table><thead><tr><th>Physician</th><th class="hide-n">Specialty</th><th class="hide-n">Town</th><th>Segment</th><th class="num">Engagement</th><th>Why now</th><th>Next step</th></tr></thead><tbody>
+    ${ready.slice(0, 8).map((p) => `<tr class="click" data-phys="${p.id}" tabindex="0"><td>${esc(p.name)}</td><td class="hide-n">${esc(p.spec)}</td><td class="hide-n">${esc(p.town)}</td><td>${pill(p.seg)}</td><td class="num">${meter(p.eng)}</td><td class="small">${p.events[0] ? `${esc(p.events[0].what)}: “${esc(p.events[0].doc)}”, ${day(p.events[0].date)}` : '—'}</td><td class="small">${esc(p.next)}</td></tr>`).join('')}
+    </tbody></table></div></div>
+    <div class="grid2">
+      <div class="card"><h2>Referral base at a glance</h2><p class="sub">Existing and potential referrers. Select a segment to see who is in it.</p>${segBars()}</div>
+      <div class="card"><h2>Coming up</h2><p class="sub">Scheduled outreach and events.</p>
+        <table><tbody>
+        <tr><td class="small muted">Oct 20</td><td>“Imaging children without sedation” to pediatric referrers</td></tr>
+        <tr><td class="small muted">Oct 27</td><td>Referrer survey to active referrers</td></tr>
+        <tr><td class="small muted">Nov 6</td><td>Speaker dinner, Larkspur radiology, 12 invited</td></tr>
+        </tbody></table></div>
+    </div>`;
+  },
+  map() {
+    const pool = PHYS.filter((p) => !state.spec || p.spec === state.spec);
+    const top = pool.filter((p) => p.seg !== 'Active referrer').sort((a, b) => opp(b) - opp(a)).slice(0, 10);
+    const topMax = Math.max(1, ...top.map(opp));
+    const specs = [...new Set(PHYS.map((p) => p.spec))].sort((a, b) => PHYS.filter((p) => p.spec === b).length - PHYS.filter((p) => p.spec === a).length);
+    const cellMax = Math.max(...specs.flatMap((s) => SEGS.map((g) => PHYS.filter((p) => p.spec === s && p.seg === g.key).length)));
+    const towns = [...new Set(PHYS.map((p) => p.town))].map((t) => { const g = PHYS.filter((p) => p.town === t); const r = g.filter((p) => p.seg === 'Active referrer').length; return { t, n: g.length, r, sat: !TOWNS_NO_SAT.includes(t) }; }).sort((a, b) => (b.n - b.r) - (a.n - a.r));
+    const max = Math.max(...towns.map((x) => x.n));
+    const potOrders = pool.filter((p) => p.seg !== 'Active referrer').reduce((a, p) => a + p.ctmr, 0);
+    return `<div><h1 class="view">Referral map</h1><p class="lede">Every physician in Larkspur’s market, by segment, specialty and town, ranked by the size of the opportunity.</p></div>
+    <div class="card"><h2>Specialty</h2><p class="sub">Filters the opportunity list and the physician list.</p><div class="chips"><button class="chip" data-spec="" aria-pressed="${!state.spec}">All · ${PHYS.length}</button>${specs.map((s) => `<button class="chip" data-spec="${esc(s)}" aria-pressed="${state.spec === s}">${esc(s)} · ${PHYS.filter((p) => p.spec === s).length}</button>`).join('')}</div></div>
+    <div class="card"><h2>Biggest opportunities${state.spec ? `: ${esc(state.spec)}` : ''}</h2><p class="sub">Physicians who don’t refer today, ranked by opportunity score: yearly CT and MR orders × engagement. A high score means a big orderer who is paying attention. Together they place ${fmt(potOrders)} CT and MR orders a year (sample claims).</p>
+    <div class="tablewrap"><table><thead><tr><th>#</th><th>Physician</th><th class="hide-n">Specialty</th><th>Segment</th><th class="num">CT/MR orders</th><th class="num">Engagement</th><th>Opportunity score</th></tr></thead><tbody>
+    ${top.map((p, i) => `<tr class="click" data-phys="${p.id}" tabindex="0"><td class="muted">${i + 1}</td><td>${esc(p.name)}</td><td class="hide-n">${esc(p.spec)}</td><td>${pill(p.seg)}</td><td class="num">${p.ctmr}</td><td class="num">${p.eng}</td><td><span style="display:inline-flex;align-items:center;gap:8px;width:100%"><span style="flex:1;min-width:40px;height:8px;border-radius:4px;background:var(--chip);overflow:hidden"><span style="display:block;height:100%;width:${opp(p) / topMax * 100}%;background:var(--accent);border-radius:4px"></span></span><b style="font-weight:500;font-variant-numeric:tabular-nums">${opp(p)}</b></span></td></tr>`).join('') || '<tr><td colspan="7" class="muted">No potential referrers in this specialty.</td></tr>'}
+    </tbody></table></div></div>
+    <div class="grid2">
+      <div class="card"><h2>By segment</h2><p class="sub">Select a segment to filter the physician list.</p>${segBars()}</div>
+      <div class="card"><h2>Where the potential sits, by specialty</h2><p class="sub">Physicians in each specialty and segment. Darker means more.</p>
+      <div class="tablewrap"><table style="font-size:12.5px"><thead><tr><th>Specialty</th>${SEGS.map((g) => `<th class="num" title="${esc(g.key)}">${esc(g.key.replace(', not referring', '').replace(' referrer', ''))}</th>`).join('')}</tr></thead><tbody>
+      ${specs.map((s) => `<tr><td>${esc(s)}</td>${SEGS.map((g) => { const n = PHYS.filter((p) => p.spec === s && p.seg === g.key).length; const pct = Math.round(n / cellMax * 70); return `<td class="num" style="background:color-mix(in srgb, var(--brand) ${pct}%, transparent);${pct > 40 ? 'color:#fff;' : ''}">${n || ''}</td>`; }).join('')}</tr>`).join('')}
+      </tbody></table></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h2>Where the white space is</h2><p class="sub">Physicians per town, referring vs. not. Towns with no satellite office are flagged.</p>
+      <div class="segbar">${towns.map((x) => `<div class="segrow" style="cursor:default;grid-template-columns:minmax(0,120px) 1fr auto"><span class="small">${esc(x.t)}</span><span style="display:flex;gap:2px"><span class="bar" style="width:${x.r / max * 100}%;background:var(--ok)"></span><span class="bar" style="width:${(x.n - x.r) / max * 100}%;background:var(--line)"></span></span><span class="small ${x.sat ? 'muted' : ''}" style="${x.sat ? '' : 'color:var(--ws)'}">${x.n}${x.sat ? '' : ' · no office'}</span></div>`).join('')}</div>
+      <p class="note" style="margin:10px 0 0"><span style="color:var(--ok)">■</span> Referring &nbsp; <span style="color:var(--line)">■</span> Not referring</p></div>
+      <div class="card"><h2>Phase 2 preview: imaging orders from mapped physicians</h2><p class="sub">Sample claims data, Oct 2025 to Sep 2026. Outreach began in April.</p>${claimsChart()}</div>
+    </div>
+    <div class="card"><div class="row" style="justify-content:space-between"><div><h2>Physicians${state.seg ? `: ${esc(state.seg)}` : ''}${state.spec ? ` · ${esc(state.spec)}` : ''}</h2><p class="sub">Select a physician to open their profile. Select a column heading to sort.</p></div>${state.seg ? `<button class="btn small" data-seg="">Show all segments ×</button>` : ''}</div>
+    <div class="row" style="margin-bottom:10px"><input id="p-search" type="search" placeholder="Search name, specialty or town" aria-label="Search physicians" value="${esc(state.q)}" style="flex:1 1 240px;min-width:0;border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--bg)"><span class="small muted" id="p-count"></span></div>
+    <div class="tablewrap" style="max-height:460px;overflow:auto"><table><thead><tr>${[['name', 'Physician', ''], ['spec', 'Specialty', 'hide-n'], ['town', 'Town', ''], ['seg', 'Segment', ''], ['ref', 'Referrals, 12 mo', 'num hide-n'], ['eng', 'Engagement', 'num'], ['opp', 'Opportunity', 'num'], ['next', 'Next step', 'hide-n']].map(([k, l, c]) => `<th class="${c}" aria-sort="${state.sort === k ? (state.dir > 0 ? 'ascending' : 'descending') : 'none'}"><button class="link" style="color:inherit;text-decoration:none" data-sort="${k}">${l}${state.sort === k ? (state.dir > 0 ? ' ↑' : ' ↓') : ''}</button></th>`).join('')}</tr></thead><tbody id="p-body">${physRows()}</tbody></table></div></div>`;
+  },
+  physician() {
+    const p = PHYS.find((x) => x.id === state.phys);
+    const max = Math.max(4, ...p.hist);
+    const bars = p.hist.map((v, i) => `<g><rect x="${i * 26 + 4}" y="${70 - v / max * 60}" width="16" height="${Math.max(1, v / max * 60)}" rx="3" fill="${v ? 'var(--brand)' : 'var(--line)'}"/><text x="${i * 26 + 12}" y="86" text-anchor="middle" font-size="10" fill="var(--muted)">${MONTHS[i]}</text></g>`).join('');
+    const suggested = DOCS.find((d) => d.for === p.seg) || DOCS[0];
+    return `<div class="row"><button class="link small" data-go="map">← Referral map</button></div>
+    <div class="row" style="justify-content:space-between;align-items:flex-start"><div><h1 class="view">${esc(p.name)}</h1><p class="lede">${esc(p.spec)} · ${esc(p.town)} · ${pill(p.seg)}</p></div>
+    <div class="row"><button class="btn primary" data-send-to="${p.id}">Send a piece</button><button class="btn" data-log="${p.id}">Log a call</button></div></div>
+    <div class="callout"><b>Suggested next step:</b> ${esc(p.next)}. Suggested piece: “${esc(suggested.title)}”.</div>
+    <div class="grid2">
+      <div class="card"><h2>Referrals to Larkspur imaging</h2><p class="sub">Last 12 months · ${p.ref} total</p><svg class="spark" viewBox="0 0 316 92" width="100%" role="img" aria-label="Monthly referrals">${bars}</svg></div>
+      <div class="card"><h2>Engagement</h2><p class="sub">Score ${p.eng} of 100 · last touch ${day(p.last)}</p>
+      <div class="timeline">${p.events.map((e) => `<div class="ev"><div class="when">${day(e.date)}</div><div class="dot"></div><div class="what">${esc(e.what)}<div class="small muted">“${esc(e.doc)}”</div></div></div>`).join('') || '<p class="muted">No outreach yet.</p>'}</div></div>
+    </div>
+    <div class="card"><h2>Imaging this physician orders</h2><p class="sub">Phase 2 preview, sample claims data</p><p style="margin:0">${p.ctmr} CT and MR orders in the last 12 months. Based on the patient concerns in those orders, an estimated ${Math.round(p.ctmr * 0.18)} could have started with contrast ultrasound.</p></div>`;
+  },
+  library() {
+    const d = docById(state.doc);
+    return `<div><h1 class="view">Document library</h1><p class="lede">Approved pieces, set automatically in Larkspur’s letterhead. Fill in the highlighted fields, then send or download.</p></div>
+    <div class="doclist">${DOCS.map((x) => `<button class="doc" data-doc="${x.id}" aria-pressed="${x.id === state.doc}"><span class="kind">${esc(x.kind)} · for ${esc(x.for.toLowerCase())}</span><span class="t">${esc(x.title)}</span><span class="small muted">${esc(x.blurb)}</span></button>`).join('')}</div>
+    <div class="split">
+      <div class="card form"><h2>Customize “${esc(d.title)}”</h2>
+        <div class="field"><label for="f-dr">Physician (leave blank to merge per recipient)</label><input id="f-dr" value="${esc(state.fields.dr)}" placeholder="Merged per recipient"></div>
+        <div class="field"><label for="f-service">Service line</label><input id="f-service" value="${esc(state.fields.service)}"></div>
+        <div class="field"><label for="f-contact">Contact</label><input id="f-contact" value="${esc(state.fields.contact)}"></div>
+        <p class="note" style="margin:0">Only the highlighted fields can be changed. The rest stays as approved in review.</p>
+        <div class="row"><button class="btn primary" data-use="${d.id}">Use in an email</button><button class="btn" data-download>Download print version</button></div>
+      </div>
+      <div id="preview">${paper(d)}</div>
+    </div>`;
+  },
+  compose() {
+    const c = state.compose, d = docById(c.doc);
+    const recips = c.mode === 'one' ? PHYS.filter((p) => p.id === c.phys) : PHYS.filter((p) => p.seg === c.seg);
+    const first = recips[0];
+    const subject = c.subject || d.title;
+    return `<div><h1 class="view">Send</h1><p class="lede">Email an approved piece from Larkspur’s account. Every send is tracked.</p></div>
+    <div class="split">
+      <div class="card form"><h2>Recipients</h2>
+        ${c.mode === 'one' && first ? `<p style="margin:0">${esc(first.name)} · ${pill(first.seg)} <button class="link small" data-mode="segment">Send to a segment instead</button></p>` : `<div class="chips">${SEGS.map((s) => `<button class="chip" data-cseg="${esc(s.key)}" aria-pressed="${c.seg === s.key}">${esc(s.key)} · ${PHYS.filter((p) => p.seg === s.key).length}</button>`).join('')}</div>`}
+        <div class="field"><label for="c-doc">Piece</label><select id="c-doc">${DOCS.map((x) => `<option value="${x.id}" ${x.id === c.doc ? 'selected' : ''}>${esc(x.title)}</option>`).join('')}</select></div>
+        <div class="field"><label for="c-subj">Subject line</label><input id="c-subj" value="${esc(subject)}"></div>
+        <div class="field"><label for="c-when">Send</label><select id="c-when"><option>Tuesday 8:00 AM (best open rate for this segment)</option><option>Now</option><option>Thursday 7:30 AM</option></select></div>
+        <div class="row"><button class="btn primary" data-schedule>Schedule ${recips.length} email${recips.length === 1 ? '' : 's'}</button></div>
+        <p class="note" style="margin:0">Each email is personalized and sent from Larkspur Health Imaging. Recipients can opt out.</p>
+      </div>
+      <div class="mail"><div class="hdr"><span><b>From</b> Larkspur Health Imaging &lt;imaging@larkspur.example&gt;</span><span><b>To</b> ${first ? esc(first.name) : '—'}${recips.length > 1 ? ` and ${recips.length - 1} others` : ''}</span><span><b>Subject</b> ${esc(subject)}</span></div><div class="in">${paper(d, first)}</div></div>
+    </div>`;
+  },
+  sent() {
+    return `<div><h1 class="view">Sent and results</h1><p class="lede">What went out, to whom, and who engaged. Opens and reads feed the weekly follow-up list.</p></div>
+    <div class="card"><div class="tablewrap"><table><thead><tr><th>Date</th><th>Piece</th><th>Sent to</th><th class="num">Emails</th><th class="num">Opened</th><th class="num">Read to the end</th></tr></thead><tbody>
+    ${SENT.map((s) => `<tr><td class="small">${day(s.date)}</td><td>${esc(docById(s.doc).title)}</td><td>${esc(s.to)}</td><td class="num">${s.n}</td><td class="num">${s.demo ? '<span class="muted small">Scheduled</span>' : `${s.opened} <span class="muted small">(${Math.round(s.opened / s.n * 100)}%)</span>`}</td><td class="num">${s.demo ? '—' : `${s.read} <span class="muted small">(${Math.round(s.read / s.n * 100)}%)</span>`}</td></tr>`).join('')}
+    </tbody></table></div></div>`;
+  },
+  program() {
+    const W = 120, H = 30;
+    const spark = (a) => { const mx = Math.max(...a), mn = Math.min(...a); const pts = a.map((v, i) => `${(i / (a.length - 1) * (W - 4) + 2).toFixed(1)},${(H - 3 - (v - mn) / (mx - mn || 1) * (H - 6)).toFixed(1)}`).join(' '); const last = pts.split(' ').at(-1).split(','); return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${last[0]}" cy="${last[1]}" r="2.5" fill="var(--brand)"/></svg>`; };
+    const tot = ACCOUNTS.reduce((a, x) => a + x.mapped, 0), nr = ACCOUNTS.reduce((a, x) => a + x.newRef, 0);
+    const usNow = ACCOUNTS.reduce((a, x) => a + x.us[11], 0), usThen = ACCOUNTS.reduce((a, x) => a + x.us[5], 0);
+    return `<div><h1 class="view">All accounts</h1><p class="lede">Program results across participating hospitals. Physician-level detail stays inside each hospital’s account.</p><div class="row" style="margin-top:8px"><button class="btn small" data-go="impact">Impact and value →</button><button class="btn small" data-go="content">Content performance →</button><button class="btn small" data-go="rollout">Rollout pipeline →</button><button class="btn small" data-go="compliance">Compliance log →</button></div></div>
+    <div class="tiles">
+      ${ptileBtn('live', 'Hospitals live', ACCOUNTS.length, 'Pilot plus OTH cohorts')}
+      ${ptileBtn('mapped', 'Physicians mapped', fmt(tot), 'Existing and potential, all markets')}
+      ${ptileBtn('newref', 'New referrers', nr, 'Since program start')}
+      ${ptileBtn('us', 'Contrast US orders, Sep', usNow, `<span class="up">+${Math.round((usNow / usThen - 1) * 100)}%</span> vs. March, before outreach`)}
+    </div>
+    ${state.ptile ? ptileDetail(state.ptile) : '<p class="note" style="margin:-8px 0 0">Select a number to see the detail behind it.</p>'}
+    <div class="grid2">
+    <div class="card"><h2>From mapped to referring</h2><p class="sub">All accounts, since program start. Sample data.</p>${funnel(tot, nr)}</div>
+    <div class="card"><h2>Where the biggest opportunity sits</h2><p class="sub">Physicians not referring yet, and the CT and MR orders they place each year, all accounts by specialty. Sample data.</p>${oppBySpec(tot)}</div>
+    </div>
+    <div class="card"><h2>By hospital</h2><p class="sub">Sample data. Select a hospital to see its program summary.</p>
+    <div class="tablewrap"><table><thead><tr><th>Hospital</th><th class="num">Mapped</th><th class="num">Engaged</th><th class="num">New referrers</th><th>Contrast US orders</th><th class="num">Sep</th></tr></thead><tbody>
+    ${ACCOUNTS.map((a, i) => `<tr class="click" data-acct="${i}" tabindex="0" ${state.acct === i ? 'style="background:var(--brand-soft)"' : ''}><td>${esc(a.name)}</td><td class="num">${a.mapped}</td><td class="num">${Math.round(a.engaged * 100)}%</td><td class="num">${a.newRef}</td><td>${spark(a.us)}</td><td class="num">${a.us[11]}</td></tr>`).join('')}
+    </tbody></table></div></div>
+    ${state.acct !== null ? acctDetail(ACCOUNTS[state.acct]) : ''}`;
+  },
+  impact() {
+    const extra = ACCOUNTS.reduce((a, x) => a + x.us.slice(6).reduce((p, c) => p + c, 0) - 6 * x.us[5], 0);
+    const nr = ACCOUNTS.reduce((a, x) => a + x.newRef, 0);
+    const months = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
+    const eng = [3.0, 3.6, 4.4, 5.1, 6.0, 6.6, 7.4], not = [3.0, 3.1, 3.0, 3.2, 3.1, 3.3, 3.2];
+    const W = 560, H = 230, L = 36, R = 150, T = 14, B = 28, x = (i) => L + i / 6 * (W - L - R), y = (v) => T + (1 - v / 9) * (H - T - B);
+    const path = (a) => a.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('');
+    const area = `M${x(0)} ${y(eng[0])}` + eng.map((v, i) => `L${x(i)} ${y(v)}`).join('') + not.slice().reverse().map((v, i) => `L${x(6 - i)} ${y(v)}`).join('') + 'Z';
+    const chart = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Ultrasound requests per 100 physicians, engaged vs not yet reached">${[0, 3, 6, 9].map((t) => `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${t}</text>`).join('')}${months.map((m, i) => `<text x="${x(i)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">${m}</text>`).join('')}<path d="${area}" fill="var(--brand)" opacity=".1"/><path d="${path(not)}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/><path d="${path(eng)}" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round"/><text x="${x(6) + 8}" y="${y(eng[6]) + 4}" font-size="12" font-weight="600" fill="var(--ink)">Engaged ${eng[6]}</text><text x="${x(6) + 8}" y="${y(not[6]) + 4}" font-size="12" fill="var(--muted)">Not yet reached ${not[6]}</text><text x="${x(4)}" y="${y(4.6)}" text-anchor="middle" font-size="11" fill="var(--brand)">gap = program effect</text></svg>`;
+    const v = Number(state.valPerStudy), inv = Number(state.invest);
+    return `<div><h1 class="view">Impact and value</h1><p class="lede">What the program adds, measured against physicians it has not reached yet in the same markets.</p></div>
+    <div class="tiles">
+      <div class="tile"><div class="k">Extra contrast US studies, Apr to Sep</div><div class="v">${fmt(extra)}</div><div class="d">Above each hospital’s March baseline</div></div>
+      <div class="tile"><div class="k">Engaged vs. not reached, Sep</div><div class="v">${(eng[6] / not[6]).toFixed(1)}×</div><div class="d">Ultrasound requests per 100 physicians</div></div>
+      <div class="tile"><div class="k">Estimated value</div><div class="v" id="i-val">${v > 0 ? '$' + fmt(Math.round(extra * v)) : '—'}</div><div class="d">Extra studies × value per study</div></div>
+      <div class="tile"><div class="k">Cost per new referrer</div><div class="v" id="i-cpr">${inv > 0 ? '$' + fmt(Math.round(inv / nr)) : '—'}</div><div class="d">Program investment ÷ ${nr} new referrers</div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><h2>Engaged physicians vs. those not yet reached</h2><p class="sub">Ultrasound requests per 100 physicians per month, all accounts. Both groups started level in March. Sample data.</p>${chart}</div>
+      <div class="card form"><h2>Value assumptions</h2><p class="sub">Enter Bracco’s own figures. Nothing is saved; the estimates update as you type.</p>
+        <div class="field"><label for="i-v">Value per contrast ultrasound study ($)</label><input id="i-v" inputmode="decimal" placeholder="Bracco to supply" value="${esc(state.valPerStudy)}"></div>
+        <div class="field"><label for="i-i">Program investment to date ($)</label><input id="i-i" inputmode="decimal" placeholder="Set once pricing is agreed" value="${esc(state.invest)}"></div>
+        <div class="callout small">Why a comparison group: orders rise for many reasons. Comparing engaged physicians with similar physicians not yet reached, in the same markets and months, separates the program’s effect from the trend.</div>
+      </div>
+    </div>`;
+  },
+  content() {
+    const C = [
+      { id: 'first-study', sent: 214, read: 0.41, refs: 14, best: 'Internal medicine', status: 'Approved', days: 21 },
+      { id: 'liver-case', sent: 96, read: 0.63, refs: 9, best: 'Gastroenterology', status: 'Approved', days: 26 },
+      { id: 'same-day', sent: 88, read: 0.38, refs: 11, best: 'Family medicine', status: 'Approved', days: 14 },
+      { id: 'guide', sent: 131, read: 0.22, refs: 5, best: 'Internal medicine', status: 'Approved', days: 19 },
+      { id: 'peds', sent: 42, read: 0.55, refs: 6, best: 'Pediatrics', status: 'Approved', days: 33 },
+      { id: 'dinner', sent: 0, read: 0, refs: 0, best: '—', status: 'In review', days: 18 },
+      { id: 'survey', sent: 0, read: 0, refs: 0, best: '—', status: 'In review', days: 9 }
+    ];
+    const live = C.filter((c) => c.sent).sort((a, b) => b.refs / b.sent - a.refs / a.sent);
+    const mx = Math.max(...live.map((c) => c.refs / c.sent));
+    return `<div><h1 class="view">Content performance</h1><p class="lede">Which pieces get read, and which come before a first referral, so marketing knows what to make next.</p></div>
+    <div class="card"><h2>Pieces in use, ranked by first referrals per 100 sent</h2><p class="sub">A first referral counts when it follows within 60 days of the physician reading the piece. All accounts, sample data.</p>
+    <div class="tablewrap"><table><thead><tr><th>Piece</th><th class="num">Sent</th><th class="num">Read to the end</th><th>First referrals per 100 sent</th><th class="hide-n">Works best with</th></tr></thead><tbody>
+    ${live.map((c) => { const r = c.refs / c.sent * 100; return `<tr><td>${esc(docById(c.id).title)}</td><td class="num">${c.sent}</td><td class="num">${Math.round(c.read * 100)}%</td><td><span style="display:inline-flex;align-items:center;gap:8px;width:100%"><span style="flex:1;min-width:40px;height:8px;border-radius:4px;background:var(--chip);overflow:hidden"><span style="display:block;height:100%;width:${r / (mx * 100) * 100}%;background:var(--accent)"></span></span><b style="font-weight:500">${r.toFixed(1)}</b></span></td><td class="hide-n">${esc(c.best)}</td></tr>`; }).join('')}
+    </tbody></table></div><p class="note" style="margin:10px 0 0">The case study is read most; the lapsed-referrer letter converts best. The quick guide reaches many but converts least, a candidate to rework.</p></div>
+    <div class="grid2">
+      <div class="card"><h2>Review pipeline</h2><p class="sub">Medical, legal and regulatory review. Target: 21 days.</p>
+      <table><thead><tr><th>Piece</th><th>Status</th><th class="num">Days</th></tr></thead><tbody>
+      ${C.map((c) => `<tr><td>${esc(docById(c.id).title)}</td><td>${c.status === 'Approved' ? '<span style="color:var(--ok)">●</span> Approved' : '<span style="color:var(--warn)">●</span> In review'}</td><td class="num" ${c.days > 21 ? 'style="color:var(--warn)"' : ''}>${c.days}</td></tr>`).join('')}
+      <tr><td>Echocardiography case study</td><td><span class="muted">○</span> Drafting</td><td class="num muted">—</td></tr>
+      </tbody></table><p class="note" style="margin:10px 0 0">Days in review for approved pieces; days so far for pieces still in review.</p></div>
+      <div class="card"><h2>What to make next</h2><p class="sub">Gaps the data points to.</p>
+      <ul style="margin:0;padding-left:18px;display:grid;gap:8px">
+        <li><b>Cardiology has no case study.</b> Cardiology holds the third-largest pool of potential orders, and only education pieces reach it today.</li>
+        <li><b>Rework the quick guide.</b> Widest reach, lowest conversion. Test a shorter, specialty-specific version.</li>
+        <li><b>A second lapsed-referrer letter.</b> The first converts best; a follow-up at 30 days could extend it.</li>
+      </ul></div>
+    </div>`;
+  },
+  rollout() {
+    const stages = [
+      ['Introduced', [['Kestrel Valley Hospital', 'Intro meeting Sep 30'], ['Dunmore Regional', 'Intro meeting Oct 8'], ['Saint Ivo Health', 'Intro meeting Oct 10']]],
+      ['Agreed', [['Ashcombe Medical Center', 'Agreed Oct 2 · awaiting list'], ['Pell River Health', 'Agreed Oct 9 · awaiting list']]],
+      ['List received', [['Fenwick Heart Institute', 'List received Oct 6 · mapping']]],
+      ['Live', ACCOUNTS.map((a) => [a.name, `${a.cohort} · live since ${a.live}`])]
+    ];
+    const golive = [['Larkspur Health', 31], ['Harrowgate University Health', 36], ['Bellmoor Medical Center', 42], ['St. Aldric Hospital', 47], ['Quillon Valley Health', 39], ['Northvale Regional', 52]];
+    const med = golive.map((g) => g[1]).sort((a, b) => a - b); const median = (med[2] + med[3]) / 2;
+    return `<div><h1 class="view">Rollout pipeline</h1><p class="lede">Every hospital from first conversation to live, and how long going live takes.</p></div>
+    <div class="tiles">
+      <div class="tile"><div class="k">In the pipeline</div><div class="v">6</div><div class="d">Introduced, agreed or mapping</div></div>
+      <div class="tile"><div class="k">Live</div><div class="v">${ACCOUNTS.length}</div><div class="d">Pilot plus OTH cohorts</div></div>
+      <div class="tile"><div class="k">Agreement to go-live</div><div class="v">${median} days</div><div class="d">Median across live hospitals</div></div>
+      <div class="tile"><div class="k">Projected live by June</div><div class="v">${ACCOUNTS.length + 3}</div><div class="d">If agreed accounts send lists by December</div></div>
+    </div>
+    <div class="card"><h2>Pipeline by stage</h2><p class="sub">Sample data.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px">${stages.map(([name, items], i) => `<div style="background:var(--chip);border-radius:10px;padding:10px;display:grid;gap:8px;align-content:start"><div class="row" style="justify-content:space-between"><b style="font-weight:600">${name}</b><span class="small muted">${items.length}</span></div>${items.map(([n, d]) => `<div style="background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;${i === 3 ? 'border-left:3px solid var(--ok)' : ''}"><div>${esc(n)}</div><div class="small muted">${esc(d)}</div></div>`).join('')}</div>`).join('')}</div></div>
+    <div class="card"><h2>Days from agreement to go-live</h2><p class="sub">Most of the time goes to receiving and cleaning the hospital’s referral list.</p>
+    <div class="segbar">${golive.sort((a, b) => a[1] - b[1]).map(([n, d]) => `<div class="segrow" style="cursor:default;grid-template-columns:minmax(0,200px) 1fr 70px"><span class="small">${esc(n)}</span><span class="bar" style="width:${d / 60 * 100}%;background:var(--brand)"></span><span class="num small">${d} days</span></div>`).join('')}</div></div>`;
+  },
+  compliance() {
+    const LOG = [
+      ['2026-10-09', 'Harrowgate University Health', 'Speaker dinner', '11 attendees · speaker fee and meals recorded', 'Ready to report'],
+      ['2026-10-08', 'Bellmoor Medical Center', 'Opt-out', 'Physician unsubscribed · honored same day', 'Done'],
+      ['2026-10-06', 'All accounts', 'Content version', '“Same-day results” v1.2 replaced v1.1 in every library', 'Done'],
+      ['2026-10-02', 'Larkspur Health', 'Speaker dinner', '9 attendees · meals recorded', 'Ready to report'],
+      ['2026-09-29', 'Quillon Valley Health', 'Opt-out', 'Practice asked for mail only · email stopped', 'Done'],
+      ['2026-09-24', 'St. Aldric Hospital', 'Speaker dinner', '7 attendees · meals recorded', 'Reported'],
+      ['2026-09-18', 'All accounts', 'Content version', '“Liver lesion case study” v1.0 approved and released', 'Done'],
+      ['2026-09-11', 'Bellmoor Medical Center', 'Speaker dinner', '10 attendees · speaker fee and meals recorded', 'Reported']
+    ];
+    const tone = (s) => s === 'Ready to report' ? 'var(--warn)' : 'var(--ok)';
+    return `<div><h1 class="view">Compliance log</h1><p class="lede">An audit trail built in from day one: transfers of value, opt-outs, and which approved version of each piece went out.</p></div>
+    <div class="tiles">
+      <div class="tile"><div class="k">Speaker dinners</div><div class="v">7</div><div class="d">58 attendees since program start</div></div>
+      <div class="tile"><div class="k">Spend recorded for Open Payments</div><div class="v">100%</div><div class="d">2 dinners ready to report</div></div>
+      <div class="tile"><div class="k">Opt-outs honored</div><div class="v">14 of 14</div><div class="d">All within one business day</div></div>
+      <div class="tile"><div class="k">Sends on an approved version</div><div class="v">100%</div><div class="d">Older versions retire automatically</div></div>
+    </div>
+    <div class="card"><h2>Activity log</h2><p class="sub">Newest first. Sample data; amounts are kept in the full record, not shown here.</p>
+    <div class="tablewrap"><table><thead><tr><th>Date</th><th>Account</th><th>Event</th><th>Detail</th><th>Status</th></tr></thead><tbody>
+    ${LOG.map(([d, a, e, t, st]) => `<tr><td class="small">${day(d)}</td><td>${esc(a)}</td><td>${esc(e)}</td><td class="small">${esc(t)}</td><td><span class="pill" style="color:${tone(st)}">${st}</span></td></tr>`).join('')}
+    </tbody></table></div></div>`;
+  },
+  programdocs() {
+    return `<div><h1 class="view">Approved library</h1><p class="lede">The master set of pieces every hospital account draws from. Each hospital sees them in its own branding.</p></div>
+    <div class="card"><div class="tablewrap"><table><thead><tr><th>Piece</th><th>Type</th><th>Written for</th><th>Review status</th><th class="num">Accounts using</th></tr></thead><tbody>
+    ${DOCS.map((d, i) => `<tr><td>${esc(d.title)}</td><td>${esc(d.kind)}</td><td>${pill(d.for)}</td><td class="small">${i < 5 ? '<span style="color:var(--ok)">●</span> Approved' : '<span style="color:var(--warn)">●</span> In review'}</td><td class="num">${i < 5 ? 6 - (i % 3) : 0}</td></tr>`).join('')}
+    </tbody></table></div></div>`;
+  }
+};
+
+const MONTHLY = { labels: ['Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'], ct: [420,419,418,403,394,399,402,389,394,395,399,373], mr: [215,217,223,244,233,238,242,228,234,210,212,197], us: [38,42,40,37,35,42,48,60,62,77,79,95] };
+const opp = (p) => Math.round(p.ctmr * p.eng / 100);
+
+function physRows() {
+  const q = state.q.trim().toLowerCase();
+  const key = { name: (p) => p.name, spec: (p) => p.spec, town: (p) => p.town, seg: (p) => p.seg, ref: (p) => p.ref, eng: (p) => p.eng, opp: (p) => opp(p), next: (p) => p.next }[state.sort];
+  const rows = PHYS.filter((p) => (!state.seg || p.seg === state.seg) && (!state.spec || p.spec === state.spec) && (!q || `${p.name} ${p.spec} ${p.town}`.toLowerCase().includes(q)))
+    .sort((a, b) => { const x = key(a), y = key(b); return (x < y ? -1 : x > y ? 1 : 0) * state.dir; });
+  const c = document.getElementById('p-count'); if (c) c.textContent = `${rows.length} physicians`;
+  setTimeout(() => { const c2 = document.getElementById('p-count'); if (c2) c2.textContent = `${rows.length} physicians`; });
+  return rows.map((p) => `<tr class="click" data-phys="${p.id}" tabindex="0"><td>${esc(p.name)}</td><td class="hide-n">${esc(p.spec)}</td><td>${esc(p.town)}</td><td>${pill(p.seg)}</td><td class="num hide-n">${p.ref}</td><td class="num">${meter(p.eng)}</td><td class="num">${p.seg === 'Active referrer' ? '<span class="muted">—</span>' : opp(p)}</td><td class="small hide-n">${esc(p.next)}</td></tr>`).join('') || '<tr><td colspan="8" class="muted">No physicians match.</td></tr>';
+}
+
+function claimsChart() {
+  const W = 560, H = 220, L = 40, R = 150, T = 12, B = 28;
+  const ymax = 450, x = (i) => L + i / 11 * (W - L - R), y = (v) => T + (1 - v / ymax) * (H - T - B);
+  const line = (a) => a.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('');
+  const grid = [0, 100, 200, 300, 400].map((t) => `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${t}</text>`).join('');
+  const ticks = MONTHLY.labels.map((m, i) => i % 2 ? '' : `<text x="${x(i)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">${m}</text>`).join('');
+  const start = `<line x1="${x(6)}" x2="${x(6)}" y1="${T}" y2="${H - B}" stroke="var(--accent)" stroke-dasharray="4 4"/><text x="${x(6) + 4}" y="${T + 10}" font-size="11" fill="var(--accent)">Outreach begins</text>`;
+  const ends = [['CT', MONTHLY.ct, 'var(--muted)', 400], ['MR', MONTHLY.mr, 'var(--muted)', 400], ['Contrast ultrasound', MONTHLY.us, 'var(--brand)', 600]];
+  const paths = ends.map(([n, a, c, w]) => `<path d="${line(a)}" fill="none" stroke="${c}" stroke-width="${w === 600 ? 2.5 : 1.75}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${x(11)}" cy="${y(a[11])}" r="3" fill="${c}"/><text x="${x(11) + 8}" y="${y(a[11]) + 4}" font-size="12" font-weight="${w}" fill="${w === 600 ? 'var(--ink)' : 'var(--muted)'}">${n} ${a[11]}</text>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Monthly CT, MR and contrast ultrasound orders, sample data">${grid}${ticks}${start}${paths}</svg><p class="note" style="margin:6px 0 0">Contrast ultrasound orders rose from ${MONTHLY.us[5]} in March to ${MONTHLY.us[11]} in September while CT and MR eased.</p>`;
+}
+
+function oppBySpec(tot) {
+  const k = tot / PHYS.length;
+  const rows = [...new Set(PHYS.map((p) => p.spec))].map((s) => { const g = PHYS.filter((p) => p.spec === s && p.seg !== 'Active referrer'); return { s, n: Math.round(g.length * k), o: Math.round(g.reduce((a, p) => a + p.ctmr, 0) * k) }; }).sort((a, b) => b.o - a.o);
+  const mx = Math.max(...rows.map((r) => r.o));
+  return `<div class="segbar">${rows.map((r, i) => `<div class="segrow" style="cursor:default;grid-template-columns:minmax(0,140px) 1fr 120px"><span>${esc(r.s)}</span><span class="bar" style="width:${r.o / mx * 100}%;background:${i < 2 ? 'var(--accent)' : 'var(--brand)'};opacity:${i < 2 ? 1 : .55}"></span><span class="num small">${fmt(r.o)} orders <span class="muted">· ${r.n} drs</span></span></div>`).join('')}</div><p class="note" style="margin:10px 0 0">${esc(rows[0].s)} and ${esc(rows[1].s.toLowerCase())} hold the most CT and MR orders that could start with ultrasound.</p>`;
+}
+
+
+function ptileBtn(k, label, v, d) {
+  const on = state.ptile === k;
+  return `<button class="tile ptile" data-ptile="${k}" aria-expanded="${on}" style="${on ? 'border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)' : ''}"><div class="k">${label}</div><div class="v">${v}</div><div class="d">${d}</div><div class="small" style="color:var(--brand);margin-top:4px">${on ? 'Hide detail ↑' : 'See detail ↓'}</div></button>`;
+}
+function ptileDetail(k) {
+  const pct = (a, b) => `${Math.round((a / b - 1) * 100)}%`;
+  const close = '<button class="btn small" data-ptile="">Close ×</button>';
+  if (k === 'live') return `<div class="card"><div class="row" style="justify-content:space-between"><h2>Hospitals live</h2>${close}</div><p class="sub">Each hospital, its cohort, and whether it is on track. "Needs attention" means under 30% of mapped physicians engaged.</p><div class="tablewrap"><table><thead><tr><th>Hospital</th><th>Cohort</th><th>Live since</th><th class="num">Liaisons</th><th class="num">Engaged</th><th>Status</th></tr></thead><tbody>${ACCOUNTS.map((a) => `<tr><td>${esc(a.name)}</td><td>${a.cohort}</td><td>${a.live}</td><td class="num">${a.liaisons}</td><td class="num">${Math.round(a.engaged * 100)}%</td><td>${a.engaged < 0.3 ? '<span class="pill" style="color:var(--warn)">Needs attention</span>' : '<span class="pill" style="color:var(--ok)">On track</span>'}</td></tr>`).join('')}</tbody></table></div></div>`;
+  if (k === 'mapped') return `<div class="card"><div class="row" style="justify-content:space-between"><h2>Physicians mapped</h2>${close}</div><p class="sub">Existing referrers (active and lapsed) and potential referrers (affiliated and white space) in each market.</p><div class="tablewrap"><table><thead><tr><th>Hospital</th><th class="num">Existing</th><th class="num">Potential</th><th style="min-width:160px">Mix</th><th class="num">Mapped</th></tr></thead><tbody>${ACCOUNTS.map((a) => { const ex = a.split[0] + a.split[1], po = a.split[2] + a.split[3], t = ex + po; return `<tr><td>${esc(a.name)}</td><td class="num">${ex}</td><td class="num">${po}</td><td><span style="display:flex;height:10px;border-radius:5px;overflow:hidden"><span style="width:${a.split[0] / t * 100}%;background:var(--ok)"></span><span style="width:${a.split[1] / t * 100}%;background:var(--warn)"></span><span style="width:${a.split[2] / t * 100}%;background:var(--pot)"></span><span style="width:${a.split[3] / t * 100}%;background:var(--ws)"></span></span></td><td class="num">${t}</td></tr>`; }).join('')}</tbody></table></div><p class="note" style="margin:10px 0 0"><span style="color:var(--ok)">■</span> Active <span style="color:var(--warn)">■</span> Lapsed <span style="color:var(--pot)">■</span> Affiliated, not referring <span style="color:var(--ws)">■</span> White space</p></div>`;
+  if (k === 'newref') { const rows = ACCOUNTS.slice().sort((a, b) => b.newRef - a.newRef); return `<div class="card"><div class="row" style="justify-content:space-between"><h2>New referrers</h2>${close}</div><p class="sub">Physicians who referred for the first time after outreach, and how long it took from their first piece to their first referral.</p><div class="tablewrap"><table><thead><tr><th>Hospital</th><th class="num">New referrers</th><th class="num">Days to first referral</th><th>Most new referrers from</th></tr></thead><tbody>${rows.map((a) => `<tr><td>${esc(a.name)}</td><td class="num">${a.newRef}</td><td class="num">${a.days}</td><td>${a.topSpec}</td></tr>`).join('')}</tbody></table></div><p class="note" style="margin:10px 0 0">Hospitals with more liaisons convert faster: ${rows[0].name} averages ${rows[0].days} days.</p></div>`; }
+  if (k === 'us') { const rows = ACCOUNTS.slice().sort((a, b) => b.us[11] / b.us[5] - a.us[11] / a.us[5]); return `<div class="card"><div class="row" style="justify-content:space-between"><h2>Contrast ultrasound orders</h2>${close}</div><p class="sub">September vs. March, the last month before outreach, from sample claims data.</p><div class="tablewrap"><table><thead><tr><th>Hospital</th><th class="num">March</th><th class="num">September</th><th class="num">Change</th></tr></thead><tbody>${rows.map((a) => `<tr><td>${esc(a.name)}</td><td class="num">${a.us[5]}</td><td class="num">${a.us[11]}</td><td class="num up">+${pct(a.us[11], a.us[5])}</td></tr>`).join('')}</tbody></table></div></div>`; }
+  return '';
+}
+function acctDetail(a) {
+  const W = 520, H = 160, L = 34, R = 16, T = 10, B = 24, mx = Math.max(...a.us) * 1.15;
+  const x = (i) => L + i / 11 * (W - L - R), y = (v) => T + (1 - v / mx) * (H - T - B);
+  const months = ['Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Contrast ultrasound orders by month"><line x1="${x(6)}" x2="${x(6)}" y1="${T}" y2="${H - B}" stroke="var(--accent)" stroke-dasharray="4 4"/><text x="${x(6) + 4}" y="${T + 10}" font-size="11" fill="var(--accent)">Outreach begins</text>${a.us.map((v, i) => `<rect x="${x(i) - 9}" y="${y(v)}" width="18" height="${H - B - y(v)}" rx="3" fill="${i >= 6 ? 'var(--brand)' : 'var(--line)'}"/>${i % 2 ? '' : `<text x="${x(i)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">${months[i]}</text>`}`).join('')}<text x="${x(11)}" y="${y(a.us[11]) - 6}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)">${a.us[11]}</text></svg>`;
+  const t = a.split.reduce((p, c) => p + c, 0), reached = Math.round(t * 0.82), eng = Math.round(t * a.engaged);
+  return `<div class="card"><div class="row" style="justify-content:space-between"><div><h2>${esc(a.name)}</h2><p class="sub" style="margin:0">${a.cohort} · live since ${a.live} · ${a.liaisons} liaison${a.liaisons > 1 ? 's' : ''} · program-level summary</p></div><button class="btn small" data-acct="">Close ×</button></div>
+  <div class="grid2" style="margin-top:12px"><div><h2 style="font-size:13px">Contrast ultrasound orders by month</h2>${svg}</div>
+  <div><h2 style="font-size:13px">From mapped to referring</h2><div class="segbar">${[['Mapped', t], ['Reached', reached], ['Engaged', eng], ['New referrers', a.newRef]].map(([k, v], i) => `<div class="segrow" style="cursor:default;grid-template-columns:110px 1fr 50px"><span class="small">${k}</span><span class="bar" style="width:${Math.max(1, v / t * 100)}%;background:${i === 3 ? 'var(--accent)' : 'var(--brand)'}"></span><span class="num small">${v}</span></div>`).join('')}</div>
+  <p class="note" style="margin:10px 0 0">Average ${a.days} days from first piece to first referral. Most new referrers: ${a.topSpec.toLowerCase()}.</p></div></div></div>`;
+}
+
+function funnel(tot, nr) {
+  const engaged = Math.round(ACCOUNTS.reduce((a, x) => a + x.mapped * x.engaged, 0));
+  const reached = Math.round(tot * 0.82);
+  const steps = [['Physicians mapped', tot], ['Reached with at least one piece', reached], ['Engaged (opened or read)', engaged], ['Became new referrers', nr]];
+  return `<div class="segbar">${steps.map(([k, v], i) => `<div class="segrow" style="cursor:default;grid-template-columns:minmax(0,210px) 1fr 90px"><span>${k}</span><span class="bar" style="width:${Math.max(1, v / tot * 100)}%;background:${i === 3 ? 'var(--accent)' : 'var(--brand)'};opacity:${i === 3 ? 1 : 1 - i * 0.2}"></span><span class="num small">${fmt(v)}${i ? ` <span class="muted">${Math.round(v / steps[i - 1][1] * 100)}%</span>` : ''}</span></div>`).join('')}</div><p class="note" style="margin:10px 0 0">Percentages show how many carried on from the step above.</p>`;
+}
+
+function segBars() {
+  const max = Math.max(...SEGS.map((s) => PHYS.filter((p) => p.seg === s.key).length));
+  return `<div class="segbar">${['Existing', 'Potential'].map((g) => `<div class="small muted" style="margin-top:4px">${g}</div>` + SEGS.filter((s) => s.group === g).map((s) => { const n = PHYS.filter((p) => p.seg === s.key).length; return `<div class="segrow" data-seg="${esc(s.key)}" role="button" tabindex="0" style="${state.view === 'map' && state.seg && state.seg !== s.key ? 'opacity:.4' : ''}"><span>${esc(s.key)}</span><span class="bar" style="width:${n / max * 100}%;background:${s.color}"></span><span class="num">${n}</span></div>`; }).join('')).join('')}</div>`;
+}
+
+function paper(d, recip) {
+  const f = {
+    dr: `<span class="merge">${esc(state.fields.dr || (recip ? recip.name : 'Dr. [Name]'))}</span>`,
+    service: `<span class="merge">${esc(state.fields.service)}</span>`,
+    contact: `<span class="merge">${esc(state.fields.contact)}</span>`
+  };
+  return `<div class="paper"><div class="lh">${logoMark}<div><div class="n">Larkspur Health</div><div class="u">Imaging Services</div></div></div><div class="body">${d.body(f)}</div><div class="foot"><span>Larkspur Health Imaging · 1200 Larkspur Avenue, Philadelphia, PA</span><span>Sample content, not reviewed</span></div></div>`;
+}
+
+function render() {
+  if (state.role === 'bracco' && !PROGRAM_VIEWS.includes(state.view)) state.view = 'program';
+  if (state.role === 'hospital' && PROGRAM_VIEWS.includes(state.view)) state.view = 'home';
+  renderTop();
+  const v = $('#view');
+  v.classList.remove('view-in'); void v.offsetWidth; v.classList.add('view-in');
+  v.innerHTML = VIEWS[state.view]();
+}
+
+document.addEventListener('click', (e) => {
+  const pt = e.target.closest('[data-ptile],[data-acct]');
+  if (pt && pt.dataset.ptile !== undefined) { const k = pt.dataset.ptile || null; state.ptile = state.ptile === k ? null : k; return render(); }
+  if (pt && pt.dataset.acct !== undefined) { const i = pt.dataset.acct === '' ? null : Number(pt.dataset.acct); state.acct = state.acct === i ? null : i; render(); const d = document.querySelector('[data-acct=""]'); if (d && i !== null) d.closest('.card').scrollIntoView({ block: 'nearest' }); return; }
+  const s = e.target.closest('[data-spec],[data-sort]');
+  if (s && s.dataset.spec !== undefined) { state.spec = s.dataset.spec || null; return render(); }
+  if (s && s.dataset.sort) { const k = s.dataset.sort; if (state.sort === k) state.dir = -state.dir; else { state.sort = k; state.dir = ['ref', 'eng', 'opp'].includes(k) ? -1 : 1; } return render(); }
+  const t = e.target.closest('[data-go],[data-phys],[data-seg],[data-doc],[data-use],[data-download],[data-send-to],[data-log],[data-cseg],[data-mode],[data-schedule]');
+  if (!t) return;
+  if (t.dataset.go) return go(t.dataset.go);
+  if (t.dataset.phys) return go('physician', { phys: t.dataset.phys });
+  if (t.dataset.seg !== undefined) { const s = t.dataset.seg || null; return go('map', { seg: state.view === 'map' && state.seg === s ? null : s }); }
+  if (t.dataset.doc) { state.doc = t.dataset.doc; return render(); }
+  if (t.dataset.use) { state.compose = { ...state.compose, mode: 'segment', doc: t.dataset.use, seg: docById(t.dataset.use).for, subject: '' }; return go('compose'); }
+  if (t.hasAttribute('data-download')) return toast('In the full build this downloads a print-ready PDF in Larkspur’s letterhead.');
+  if (t.dataset.sendTo) { const p = PHYS.find((x) => x.id === t.dataset.sendTo); const d = DOCS.find((x) => x.for === p.seg) || DOCS[0]; state.compose = { mode: 'one', phys: p.id, seg: p.seg, doc: d.id, subject: '' }; return go('compose'); }
+  if (t.dataset.log) return toast('Call logged. It will appear on the engagement timeline.');
+  if (t.dataset.cseg) { state.compose.seg = t.dataset.cseg; return render(); }
+  if (t.dataset.mode) { state.compose.mode = t.dataset.mode; return render(); }
+  if (t.hasAttribute('data-schedule')) {
+    const c = state.compose; const n = c.mode === 'one' ? 1 : PHYS.filter((p) => p.seg === c.seg).length;
+    SENT.unshift({ date: '2026-10-20', doc: c.doc, to: c.mode === 'one' ? PHYS.find((p) => p.id === c.phys).name : c.seg, n, demo: true });
+    go('sent'); toast(`Scheduled ${n} email${n === 1 ? '' : 's'}. This is a prototype, so nothing is sent.`);
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('tr[data-phys], tr[data-acct], .segrow')) { e.preventDefault(); e.target.click(); }
+});
+document.addEventListener('input', (e) => {
+  const id = e.target.id;
+  if (id === 'f-dr' || id === 'f-service' || id === 'f-contact') { state.fields[id.slice(2)] = e.target.value; $('#preview').innerHTML = paper(docById(state.doc)); }
+  if (id === 'i-v' || id === 'i-i') {
+    if (id === 'i-v') state.valPerStudy = e.target.value.replace(/[^0-9.]/g, ''); else state.invest = e.target.value.replace(/[^0-9.]/g, '');
+    const extra = ACCOUNTS.reduce((a, x) => a + x.us.slice(6).reduce((p, c) => p + c, 0) - 6 * x.us[5], 0), nr = ACCOUNTS.reduce((a, x) => a + x.newRef, 0);
+    const v = Number(state.valPerStudy), inv = Number(state.invest);
+    $('#i-val').textContent = v > 0 ? '$' + fmt(Math.round(extra * v)) : '—';
+    $('#i-cpr').textContent = inv > 0 ? '$' + fmt(Math.round(inv / nr)) : '—';
+  }
+  if (id === 'p-search') { state.q = e.target.value; $('#p-body').innerHTML = physRows(); }
+  if (id === 'c-subj') { state.compose.subject = e.target.value; const s = $('.mail .hdr span:last-child'); if (s) s.innerHTML = `<b>Subject</b> ${esc(e.target.value)}`; }
+});
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'c-doc') { state.compose.doc = e.target.value; state.compose.subject = ''; render(); }
+  if (e.target.id === 'role') { state.role = e.target.value; try { location.hash = state.role === 'bracco' ? 'program' : 'hospital'; } catch (err) {} render(); }
+});
+if (location.hash === '#program') { state.role = 'bracco'; state.view = 'program'; }
+$('#role').value = state.role;
+render();
+</script>
+
+</body>
+</html>
